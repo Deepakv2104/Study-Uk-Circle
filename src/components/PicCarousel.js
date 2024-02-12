@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-import img1 from "../assets/img/img1.webp";
 import { Container, Row, Col } from "react-bootstrap";
 import { ArrowRightCircle } from "react-bootstrap-icons";
 import lottie from "lottie-web";
