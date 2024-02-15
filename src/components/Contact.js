@@ -6,6 +6,7 @@ import TrackVisibility from 'react-on-screen';
 import lottie from "lottie-web";
 import animationData from "../assets/lotties/connect2.json";
 import gsap from 'gsap';
+import '../styles/Contact.css'
 export const Contact = () => {
   const container = useRef(null);
 

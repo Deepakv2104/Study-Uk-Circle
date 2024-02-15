@@ -1,0 +1,61 @@
+import React, { useRef } from 'react';
+import gsap from 'gsap';
+import './Navbar.css'
+import { Banner } from '../Banner';
+import { Nav } from 'react-bootstrap';
+import logo from '../../assets/img/logo.svg'
+const AnimatedNav = () => {
+    const navRef = useRef(null);
+    const tl = gsap.timeline({ defaults: { duration: 1, ease: 'expo.inOut' } });
+  
+    const handleOpenNav = () => {
+        console.log('opened')
+        if (tl.reversed()) {
+          tl.play();
+        } else {
+          tl.to(navRef.current, { right: 0 })
+            .to(navRef.current, { height: '100vh' }, '-=.1')
+            .to('nav ul li a', { opacity: 1, pointerEvents: 'all', stagger: .2 }, '-=.8')
+            .to('.close', { opacity: 1, pointerEvents: 'all' }, '-=0.8')
+            .to('.nav-title', { opacity: 1 }, '-=1')
+            .to('nav h2', { opacity: 1 }, '-=1')
+            .play(); // Add this line to play the timeline
+        }
+      };
+    const handleCloseNav = () => {
+      tl.reverse();
+    };
+  
+    return (
+      <div>
+        <div className='b'>
+        
+        <div className="nav-container" onClick={handleOpenNav}>
+          <div className="nav-bars">
+            
+          </div>
+         
+        </div>
+    
+    
+     
+  
+        <nav ref={navRef}>
+        <h2 className='nav-title'>LOGO</h2>
+
+          <div className="close" onClick={handleCloseNav}>
+            <div></div>
+          </div>
+          <ul>
+            <li className="nav-item"><a href="#">HOME</a></li>
+            <li className="nav-item"><a href="#">EVENTS</a></li>
+            <li className="nav-item"><a href="#">INTERNSHIPS</a></li>
+            <li className="nav-item"><a href="#">GALLARY</a></li>
+          </ul>
+        </nav>
+      </div>
+      </div>
+    );
+  };
+  
+  export default AnimatedNav;

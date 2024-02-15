@@ -7,6 +7,7 @@ import logo from '../assets/img/logo.svg';
 import googleSvg from '../assets/img/googleSvg.svg'
 import linkedin from '../assets/img/linkedin.svg'
 import meta from '../assets/img/meta.svg'
+import '../styles/Login.css'
 const LoginPage = () => {
   const formRef = useRef(null);
   const container = useRef(null);

@@ -9,7 +9,8 @@ import animationData3 from "../assets/lotties/locate.json";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import LottieAnimation from "./LottieAnimation";
-
+import logo from '../assets/img/logo.svg';
+import '../styles/BannerSections.css'
 const sections = [
   {
     id: 1,
@@ -46,29 +47,10 @@ const sections = [
   // Add more sections as needed
 ];
 
-const PicCarousel = () => {
-  const [text, setText] = useState("");
+const BannerSections = () => {
+
   const container = useRef(null);
 
-  useEffect(() => {
-    const animation = lottie.loadAnimation({
-      container: container.current,
-      renderer: "svg",
-      loop: true,
-      autoplay: true,
-      animationData,
-    });
-    // GSAP Animation for the container
-    gsap.fromTo(
-      container.current,
-      { opacity: 0, scale: 0.5 }, // Start state
-      { opacity: 1, scale: 1, duration: 1, ease: "power2.out", delay: 0.5 } // End state and animation properties
-    );
-    return () => {
-      // Cleanup the animation when the component is unmounted
-      animation.destroy();
-    };
-  }, []);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -83,7 +65,7 @@ const PicCarousel = () => {
         ease: "power3.out",
         scrollTrigger: {
           trigger: ".right-column-content",
-          start: "top 90%",
+         
           toggleActions: "play none none reset",
           delay: 0.5,
         },
@@ -99,8 +81,12 @@ const PicCarousel = () => {
   return (
     <section className="section2" id="services">
       <Container>
+     
         {sections.map((section, index) => (
-          <Row key={section.id} className="align-items-center">
+          <Row
+          key={section.id}
+          className={`align-items-center ${index % 2 === 0 ? 'even-section' : 'odd-section'}`}
+        >
             {/* Check if the index is odd or even to determine the layout */}
             {index % 2 === 0 ? (
               <>
@@ -135,4 +121,4 @@ const PicCarousel = () => {
     </section>
   );
 };
-export default PicCarousel;
+export default BannerSections;

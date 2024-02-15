@@ -6,16 +6,16 @@ import e2 from '../assets/img/e2.webp'
 import e3 from '../assets/img/e3.webp'
 import e4 from '../assets/img/e4.webp'
 import e5 from '../assets/img/e5.webp'
-
+import '../styles/Gallary.css'
 import e6 from '../assets/img/e6.webp'
 
 
 import 'animate.css';
 import TrackVisibility from 'react-on-screen';
 
-export const Projects = () => {
+export const Gallary = () => {
 
-  const projects = [
+  const Data = [
     {
       title: "PRE-DEPARTURE EVENTS 2023: MUMBAI",
       description: "11 September 2023 @ Cricket Club of IndiaThe inspiring words & invaluable insights of Shri Mangal Prabhat Lodha, Chandan Taparia, Idzes Kundan & our student panel brought our Pre-Departure Event series to an impactful end.",
@@ -74,11 +74,11 @@ export const Projects = () => {
                     <Tab.Pane eventKey="first">
                       <Row>
                         {
-                          projects.map((project, index) => {
+                          Data.map((Data, index) => {
                             return (
                               <ProjectCard
                                 key={index}
-                                {...project}
+                                {...Data}
                                 />
                             )
                           })
@@ -98,7 +98,9 @@ export const Projects = () => {
           </Col>
         </Row>
       </Container>
-      <img className="background-image-right" src={colorSharp2}></img>
+     
     </section>
   )
 }
+
+export default Gallary;

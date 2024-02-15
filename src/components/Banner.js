@@ -6,6 +6,7 @@ import TrackVisibility from "react-on-screen";
 import lottie from "lottie-web";
 import animationData from "../assets/lotties/study.json";
 import gsap from 'gsap';
+import '../styles/Banner.css'
 export const Banner = () => {
   const container = useRef(null);
   const [loopNum, setLoopNum] = useState(0);
@@ -13,7 +14,7 @@ export const Banner = () => {
   const [text, setText] = useState("");
   const [delta, setDelta] = useState(300 - Math.random() * 100);
   const [index, setIndex] = useState(1);
-  const toRotate =[" a Job Opportunities?", "Guidence?", "Accomodation?"];
+  const toRotate =[" a Job ?", "Guidence?", "Stays?"];
   const period = 500;
 
   useEffect(() => {
@@ -73,7 +74,7 @@ export const Banner = () => {
   };
 
   return (
-    <section className="banner" id="home">
+    <div className="banner" id="home">
       <Container>
         <Row className="aligh-items-center">
           <Col xs={12} md={6} xl={7}>
@@ -90,7 +91,7 @@ export const Banner = () => {
                     <span
                       className="txt-rotate"
                       data-period="1000"
-                      data-rotate='[" a Job Opportunities?", "Guidence?", "Accomodation?]'
+                      data-rotate='[" Job ", "Guidence?", "stays?]'
                     >
                       <span className="wrap">{text}</span>
                     </span>
@@ -115,6 +116,22 @@ export const Banner = () => {
           </Col>
         </Row>
       </Container>
-    </section>
+      {/* <div className="section1">
+      <div class="split left">
+  <div class="centered">
+    <h2>Jane Flex</h2>
+    <p>Some text.</p>
+  </div>
+</div>
+
+<div class="split right">
+  <div class="centered">
+    <h2>John Doe</h2>
+    <div style={{ width: "100%", height: "60%",padding:'30px' }} ref={container}></div>
+   
+  </div>
+</div>
+      </div> */}
+    </div>
   );
 };
