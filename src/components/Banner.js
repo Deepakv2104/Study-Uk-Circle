@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+
 import { Container, Row, Col } from "react-bootstrap";
 import { ArrowRightCircle } from "react-bootstrap-icons";
 import lottie from "lottie-web";
 import gsap from 'gsap';
 import '../styles/Banner.css';
 import animationData from "../assets/lotties/study.json";
-
+import { useNavigate } from "react-router-dom";
 export const Banner = () => {
   const container = useRef(null);
   const navigate = useNavigate();

@@ -1,8 +1,10 @@
 import React, { useRef } from 'react';
+import { useNavigate } from "react-router-dom";
 import gsap from 'gsap';
 import './Navbar.css'
 
 const AnimatedNav = () => {
+  const navigate = useNavigate();
     const navRef = useRef(null);
     const tl = gsap.timeline({ defaults: { duration: 1, ease: 'expo.inOut' } });
   
@@ -23,6 +25,12 @@ const AnimatedNav = () => {
     const handleCloseNav = () => {
       tl.reverse();
     };
+    const handleLogin = () => {
+      console.log("clicked");
+      navigate('/login');
+    };
+
+
   
     return (
       <div>
@@ -45,7 +53,7 @@ const AnimatedNav = () => {
             <div></div>
           </div>
           <ul>
-            <li className="nav-item"><a href="#">HOME</a></li>
+            <li className="nav-item" onClick={handleLogin}><a href="#">HOME</a></li>
             <li className="nav-item"><a href="#">EVENTS</a></li>
             <li className="nav-item"><a href="#">INTERNSHIPS</a></li>
             <li className="nav-item"><a href="#">GALLARY</a></li>
