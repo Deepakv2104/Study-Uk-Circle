@@ -1,9 +1,7 @@
 import React, { useRef } from 'react';
 import gsap from 'gsap';
 import './Navbar.css'
-import { Banner } from '../Banner';
-import { Nav } from 'react-bootstrap';
-import logo from '../../assets/img/logo.svg'
+
 const AnimatedNav = () => {
     const navRef = useRef(null);
     const tl = gsap.timeline({ defaults: { duration: 1, ease: 'expo.inOut' } });

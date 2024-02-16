@@ -2,61 +2,14 @@
 .banner {
     margin-top: 0;
     padding-top: 80px;
-  
+  position: relative;
     background-position: top center;
     background-size: cover;
     background-repeat: no-repeat;
   background-color: white;
-  
-    
-  }
-  .section1{
-    display: flex;
-    color: black;
-    background-color: #666;
-    height: 100vh;
-    position:relative;
-    inline-size:auto;
 
-    justify-content: center;
-    text-align: center;
-  }
-  .split {
-    height: 100%;
-    width: 50%;
-    position: relative;
-    /* z-index: 1; */
-    top: 0;
-    /* overflow-x: hidden; */
-    padding-top: 20px;
-  }
-  
-  /* Control the left side */
-  .left {
-    left: 0;
-    background-color: #111;
-    color: white;
-  }
-  
-  /* Control the right side */
-  .right {
-    right: 0;
-    background-color: rgb(255, 255, 255);
-  }
-  
-  /* If you want the content centered horizontally and vertically */
-  .centered {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-  }
-  
-  /* Style the image inside the centered container, if needed */
-  .centered img {
-    width: 150px;
-    border-radius: 50%;
+
+
   }
 
 
@@ -64,6 +17,7 @@
 
   .banner span{
     color: black;
+ 
   }
   .banner .tagline {
     font-weight: 700;
@@ -74,6 +28,7 @@
     font-size: 20px;
     margin-bottom: 16px;
     display: inline-block;
+    z-index: 1;
   }
   .banner h1 {
     font-size: 65px;
@@ -83,7 +38,7 @@
     line-height: 1;
     margin-bottom: 20px;
     display: block;
-    
+    z-index: 0;
   }
 
   @media only screen and (max-width: 768px) {

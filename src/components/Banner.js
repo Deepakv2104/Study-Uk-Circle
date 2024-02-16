@@ -1,31 +1,27 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 import { ArrowRightCircle } from "react-bootstrap-icons";
-import "animate.css";
-import TrackVisibility from "react-on-screen";
 import lottie from "lottie-web";
-import animationData from "../assets/lotties/study.json";
 import gsap from 'gsap';
-import '../styles/Banner.css'
+import '../styles/Banner.css';
+import animationData from "../assets/lotties/study.json";
+
 export const Banner = () => {
   const container = useRef(null);
+  const navigate = useNavigate();
   const [loopNum, setLoopNum] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [text, setText] = useState("");
   const [delta, setDelta] = useState(300 - Math.random() * 100);
   const [index, setIndex] = useState(1);
-  const toRotate =[" a Job ?", "Guidence?", "Stays?"];
+  const toRotate = [" a Job ?", "Guidence?", "Stays?"];
   const period = 500;
 
-  useEffect(() => {
-    let ticker = setInterval(() => {
-      tick();
-    }, delta);
-
-    return () => {
-      clearInterval(ticker);
-    };
-  }, [text]);
+  const handleLogin = () => {
+    console.log("clicked");
+    navigate('login');
+  };
 
   useEffect(() => {
     const animation = lottie.loadAnimation({
@@ -35,16 +31,28 @@ export const Banner = () => {
       autoplay: true,
       animationData,
     });
-  // GSAP Animation for the container
-  gsap.fromTo(container.current, 
-    { opacity: 0, scale: 0.5 }, // Start state
-    { opacity: 1, scale: 1, duration: 1, ease: 'power3.out', delay: 0.5 } // End state and animation properties
-  );
+
+    // GSAP Animation for the container
+    gsap.fromTo(container.current,
+      { opacity: 0, scale: 0.5 }, // Start state
+      { opacity: 1, scale: 1, duration: 1, ease: 'power3.out', delay: 0.5 } // End state and animation properties
+    );
+
     return () => {
       // Cleanup the animation when the component is unmounted
       animation.destroy();
     };
   }, []);
+
+  useEffect(() => {
+    const ticker = setInterval(() => {
+      tick();
+    }, delta);
+
+    return () => {
+      clearInterval(ticker);
+    };
+  }, [text]);
 
   const tick = () => {
     let i = loopNum % toRotate.length;
@@ -78,60 +86,35 @@ export const Banner = () => {
       <Container>
         <Row className="aligh-items-center">
           <Col xs={12} md={6} xl={7}>
-            <TrackVisibility>
-              {({ isVisible }) => (
-                <div
-                  className={
-                    isVisible ? "animate__animated animate__fadeIn" : ""
-                  }
+            <div className="animate__animated animate__fadeIn">
+              <span className="tagline">Welcome to INSAUK</span>
+              <h1>
+                {`Hi! Looking for`}{" "}
+                <span
+                  className="txt-rotate"
+                  data-period="1000"
+                  data-rotate='[" Job ", "Guidence?", "stays?]'
                 >
-                  <span className="tagline">Welcome to INSAUK</span>
-                  <h1>
-                    {`Hi! Looking for`}{" "}
-                    <span
-                      className="txt-rotate"
-                      data-period="1000"
-                      data-rotate='[" Job ", "Guidence?", "stays?]'
-                    >
-                      <span className="wrap">{text}</span>
-                    </span>
-                  </h1>
+                  <span className="wrap">{text}</span>
+                </span>
+              </h1>
 
-                  <p>
-                  INSA
-                    is an organisation that works to connect with all Indian
-                    students in the UK in order to promote their well-being, to
-                    keep them bridged with their roots in India and to nurture
-                    them as future leaders for India
-                  </p>
-                  <button onClick={() => console.log("connect")}>
-                    Let’s Connect <ArrowRightCircle size={25} />
-                  </button>
-                </div>
-              )}
-            </TrackVisibility>
+              <p>
+                INSA is an organisation that works to connect with all Indian
+                students in the UK in order to promote their well-being, to
+                keep them bridged with their roots in India and to nurture
+                them as future leaders for India
+              </p>
+              <button onClick={handleLogin}>
+                Let’s Connect <ArrowRightCircle size={25} />
+              </button>
+            </div>
           </Col>
           <Col xs={12} md={6} xl={5}>
             <div ref={container}></div>
           </Col>
         </Row>
       </Container>
-      {/* <div className="section1">
-      <div class="split left">
-  <div class="centered">
-    <h2>Jane Flex</h2>
-    <p>Some text.</p>
-  </div>
-</div>
-
-<div class="split right">
-  <div class="centered">
-    <h2>John Doe</h2>
-    <div style={{ width: "100%", height: "60%",padding:'30px' }} ref={container}></div>
-   
-  </div>
-</div>
-      </div> */}
     </div>
   );
 };

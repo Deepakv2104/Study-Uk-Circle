@@ -34,6 +34,7 @@
     justify-content: center;
     align-items: center;
     
+    
   }
   
   .login-form form {
@@ -95,6 +96,9 @@
     height: auto;
   }
   
+  .reset1{
+   padding:20px 85px;
+  }
   /* Minimalist tweaks for input placeholders */
   ::placeholder {
     color: #bbb;
@@ -145,4 +149,5 @@
     .form-title, .form-group label, .new-user-check a {
       font-size: larger; /* Increase font size for better readability */
     }
+  
   }

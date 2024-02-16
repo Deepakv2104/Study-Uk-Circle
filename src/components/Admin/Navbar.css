@@ -21,14 +21,7 @@ z-index: 4;
 	height: 20px;
    
 }
-.b img{
-    cursor: pointer;
-	position: absolute;
-	top: 5%;
-	right: 5%;
-	width: 30px;
-	height: 20px;
-}
+
 
 .nav-bars{
 	width: 30px;
