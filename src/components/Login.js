@@ -61,7 +61,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="login-page" >
+    <div className="login-page">
   <div className="lottie-container" >
         <img src={logo} alt="Logo" style={{ maxWidth: "100px", margin:'20px' }} />
         <div ref={container}></div>
