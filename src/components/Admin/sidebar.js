@@ -141,6 +141,7 @@ function SidebarIcons({ id }) {
 const Sidebar=({ onSidebarHide, showSidebar }) =>{
   const navigate = useNavigate();
   const [selected, setSelected] = useState("0");
+  const [logoutLoading, setLogoutLoading] = useState(false);
 
   const { dashOffset, indicatorWidth, precentage } = useSpring({
     dashOffset: 26.015,
@@ -151,14 +152,16 @@ const Sidebar=({ onSidebarHide, showSidebar }) =>{
   });
   const handleLogout = async () => {
     try {
+      setLogoutLoading(true); // Disable the button and show loading state
       // Call the logout function from your Firebase configuration
       await logout();
-     navigate('/login');
       // Optionally, you can perform any additional actions after logout
       console.log('User logged out successfully');
     } catch (error) {
       // Handle logout error
       console.error('Logout error:', error.message);
+    } finally {
+      setLogoutLoading(false); // Enable the button and hide loading state
     }
   };
 
@@ -310,8 +313,10 @@ const Sidebar=({ onSidebarHide, showSidebar }) =>{
           selected === "logout" ? "sidebar-item-selected" : "sidebar-item"
         )}
         onClick={() => {
-          setSelected("logout");
-          handleLogout(); // Call the logout function when the "Logout" item is clicked
+          if (!logoutLoading) {
+            setSelected("logout");
+            handleLogout(); // Call the logout function when the "Logout" item is clicked
+          }
         }}
       >
         <SidebarIcons id="logout" />
