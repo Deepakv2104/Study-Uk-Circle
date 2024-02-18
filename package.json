@@ -19,7 +19,7 @@
     "react-bootstrap": "^2.4.0",
     "react-bootstrap-icons": "^1.8.2",
     "react-dom": "^18.2.0",
-    "react-firebase-file-uploader": "^2.4.4",
+    "react-firebase-file-uploader": "^3.1.0",
     "react-firebase-hooks": "^5.1.1",
     "react-icons": "^5.0.1",
     "react-lottie": "^1.2.4",
@@ -40,7 +40,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "npm install --legacy-peer-deps && react-scripts build",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -50,7 +50,6 @@
       "react-app/jest"
     ]
   },
-
   "browserslist": {
     "production": [
       ">0.2%",
