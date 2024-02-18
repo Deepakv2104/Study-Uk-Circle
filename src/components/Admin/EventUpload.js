@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../../firebase'; // Import your firebase configuration
-import FileUploader from 'react-firebase-file-uploader';
+
 import Slider from 'react-slick';
 
 import 'slick-carousel/slick/slick.css';
