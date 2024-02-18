@@ -105,62 +105,7 @@ const EventUploadForm = () => {
   };
 
   return (
-  //   <div className="rounded-lg bg-card sm:h-80 h-60 p-6 m-4">
-  //   <h2 className="text-2xl font-semibold mb-4">Upload Event</h2>
-  //   <form onSubmit={handleFormSubmit}>
-  //     {/* ... Other form fields */}
-  //     <div className="mb-4">
-  //       <label htmlFor="location" className="block text-sm font-medium text-gray-600">
-  //         Event Location
-  //       </label>
-  //       <input
-  //         type="text"
-  //         id="location"
-  //         value={location}
-  //         onChange={(e) => setLocation(e.target.value)}
-  //         className="mt-1 p-2 w-full border rounded-md"
-  //         required
-  //       />
-  //     </div>
-  //     <div className="mb-4">
-  //       <label htmlFor="time" className="block text-sm font-medium text-gray-600">
-  //         Event Time
-  //       </label>
-  //       <input
-  //         type="text"
-  //         id="time"
-  //         value={time}
-  //         onChange={(e) => setTime(e.target.value)}
-  //         className="mt-1 p-2 w-full border rounded-md"
-  //         required
-  //       />
-  //     </div>
-  //     <div className="mb-4">
-  //       <label htmlFor="image" className="block text-sm font-medium text-gray-600">
-  //         Event Image
-  //       </label>
-  //       <FileUploader
-  //         accept="image/*"
-  //         name="image"
-  //         randomizeFilename
-  //         // storageRef={storage.ref('images')}
-  //         onUploadStart={handleUploadStart}
-  //         onUploadError={handleUploadError}
-  //         onUploadSuccess={handleUploadSuccess}
-  //         onProgress={handleUploadProgress}
-  //       />
-  //       {isUploading && <p>Progress: {progress}%</p>}
-  //       {image && <img src={image} alt="Event" className="mt-2 max-w-full h-auto" />}
-  //     </div>
-  //     {/* ... Other form fields */}
-  //     <button
-  //       type="submit"
-  //       className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
-  //     >
-  //       Upload Event
-  //     </button>
-  //   </form>
-  // </div>
+  
       <div className=" h-screen flex-grow overflow-x-hidden overflow-auto flex flex-wrap content-start p-2  ">
      <div className="w-full p-2 lg:w-1/3">
   <div className="rounded-lg bg-card h-full sm:p-4">
