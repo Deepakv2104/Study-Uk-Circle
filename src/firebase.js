@@ -17,14 +17,13 @@ import {
   addDoc,
 } from "firebase/firestore";
 const firebaseConfig = {
-  apiKey: "AIzaSyBL-237uZVTkJwyCxBo29Vy09ASkiupj-4",
-  authDomain: "studentprojectrepo.firebaseapp.com",
-  databaseURL: "https://studentprojectrepo-default-rtdb.firebaseio.com",
-  projectId: "studentprojectrepo",
-  storageBucket: "studentprojectrepo.appspot.com",
-  messagingSenderId: "1091320260631",
-  appId: "1:1091320260631:web:7e4828c44c17c2257b1452",
-  measurementId: "G-W0FVWXSY3E"
+  apiKey: "AIzaSyBIUQ_qoRCkJIQuCLHN-G0olEkn9a3LH9I",
+  authDomain: "worldlynk-effa8.firebaseapp.com",
+  projectId: "worldlynk-effa8",
+  storageBucket: "worldlynk-effa8.appspot.com",
+  messagingSenderId: "54298790712",
+  appId: "1:54298790712:web:dd197a77e3f3b869c14fcd",
+  measurementId: "G-TE03GW3B07"
 };
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
