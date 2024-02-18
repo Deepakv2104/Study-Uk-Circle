@@ -1,55 +1,61 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { auth, signInWithGoogle, logInWithEmailAndPassword } from "../firebase";
+// Dashboard.js
 
-import { useAuthState } from "react-firebase-hooks/auth";
-import "../styles/Testing.css";
-function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [user, loading, error] = useAuthState(auth);
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (loading) {
-      // maybe trigger a loading screen
-      return;
-    }
-    if (user) navigate("/dashboard");
-  }, [user, loading]);
+import React from 'react';
+
+const Dashboard = () => {
+  // Hardcoded data
+  const userData = {
+    registeredStudents: 1500,
+    activeUsersLastWeek: 800,
+    activeUsersLastMonth: 1200,
+    popularEvents: [
+      { name: 'Event A', registrations: 200 },
+      { name: 'Event B', registrations: 180 },
+      // Add more events as needed
+    ],
+  };
+
+  const trendsData = {
+    demographics: [
+      { label: '18-25', value: 600 },
+      { label: '26-30', value: 400 },
+      // Add more demographics as needed
+    ],
+    geographicDistribution: [
+      { label: 'London', value: 600 },
+      { label: 'Manchester', value: 300 },
+      // Add more locations as needed
+    ],
+    popularTimePeriods: [
+      { label: 'Morning', value: 400 },
+      { label: 'Afternoon', value: 600 },
+      // Add more time periods as needed
+    ],
+  };
+
   return (
-    <div className="login">
-      <div className="login__container">
-        <input
-          type="text"
-          className="login__textBox"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="E-mail Address"
-        />
-        <input
-          type="password"
-          className="login__textBox"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-        />
-        <button
-          className="login__btn"
-          onClick={() => logInWithEmailAndPassword(email, password)}
-        >
-          Login
-        </button>
-        <button className="login__btn login__google" onClick={signInWithGoogle}>
-          Login with Google
-        </button>
-        <div>
-          <Link to="/reset">Forgot Password</Link>
+    <div className="container mx-auto p-4">
+      {/* User Engagement Stats */}
+      <div className="mb-8">
+        <h2 className="text-2xl font-bold mb-4">User Engagement</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="p-4 bg-white rounded shadow">
+            <p className="text-xl font-bold">Registered Students</p>
+            <p className="text-gray-700">{userData.registeredStudents}</p>
+          </div>
+          {/* Add similar components for other stats */}
         </div>
-        <div>
-          Don't have an account? <Link to="/register">Register</Link> now.
+      </div>
+
+      {/* Trends and Analytics Stats */}
+      <div>
+        <h2 className="text-2xl font-bold mb-4">Trends and Analytics</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {/* Add components for demographic, geographic, and time period stats */}
         </div>
       </div>
     </div>
   );
-}
-export default Login;
+};
+
+export default Dashboard;
