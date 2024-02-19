@@ -54,7 +54,7 @@ const LoginPage = () => {
     try {
       await logInWithEmailAndPassword(email, password);
       // Navigate to dashboard after successful login
-      navigate("/dashboard");
+      navigate("/dashboard/overview");
       // Display success toast
       toast.success('Login successful!', { position: 'top-right', autoClose: 1500 });
     } catch (error) {
