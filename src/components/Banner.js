@@ -100,7 +100,7 @@ export const Banner = () => {
               </h1>
 
               <p>
-                INSA is an organisation that works to connect with all Indian
+                WorldLynk is an organisation that works to connect with all Indian
                 students in the UK in order to promote their well-being, to
                 keep them bridged with their roots in India and to nurture
                 them as future leaders for India
