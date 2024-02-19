@@ -1,4 +1,4 @@
-tt.login-page {
+.login-page {
     display: flex;
     flex-direction: row; 
     height: 100vh;
@@ -95,7 +95,10 @@ tt.login-page {
     width: 100%;
     height: auto;
   }
-  
+  .lottie-container, .login-form {
+  width: 50%;
+}
+
   .reset1{
    padding:20px 85px;
   }
@@ -137,6 +140,7 @@ tt.login-page {
       background: none; /* Optional: simplify background on very small screens */
       order: 1; /* Ensure form follows the Lottie animation */
       margin-top: 10px;
+      
 
     }
   

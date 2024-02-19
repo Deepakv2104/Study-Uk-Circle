@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { auth, signInWithGoogle, logInWithEmailAndPassword } from "../firebase";
+import { auth,logInWithEmailAndPassword ,signInWithGoogle} from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';

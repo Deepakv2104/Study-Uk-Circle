@@ -1,7 +1,7 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import UserProvider from "./auth/userProvider/userProvider";
+import UserProvider from "./auth/userProvider/AuthProvider";
 import Testing from './components/Testing'
 import Reset from "./components/reset";
 import Welcome from "./components/Welcome";
