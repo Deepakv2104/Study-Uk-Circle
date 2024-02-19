@@ -87,7 +87,7 @@ export const Banner = () => {
         <Row className="aligh-items-center">
           <Col xs={12} md={6} xl={7}>
             <div className="animate__animated animate__fadeIn">
-              <span className="tagline">Welcome to INSAUK</span>
+              <span className="tagline">Welcome to WorldLynk</span>
               <h1>
                 {`Hi! Looking for`}{" "}
                 <span
@@ -100,14 +100,20 @@ export const Banner = () => {
               </h1>
 
               <p>
-                INSA is an organisation that works to connect with all Indian
+                WorldLynk is an organisation that works to connect with all Indian
                 students in the UK in order to promote their well-being, to
                 keep them bridged with their roots in India and to nurture
                 them as future leaders for India
               </p>
+<<<<<<< HEAD
               {/* <button onClick={handleLogin}>
                 Let’s Connect <ArrowRightCircle size={25} />
               </button> */}
+=======
+              // <button onClick={handleLogin}>
+              //   Let’s Connect <ArrowRightCircle size={25} />
+              // </button>
+>>>>>>> fc6f3e9614fbf8d2581a9d6b5efd18995f326598
             </div>
           </Col>
           <Col xs={12} md={6} xl={5}>
