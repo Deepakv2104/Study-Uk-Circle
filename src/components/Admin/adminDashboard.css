@@ -60,3 +60,17 @@ background: #1d1d1d;
 .sidebar-item:hover {
  color:#a1a0a0;
 }
+.relative {
+  position: relative;
+}
+
+.black-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  transform-origin: top;
+  transform: scaleY(1);
+}

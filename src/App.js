@@ -21,9 +21,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Welcome />} />
             <Route path = "/login"element={<LoginPage />} />
-            <Route path="/SignIn" element={<SignIn />} />
-            <Route path="/register" element={<Register />} />
-            <Route exact path="/reset" element={<Reset />} />
+           
             <Route path="/dashboard" element={<Dashboard />} >
             <Route path="/dashboard/overview" element={<Overview />} />
             <Route path="/dashboard/add-event" element={<EventUploadForm />} />
