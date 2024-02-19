@@ -1,17 +1,33 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
-import { auth, sendPasswordReset } from "../firebase";
-import '../styles/Reset.css'
+import { useNavigate, Link } from "react-router-dom";
+import { auth } from "../firebase";
+import { useAuth } from "../auth/userProvider/AuthProvider"; // Update the import statement
+import '../styles/Reset.css';
+
 function Reset() {
   const [email, setEmail] = useState("");
-  const [user, loading, error] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
+  const { resetPassword } = useAuth(); // Use the useAuth hook to access resetPassword
   const navigate = useNavigate();
+
   useEffect(() => {
     if (loading) return;
     if (user) navigate("/dashboard");
-  }, [user, loading]);
+  }, [user, loading, navigate]);
+
+  const handleResetPassword = async () => {
+    try {
+      await resetPassword(email);
+      // Provide feedback to the user
+      alert('Password reset email sent! Check your inbox.');
+    } catch (error) {
+      // Handle the error appropriately
+      console.error("Error sending password reset email:", error.message);
+      alert(`Error: ${error.message}`);
+    }
+  };
+
   return (
     <div className="reset">
       <div className="reset__container">
@@ -24,7 +40,7 @@ function Reset() {
         />
         <button
           className="reset__btn"
-          onClick={() => sendPasswordReset(email)}
+          onClick={handleResetPassword} // Call the function directly
         >
           Send password reset email
         </button>
@@ -35,4 +51,5 @@ function Reset() {
     </div>
   );
 }
+
 export default Reset;

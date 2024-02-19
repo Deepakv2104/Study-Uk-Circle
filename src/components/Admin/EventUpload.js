@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { collection, addDoc } from 'firebase/firestore';
-import { db } from '../../firebase'; // Import your firebase configuration
+import { firestore } from '../../firebase'; // Import your firebase configuration
 
 import Slider from 'react-slick';
 
@@ -57,7 +57,7 @@ const EventUploadForm = () => {
 
     try {
       // Add the event data to the Firestore database
-      const docRef = await addDoc(collection(db, 'events'), {
+      const docRef = await addDoc(collection(firestore, 'events'), {
         title,
         description,
         date,

@@ -5,11 +5,13 @@ import UserProvider from "./auth/userProvider/AuthProvider";
 import Testing from './components/Testing'
 import Reset from "./components/reset";
 import Welcome from "./components/Welcome";
-import Login from "./components/Login"; // Assuming you have a Login component
+import Login from "./components/LoginPage"; // Assuming you have a Login component
 import Register from "./components/register";
 import Dashboard from "./components/Admin/adminDashboard";
 import EventUploadForm from "./components/Admin/EventUpload";
 import Overview from "./components/Admin/Overview";
+import SignIn from "./components/SignIn";
+import LoginPage from "./components/LoginPage";
 
 function App() {
   return (
@@ -18,8 +20,8 @@ function App() {
         <div className="App">
           <Routes>
             <Route path="/" element={<Welcome />} />
-            <Route path="/login" element={<Login />} />
-            {/* <Route path="/testing" element={<Testing />} /> */}
+            <Route path = "/login"element={<LoginPage />} />
+            <Route path="/SignIn" element={<SignIn />} />
             <Route path="/register" element={<Register />} />
             <Route exact path="/reset" element={<Reset />} />
             <Route path="/dashboard" element={<Dashboard />} >

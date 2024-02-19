@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-
+import { useAuth } from "../../auth/userProvider/AuthProvider";
 import SidebarIcons from "./small-comp/SideBarIcons";
 import { useSpring, animated, config } from "react-spring";
 import clsx from "clsx";
-import { logout } from "../../firebase";
+// import { logout } from "../../firebase";
 import Icon from "./small-comp/Icon";
 import Image from "./small-comp/Image";
 import IconButton from "./small-comp/IconButton";
@@ -28,12 +28,15 @@ const sidebarItems = [
 
 function MenuItem({ item: { id, title, notifications ,path}, onClick, selected }) {
   const navigate = useNavigate();
+
+
   const handleClick = () => {
+
+
     onClick(path);
     if (path === "logout") {
       // Handle logout separately
-      // You may want to perform additional cleanup or redirect logic before logging out
-      console.log("Logout clicked");
+     
     } else {
       // Navigate to the corresponding path
       
@@ -67,6 +70,7 @@ const Sidebar = ({ onSidebarHide, showSidebar }) => {
   const navigate = useNavigate();
   const [selected, setSelected] = useState("0");
   const [logoutLoading, setLogoutLoading] = useState(false);
+  const { logout } = useAuth();
 
   const { dashOffset, indicatorWidth, precentage } = useSpring({
     dashOffset: 26.015,
@@ -75,16 +79,14 @@ const Sidebar = ({ onSidebarHide, showSidebar }) => {
     from: { dashOffset: 113.113, indicatorWidth: 0, precentage: 0 },
     config: config.molasses,
   });
+
   const handleLogout = async () => {
     try {
       setLogoutLoading(true); // Disable the button and show loading state
-      // Call the logout function from your Firebase configuration
-      await logout();
-      navigate('/')
-      // Optionally, you can perform any additional actions after logout
+      await logout(); // Call the logout function from your AuthContext
+      navigate('/');
       console.log("User logged out successfully");
     } catch (error) {
-      // Handle logout error
       console.error("Logout error:", error.message);
     } finally {
       setLogoutLoading(false); // Enable the button and hide loading state
