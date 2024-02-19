@@ -105,9 +105,9 @@ export const Banner = () => {
                 keep them bridged with their roots in India and to nurture
                 them as future leaders for India
               </p>
-              <button onClick={handleLogin}>
-                Let’s Connect <ArrowRightCircle size={25} />
-              </button>
+              // <button onClick={handleLogin}>
+              //   Let’s Connect <ArrowRightCircle size={25} />
+              // </button>
             </div>
           </Col>
           <Col xs={12} md={6} xl={5}>
