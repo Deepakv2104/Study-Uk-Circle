@@ -96,9 +96,9 @@ const BannerSections = () => {
                 <Col xs={12} md={6} xl={5} className="right-column-content">
                   <h1>{section.title}</h1>
                   <p>{section.content}</p>
-                  <button onClick={() => console.log("connect")}>
-                    {section.search} <ArrowRightCircle size={25} />
-                  </button>
+                  // <button onClick={() => console.log("connect")}>
+                  //   {section.search} <ArrowRightCircle size={25} />
+                  // </button>
                 </Col>
               </>
             ) : (
@@ -106,9 +106,9 @@ const BannerSections = () => {
                 <Col xs={12} md={6} xl={5} className="right-column-content">
                   <h1>{section.title}</h1>
                   <p>{section.content}</p>
-                  <button onClick={() => console.log("connect")}>
-                   {section.search} <ArrowRightCircle size={25} />
-                  </button>
+                  // <button onClick={() => console.log("connect")}>
+                  //  {section.search} <ArrowRightCircle size={25} />
+                  // </button>
                 </Col>
                 <Col xs={12} md={6} xl={7}>
                   <LottieAnimation animationData={section.animationData} />
