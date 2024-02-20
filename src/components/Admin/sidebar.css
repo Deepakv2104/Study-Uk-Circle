@@ -1,0 +1,15 @@
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 250px; /* Adjust the width based on your design */
+    background-color: #2d2d2d; /* Adjust the background color */
+    transform: translateX(-100%);
+    transition: transform 1s ease; /* Add a transition property for smooth animation */
+  }
+  
+  .sidebar.show {
+    transform: translateX(0);
+  }
+  

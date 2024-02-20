@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useAuth } from "../../auth/userProvider/AuthProvider";
-import SidebarIcons from "./small-comp/SideBarIcons";
+
 import { useSpring, animated, config } from "react-spring";
 import clsx from "clsx";
 // import { logout } from "../../firebase";
@@ -8,65 +8,13 @@ import Icon from "./small-comp/Icon";
 import Image from "./small-comp/Image";
 import IconButton from "./small-comp/IconButton";
 import { useNavigate } from "react-router-dom";
-
-const sidebarItems = [
-  [
-    { id: "0", title: "Dashboard", notifications: false , path:'/dashboard/overview'},
-    { id: "1", title: "Add Event", notifications: false, path:'/dashboard/add-event' },
-    { id: "2", title: "Add College", notifications: false, path:'/dashboard/add-college' },
-    { id: "3", title: "Add Job post", notifications: false, path:'/dashboard/add-job-post' },
-    { id: "4", title: "Chat", notifications: 6 , path:'/dashboard/chat'},
-    { id: "5", title: "Team", notifications: false },
-  ],
-  [
-    { id: "4", title: "Tasks", notifications: false },
-    { id: "5", title: "Reports", notifications: false },
-    { id: "6", title: "Settings", notifications: false },
-  ],
-];
+import sidebarItems from "./sidebarItems";
+import './sidebar.css'
+import MenuItem from "./MenuItem";
 
 
-function MenuItem({ item: { id, title, notifications ,path}, onClick, selected }) {
-  const navigate = useNavigate();
 
-
-  const handleClick = () => {
-
-
-    onClick(path);
-    if (path === "logout") {
-      // Handle logout separately
-     
-    } else {
-      // Navigate to the corresponding path
-      
-      navigate(path);
-    }
-  };  
-
-
-  return (
-    <div
-      className={clsx(
-        "w-full mt-6 flex items-center px-3 sm:px-0 xl:px-3 justify-start sm:justify-center xl:justify-start sm:mt-6 xl:mt-3 cursor-pointer",
-        selected === id ? "sidebar-item-selected" : "sidebar-item"
-      )}
-      onClick={handleClick}
-    >
-      <SidebarIcons id={id} />
-      <div className="block sm:hidden xl:block ml-2">{title}</div>
-      <div className="block sm:hidden xl:block flex-grow" />
-      {notifications && (
-        <div className="flex sm:hidden xl:flex bg-pink-600  w-5 h-5 flex items-center justify-center rounded-full mr-2">
-          <div className="text-white text-sm">{notifications}</div>
-        </div>
-      )}
-    </div>
-  );
-}
-
-
-const Sidebar = ({ onSidebarHide, showSidebar }) => {
+const Sidebar = ({ onSidebarHide, showSidebar,user }) => {
   const navigate = useNavigate();
   const [selected, setSelected] = useState("0");
   const [logoutLoading, setLogoutLoading] = useState(false);
@@ -94,12 +42,12 @@ const Sidebar = ({ onSidebarHide, showSidebar }) => {
   };
 
   return (
-    <div
-      className={clsx(
-        "fixed inset-y-0 left-0 bg-card w-full sm:w-20 xl:w-60 sm:flex flex-col z-10",
-        showSidebar ? "flex" : "hidden"
-      )}
-    >
+    <animated.div
+    className={clsx(
+      "fixed inset-y-0 left-0 bg-card w-full sm:w-20 xl:w-60 sm:flex flex-col z-10",
+      showSidebar ? "flex" : "hidden"
+    )}
+  >
       <div className="flex-shrink-0 overflow-hidden p-2">
         <div className="flex items-center h-full sm:justify-center xl:justify-start p-2 sidebar-separator-top">
           {/* <IconButton icon="res-react-dash-logo" className="w-10 h-10" /> */}
@@ -131,7 +79,7 @@ const Sidebar = ({ onSidebarHide, showSidebar }) => {
             <div className="flex items-center h-full sm:justify-center xl:justify-start p-2 sidebar-separator-bottom">
           <Image path="mock_faces_7" className="w-10 h-10" />
           <div className="block sm:hidden xl:block ml-2 font-bold ">
-            Jashwanth
+       {user.name || "Guest"}
           </div>
           <div className="flex-grow block sm:hidden xl:block" />
           <Icon
@@ -245,10 +193,15 @@ const Sidebar = ({ onSidebarHide, showSidebar }) => {
           }
         }}
       >
-        <SidebarIcons id="logout" />
-        <div className="block sm:hidden xl:block ml-2">Logout</div>
+        {/* <SidebarIcons id="logout" /> */}
+        <button className="ml-2 p-2 m-2  bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none transition duration-300 ease-in-out">
+  Logout
+</button>
+
+
+
       </div>
-    </div>
+      </animated.div>
   );
 };
 
