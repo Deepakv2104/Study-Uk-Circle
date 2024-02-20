@@ -106,7 +106,10 @@ const Sidebar = ({ onSidebarHide, showSidebar,user }) => {
             onClick={setSelected}
             selected={selected}
           />
+          
         ))}
+        
+ 
         <div className="flex-grow" />
         <div className="w-full p-3 h-28 hidden sm:block sm:h-20 xl:h-32">
           <div
@@ -179,28 +182,10 @@ const Sidebar = ({ onSidebarHide, showSidebar,user }) => {
             </div>
           </div>
         </div>
+     
       </div>
 
-      <div
-        className={clsx(
-          "w-full mt-6 flex items-center px-3 sm:px-0 xl:px-3 justify-start sm:justify-center xl:justify-start sm:mt-6 xl:mt-3 cursor-pointer",
-          selected === "logout" ? "sidebar-item-selected" : "sidebar-item"
-        )}
-        onClick={() => {
-          if (!logoutLoading) {
-            setSelected("logout");
-            handleLogout(); // Call the logout function when the "Logout" item is clicked
-          }
-        }}
-      >
-        {/* <SidebarIcons id="logout" /> */}
-        <button className="ml-2 p-2 m-2  bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none transition duration-300 ease-in-out">
-  Logout
-</button>
-
-
-
-      </div>
+     
       </animated.div>
   );
 };

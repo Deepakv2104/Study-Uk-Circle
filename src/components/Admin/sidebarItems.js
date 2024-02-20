@@ -11,6 +11,7 @@ const sidebarItems = [
       { id: "4", title: "Tasks", notifications: false },
       { id: "5", title: "Reports", notifications: false },
       { id: "6", title: "Settings", notifications: false },
+      { id: "7", title: "Logout", notifications: false },
     ],
   ];
 

@@ -42,6 +42,21 @@ const AdminDashboard = () => {
     fetchData();
   }, [auth]);
 
+  useEffect(() => {
+    const handleBeforeUnload = (event) => {
+      // Perform logout action when the window is closed or unloaded
+      auth.logout();
+    };
+
+    // Attach event listener for beforeunload
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    // Cleanup event listener on component unmount
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, [auth]);
+
   return (
     <div className="dashboard-container">
       {initialLoad ? (
