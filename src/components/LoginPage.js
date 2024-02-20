@@ -119,8 +119,8 @@ const LoginPage = () => {
             position: "top-right",
             autoClose: 1200,
           });
-          console.log("after toast");
-        }, 2000); // Adjust the delay as needed
+          console.log("Before toast");
+        }, 1000); // Adjust the delay as needed
       } else {
         // If the user is not a student, reject authentication
         console.log("User is not a student");
