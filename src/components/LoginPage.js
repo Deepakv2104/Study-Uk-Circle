@@ -141,13 +141,35 @@ const LoginPage = () => {
 
   const handleGoogleLogin = async () => {
     try {
-      await signInWithPopup(auth, provider);
+      // Sign in with Google
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+  
+      // Check if the user is already registered in Firestore
+      const userDoc = await getDoc(doc(firestore, "users", user.uid));
+  
+      if (!userDoc.exists()) {
+        // If the user is not registered, add user details to Firestore with role set to 'student'
+        const userDocRef = doc(firestore, "users", user.uid);
+        await setDoc(userDocRef, {
+          userId: user.uid,
+          role: "student", // Set the user role to 'student'
+          email: user.email,
+          name: user.displayName,
+        });
+      }
+  
+      // Display success toast
       toast.success("Login with Google successful!");
+  
+      // Navigate to the dashboard
       navigate("/dashboard/overview");
     } catch (error) {
+      // Display error toast
       toast.error(`Error: ${error.message}`);
     }
   };
+  
 
   const handleSignUp = async () => {
     try {

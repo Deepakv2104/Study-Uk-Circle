@@ -17,7 +17,7 @@ const AdminDashboard = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      console.log(auth.currentUser.uid)
+      
       try {
         if (auth.currentUser) {
           const db = getFirestore();
@@ -25,6 +25,7 @@ const AdminDashboard = () => {
           const userDoc = await getDoc(userDocRef);
 
           if (userDoc.exists()) {
+            console.log(auth.currentUser.uid)
             setUserData(userDoc.data());
           } else {
             console.log("User document does not exist");
