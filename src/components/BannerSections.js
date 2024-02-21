@@ -126,9 +126,9 @@ const BannerSections = () => {
                   >
                     <h1>{section.title}</h1>
                     <p>{section.content}</p>
-                    <button onClick={() => console.log("connect")}>
+                    {/* <button onClick={() => console.log("connect")}>
                       {section.search} <ArrowRightCircle size={25} />
-                    </button>
+                    </button> */}
                   </animated.div>
                 </Col>
                 <Col xs={12} md={6} xl={7}>
