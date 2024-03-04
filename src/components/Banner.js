@@ -87,7 +87,7 @@ export const Banner = () => {
         <Row className="aligh-items-center">
           <Col xs={12} md={6} xl={7}>
             <div className="animate__animated animate__fadeIn">
-            <span className="tagline" style={{ fontSize: '2rem' }}>Welcome to <span style={{ color: '#ff5722', fontSize:'2.5rem' }}>WorldLynk</span></span>
+            <span className="tagline" style={{ fontSize: '1.5rem' }}>Welcome to <span style={{ color: '#ff5722'}}>WorldLynk</span></span>
 
               <h1>
                 {`Hi! Looking for`}{" "}
