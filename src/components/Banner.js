@@ -15,7 +15,7 @@ export const Banner = () => {
   const [text, setText] = useState("");
   const [delta, setDelta] = useState(300 - Math.random() * 100);
   const [index, setIndex] = useState(1);
-  const toRotate = [" a Job ?", "Guidence?", "Stays?"];
+  const toRotate = [" a Job ?", "Guidence?", "Accomodation?"];
   const period = 500;
 
   const handleLogin = () => {
@@ -87,13 +87,14 @@ export const Banner = () => {
         <Row className="aligh-items-center">
           <Col xs={12} md={6} xl={7}>
             <div className="animate__animated animate__fadeIn">
-              <span className="tagline">Welcome to WorldLynk</span>
+            <span className="tagline" style={{ fontSize: '2rem' }}>Welcome to <span style={{ color: '#ff5722', fontSize:'2.5rem' }}>WorldLynk</span></span>
+
               <h1>
                 {`Hi! Looking for`}{" "}
                 <span
                   className="txt-rotate"
                   data-period="1000"
-                  data-rotate='[" Job ", "Guidence?", "stays?]'
+                  data-rotate='[" Job ", "Guidence?", "Accomodation?]'
                 >
                   <span className="wrap">{text}</span>
                 </span>
