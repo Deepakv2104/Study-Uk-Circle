@@ -13,21 +13,18 @@ import {
   DialogActions,
   Typography,
   Container,
-  IconButton,
+
   Grid,
-  Box,
-  Paper,
-  MenuItem,
-  Select,
+
 } from "@mui/material";
-import EditIcon from "@mui/icons-material/Edit";
+
 import { collection, addDoc, doc, getDoc } from "firebase/firestore";
 import { firestore } from "../firebase";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { format } from "date-fns";
-import Edit from "@mui/icons-material/Edit";
+
 
 const QueryForm = () => {
   const { user } = useAuth();
