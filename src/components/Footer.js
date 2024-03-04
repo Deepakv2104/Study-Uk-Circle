@@ -2,7 +2,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
-import logo from "../assets/img/WorldLynk_transparent.png";
+import logo from "../assets/img/logo2.png";
 import '../styles/Footer.css'
 
 const Footer = () => {
@@ -110,7 +110,7 @@ const Footer = () => {
             <div class="row">
                 <div class="col-xl-6 col-lg-6 text-center text-lg-left">
                     <div class="copyright-text">
-                        <p>Copyright &copy; 2024, All Right Reserved <a href="#">Jaswanth</a></p>
+                        <p>Copyright &copy; 2024, All Right Reserved </p>
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-6 d-none d-lg-block text-right">
