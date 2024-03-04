@@ -37,7 +37,7 @@ const sections = [
   {
     id: 2,
     animationData: animationData3,
-    title: "Find Stays",
+    title: "Find Accomodation",
     content:
       "Find your ideal stay seamlessly. Explore diverse accommodation options tailored to your preferences. Whether it's for education or work, our platform offers personalized guidance, ensuring a comfortable and enriching stay experience. Break barriers, discover international stays, and elevate your living arrangements with WorldLynk.",
   search:"Search Homes"

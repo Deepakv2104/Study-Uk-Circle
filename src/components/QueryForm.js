@@ -211,7 +211,7 @@ const QueryForm = () => {
         "Data successfully submitted to Firebase:",
         projectWithBranchAndDate
       );
-      toast.success("Thank you!", {
+      toast.success("Thank You!", {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: false,
@@ -264,7 +264,7 @@ const QueryForm = () => {
   return (
     <Container>
       <button onClick={handleOpen}>
-        Let’s Connect <ArrowRightCircle size={25} />
+        Join the Waiting List <ArrowRightCircle size={25} />
       </button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Tell us about yourself</DialogTitle>

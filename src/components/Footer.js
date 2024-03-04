@@ -2,7 +2,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
-import logo from "../assets/img/logo.svg";
+import logo from "../assets/img/WorldLynk_transparent.png";
 import '../styles/Footer.css'
 
 const Footer = () => {
@@ -56,8 +56,8 @@ const Footer = () => {
                             <a href="index.html"><img src={logo} class="img-fluid" alt="logo"/></a>
                         </div>
                         <div class="footer-text">
-                            <p>Lorem ipsum dolor sit amet, consec tetur adipisicing elit, sed do eiusmod tempor incididuntut consec tetur adipisicing
-                            elit,Lorem ipsum dolor sit amet.</p>
+                            {/* <p>Lorem ipsum dolor sit amet, consec tetur adipisicing elit, sed do eiusmod tempor incididuntut consec tetur adipisicing
+                            elit,Lorem ipsum dolor sit amet.</p> */}
                         </div>
                         <div class="footer-social-icon">
                             <span>Follow us</span>
@@ -110,7 +110,7 @@ const Footer = () => {
             <div class="row">
                 <div class="col-xl-6 col-lg-6 text-center text-lg-left">
                     <div class="copyright-text">
-                        <p>Copyright &copy; 2018, All Right Reserved <a href="#">Jashwanth</a></p>
+                        <p>Copyright &copy; 2024, All Right Reserved <a href="#">Jashwanth</a></p>
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-6 d-none d-lg-block text-right">

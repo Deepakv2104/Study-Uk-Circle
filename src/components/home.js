@@ -75,8 +75,8 @@ const HomePage = () => {
         {/* <AnimatedNav/> */}
         <Banner/>
         <BannerSections/>
-        <Gallary/>
-        <Contact/>
+        {/* <Gallary/>
+        <Contact/> */}
         <Footer/>
         {/* <Footer/> */}
       </div>

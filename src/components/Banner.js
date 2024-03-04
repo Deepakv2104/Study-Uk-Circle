@@ -15,7 +15,7 @@ export const Banner = () => {
   const [text, setText] = useState("");
   const [delta, setDelta] = useState(300 - Math.random() * 100);
   const [index, setIndex] = useState(1);
-  const toRotate = [" a Job ?", "Guidence?", "Accomodation?"];
+  const toRotate = [" a Job ?", "Guidance?", "Accomodation?"];
   const period = 500;
 
   const handleLogin = () => {
@@ -94,7 +94,7 @@ export const Banner = () => {
                 <span
                   className="txt-rotate"
                   data-period="1000"
-                  data-rotate='[" Job ", "Guidence?", "Accomodation?]'
+                  data-rotate='[" Job ", "Guidance?", "Accomodation?]'
                 >
                   <span className="wrap">{text}</span>
                 </span>

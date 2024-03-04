@@ -15,8 +15,8 @@ const Welcome = () => {
         <Banner/> 
          <BannerSections />
          {/* <Layers/> */}
-      <Gallary />
-      <Contact />
+      {/* <Gallary /> */}
+      {/* <Contact /> */}
       <Footer />
  {/* <HomePage/> */}
       
