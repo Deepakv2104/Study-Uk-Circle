@@ -1,6 +1,6 @@
 .b {
 	font-family: "Montserrat", sans-serif;
-    position: fixed;
+    position: absolute;
 	width: 100%;
 	min-height: 100vh;
 
@@ -8,7 +8,7 @@
 	justify-content: space-between;
 	align-items: center;
 padding: auto;
-
+position: fixed;
 z-index: 4;
 }
 
@@ -78,6 +78,7 @@ nav h2{
 nav ul li{
 	margin: 50px 0;
 	cursor: pointer;
+	color: #fff;
 }
 
 nav ul li a{

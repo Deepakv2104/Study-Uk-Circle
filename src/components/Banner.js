@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
-
+import QueryForm from "./QueryForm";
 import { Container, Row, Col } from "react-bootstrap";
 import { ArrowRightCircle } from "react-bootstrap-icons";
 import lottie from "lottie-web";
-import gsap from "gsap";
-import "../styles/Banner.css";
+import gsap from 'gsap';
+import '../styles/Banner.css';
 import animationData from "../assets/lotties/study.json";
 import { useNavigate } from "react-router-dom";
 export const Banner = () => {
@@ -20,7 +20,7 @@ export const Banner = () => {
 
   const handleLogin = () => {
     console.log("clicked");
-    navigate("login");
+    navigate('form');
   };
 
   useEffect(() => {
@@ -33,10 +33,9 @@ export const Banner = () => {
     });
 
     // GSAP Animation for the container
-    gsap.fromTo(
-      container.current,
+    gsap.fromTo(container.current,
       { opacity: 0, scale: 0.5 }, // Start state
-      { opacity: 1, scale: 1, duration: 1, ease: "power3.out", delay: 0.5 } // End state and animation properties
+      { opacity: 1, scale: 1, duration: 1, ease: 'power3.out', delay: 0.5 } // End state and animation properties
     );
 
     return () => {
@@ -101,15 +100,12 @@ export const Banner = () => {
               </h1>
 
               <p>
-                Embark on your academic journey with WorldLynk, your one-stop
-                solution for seamless student experiences in the UK. We go
-                beyond boundaries to provide comprehensive services, ensuring
-                your stay is enriching and your career path is paved with
-                success.
+              Embark on your academic journey with WorldLynk, your one-stop solution for seamless student experiences in the UK. We go beyond boundaries to provide comprehensive services, ensuring your stay is enriching and your career path is paved with success.
               </p>
               {/* <button onClick={handleLogin}>
                 Let’s Connect <ArrowRightCircle size={25} />
               </button> */}
+              <QueryForm/>
             </div>
           </Col>
           <Col xs={12} md={6} xl={5}>

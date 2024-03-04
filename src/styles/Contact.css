@@ -1,7 +1,7 @@
 .contact {
     background-color: white;
-      padding: 60px 0 200px 0;  
-    z-index: 9999;
+     
+    /* z-index: 9999; */
     
     }
     
@@ -47,7 +47,7 @@
       padding: 14px 48px;
       font-size: 18px;
       margin-top: 25px;
-      border-radius: 0;
+      border-radius: 10px;
       position: relative;
       transition: 0.3s ease-in-out;
     
@@ -70,6 +70,7 @@
       left: 0;
       z-index: 0;
       transition: 0.3s ease-in-out;
+      border-radius: 10px;
     }
     .contact form button:hover::before {
       width: 100%;

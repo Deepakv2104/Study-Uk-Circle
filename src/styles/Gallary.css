@@ -8,6 +8,7 @@
       font-size: 45px;
       font-weight: 700;
     text-align: center;
+    color: white;
   }
   .project p {
     color: #B8B8B8;
@@ -80,7 +81,7 @@
   }
   .proj-imgbx::before {
     content: "";
-    background: linear-gradient(90.21deg, #a2a2a2 -5.91%, #000000 111.58%);
+    background: linear-gradient(90.21deg, #ebebeb -5.91%, #c4bfbf 111.58%);
     opacity: 0.85;
     position: absolute;
     width: 100%;

@@ -1,97 +1,97 @@
 /************ Banner Css ************/
 .banner {
-    margin-top: 0;
-    padding-top: 80px;
-  position: relative;
-    background-position: top center;
-    background-size: cover;
-    background-repeat: no-repeat;
-  background-color: white;
+  margin-top: 0;
+  padding-top: 80px;
+position: relative;
+  background-position: top center;
+  background-size: cover;
+  background-repeat: no-repeat;
+height: 100vh;
 
 
 
-  }
+}
 
 
 
 
-  .banner span{
-    color: black;
- 
-  }
-  .banner .tagline {
-    font-weight: 700;
-    letter-spacing: 0.8px;
-    padding: 8px 10px;
-    /* background: linear-gradient(90.21deg, rgba(212, 30, 139, 0.5) -5.91%, rgba(74, 47, 189, 0.5) 111.58%); */
-    border: 1px solid rgba(0, 0, 0, 0.5);
-    font-size: 20px;
-    margin-bottom: 16px;
-    display: inline-block;
-    z-index: 1;
-  }
+.banner span{
+  color: black;
+
+}
+.banner .tagline {
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  padding: 8px 10px;
+  /* background: linear-gradient(90.21deg, rgba(212, 30, 139, 0.5) -5.91%, rgba(74, 47, 189, 0.5) 111.58%); */
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  font-size: 20px;
+  margin-bottom: 16px;
+  display: inline-block;
+  /* z-index: 1; */
+}
+.banner h1 {
+  font-size: 65px;
+  color:#000;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  line-height: 1;
+  margin-bottom: 20px;
+  display: block;
+  /* z-index: 0; */
+}
+
+@media only screen and (max-width: 768px) {
   .banner h1 {
-    font-size: 65px;
+    font-size: 35px;  
     color:#000;
     font-weight: 700;
     letter-spacing: 0.8px;
     line-height: 1;
     margin-bottom: 20px;
     display: block;
-    z-index: 0;
+    
   }
-
-  @media only screen and (max-width: 768px) {
-    .banner h1 {
-      font-size: 35px;  
-      color:#000;
-      font-weight: 700;
-      letter-spacing: 0.8px;
-      line-height: 1;
-      margin-bottom: 20px;
-      display: block;
-      
+  }
+.banner p {
+  color: #000 ;
+  font-size: 18px;
+  letter-spacing: 0.8px;
+  line-height: 1.5em;
+  width: 96%;
+}
+.banner button {
+  color: #000;
+  font-weight: 700;
+  font-size: 20px;
+  margin-top: 60px;
+  letter-spacing: 0.8px;
+  display: flex;
+  align-items: center;
+}
+.banner button svg {
+  font-size: 25px;
+  margin-left: 10px;
+  transition: 0.3s ease-in-out;
+  line-height: 1;
+}
+.banner button:hover svg {
+  margin-left: 25px;
+}
+.banner img {
+  animation: updown 3s linear infinite;
+}
+@keyframes updown {
+    0% {
+        transform: translateY(-20px);
     }
+    50% {
+        transform: translateY(20px);
     }
-  .banner p {
-    color: #000 ;
-    font-size: 18px;
-    letter-spacing: 0.8px;
-    line-height: 1.5em;
-    width: 96%;
-  }
-  .banner button {
-    color: #000;
-    font-weight: 700;
-    font-size: 20px;
-    margin-top: 60px;
-    letter-spacing: 0.8px;
-    display: flex;
-    align-items: center;
-  }
-  .banner button svg {
-    font-size: 25px;
-    margin-left: 10px;
-    transition: 0.3s ease-in-out;
-    line-height: 1;
-  }
-  .banner button:hover svg {
-    margin-left: 25px;
-  }
-  .banner img {
-    animation: updown 3s linear infinite;
-  }
-  @keyframes updown {
-      0% {
-          transform: translateY(-20px);
-      }
-      50% {
-          transform: translateY(20px);
-      }
-      100% {
-          transform: translateY(-20px);
-      }
-  }
-  .txt-rotate > .wrap {
-    border-right: 0.08em solid #666;
-  }
+    100% {
+        transform: translateY(-20px);
+    }
+}
+.txt-rotate > .wrap {
+  border-right: 0.08em solid #666;
+}

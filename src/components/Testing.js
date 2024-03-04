@@ -1,61 +1,58 @@
-// Dashboard.js
+import React, { useState } from 'react';
+import '../styles/Testing.css'
+const LoginForm = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
-import React from 'react';
-
-const Dashboard = () => {
-  // Hardcoded data
-  const userData = {
-    registeredStudents: 1500,
-    activeUsersLastWeek: 800,
-    activeUsersLastMonth: 1200,
-    popularEvents: [
-      { name: 'Event A', registrations: 200 },
-      { name: 'Event B', registrations: 180 },
-      // Add more events as needed
-    ],
+  const handleUsernameChange = (e) => {
+    setUsername(e.target.value);
   };
 
-  const trendsData = {
-    demographics: [
-      { label: '18-25', value: 600 },
-      { label: '26-30', value: 400 },
-      // Add more demographics as needed
-    ],
-    geographicDistribution: [
-      { label: 'London', value: 600 },
-      { label: 'Manchester', value: 300 },
-      // Add more locations as needed
-    ],
-    popularTimePeriods: [
-      { label: 'Morning', value: 400 },
-      { label: 'Afternoon', value: 600 },
-      // Add more time periods as needed
-    ],
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Add your logic for handling the form submission here
+    console.log('Username:', username);
+    console.log('Password:', password);
   };
 
   return (
-    <div className="container mx-auto p-4">
-      {/* User Engagement Stats */}
-      <div className="mb-8">
-        <h2 className="text-2xl font-bold mb-4">User Engagement</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          <div className="p-4 bg-white rounded shadow">
-            <p className="text-xl font-bold">Registered Students</p>
-            <p className="text-gray-700">{userData.registeredStudents}</p>
-          </div>
-          {/* Add similar components for other stats */}
+    <div className="login-box">
+      <h2>Login</h2>
+      <form onSubmit={handleSubmit}>
+        <div className="user-box">
+          <input
+            type="text"
+            name="username"
+            value={username}
+            onChange={handleUsernameChange}
+            required
+          />
+          <label>Username</label>
         </div>
-      </div>
-
-      {/* Trends and Analytics Stats */}
-      <div>
-        <h2 className="text-2xl font-bold mb-4">Trends and Analytics</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {/* Add components for demographic, geographic, and time period stats */}
+        <div className="user-box">
+          <input
+            type="password"
+            name="password"
+            value={password}
+            onChange={handlePasswordChange}
+            required
+          />
+          <label>Password</label>
         </div>
-      </div>
+        <button type="submit">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          Submit
+        </button>
+      </form>
     </div>
   );
 };
 
-export default Dashboard;
+export default LoginForm;

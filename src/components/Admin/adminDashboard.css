@@ -1,11 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap');
 
 
-/* body{
-  font-family: 'Nunito', sans-serif;
-  color:#676767;
-  background-color: #1e1e1e;
-} */
+
 
 .bg-card{
   background-color:#202020;
@@ -67,12 +63,15 @@ background: #1d1d1d;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: 'Nunito', sans-serif;
   height: 100vh;
+  background-color: #121212 !important;
 }
 .overlay-container {
   position: relative;
   width: 200px; /* Adjust the width of the Lottie animation */
   height: 200px; /* Adjust the height of the Lottie animation */
+ 
 }
 
 .overlay-container::before {
@@ -83,5 +82,6 @@ background: #1d1d1d;
   right: 0;
   bottom: 0;
   background: inherit;
+ 
   filter: blur(10px); /* Adjust the blur strength as needed */
 }

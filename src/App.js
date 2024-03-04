@@ -12,14 +12,22 @@ import EventUploadForm from "./components/Admin/EventUpload";
 import Overview from "./components/Admin/Overview";
 import SignIn from "./components/SignIn";
 import LoginPage from "./components/LoginPage";
-
+import YourComponent from "./components/home";
+import HomePage from "./components/home";
+import DetailsPage from "./components/Testing";
+import { gsap } from 'gsap';
+import PageTransition from "./components/home";
+import QuizApp from "./components/QueryForm";
+gsap.registerPlugin();
 function App() {
   return (
 
       <Router>
         <div className="App">
           <Routes>
-            <Route path="/" element={<Welcome />} />
+            <Route path="/" element={<HomePage />} />
+            <Route path="/form" element={<QuizApp />} />
+            <Route path="/details" element={<DetailsPage />} />
             <Route path = "/login"element={<LoginPage />} />
            
             <Route path="/dashboard" element={<Dashboard />} >

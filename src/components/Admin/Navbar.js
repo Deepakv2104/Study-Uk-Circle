@@ -47,7 +47,7 @@ const AnimatedNav = () => {
      
   
         <nav ref={navRef}>
-        <h2 className='nav-title'>LOGO</h2>
+        <h2 className='nav-title'>WorldLynk</h2>
 
           <div className="close" onClick={handleCloseNav}>
             <div></div>
