@@ -9,17 +9,67 @@
   align-items: center;
   height: 100vh;
   position: relative;
+  flex-direction: column;
   
 }
-
-#background-video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.logo {
+  box-sizing: border-box;
+  display: inline-block;
+ overflow: hidden;
+  width: initial;
+  height: initial;
+  background: none;
+  opacity: 0; 
+  border: 0px;
+  margin: 0px;
+  padding: 0px;
+  position: relative;
+  max-width: 20%; /* Adjust the max-width as needed */
+  animation: slideDown 0.5s ease forwards; /* Change the animation to slideDown */
+  animation-delay: 1.2s; /* Set the delay here */
 }
+.infi {
+  box-sizing: border-box;
+  display: inline-block;
+  overflow: hidden;
+  width: 100px;
+  height: 100px;
+  background: none;
+  opacity: 0; /* Set initial opacity to 0 */
+  border: 0px;
+  margin: 0px;
+  padding: 0px;
+  max-width: 20%;
+  position: relative;
+  /* Adjust the max-width as needed */
+  animation: slideDown 0.5s ease forwards; /* Change the animation to slideDown */
+  animation-delay: 1.2s; /* Set the delay here */
+}
+
+
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+@media only screen and (max-width: 767px) {
+  /* Additional styles for mobile view */
+  .logo {
+    /* Add specific mobile styles for the logo */
+    max-width: 60%;
+  }
+
+  .infi {
+    /* Add specific mobile styles for the infinity image */
+  }
+}
+
+
 
 .enter-button {
   padding: 20px 40px;
@@ -28,33 +78,51 @@
   cursor: pointer;
   text-align: center;
 
-  border-radius: 50%;
+  /* border-radius: 50%; */
   /* display: inline-block; */
   position: relative;
 
-  background-color: rgb(212, 206, 206);
+  /* background-color: rgb(212, 206, 206); */
   opacity: 0;
   animation: slideUp 0.5s ease forwards 1.2s;
 }
-.enter-button:hover{
+/* .enter-button:hover{
 background-color: #ffffff;
-}
+} */
 
+.enter-button span{
+  color: black;
+  font-size: 20px;
+  font-weight: 700;
+}
 @keyframes slideUp {
   0% {
     transform: translateY(0);
     opacity: 0;
   }
   100% {
-    transform: translateY(-60px);
+    transform: translateY(-30px);
     opacity: 1;
   }
 }
 
-/* .icon {
-  display: inline-block;
-  margin-left: 8px;
-} */
+.icon {
+  /* Other styles for the icon */
+
+  /* Initial transform (no scaling) */
+  transform: scale(1);
+  transition: transform 0.3s ease; /* Add a smooth transition effect */
+
+  /* Optional: Adjust other styles as needed */
+}
+
+.icon:hover {
+  /* Scale on hover */
+  transform: scale(1.1); /* You can adjust the scaling factor as needed */
+}
+.icon:hover svg path {
+  fill: #000; /* Set the desired fill color on hover */
+}
 
 /* Additional styles for the SVG icon */
 /* .icon svg {

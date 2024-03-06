@@ -2,7 +2,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
-import logo from "../assets/img/newwl.png";
+import logo from "../assets/img/logo.svg";
 import '../styles/Footer.css'
 
 const Footer = () => {
