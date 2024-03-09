@@ -24,7 +24,7 @@ const Footer = () => {
                         <i class="fas fa-map-marker-alt"></i>
                         <div class="cta-text">
                             <h4>Find us</h4>
-                            <span>45 Abingdon Road,South Brewham, Unitted Kingdom</span>
+                            <span>1 Atlantic Crescent Wembley HA9 0UF United Kingdom</span>
                         </div>
                     </div>
                 </div>

@@ -12,22 +12,43 @@
   flex-direction: column;
   
 }
-.logo {
+.lc {
+  display: flex;
+  margin:0;
+}
+
+.infi{
+  width: 100px; /* Adjust the width as needed */
+  height: auto; /* Maintain the aspect ratio */
+  margin-right: 10px; /* Adjust the spacing between the images as needed */
+  filter: grayscale(100%) brightness(0%);
+  animation: slideDown 0.5s ease forwards; 
+  animation-delay: 1.2s; 
+  box-sizing: border-box;
+  display: inline-block;
+ overflow: hidden;
+
+}
+
+
+ .logo {
   box-sizing: border-box;
   display: inline-block;
  overflow: hidden;
   width: initial;
   height: initial;
   background: none;
+  filter: grayscale(100%) brightness(0%);
   opacity: 0; 
   border: 0px;
   margin: 0px;
   padding: 0px;
   position: relative;
-  max-width: 20%; /* Adjust the max-width as needed */
-  animation: slideDown 0.5s ease forwards; /* Change the animation to slideDown */
-  animation-delay: 1.2s; /* Set the delay here */
+  max-width: 80%; 
+  animation: slideDown 0.5s ease forwards; 
+  animation-delay: 1.2s; 
 }
+/*
 .infi {
   box-sizing: border-box;
   display: inline-block;
@@ -35,16 +56,15 @@
   width: 100px;
   height: 100px;
   background: none;
-  opacity: 0; /* Set initial opacity to 0 */
+  opacity: 0; 
   border: 0px;
   margin: 0px;
   padding: 0px;
   max-width: 20%;
   position: relative;
-  /* Adjust the max-width as needed */
-  animation: slideDown 0.5s ease forwards; /* Change the animation to slideDown */
-  animation-delay: 1.2s; /* Set the delay here */
-}
+  animation: slideDown 0.5s ease forwards; 
+  animation-delay: 1.2s; 
+} */
 
 
 @keyframes slideDown {

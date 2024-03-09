@@ -8,7 +8,7 @@ import Footer from "./Footer";
 import AnimatedNav from "../components/Admin/Navbar";
 import video1 from "../assets/img/video1.mp4";
 import DetailsPage from "./Testing";
-import logo from "../assets/img/logoT.svg";
+import logo from "../assets/img/globe.png";
 import infinity from '../assets/img/infinity.svg'
 import enter from '../assets/img/enter.svg';
 const HomePage = () => {
@@ -47,9 +47,13 @@ const HomePage = () => {
     <div>
       {!animationStarted && (
         <div className="enter-container">
+         <div className="lc">
+         <img src={logo} className="infi" />
           <img src={enter} className="logo" />
+         </div>
 
-          <img src={infinity} className="infi" />
+
+         
           <button className="enter-button" onClick={startAnimation}>
             <span>ENTER</span>
             <div className="icon">
