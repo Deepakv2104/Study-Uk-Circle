@@ -1,4 +1,4 @@
-import Icon from "../small-comp/Icon";
+import Icon from "../small-comp/Icon"
 function AddComponent() {
     return (
       <div>

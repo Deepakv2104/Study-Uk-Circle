@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { collection, addDoc } from "firebase/firestore";
-import { ref,uploadBytesResumable,getDownloadURL } from "firebase/storage";
-import { firestore ,storage} from "../../firebase"; // Import your firebase configuration
-
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { firestore, storage } from "../../firebase"; // Import your firebase configuration
+import Icon from "../Admin/small-comp/Icon";
 import Slider from "react-slick";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
-
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import TimePicker from "react-time-picker";
+import "react-time-picker/dist/TimePicker.css";
 
 const Loader = () => (
   <div className="loader-container">
@@ -28,15 +31,40 @@ const EventUploadForm = (user) => {
   const [uploadedImage, setUploadedImage] = useState(null);
   const [multipleImages, setMultipleImages] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [eventData,setEventData]=useState({
-    eventName:'',
-    location:'',
-    description:'',
-    images:[],
-    instagram:'',
-    linkedIn:'',
-    twitter:'',
-  })
+  const [guestSpeakers, setGuestSpeakers] = useState('');
+  const [designation, setDesignation] = useState('');
+  const [registrationInfo, setRegistrationInfo] = useState('');
+  
+
+  const [eventData, setEventData] = useState({
+    eventName: "",
+    location: "",
+    description: "",
+    images: [],
+    instagram: "",
+    linkedIn: "",
+    twitter: "",
+  });
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedTime, setSelectedTime] = useState("12:00");
+
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
+
+  const handleTimeChange = (time) => {
+    setSelectedTime(time);
+  };
+  const handleDesignationChange = (e) => {
+    setDesignation(e.target.value);
+  };
+  const handleRegistrationInfoChange = (e) => {
+    setRegistrationInfo(e.target.value);
+  };
+  
+  const handleGuestSpeakersChange = (e) => {
+    setGuestSpeakers(e.target.value);
+  };
 
   const settings = {
     dots: true,
@@ -58,7 +86,8 @@ const EventUploadForm = (user) => {
       uploadTask.on(
         "state_changed",
         (snapshot) => {
-          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           setProgress(progress);
         },
         (error) => {
@@ -96,9 +125,9 @@ const EventUploadForm = (user) => {
         linkedIn: eventData.linkedIn,
         twitter: eventData.twitter,
       });
-  
+
       console.log("Document written with ID: ", docRef.id);
-  
+
       // Reset form fields after a short delay
       setTimeout(() => {
         setTitle("");
@@ -116,17 +145,16 @@ const EventUploadForm = (user) => {
         });
         setLoading(false);
       }, 0);
-  
+
       // Show success message
       toast.success("Event data uploaded successfully!");
     } catch (error) {
       console.error("Error adding document: ", error);
       toast.error("Error uploading event data");
-      setLoading(false)
+      setLoading(false);
     }
   };
-  
-  
+
   return (
     <div className=" h-screen flex-grow overflow-x-hidden overflow-auto flex flex-wrap content-start p-2  ">
       <div className="w-full p-2 lg:w-1/3">
@@ -154,7 +182,7 @@ const EventUploadForm = (user) => {
                 htmlFor="email"
                 className="block text-sm font-medium text-white-700"
               >
-                Location:
+                Venue:
               </label>
               <input
                 type="email"
@@ -189,7 +217,7 @@ const EventUploadForm = (user) => {
               className="w-full bg-lime-700 text-white p-2 rounded-md hover:bg-lime-600"
               disabled={loading}
             >
-          {loading ? <Loader /> : "Submit"}
+              {loading ? <Loader /> : "Submit"}
             </button>
           </form>
         </div>
@@ -257,7 +285,6 @@ const EventUploadForm = (user) => {
             )}
           </div>
 
-        
           <div>
             <label
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -313,19 +340,145 @@ const EventUploadForm = (user) => {
                 className="mt-1 p-2 w-full border rounded-md text-black"
               />
             </div>
+
+            <button
+              className="flex items-center p-2.5 mt-4"
+              style={{
+                background: "#2f49d1",
+                borderRadius: "10px",
+                padding: "8px 16px",
+                justifyContent: "center",
+                color: "white",
+              }}
+            >
+              <Icon path="res-react-dash-add-component" className="w-5 h-5" />
+              <div className="ml-2">Add Links</div>
+            </button>
           </div>
         </div>
       </div>
 
       <div className="w-full p-2 lg:w-1/3">
-        <div className="rounded-lg bg-card h-80">{/* <Satisfication /> */}</div>
-      </div>
-      <div className="w-full p-2 lg:w-1/3">
-        <div className="rounded-lg bg-card overflow-hidden h-80">
-          {/* <AddComponent /> */}
+        <div className="rounded-lg bg-card h-full sm:p-4">
+          <form className="flex flex-col h-full space-y-4">
+          <div className="flex-grow">
+      <label
+        htmlFor="name"
+        className="block text-sm font-medium text-white-700"
+      >
+        Guest Speaker(s):
+      </label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        placeholder="Enter guest speaker(s) name"
+        value={guestSpeakers}
+        onChange={handleGuestSpeakersChange}
+        className="mt-1 p-2 w-full border rounded-md text-black"
+      />
+    </div>
+
+    <div className="flex-grow">
+      <label
+        htmlFor="designation"
+        className="block text-sm font-medium text-white-700"
+      >
+        Designation:
+      </label>
+      <input
+        type="text"
+        id="designation"
+        name="designation"
+        placeholder="Enter designation"
+        value={designation}
+        onChange={handleDesignationChange}
+        className="mt-1 p-2 w-full border rounded-md text-black"
+      />
+    </div>
+
+            <div className="flex-grow">
+              <label
+                htmlFor="dateTime"
+                className="block text-sm font-medium text-white-700"
+              >
+                Date and Time:
+              </label>
+              <div id="dateTime" className="flex">
+                <DatePicker
+                  selected={selectedDate}
+                  onChange={handleDateChange}
+                  className="mt-1 p-2 w-full border rounded-md text-black"
+                  showTimeSelect
+                  dateFormat="Pp"
+                />
+                {/* <TimePicker
+          onChange={handleTimeChange}
+          value={selectedTime}
+          className="mt-1 p-2 w-full border rounded-md text-black"
+        /> */}
+              </div>
+            </div>
+          </form>
         </div>
       </div>
-      <ToastContainer/>
+      <div className="w-full p-2 lg:w-1/3">
+        <div className="rounded-lg bg-card h-full sm:p-4">
+          <form className="flex flex-col h-full space-y-4">
+          <div className="flex-grow">
+      <label
+        htmlFor="registrationInfo"
+        className="block text-sm font-medium text-white-700"
+      >
+        Registration Information:
+      </label>
+      <input
+        type="text"
+        id="registrationInfo"
+        name="registrationInfo"
+        placeholder="Enter Registration Information"
+        value={registrationInfo}
+        onChange={handleRegistrationInfoChange}
+        className="mt-1 p-2 w-full border rounded-md text-black"
+      />
+    </div>
+
+            <div className="flex-grow">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-white-700"
+              >
+                Collaborators/Sponsors:
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder=" Enter Collaborators/Sponsors"
+                onChange={(e) => setLocation(e.target.value)}
+                className="mt-1 p-2 w-full border rounded-md text-black"
+              />
+            </div>
+
+            <div className="flex-grow">
+              <label
+                htmlFor="message"
+                className="block text-sm font-medium text-white-700"
+              >
+                Target Audience:
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                placeholder=" Target Audience"
+                onChange={(e) => setDescription(e.target.value)}
+                className="mt-1 p-2 w-full border rounded-md text-black"
+              ></textarea>
+            </div>
+          </form>
+        </div>
+      </div>
+      <ToastContainer />
     </div>
   );
 };
