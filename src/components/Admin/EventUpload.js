@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { collection, addDoc } from "firebase/firestore";
-import { firestore } from "../../firebase"; // Import your firebase configuration
+import { ref,uploadBytesResumable,getDownloadURL } from "firebase/storage";
+import { firestore ,storage} from "../../firebase"; // Import your firebase configuration
 
 import Slider from "react-slick";
 import { ToastContainer, toast } from "react-toastify";
@@ -9,6 +10,12 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 
+
+const Loader = () => (
+  <div className="loader-container">
+    <div className="loader"></div>
+  </div>
+);
 const EventUploadForm = (user) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -20,6 +27,16 @@ const EventUploadForm = (user) => {
   const [progress, setProgress] = useState(0);
   const [uploadedImage, setUploadedImage] = useState(null);
   const [multipleImages, setMultipleImages] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [eventData,setEventData]=useState({
+    eventName:'',
+    location:'',
+    description:'',
+    images:[],
+    instagram:'',
+    linkedIn:'',
+    twitter:'',
+  })
 
   const settings = {
     dots: true,
@@ -28,107 +45,88 @@ const EventUploadForm = (user) => {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
+  const handleFileChange = async (e) => {
+    const files = e.target.files;
+    const imagesArray = [];
 
-  const handleFileChange = (event) => {
-    const files = event.target.files;
+    setIsUploading(true);
 
-    if (files.length === 1) {
-      // Single file upload logic
-      const file = files[0];
-      const reader = new FileReader();
-      reader.onload = () => {
-        setUploadedImage(reader.result);
-      };
-      reader.readAsDataURL(file);
-    } else if (files.length > 1) {
-      // Multiple files upload logic
-      const imagesArray = Array.from(files).map((file) =>
-        URL.createObjectURL(file)
+    for (const file of files) {
+      const storageRef = ref(storage, `images/${file.name}`);
+      const uploadTask = uploadBytesResumable(storageRef, file);
+
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          setProgress(progress);
+        },
+        (error) => {
+          console.error(error);
+          toast.error("Error uploading image");
+          setIsUploading(false);
+        },
+        async () => {
+          const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+          imagesArray.push(downloadURL);
+          setMultipleImages(imagesArray);
+          setIsUploading(false);
+        }
       );
-      setMultipleImages(imagesArray);
     }
   };
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    // Prevent multiple submissions while the form is being submitted
+    if (loading) {
+      return;
+    }
 
+    setLoading(true);
+
+    // Upload data to Firestore
     try {
       const docRef = await addDoc(collection(firestore, "events"), {
-        title,
-        description,
-        date,
+        eventName: title,
         location,
-        time,
-        imageUrl: image,
-        // Add more fields as needed
+        description,
+        images: multipleImages,
+        instagram: eventData.instagram,
+        linkedIn: eventData.linkedIn,
+        twitter: eventData.twitter,
       });
-
+  
       console.log("Document written with ID: ", docRef.id);
-
-      // Show success toast
-  // Show success toast
-  toast.success("Event submitted successfully!", {
-    position: "top-right",
-    autoClose: 2000,
-  });
-
-  // Reset form fields after successful submission
-  setTitle("");
-  setDescription("");
-  setDate("");
-  setLocation("");
-  setTime("");
-  setImage("");
-  setUploadedImage(null);
-  setMultipleImages([]);
-  setIsUploading(false);
-  setProgress(0);
-
-     
+  
+      // Reset form fields after a short delay
+      setTimeout(() => {
+        setTitle("");
+        setLocation("");
+        setDescription("");
+        setMultipleImages([]);
+        setEventData({
+          eventName: "",
+          location: "",
+          description: "",
+          images: [],
+          instagram: "",
+          linkedIn: "",
+          twitter: "",
+        });
+        setLoading(false);
+      }, 0);
+  
+      // Show success message
+      toast.success("Event data uploaded successfully!");
     } catch (error) {
       console.error("Error adding document: ", error);
-
-      // Show error toast
-      toast.error("Error submitting event. Please try again.", {
-        position: "top-right",
-        autoClose: 2000,
-      });
+      toast.error("Error uploading event data");
+      setLoading(false)
     }
   };
-
-  useEffect(() => {
-    // Reset form fields in the useEffect to ensure state updates are completed
-    setTitle("");
-    setDescription("");
-    setDate("");
-    setLocation("");
-    setTime("");
-    setImage("");
-    setUploadedImage(null);
-    setMultipleImages([]);
-    setIsUploading(false);
-    setProgress(0);
-  }, [title, description, date, location, time, image]);
-  const handleUploadStart = () => {
-    setIsUploading(true);
-    setProgress(0);
-  };
-
-  const handleUploadProgress = (progress) => {
-    setProgress(progress);
-  };
-
-  const handleUploadError = (error) => {
-    console.error(error);
-    setIsUploading(false);
-  };
-
-  const handleUploadSuccess = async (filename) => {
-    // const downloadURL = await storage.ref('images').child(filename).getDownloadURL();
-    // setImage(downloadURL);
-    // setIsUploading(false);
-  };
-
+  
+  
   return (
     <div className=" h-screen flex-grow overflow-x-hidden overflow-auto flex flex-wrap content-start p-2  ">
       <div className="w-full p-2 lg:w-1/3">
@@ -189,8 +187,9 @@ const EventUploadForm = (user) => {
               type="submit"
               onClick={handleFormSubmit}
               className="w-full bg-lime-700 text-white p-2 rounded-md hover:bg-lime-600"
+              disabled={loading}
             >
-              Submit
+          {loading ? <Loader /> : "Submit"}
             </button>
           </form>
         </div>
@@ -258,7 +257,7 @@ const EventUploadForm = (user) => {
             )}
           </div>
 
-          {/* Additional input for multiple files */}
+        
           <div>
             <label
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"

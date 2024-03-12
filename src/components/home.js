@@ -83,7 +83,7 @@ const HomePage = () => {
           <div className="bg-slide"></div>
           <div className="closemenu" id="closemenu" onClick={closeMenu}></div>
 
-          {/* <AnimatedNav/> */}
+          <AnimatedNav/>
           <Banner />
           <BannerSections />
           {/* <Gallary/>

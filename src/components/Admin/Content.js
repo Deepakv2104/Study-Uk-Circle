@@ -22,8 +22,8 @@ function Content({ onSidebarHide,user }) {
                 </div>
               </div>
               <div className="flex items-center">
-                <Icon path="res-react-dash-date-indicator" className="w-3 h-3" />
-                <div className="ml-2">February 20</div>
+                <Icon path="res-react-dash-date-indicator" className="w-3 h-3 " />
+                <div className="ml-2 text-white">February 20</div>
               </div>
             </div>
             <IconButton

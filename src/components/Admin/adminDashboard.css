@@ -5,6 +5,7 @@
 
 .bg-card{
   background-color:#202020;
+  color:white;
 }
 .bg-sidebar-card-top{
   background-color: #353535;
@@ -52,6 +53,7 @@ background: #1d1d1d;
 }
 .sidebar-item{
   border-right: 2px solid transparent;
+ 
 }
 .sidebar-item:hover {
  color:#a1a0a0;
