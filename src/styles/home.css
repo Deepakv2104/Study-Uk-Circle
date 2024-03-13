@@ -17,17 +17,28 @@
   margin:0;
 }
 
-.infi{
+.infi {
   width: 100px; /* Adjust the width as needed */
   height: auto; /* Maintain the aspect ratio */
   margin-right: 10px; /* Adjust the spacing between the images as needed */
   filter: grayscale(100%) brightness(0%);
-  animation: slideDown 0.5s ease forwards; 
-  animation-delay: 1.2s; 
+  opacity: 0; /* Initially hide the image */
+  animation: slideDown 0.5s ease forwards; /* Use slideDown animation */
+  animation-delay: 1.2s; /* Delay the animation to synchronize with the main animation */
   box-sizing: border-box;
   display: inline-block;
- overflow: hidden;
+  overflow: hidden;
+}
 
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
 }
 
 
@@ -84,9 +95,7 @@
     max-width: 60%;
   }
 
-  .infi {
-    /* Add specific mobile styles for the infinity image */
-  }
+
 }
 
 
