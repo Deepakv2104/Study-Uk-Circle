@@ -56,7 +56,7 @@ const AnimatedNav = () => {
             <li className="nav-item"><a >HOME</a></li>
             <li className="nav-item"><a >EVENTS</a></li>
             <li className="nav-item"><a >INTERNSHIPS</a></li>
-            <li className="nav-item"><a>GALLARY</a></li>
+            <li className="nav-item"><a>SME</a></li>
             <li className="nav-item" onClick={handleLogin}><a >LOGIN</a></li>
           </ul>
         </nav>
