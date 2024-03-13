@@ -1,56 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/home.css"; // Import your CSS file
 import { Banner } from "./Banner";
 import BannerSections from "./BannerSections";
-import Gallary from "./Gallary";
-import { Contact } from "./Contact";
 import Footer from "./Footer";
 import AnimatedNav from "../components/Admin/Navbar";
-import video1 from "../assets/img/video1.mp4";
-import DetailsPage from "./Testing";
 import logo from "../assets/img/globe.png";
 import infinity from '../assets/img/infinity.svg'
 import enter from '../assets/img/enter.svg';
 
 const HomePage = () => {
   const [animationStarted, setAnimationStarted] = useState(false);
-
-  const openMenu = () => {
-    document.getElementById("menu").style.left = "0";
-    document.getElementById("closemenu").style.display = "block";
-    document.getElementById("lineone").style.top = "0.8em";
-    document.getElementById("linethree").style.top = "0.8em";
-    document.getElementById("linetwo").style.opacity = "0";
-    document.getElementById("lineone").style.transform = "rotate(-405deg)";
-    document.getElementById("linethree").style.transform = "rotate(405deg)";
-    document.getElementById("linethree").style.background = "white";
-    document.getElementById("lineone").style.background = "white";
-  };
-
-  const closeMenu = () => {
-    document.getElementById("closemenu").style.display = "none";
-    document.getElementById("lineone").style.top = "0";
-    document.getElementById("linethree").style.top = "1.6em";
-    document.getElementById("linetwo").style.opacity = "1";
-    document.getElementById("lineone").style.transform = "rotate(0deg)";
-    document.getElementById("linethree").style.transform = "rotate(0deg)";
-    document.getElementById("menu").style.left = "100vw";
-    document.getElementById("linethree").style.background = "black";
-    document.getElementById("lineone").style.background = "black";
-  };
+  const [showComponents, setShowComponents] = useState(false);
 
   const startAnimation = () => {
     setAnimationStarted(true);
     // Add any additional logic or animations that should occur when animation starts
+    // Set a timeout to show components after animation
+    setTimeout(() => {
+      setShowComponents(true);
+    }, 1200); // Adjust the delay time as needed
   };
 
   return (
     <div>
       {!animationStarted && (
+        // Show the initial animation
         <div className="enter-container">
           <div className="lc">
-            <img src={logo} className="infi" />
-            <img src={enter} className="logo" />
+            <img src={logo} className="infi" alt="Logo" />
+            <img src={enter} className="logo" alt="Enter" />
           </div>
           <button className="enter-button" onClick={startAnimation}>
             <span>ENTER</span>
@@ -73,24 +51,29 @@ const HomePage = () => {
           </button>
         </div>
       )}
+
       {animationStarted && (
+        // Show the animated components
         <div>
           <div className="menu-overlay" id="menu"></div>
           <div className="bg-slide-accent"></div>
           <div className="bg-slide"></div>
-          <div className="closemenu" id="closemenu" onClick={closeMenu}></div>
+          <div className="closemenu" id="closemenu"></div>
 
-          <AnimatedNav/>
+         
+          {showComponents && (
+            <div>
+               <AnimatedNav/>
           <Banner />
           <BannerSections />
-          {/* <Gallary/>
-        <Contact/> */}
           <Footer />
-          {/* <Footer/> */}
-          <img src={infinity} className="infi" />
+            </div>
+
+          )}
         </div>
       )}
     </div>
   );
 };
+
 export default HomePage;
