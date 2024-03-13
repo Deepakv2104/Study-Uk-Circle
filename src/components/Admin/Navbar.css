@@ -21,7 +21,11 @@ z-index: 4;
 	height: 20px;
    
 }
-
+.coming-soon {
+	font-style: italic;
+	font-size: smaller;
+  }
+  
 
 .nav-bars{
 	width: 30px;
