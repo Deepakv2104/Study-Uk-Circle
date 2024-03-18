@@ -1,6 +1,7 @@
 
 .section2 .even-section {
     background: #000; 
+      background-size: cover;
   }
   
   .section2 .odd-section {

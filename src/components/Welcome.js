@@ -1,27 +1,26 @@
-import React from 'react'
-import { Banner } from './Banner'
+  import React, { useState, useEffect } from "react";
+  import { Banner } from "./Banner";
+  import Footer from "./Footer";
+  import BannerSections from "./BannerSections";
+  import AnimatedNav from '../components/Admin/Navbar'
+  import '../styles/Welcome.css'
+  
+  const Welcome = () => {
 
-import { Gallary } from './Gallary';
-import Footer from './Footer';
-import { Contact } from './Contact';
-import AnimatedNav from './Admin/Navbar';
-import BannerSections from './BannerSections';
-import Layers from '../components/Testing';
-// import HomePage from './Testing';
-const Welcome = () => {
-  return (
-    <div>
-   <AnimatedNav/>
-        <Banner/> 
-         <BannerSections />
-         {/* <Layers/> */}
-      {/* <Gallary /> */}
-      {/* <Contact /> */}
-      <Footer />
- {/* <HomePage/> */}
+
+
+
+    return (
+      <div >
+            <AnimatedNav/>
+              <Banner/>
+              <BannerSections/>
+              <Footer/>
+
+                </div>
       
-    </div>
-  )
-}
 
-export default Welcome
+    );
+  };
+
+  export default Welcome;

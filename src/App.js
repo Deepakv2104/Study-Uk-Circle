@@ -18,6 +18,11 @@ import DetailsPage from "./components/Testing";
 import { gsap } from 'gsap';
 import PageTransition from "./components/home";
 import QuizApp from "./components/QueryForm";
+import CollegeUpload from "./components/Admin/CollgeUpload";
+import UserDashboard from "./components/Student/UserDashboard";
+import ExploreEvents from "./components/Student/ExploreEvents";
+import Accommodation from './components/Student/Accommodation'
+import University from "./components/Student/University";
 gsap.registerPlugin();
 function App() {
   return (
@@ -29,14 +34,21 @@ function App() {
             <Route path="/form" element={<QuizApp />} />
             <Route path="/details" element={<DetailsPage />} />
             <Route path = "/login"element={<LoginPage />} />
-           
+            <Route path = "/welcome"element={<Welcome />} />
             <Route path="/dashboard" element={<Dashboard />} >
             <Route path="/dashboard/overview" element={<Overview />} />
             <Route path="/dashboard/add-event" element={<EventUploadForm />} />
-
+            <Route path="/dashboard/add-college" element={<CollegeUpload />} />
+           
+            </Route>
+            <Route path="/user-dashboard" element={<UserDashboard/>} >
+            <Route path="/user-dashboard/events" element={<ExploreEvents/>} />
+            <Route path="/user-dashboard/stay" element={<Accommodation/>} />
+            <Route path="/user-dashboard/university" element={<University/>} />
             </Route>
 
             <Route path="/event" element={<EventUploadForm />} />
+          
 
             {/* Add more routes as needed */}
           </Routes>

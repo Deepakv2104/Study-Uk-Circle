@@ -50,7 +50,6 @@ const Sidebar = ({ onSidebarHide, showSidebar,user }) => {
   >
       <div className="flex-shrink-0 overflow-hidden p-2">
         <div className="flex items-center h-full sm:justify-center xl:justify-start p-2 sidebar-separator-top">
-          {/* <IconButton icon="res-react-dash-logo" className="w-10 h-10" /> */}
           <div className="block sm:hidden xl:block ml-2 font-bold text-xl text-white">
           WorldLynk.
           </div>

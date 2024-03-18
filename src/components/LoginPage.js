@@ -106,8 +106,8 @@ const LoginPage = () => {
       const userData = await fetchUserData(user.uid);
   
       // Check if the user role is 'student'
-      if (userData?.role === "student") {
-        // Navigate to the dashboard
+      if (userData?.role === "admin") {
+        // Navigate to the student dashboard
         console.log("Before navigation");
         navigate("/dashboard/overview");
         console.log("After navigation");
@@ -121,11 +121,26 @@ const LoginPage = () => {
           });
           console.log("Before toast");
         }, 1000); // Adjust the delay as needed
+      } else if (userData?.role === "student") {
+        // Navigate to the admin dashboard
+        console.log("Before admin navigation");
+        navigate("/user-dashboard/events");
+        console.log("After admin navigation");
+  
+        // Display a success toast after a slight delay
+        console.log("Before admin toast");
+        setTimeout(() => {
+          toast.success("Login successful!", {
+            position: "top-right",
+            autoClose: 1200,
+          });
+          console.log("Before admin toast");
+        }, 1000); // Adjust the delay as needed
       } else {
-        // If the user is not a student, reject authentication
-        console.log("User is not a student");
+        // If the user is not a student or admin, reject authentication
+        console.log("User is not a student or admin");
         await signOut(auth); // Sign out the user
-        throw new Error("Access denied: User is not a student");
+        throw new Error("Access denied: User is not a student or admin");
       }
     } catch (error) {
       // Handle login errors

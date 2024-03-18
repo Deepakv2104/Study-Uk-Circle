@@ -93,7 +93,9 @@ const BannerSections = () => {
                 </Col>
                 <Col xs={12} md={6} xl={5} className="right-column-content">
                   <h1>{section.title}</h1>
+                  <div style={{ textAlign: 'justify' }}>
                   <p>{section.content}</p>
+                  </div>
                   {/* <button onClick={() => console.log("connect")}>
                     {section.search} <ArrowRightCircle size={25} />
                   </button> */}
@@ -103,7 +105,9 @@ const BannerSections = () => {
               <>
                 <Col xs={12} md={6} xl={5} className="right-column-content">
                   <h1>{section.title}</h1>
+                  <div style={{ textAlign: 'justify' }}>
                   <p>{section.content}</p>
+                  </div>
                   {/* <button onClick={() => console.log("connect")}>
                    {section.search} <ArrowRightCircle size={25} />
                   </button> */}

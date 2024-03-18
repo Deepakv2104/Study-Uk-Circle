@@ -99,10 +99,11 @@ export const Banner = () => {
                   <span className="wrap">{text}</span>
                 </span>
               </h1>
-
+              <div style={{ textAlign: 'justify' }}>
               <p>
               Embark on your academic journey with WorldLynk, your one-stop solution for seamless student experiences in the UK. We go beyond boundaries to provide comprehensive services, ensuring your stay is enriching and your career path is paved with success.
               </p>
+              </div>
               {/* <button onClick={handleLogin}>
                 Let’s Connect <ArrowRightCircle size={25} />
               </button> */}

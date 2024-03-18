@@ -1,0 +1,47 @@
+.hotel-booking-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .hotel-booking-title {
+    text-align: center;
+  }
+  
+  .filter-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .filter-item {
+    flex: 1;
+    margin-right: 10px;
+  }
+  
+  .filter-item label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .search-button {
+    background-color: #1b9ed9;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 20px;
+    cursor: pointer;
+    border-radius: 50px;
+  }
+  
+  .search-results {
+    margin-top: 20px;
+  }
+  
+  .hotel-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
