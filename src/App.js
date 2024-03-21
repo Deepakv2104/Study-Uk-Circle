@@ -23,6 +23,7 @@ import UserDashboard from "./components/Student/UserDashboard";
 import ExploreEvents from "./components/Student/ExploreEvents";
 import Accommodation from './components/Student/Accommodation'
 import University from "./components/Student/University";
+import StudentProfile from "./components/Student/StudentProfile";
 gsap.registerPlugin();
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
             <Route path="/user-dashboard/events" element={<ExploreEvents/>} />
             <Route path="/user-dashboard/stay" element={<Accommodation/>} />
             <Route path="/user-dashboard/university" element={<University/>} />
+            <Route path="/user-dashboard/settings/:userId" element={<StudentProfile/>} />
             </Route>
 
             <Route path="/event" element={<EventUploadForm />} />

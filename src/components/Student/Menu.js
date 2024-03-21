@@ -12,6 +12,7 @@ import {
     FaHome,
     FaSearch
 } from 'react-icons/fa';
+import { Avatar } from '@mui/material';
 import { useAuth } from '../../auth/userProvider/AuthProvider'; // Import the useAuth hook
 
 const Menu = ({user}) => {
@@ -21,29 +22,34 @@ const Menu = ({user}) => {
     useEffect(() => {
         // Active Navbar Item
         const navItems = document.querySelectorAll('.nav-item1');
-
+    
         navItems.forEach((navItem1) => {
             navItem1.addEventListener('click', () => {
                 navItems.forEach((item) => {
                     item.classList.remove('active');
                 });
                 navItem1.classList.add('active');
-
+    
                 // Extract the option from the span text
                 const option = navItem1.querySelector('.nav-text').textContent.toLowerCase();
-
+    
                 // Push the corresponding path to history
-                if(option!=='logout'){
-                    navigate(`/user-dashboard/${option}`);
-                }else{
-                   
-                        logout();
-                         // Call the logout function to log the user out
-                navigate('/welcome');
+                if(option !== 'logout') {
+                    if(option === 'settings') {
+                        // If the option is "Settings", append the userId to the path
+                        navigate(`/user-dashboard/${option}/${user?.userId}`);
+                    } else {
+                        navigate(`/user-dashboard/${option}`);
+                    }
+                } else {
+                    logout();
+                    // Call the logout function to log the user out
+                    navigate('/welcome');
                 }
             });
         });
-    }, [navigate]);
+    }, [navigate, logout, user]);
+    
 
   
 
@@ -52,10 +58,12 @@ const Menu = ({user}) => {
             <div className="main-menu">
                 <div>
                     <div className="user-info">
-                        <img
+                        {/* <img
                             src={Deepak}
-                            alt="user"
-                        />
+                            alt="u
+                            ser"
+                        /> */}
+                       <Avatar  sx={{ width: 100, height: 100 ,margin:2}}/>
                         <p>{ user?.name ||'Guest'}</p>
                     </div>
                     <ul>

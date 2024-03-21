@@ -95,57 +95,27 @@ const LoginPage = () => {
 
   const handleLogin = async () => {
     try {
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
   
       // Assuming you have a function to fetch user data based on UID
       const userData = await fetchUserData(user.uid);
   
-      // Check if the user role is 'student'
       if (userData?.role === "admin") {
-        // Navigate to the student dashboard
-        console.log("Before navigation");
         navigate("/dashboard/overview");
-        console.log("After navigation");
-  
-        // Display a success toast after a slight delay
-        console.log("Before toast");
-        setTimeout(() => {
-          toast.success("Login successful!", {
-            position: "top-right",
-            autoClose: 1200,
-          });
-          console.log("Before toast");
-        }, 1000); // Adjust the delay as needed
       } else if (userData?.role === "student") {
-        // Navigate to the admin dashboard
-        console.log("Before admin navigation");
         navigate("/user-dashboard/events");
-        console.log("After admin navigation");
-  
-        // Display a success toast after a slight delay
-        console.log("Before admin toast");
-        setTimeout(() => {
-          toast.success("Login successful!", {
-            position: "top-right",
-            autoClose: 1200,
-          });
-          console.log("Before admin toast");
-        }, 1000); // Adjust the delay as needed
       } else {
-        // If the user is not a student or admin, reject authentication
-        console.log("User is not a student or admin");
-        await signOut(auth); // Sign out the user
+        await signOut(auth);
         throw new Error("Access denied: User is not a student or admin");
       }
+  
+      toast.success("Login successful!", {
+        position: "top-right",
+        autoClose: 1200,
+      });
     } catch (error) {
-      // Handle login errors
       console.error(error);
-      // Display an error toast for invalid credentials
       toast.error("Invalid credentials. Please try again.", {
         position: "top-center",
         autoClose: 1500,

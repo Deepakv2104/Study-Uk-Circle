@@ -29,4 +29,4 @@ const googleProvider = new GoogleAuthProvider(auth);
 const storage = getStorage(firebase);
 const messaging = getMessaging(firebase);
 setPersistence(auth, browserSessionPersistence)
-export { firestore, storage, auth , messaging, googleProvider};
+export { firestore, storage, auth , messaging, googleProvider,firebase};
