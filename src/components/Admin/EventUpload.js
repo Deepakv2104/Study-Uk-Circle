@@ -37,34 +37,75 @@ const EventUploadForm = (user) => {
   
 
   const [eventData, setEventData] = useState({
-    eventName: "",
-    location: "",
-    description: "",
-    images: [],
-    instagram: "",
-    linkedIn: "",
-    twitter: "",
+  TimeAndDate:'',
+  duration:'',
+  eligibility:'',
+  entryFee:'',
+  eventCategory:'',
+eventDescription:'',
+eventId:'',
+eventName:title,
+experince:'',
+guestImage:'',
+guestName:'',
+language:'',
+location:'',
   });
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedTime, setSelectedTime] = useState("12:00");
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
-
-  const handleTimeChange = (time) => {
-    setSelectedTime(time);
-  };
-  const handleDesignationChange = (e) => {
-    setDesignation(e.target.value);
-  };
-  const handleRegistrationInfoChange = (e) => {
-    setRegistrationInfo(e.target.value);
+  const handleTitleChange = (e) => {
+    setEventData({ ...eventData, eventName: e.target.value });
   };
   
-  const handleGuestSpeakersChange = (e) => {
-    setGuestSpeakers(e.target.value);
+  const handleLocationChange = (e) => {
+    setEventData({ ...eventData, location: e.target.value });
   };
+  
+  const handleDescriptionChange = (e) => {
+    setEventData({ ...eventData, eventDescription: e.target.value });
+  };
+  
+  const handleExperienceChange = (e) => {
+    setEventData({ ...eventData, experience: e.target.value });
+  };
+  
+  const handleGuestImageChange = (e) => {
+    setEventData({ ...eventData, guestImage: e.target.value });
+  };
+  
+  const handleGuestNameChange = (e) => {
+    setEventData({ ...eventData, guestName: e.target.value });
+  };
+  
+  const handleLanguageChange = (e) => {
+    setEventData({ ...eventData, language: e.target.value });
+  };
+  
+  const handleTimeAndDateChange = (date) => {
+    setEventData({ ...eventData, TimeAndDate: date });
+  };
+  
+  const handleDurationChange = (e) => {
+    setEventData({ ...eventData, duration: e.target.value });
+  };
+  
+  const handleEligibilityChange = (e) => {
+    setEventData({ ...eventData, eligibility: e.target.value });
+  };
+  
+  const handleEntryFeeChange = (e) => {
+    setEventData({ ...eventData, entryFee: e.target.value });
+  };
+  
+  const handleEventCategoryChange = (e) => {
+    setEventData({ ...eventData, eventCategory: e.target.value });
+  };
+  
+  const handleEventIdChange = (e) => {
+    setEventData({ ...eventData, eventId: e.target.value });
+  };
+  
 
   const settings = {
     dots: true,
@@ -117,13 +158,19 @@ const EventUploadForm = (user) => {
     // Upload data to Firestore
     try {
       const docRef = await addDoc(collection(firestore, "events"), {
-        eventName: title,
-        location,
-        description,
-        images: multipleImages,
-        instagram: eventData.instagram,
-        linkedIn: eventData.linkedIn,
-        twitter: eventData.twitter,
+        TimeAndDate:'',
+        duration:'',
+        eligibility:'',
+        entryFee:'',
+        eventCategory:'',
+      eventDescription:'',
+      eventId:'',
+      eventName:'',
+      experince:'',
+      guestImage:'',
+      guestName:'',
+      language:'',
+      location:'',
       });
 
       console.log("Document written with ID: ", docRef.id);
@@ -135,13 +182,19 @@ const EventUploadForm = (user) => {
         setDescription("");
         setMultipleImages([]);
         setEventData({
-          eventName: "",
-          location: "",
-          description: "",
-          images: [],
-          instagram: "",
-          linkedIn: "",
-          twitter: "",
+          TimeAndDate:'',
+          duration:'',
+          eligibility:'',
+          entryFee:'',
+          eventCategory:'',
+        eventDescription:'',
+        eventId:'',
+        eventName:'',
+        experince:'',
+        guestImage:'',
+        guestName:'',
+        language:'',
+        location:'',
         });
         setLoading(false);
       }, 0);
@@ -172,7 +225,7 @@ const EventUploadForm = (user) => {
                 id="name"
                 name="name"
                 placeholder="Enter event name"
-                onChange={(e) => setTitle(e.target.value)}
+               onChange={handleTitleChange}
                 className="mt-1 p-2 w-full border rounded-md text-black"
               />
             </div>
@@ -189,7 +242,7 @@ const EventUploadForm = (user) => {
                 id="email"
                 name="email"
                 placeholder="Select location"
-                onChange={(e) => setLocation(e.target.value)}
+             onChange={handleLocationChange}
                 className="mt-1 p-2 w-full border rounded-md text-black"
               />
             </div>
@@ -206,14 +259,14 @@ const EventUploadForm = (user) => {
                 name="message"
                 rows="4"
                 placeholder="Tell about the event"
-                onChange={(e) => setDescription(e.target.value)}
+                onChange={handleDescriptionChange}
                 className="mt-1 p-2 w-full border rounded-md text-black"
               ></textarea>
             </div>
 
             <button
               type="submit"
-              onClick={handleFormSubmit}
+             
               className="w-full bg-lime-700 text-white p-2 rounded-md hover:bg-lime-600"
               disabled={loading}
             >
@@ -312,7 +365,8 @@ const EventUploadForm = (user) => {
                 type="text"
                 id="instagram"
                 name="instagram"
-                placeholder="Enter Instagram link"
+                placeholder="Duration"
+                onChange={handleDurationChange}
                 className="mt-1 p-2 w-full border rounded-md text-black"
               />
             </div>
@@ -325,6 +379,7 @@ const EventUploadForm = (user) => {
                 id="linkedin"
                 name="linkedin"
                 placeholder="Enter LinkedIn link"
+                onChange={handleEligibilityChange}
                 className="mt-1 p-2 w-full border rounded-md text-black"
               />
             </div>
@@ -337,6 +392,7 @@ const EventUploadForm = (user) => {
                 id="twitter"
                 name="twitter"
                 placeholder="Enter Twitter link"
+                onChange={handleEventCategoryChange}
                 className="mt-1 p-2 w-full border rounded-md text-black"
               />
             </div>
@@ -373,8 +429,9 @@ const EventUploadForm = (user) => {
         id="name"
         name="name"
         placeholder="Enter guest speaker(s) name"
-        value={guestSpeakers}
-        onChange={handleGuestSpeakersChange}
+        onChange={handleGuestNameChange}
+        // value={guestSpeakers}
+      
         className="mt-1 p-2 w-full border rounded-md text-black"
       />
     </div>
@@ -391,34 +448,29 @@ const EventUploadForm = (user) => {
         id="designation"
         name="designation"
         placeholder="Enter designation"
-        value={designation}
-        onChange={handleDesignationChange}
+        // value={designation}
+        onChange={handleExperienceChange}
+       
         className="mt-1 p-2 w-full border rounded-md text-black"
       />
     </div>
-
-            <div className="flex-grow">
-              <label
-                htmlFor="dateTime"
-                className="block text-sm font-medium text-white-700"
-              >
-                Date and Time:
-              </label>
-              <div id="dateTime" className="flex">
-                <DatePicker
-                  selected={selectedDate}
-                  onChange={handleDateChange}
-                  className="mt-1 p-2 w-full border rounded-md text-black"
-                  showTimeSelect
-                  dateFormat="Pp"
-                />
-                {/* <TimePicker
-          onChange={handleTimeChange}
-          value={selectedTime}
-          className="mt-1 p-2 w-full border rounded-md text-black"
-        /> */}
-              </div>
-            </div>
+<div className="flex-grow">
+  <label
+    htmlFor="dateTime"
+    className="block text-sm font-medium text-white-700"
+  >
+    Date and Time:
+  </label>
+  <div id="dateTime" className="flex">
+    <DatePicker
+      selected={selectedDate}
+      onChange={handleTimeAndDateChange}
+      className="mt-1 p-2 w-full border rounded-md text-black"
+      showTimeSelect
+      dateFormat="Pp"
+    />
+  </div>
+</div>
           </form>
         </div>
       </div>
@@ -438,7 +490,7 @@ const EventUploadForm = (user) => {
         name="registrationInfo"
         placeholder="Enter Registration Information"
         value={registrationInfo}
-        onChange={handleRegistrationInfoChange}
+        
         className="mt-1 p-2 w-full border rounded-md text-black"
       />
     </div>
@@ -455,7 +507,7 @@ const EventUploadForm = (user) => {
                 id="email"
                 name="email"
                 placeholder=" Enter Collaborators/Sponsors"
-                onChange={(e) => setLocation(e.target.value)}
+               
                 className="mt-1 p-2 w-full border rounded-md text-black"
               />
             </div>
@@ -471,7 +523,7 @@ const EventUploadForm = (user) => {
                 id="message"
                 name="message"
                 placeholder=" Target Audience"
-                onChange={(e) => setDescription(e.target.value)}
+                
                 className="mt-1 p-2 w-full border rounded-md text-black"
               ></textarea>
             </div>

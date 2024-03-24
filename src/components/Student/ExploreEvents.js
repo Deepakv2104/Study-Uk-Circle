@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import "./UserDashboard.css";
 import EventCard from './EventCard';
-import eventData from './EventData';
 
+import { firestore } from "../../firebase";
+import {
+  collection,
+  getDocs,
+} from "firebase/firestore";
 import {
 
   FaStar,
@@ -11,6 +15,29 @@ import {
 
 } from "react-icons/fa";
 const ExploreEvents = () => {
+  const [eventData, setEventData] = useState({});
+    const [loading, setLoading] = useState(true); // New state for loading indicator
+    useEffect(() => {
+      const fetchEventData = async () => {
+        try {
+          const eventsCollectionRef = collection(firestore, "events");
+          const eventsQuerySnapshot = await getDocs(eventsCollectionRef);
+          if (!eventsQuerySnapshot.empty) {
+            const eventDataArray = eventsQuerySnapshot.docs.map(doc => doc.data());
+            setEventData(eventDataArray);
+            console.log(eventData);
+          } else {
+            console.log("No events found");
+          }
+          setLoading(false);
+        } catch (error) {
+          console.error("Error fetching events data:", error);
+          setLoading(false);
+        }
+      };
+    
+      fetchEventData();
+    }, []);
   return (
  <div className='explore-events'>
        <div class="header1">
@@ -52,13 +79,19 @@ const ExploreEvents = () => {
   </div>
 
   <div className="upcoming-events">
-      <h1>Upcoming Events</h1>
-      <div className="event-container">
-        {eventData.map((event, index) => (
-          <EventCard key={index} event={event} />
-        ))}
+        <h1>Upcoming Events</h1>
+        <div className="event-container">
+          {loading ? (
+            <div style={{ textAlign: "center", marginTop: "20px" }}>
+              Loading...
+            </div>
+          ) : (
+            eventData.map((event, index) => (
+              <EventCard key={index} event={event} />
+            ))
+          )}
+        </div>
       </div>
-    </div>
 
   <div className="reviews">
     <h1>Past Event Reviews</h1>

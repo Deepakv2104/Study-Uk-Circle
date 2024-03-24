@@ -63,7 +63,7 @@ const Menu = ({user}) => {
                             alt="u
                             ser"
                         /> */}
-                       <Avatar  sx={{ width: 100, height: 100 ,margin:2}}/>
+                       <Avatar  sx={{ width: 50, height: 50 ,margin:2}}/>
                         <p>{ user?.name ||'Guest'}</p>
                     </div>
                     <ul>
