@@ -20,8 +20,8 @@ const Loader = () => (
   </div>
 );
 const EventUploadForm = (user) => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  // const [title, setTitle] = useState("");
+  // const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
   const [location, setLocation] = useState("");
   const [time, setTime] = useState("");
@@ -44,7 +44,7 @@ const EventUploadForm = (user) => {
   eventCategory:'',
 eventDescription:'',
 eventId:'',
-eventName:title,
+eventName:'',
 experince:'',
 guestImage:'',
 guestName:'',
@@ -65,6 +65,7 @@ location:'',
   const handleDescriptionChange = (e) => {
     setEventData({ ...eventData, eventDescription: e.target.value });
   };
+  
   
   const handleExperienceChange = (e) => {
     setEventData({ ...eventData, experience: e.target.value });
@@ -102,9 +103,9 @@ location:'',
     setEventData({ ...eventData, eventCategory: e.target.value });
   };
   
-  const handleEventIdChange = (e) => {
-    setEventData({ ...eventData, eventId: e.target.value });
-  };
+  // const handleEventIdChange = (e) => {
+  //   setEventData({ ...eventData, eventId: e.target.value });
+  // };
   
 
   const settings = {
@@ -152,53 +153,49 @@ location:'',
     if (loading) {
       return;
     }
-
+  
     setLoading(true);
-
+  
     // Upload data to Firestore
     try {
       const docRef = await addDoc(collection(firestore, "events"), {
-        TimeAndDate:'',
-        duration:'',
-        eligibility:'',
-        entryFee:'',
-        eventCategory:'',
-      eventDescription:'',
-      eventId:'',
-      eventName:'',
-      experince:'',
-      guestImage:'',
-      guestName:'',
-      language:'',
-      location:'',
+        TimeAndDate: eventData.TimeAndDate,
+        duration: eventData.duration,
+        eligibility: eventData.eligibility,
+        entryFee: eventData.entryFee,
+        eventCategory: eventData.eventCategory,
+        eventDescription: eventData.eventDescription, // Update here
+        eventName: eventData.eventName, // Update here
+        experience: eventData.experience,
+        guestImage: eventData.guestImage,
+        guestName: eventData.guestName,
+        language: eventData.language,
+        location: location, // Update here
       });
-
+  
       console.log("Document written with ID: ", docRef.id);
-
+  
       // Reset form fields after a short delay
       setTimeout(() => {
-        setTitle("");
-        setLocation("");
-        setDescription("");
-        setMultipleImages([]);
+      
         setEventData({
-          TimeAndDate:'',
-          duration:'',
-          eligibility:'',
-          entryFee:'',
-          eventCategory:'',
-        eventDescription:'',
-        eventId:'',
-        eventName:'',
-        experince:'',
-        guestImage:'',
-        guestName:'',
-        language:'',
-        location:'',
+          TimeAndDate: '',
+          duration: '',
+          eligibility: '',
+          entryFee: '',
+          eventCategory: '',
+          eventDescription: '',
+          eventId: '',
+          eventName: '',
+          experience: '',
+          guestImage: '',
+          guestName: '',
+          language: '',
+          location: '',
         });
         setLoading(false);
       }, 0);
-
+  
       // Show success message
       toast.success("Event data uploaded successfully!");
     } catch (error) {
@@ -207,6 +204,7 @@ location:'',
       setLoading(false);
     }
   };
+  
 
   return (
     <div className=" h-screen flex-grow overflow-x-hidden overflow-auto flex flex-wrap content-start p-2  ">
@@ -266,7 +264,7 @@ location:'',
 
             <button
               type="submit"
-             
+             onClick={handleFormSubmit}
               className="w-full bg-lime-700 text-white p-2 rounded-md hover:bg-lime-600"
               disabled={loading}
             >
@@ -358,9 +356,13 @@ location:'',
       <div className="w-full p-2 lg:w-1/3">
         <div className="rounded-lg bg-card h-80 p-4">
           <div className="flex flex-col space-y-4 h-full p-1">
-            <div className="flex items-center">
-              <FaInstagram className="text-2xl mr-4" />
-
+            <div className="flex-grow">
+            <label
+                htmlFor="message"
+                className="block text-sm font-medium text-white-700"
+              >
+                Duration
+              </label>
               <input
                 type="text"
                 id="instagram"
@@ -371,8 +373,13 @@ location:'',
               />
             </div>
 
-            <div className="flex items-center">
-              <FaLinkedin className="text-2xl mr-4" />
+            <div className="flex-grow">
+            <label
+                htmlFor="message"
+                className="block text-sm font-medium text-white-700"
+              >
+               Eligibility
+              </label>
 
               <input
                 type="text"
@@ -384,9 +391,14 @@ location:'',
               />
             </div>
 
-            <div className="flex items-center">
-              <FaTwitter className="text-2xl mr-4" />
-
+            <div className="flex-grow">
+            
+              <label
+                htmlFor="message"
+                className="block text-sm font-medium text-white-700"
+              >
+              Category
+              </label>
               <input
                 type="text"
                 id="twitter"
@@ -397,7 +409,7 @@ location:'',
               />
             </div>
 
-            <button
+            {/* <button
               className="flex items-center p-2.5 mt-4"
               style={{
                 background: "#2f49d1",
@@ -409,7 +421,7 @@ location:'',
             >
               <Icon path="res-react-dash-add-component" className="w-5 h-5" />
               <div className="ml-2">Add Links</div>
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
@@ -456,20 +468,18 @@ location:'',
     </div>
 <div className="flex-grow">
   <label
-    htmlFor="dateTime"
-    className="block text-sm font-medium text-white-700"
+  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+  htmlFor="multiple_files"
   >
-    Date and Time:
+   Guest Profile:
   </label>
-  <div id="dateTime" className="flex">
-    <DatePicker
-      selected={selectedDate}
-      onChange={handleTimeAndDateChange}
-      className="mt-1 p-2 w-full border rounded-md text-black"
-      showTimeSelect
-      dateFormat="Pp"
-    />
-  </div>
+  <input
+              id="multiple_files"
+              type="file"
+              className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+              onChange={handleGuestImageChange}
+              multiple
+            />
 </div>
           </form>
         </div>
@@ -482,32 +492,32 @@ location:'',
         htmlFor="registrationInfo"
         className="block text-sm font-medium text-white-700"
       >
-        Registration Information:
+       Entry Fee:
       </label>
       <input
         type="text"
         id="registrationInfo"
         name="registrationInfo"
-        placeholder="Enter Registration Information"
-        value={registrationInfo}
-        
+        placeholder="Enty Fee"
+
+        onClick={handleEntryFeeChange}
         className="mt-1 p-2 w-full border rounded-md text-black"
       />
     </div>
 
             <div className="flex-grow">
               <label
-                htmlFor="email"
+                htmlFor="language"
                 className="block text-sm font-medium text-white-700"
               >
-                Collaborators/Sponsors:
+               Language:
               </label>
               <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder=" Enter Collaborators/Sponsors"
-               
+                type="text"
+                id="language"
+                name="language"
+                placeholder=" Enter Language"
+               onClick={handleLanguageChange}
                 className="mt-1 p-2 w-full border rounded-md text-black"
               />
             </div>
@@ -519,13 +529,13 @@ location:'',
               >
                 Target Audience:
               </label>
-              <textarea
-                id="message"
-                name="message"
-                placeholder=" Target Audience"
-                
-                className="mt-1 p-2 w-full border rounded-md text-black"
-              ></textarea>
+              <DatePicker
+      selected={selectedDate}
+      onChange={handleTimeAndDateChange}
+      className="mt-1 p-2 w-full border rounded-md text-black"
+      showTimeSelect
+      dateFormat="Pp"
+    />
             </div>
           </form>
         </div>

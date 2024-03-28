@@ -9,6 +9,32 @@ import { FaSearch } from "react-icons/fa";
 import Menu from "./Menu";
 import RightContent from "./RightContent";
 
+// ErrorBoundary component
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error) {
+    // Update state so the next render will show the fallback UI.
+    return { hasError: true };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    // You can also log the error to an error reporting service
+    console.error("ErrorBoundary caught an error:", error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      // You can render any custom fallback UI
+      return <div>Something went wrong.</div>;
+    }
+
+    return this.props.children;
+  }
+}
 
 const UserDashboard = () => {
   const auth = useAuth();
@@ -39,8 +65,6 @@ const UserDashboard = () => {
         console.error("Error fetching user data:", error.message);
       }
 
-     
-
       setLoading(false);
       setInitialLoad(false);
     };
@@ -49,21 +73,30 @@ const UserDashboard = () => {
   }, [auth]);
 
   return (
-    <div className="user-dashboard">
-      <Menu user={userData} />
-      <div className="content">
-        <div className="left-content">
-          <div className="search-and-check">
-            <form className="search-box">
-              <input type="text" placeholder="Search event..." />
-              <FaSearch style={{ position: 'relative', top: '5px', left: '-25px', zIndex: '1' }} />
-            </form>
+    <ErrorBoundary>
+      <div className="user-dashboard">
+        <Menu user={userData} />
+        <div className="content">
+          <div className="left-content">
+            <div className="search-and-check">
+              <form className="search-box">
+                <input type="text" placeholder="Search event..." />
+                <FaSearch
+                  style={{
+                    position: "relative",
+                    top: "5px",
+                    left: "-25px",
+                    zIndex: "1",
+                  }}
+                />
+              </form>
+            </div>
+            {userData ? <Outlet user={[userData]} /> : <div>Loading...</div>}
           </div>
-          {userData ? <Outlet user={[userData]} /> : <div>Loading...</div>}
+          <RightContent user={userData} />
         </div>
-        <RightContent user={userData} />
       </div>
-    </div>
+    </ErrorBoundary>
   );
 };
 

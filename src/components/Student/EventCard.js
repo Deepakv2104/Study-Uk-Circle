@@ -12,18 +12,16 @@ import {
   Grid,
 } from "@mui/material";
 
-
-
-const EventCard = ({event}) => {
-  console.log(event)
+const EventCard = ({ event }) => {
+  // State variables
   const [dialogOpen, setDialogOpen] = useState(false);
   const [heartColor, setHeartColor] = useState("white");
-
   const [loading, setLoading] = useState(true); // New state for loading indicator
+
+  // Other variables
   const navigate = useNavigate();
 
-
-
+  // Event handlers
   const handleDialogOpen = () => {
     setDialogOpen(true);
   };
@@ -40,9 +38,10 @@ const EventCard = ({event}) => {
     navigate(event.eventId);
   };
 
-  return (
-    <div>
-      
+  try {
+    // Rendering logic
+    return (
+      <div>
         <div key={event.eventId} className="card event-card">
           <div className="event-header">
             <img src={event.imageSrc || 'NA'} alt="" />
@@ -85,9 +84,17 @@ const EventCard = ({event}) => {
             </div>
           </div>
         </div>
-      
-    </div>
-  );
+      </div>
+    );
+  } catch (error) {
+    // Error handling
+    console.error('Error rendering EventCard:', error);
+    return (
+      <div className="error-card">
+        <p>Oops! Something went wrong while rendering this event.</p>
+      </div>
+    );
+  }
 };
 
 export default EventCard;
