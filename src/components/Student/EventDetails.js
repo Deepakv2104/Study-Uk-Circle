@@ -49,7 +49,14 @@ const EventDetails = () => {
   React.useEffect(() => {
     fetchRandomImage();
   }, []); // Empty dependency array ensures the effect runs only once when the component mounts
-
+  const formatTimestamp = (timestamp) => {
+    if (timestamp && timestamp.seconds) {
+      const date = new Date(timestamp.seconds * 1000); // Convert seconds to milliseconds
+      return date.toLocaleString(); // Format date as needed
+    } else {
+      return "Invalid Date";
+    }
+  };
 
   useEffect(() => {
     console.log('eventId:', eventId.eventId); // Log the eventId to check its value
@@ -91,7 +98,7 @@ const EventDetails = () => {
 
     
       <Box sx={{ display: 'flex', alignItems: 'center', mb: 1}}>
-        <Typography variant="body2" sx={{ mr: 2 }}>{eventData.TimeAndDate}</Typography>
+        <Typography variant="body2" sx={{ mr: 2 }}>{formatTimestamp(eventData.TimeAndDate)}</Typography>
         <svg viewBox="0 0 18 22" style={{ width: '20px', height: '20px', fill: '#FFA500', marginRight: '4px' }}>
           <FaLocationArrow style={{color:'blue'}}/>
         </svg>

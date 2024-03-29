@@ -17,7 +17,7 @@ const EventCard = ({ eventData }) => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [heartColor, setHeartColor] = useState("white");
   const navigate = useNavigate();
-console.log(eventData)
+console.log(eventData,'inside eventcard')
   // Event handlers
   const handleDialogOpen = () => {
     setDialogOpen(true);
@@ -32,9 +32,16 @@ console.log(eventData)
   };
 
   const handleBuyClick = (eventId) => {
-    navigate(`/events/${eventId}`);
+    navigate(`${eventId}`);
   };
-
+  const formatTimestamp = (timestamp) => {
+    if (timestamp && timestamp.seconds) {
+      const date = new Date(timestamp.seconds * 1000); // Convert seconds to milliseconds
+      return date.toLocaleString(); // Format date as needed
+    } else {
+      return "Invalid Date";
+    }
+  };
   // Rendering logic
   return (
     <div>
@@ -43,7 +50,7 @@ console.log(eventData)
           <React.Fragment key={eventData.eventId}>
             <div className="event-header">
               <img src={eventData.imageSrc || 'NA'} alt="" />
-              <p>{`${eventData.TimeAndDate.seconds}:${eventData.TimeAndDate.nanoseconds}`}</p>
+              <p>{formatTimestamp(eventData.TimeAndDate)}</p>
 
               <FaHeart
                 className="bx-heart"

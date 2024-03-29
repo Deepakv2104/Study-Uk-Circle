@@ -13,6 +13,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import TimePicker from "react-time-picker";
 import "react-time-picker/dist/TimePicker.css";
+import { updateDoc,doc } from "firebase/firestore";
 
 const Loader = () => (
   <div className="loader-container">
@@ -22,6 +23,7 @@ const Loader = () => (
 const EventUploadForm = (user) => {
   // const [title, setTitle] = useState("");
   // const [description, setDescription] = useState("");
+  const [dateTime, setDateTime] = useState('');
   const [date, setDate] = useState("");
   const [location, setLocation] = useState("");
   const [time, setTime] = useState("");
@@ -37,7 +39,7 @@ const EventUploadForm = (user) => {
   
 
   const [eventData, setEventData] = useState({
-  TimeAndDate:'',
+    TimeAndDate: new Date(),
   duration:'',
   eligibility:'',
   entryFee:'',
@@ -106,7 +108,14 @@ location:'',
   // const handleEventIdChange = (e) => {
   //   setEventData({ ...eventData, eventId: e.target.value });
   // };
-  
+  const handleDateTimeChange = (e) => {
+    setDateTime(e.target.value);
+  };
+
+  // const handleDataChange = (e) => {
+  //   setData(e.target.value);
+  // };
+
 
   const settings = {
     dots: true,
@@ -156,28 +165,35 @@ location:'',
   
     setLoading(true);
   
-    // Upload data to Firestore
     try {
+      // Upload data to Firestore
       const docRef = await addDoc(collection(firestore, "events"), {
         TimeAndDate: eventData.TimeAndDate,
         duration: eventData.duration,
         eligibility: eventData.eligibility,
         entryFee: eventData.entryFee,
         eventCategory: eventData.eventCategory,
-        eventDescription: eventData.eventDescription, // Update here
-        eventName: eventData.eventName, // Update here
+        eventDescription: eventData.eventDescription,
+        eventName: eventData.eventName,
         experience: eventData.experience,
         guestImage: eventData.guestImage,
         guestName: eventData.guestName,
         language: eventData.language,
-        location: location, // Update here
+        location: location,
       });
   
-      console.log("Document written with ID: ", docRef.id);
+      // Get the newly generated document ID
+      const eventId = docRef.id;
+  
+      // Update the document with the eventId
+      await updateDoc(doc(firestore, "events", eventId), {
+        eventId: eventId,
+      });
+  
+      console.log("Document written with ID: ", eventId);
   
       // Reset form fields after a short delay
       setTimeout(() => {
-      
         setEventData({
           TimeAndDate: '',
           duration: '',
@@ -185,7 +201,6 @@ location:'',
           entryFee: '',
           eventCategory: '',
           eventDescription: '',
-          eventId: '',
           eventName: '',
           experience: '',
           guestImage: '',
@@ -275,7 +290,7 @@ location:'',
       </div>
       <div className="w-full p-2 lg:w-2/3">
         <div className="rounded-lg bg-card h-80">
-          <div className="flex items-center justify-center w-full h-full">
+          {/* <div className="flex items-center justify-center w-full h-full">
             {multipleImages.length > 0 ? (
               <Slider {...settings} className="w-full h-90">
                 {multipleImages.map((image, index) => (
@@ -334,7 +349,7 @@ location:'',
                 />
               </label>
             )}
-          </div>
+          </div> */}
 
           <div>
             <label
@@ -529,13 +544,15 @@ location:'',
               >
                 Target Audience:
               </label>
-              <DatePicker
-      selected={selectedDate}
-      onChange={handleTimeAndDateChange}
-      className="mt-1 p-2 w-full border rounded-md text-black"
-      showTimeSelect
-      dateFormat="Pp"
-    />
+              {/* <DatePicker
+          selected={eventData.TimeAndDate}
+          onChange={handleTimeAndDateChange}
+          className="mt-1 p-2 w-full border rounded-md text-black"
+          showTimeSelect
+          dateFormat="Pp"
+        /> */}
+         <input type="datetime-local" value={dateTime} onChange={handleDateTimeChange} />
+      {/* <textarea value={data} onChange={handleDataChange} /> */}
             </div>
           </form>
         </div>
