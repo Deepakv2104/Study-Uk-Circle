@@ -6,7 +6,10 @@ import { firestore } from "../../firebase";
 import {
   collection,
   getDocs,
+  
+  forEach
 } from "firebase/firestore";
+import { QuerySnapshot } from 'firebase/firestore';
 import {
 
   FaStar,
@@ -15,29 +18,36 @@ import {
 
 } from "react-icons/fa";
 const ExploreEvents = () => {
-  const [eventData, setEventData] = useState({});
+  const [eventData, setEventData] = useState([]);
+
     const [loading, setLoading] = useState(true); // New state for loading indicator
-    useEffect(() => {
-      const fetchEventData = async () => {
-        try {
-          const eventsCollectionRef = collection(firestore, "events");
-          const eventsQuerySnapshot = await getDocs(eventsCollectionRef);
-          if (!eventsQuerySnapshot.empty) {
-            const eventDataArray = eventsQuerySnapshot.docs.map(doc => doc.data());
-            setEventData(eventDataArray);
-            console.log(eventData);
-          } else {
-            console.log("No events found");
-          }
-          setLoading(false);
-        } catch (error) {
-          console.error("Error fetching events data:", error);
-          setLoading(false);
+
+    const fetchEventData = async () => {
+      try {
+        const eventsCollectionRef = collection(firestore, "events");
+        const eventsQuerySnapshot = await getDocs(eventsCollectionRef);
+        console.log('inside')
+        if (!eventsQuerySnapshot.empty) {
+          const data = [];
+          eventsQuerySnapshot.forEach((doc) => {
+            data.push({ id: doc.id, ...doc.data() });
+          });
+          setEventData(data);
+          console.log(data); // Log data, not eventData
+        } else {
+          console.log("No events found");
         }
-      };
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching events data:", error);
+        setLoading(false);
+      }
+    };
     
+    useEffect(() => {
       fetchEventData();
     }, []);
+    
   return (
  <div className='explore-events'>
        <div class="header1">
@@ -81,16 +91,18 @@ const ExploreEvents = () => {
   <div className="upcoming-events">
         <h1>Upcoming Events</h1>
         <div className="event-container">
-          {loading ? (
-            <div style={{ textAlign: "center", marginTop: "20px" }}>
-              Loading...
-            </div>
-          ) : (
-            eventData.map((event, index) => (
-              <EventCard key={index} event={event} />
-            ))
-          )}
-        </div>
+  {loading ? (
+    <div style={{ textAlign: "center", marginTop: "20px" }}>
+      Loading...
+    </div>
+  ) : (
+    eventData.map((event, index) => (
+      <EventCard key={index} eventData={event} />
+    ))
+  )}
+</div>
+
+
       </div>
 
   <div className="reviews">
