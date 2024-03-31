@@ -36,19 +36,18 @@ const EventDetails = () => {
   const [imageUrl, setImageUrl] = useState('');
 
   // Function to fetch a random landscape image from Unsplash
-  const fetchRandomImage = async () => {
-    try {
-      const response = await fetch('https://source.unsplash.com/800x600/?landscape');
-      setImageUrl(response.url);
-    } catch (error) {
-      console.error('Error fetching image:', error);
-    }
-  };
+  // const fetchRandomImage = async () => {
+  //   try {
+  //     const response = await fetch('https://source.unsplash.com/800x600/?landscape');
+  //     setImageUrl(response.url);
+  //   } catch (error) {
+  //     console.error('Error fetching image:', error);
+  //   }
+  // };
 
-  // Fetch a random image when the component mounts
-  React.useEffect(() => {
-    fetchRandomImage();
-  }, []); // Empty dependency array ensures the effect runs only once when the component mounts
+  // React.useEffect(() => {
+  //   fetchRandomImage();
+  // }, []);
   const formatTimestamp = (timestamp) => {
     if (timestamp && timestamp.seconds) {
       const date = new Date(timestamp.seconds * 1000); // Convert seconds to milliseconds
@@ -118,6 +117,7 @@ const EventDetails = () => {
     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <Typography variant="body1" sx={{ mb: 1 }}>Guests</Typography>
       <Avatar src={eventData.guestImage} sx={{ width: 70, height: 70 }} />
+      <Typography variant="body1" sx={{ mb: 1 }}>{eventData.guestName}</Typography>
     </Box>
   </Paper>
 </Grid>
