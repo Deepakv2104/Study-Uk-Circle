@@ -49,7 +49,7 @@ console.log(eventData,'inside eventcard')
         {/* {eventData.map((event) => ( */}
           <React.Fragment key={eventData.eventId}>
             <div className="event-header">
-              <img src={eventData.imageSrc || 'NA'} alt="" />
+              <img src={eventData.eventImage|| 'NA'} alt="" />
               <p>{formatTimestamp(eventData.TimeAndDate)}</p>
 
               <FaHeart

@@ -84,14 +84,14 @@ const EventDetails = () => {
       <Grid container spacing={3}>
       <Grid item xs={12}>
   <Box sx={{ position: 'relative' }}>
-    <img src={imageUrl} alt="Random" style={{ width: '100%', maxHeight: '400px', objectFit: 'cover', borderTopLeftRadius: '4px', borderTopRightRadius: '4px', borderRadius:'5px' }} />
+    <img src={eventData.eventImage} alt="Random" style={{ width: '100%', maxHeight: '400px', objectFit: 'cover', borderTopLeftRadius: '4px', borderTopRightRadius: '4px', borderRadius:'5px' }} />
     <Box sx={{ p: 2, backgroundColor: '#f5f5f5', borderRadius: '4px', boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)' }}>
 
     <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mr: 2 }}>
   <div>
   <Typography variant="h6" sx={{ mb: 1, color: 'black', fontWeight: 'bold' }}>{eventData.eventName || 'N/A'}</Typography>
 
-    <Typography variant="body2" sx={{ mb: 1 }}>{eventData.eventCatagory} | {eventData.language  || 'N/A'} | {eventData.experience} | {eventData.duration}</Typography>
+    <Typography variant="body2" sx={{ mb: 1 }}>{eventData.eventCategory} | {eventData.language  || 'N/A'} | {eventData.experience} | {eventData.duration}</Typography>
   </div>
   <Button variant="contained" sx={{ height: '40px', fontSize: '18px', flex: '0 0 auto' }}>Book</Button>
 </Box>
@@ -117,7 +117,7 @@ const EventDetails = () => {
   <Paper sx={{ p: 2 }}>
     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <Typography variant="body1" sx={{ mb: 1 }}>Guests</Typography>
-      <Avatar sx={{ width: 50, height: 50 }} />
+      <Avatar src={eventData.guestImage} sx={{ width: 70, height: 70 }} />
     </Box>
   </Paper>
 </Grid>
@@ -145,9 +145,9 @@ const EventDetails = () => {
         <Typography variant="body2" sx={{ mb: 1 }}>{eventData.eventDescription  || 'N/A'}</Typography>
         <Typography variant="body1" sx={{ mb: 1 }}>Eligibility:</Typography>
         <Typography variant="body2" component="ul">
-          <li>Adults (18+)</li>
+          <li>{eventData.eligibility}</li>
           <li>Students with valid ID</li>
-          {/* Add more eligibility criteria here */}
+        
         </Typography>
       </div>
     </Box>
