@@ -13,7 +13,7 @@
     return (
       <div >
             <AnimatedNav/>
-              <Banner/>
+              {/* <Banner/> */}
               <BannerSections/>
               <Footer/>
 

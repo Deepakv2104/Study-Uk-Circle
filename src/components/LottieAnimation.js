@@ -21,7 +21,7 @@ const LottieAnimation = ({ animationData }) => {
       return () => animation.destroy();
     }, [animationData]);
   
-    return <div style={{ width: "100%", height: "60%",padding:'30px' }} ref={container}></div>;
+    return <div ref={container}></div>;
   };
   
   export default LottieAnimation;

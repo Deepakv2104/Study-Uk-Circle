@@ -68,7 +68,7 @@ img {
   font-size: clamp(1rem, 4vw, 1.2rem);
 }
 
-h2 {
+.user-dashboard h2 {
   font-size: clamp(0.9rem, 4vw, 1rem);
 }
 

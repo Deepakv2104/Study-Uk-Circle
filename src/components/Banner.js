@@ -3,8 +3,8 @@ import QueryForm from "./QueryForm";
 import { Container, Row, Col } from "react-bootstrap";
 import { ArrowRightCircle } from "react-bootstrap-icons";
 import lottie from "lottie-web";
-import gsap from 'gsap';
-import '../styles/Banner.css';
+import gsap from "gsap";
+import "../styles/Banner.css";
 import animationData from "../assets/lotties/study.json";
 import { useNavigate } from "react-router-dom";
 export const Banner = () => {
@@ -18,31 +18,32 @@ export const Banner = () => {
   const toRotate = [" a Job ?", "Guidance?", "Accommodation?"];
   const period = 500;
 
-  const handleLogin = () => {
-    console.log("clicked");
-    navigate('form');
-  };
+  // const handleLogin = () => {
+  //   console.log("clicked");
+  //   navigate("form");
+  // };
 
-  useEffect(() => {
-    const animation = lottie.loadAnimation({
-      container: container.current,
-      renderer: "svg",
-      loop: true,
-      autoplay: true,
-      animationData,
-    });
+  // useEffect(() => {
+  //   const animation = lottie.loadAnimation({
+  //     container: container.current,
+  //     renderer: "svg",
+  //     loop: true,
+  //     autoplay: true,
+  //     animationData,
+  //   });
 
-    // GSAP Animation for the container
-    gsap.fromTo(container.current,
-      { opacity: 0, scale: 0.5 }, // Start state
-      { opacity: 1, scale: 1, duration: 1, ease: 'power3.out', delay: 0.5 } // End state and animation properties
-    );
+  //   // GSAP Animation for the container
+  //   gsap.fromTo(
+  //     container.current,
+  //     { opacity: 0, scale: 0.5 }, // Start state
+  //     { opacity: 1, scale: 1, duration: 1, ease: "power3.out", delay: 0.5 } // End state and animation properties
+  //   );
 
-    return () => {
-      // Cleanup the animation when the component is unmounted
-      animation.destroy();
-    };
-  }, []);
+  //   return () => {
+  //     // Cleanup the animation when the component is unmounted
+  //     animation.destroy();
+  //   };
+  // }, []);
 
   useEffect(() => {
     const ticker = setInterval(() => {
@@ -84,36 +85,46 @@ export const Banner = () => {
   return (
     <div className="banner" id="home">
       <Container>
-        <Row className="aligh-items-center">
-          <Col xs={12} md={6} xl={7}>
-            <div className="animate__animated animate__fadeIn">
-            <span className="tagline" style={{ fontSize: '1.5rem' }}>Welcome to <span style={{ color: '#ff5722'}}>WorldLynk</span></span>
+      {/* <span className="tagline" style={{ fontSize: "1.5rem" }}>
+              Welcome to <span style={{ color: "#ff5722" }}>WorldLynk</span>
+            </span> */}
 
-              <h1>
-                {`Hi! Looking for`}{" "}
-                <span
-                  className="txt-rotate"
-                  data-period="1000"
-                  data-rotate='[" Job ", "Guidance?", "Accommodation?]'
-                >
-                  <span className="wrap">{text}</span>
-                </span>
-              </h1>
-              <div style={{ textAlign: 'justify' }}>
-              <p>
-              Embark on your academic journey with WorldLynk, your one-stop solution for seamless student experiences in the UK. We go beyond boundaries to provide comprehensive services, ensuring your stay is enriching and your career path is paved with success.
-              </p>
-              </div>
-              {/* <button onClick={handleLogin}>
+            {/* <h1>
+              {`Hi! Looking for`}{" "}
+              <span
+                className="txt-rotate"
+                data-period="1000"
+                data-rotate='[" Job ", "Guidance?", "Accommodation?]'
+              >
+                <span className="wrap">{text}</span>
+              </span>
+            </h1> */}
+      {/* <Container>
+      <Row className="left0-column-content">
+          <Col xs={12} md={6} xl={5}>
+            
+            <div ref={container}></div>
+          </Col>
+          <Col xs={12} md={6} xl={7}  className="right-column-content">
+      
+              <div style={{ textAlign: "justify" }}>
+                <p>
+                  Embark on your academic journey with WorldLynk, your one-stop
+                  solution for seamless student experiences in the UK. We go
+                  beyond boundaries to provide comprehensive services, ensuring
+                  your stay is enriching and your career path is paved with
+                  success.
+                </p>
+        
+               <button onClick={handleLogin}>
                 Let’s Connect <ArrowRightCircle size={25} />
-              </button> */}
+              </button>
               <QueryForm/>
             </div>
           </Col>
-          <Col xs={12} md={6} xl={5}>
-            <div ref={container}></div>
-          </Col>
         </Row>
+      </Container> */}
+
       </Container>
     </div>
   );
