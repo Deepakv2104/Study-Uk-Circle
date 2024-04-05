@@ -113,7 +113,8 @@ const EventDetails = () => {
     <Box sx={{ flexGrow: 1, m: 2 }}>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <Box sx={{ position: "relative" }}>
+          <Box sx={{  position: "relative",
+  border: "1px solid white"}}>
             <img
               src={eventData.eventImage}
               alt="Random"
@@ -129,7 +130,7 @@ const EventDetails = () => {
             <Box
               sx={{
                 p: 2,
-                backgroundColor: "#f5f5f5",
+                // backgroundColor: "#f5f5f5",
                 borderRadius: "4px",
                 boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
               }}
@@ -145,7 +146,7 @@ const EventDetails = () => {
                 <div>
                   <Typography
                     variant="h6"
-                    sx={{ mb: 1, color: "black", fontWeight: "bold" }}
+                    sx={{ mb: 1, color: "white", fontWeight: "bold" }}
                   >
                     {eventData.eventName || "N/A"}
                   </Typography>
@@ -164,7 +165,7 @@ const EventDetails = () => {
                 </Button>
               </Box>
 
-              <Box sx={{ display: "flex", alignItems: "center", mb: 1 }}>
+              <Box sx={{ display: "flex", alignItems: "center", mb: 1 , color: "white"}}>
                 <Typography variant="body2" sx={{ mr: 2 }}>
                   {formatTimestamp(eventData.TimeAndDate)}
                 </Typography>
@@ -177,15 +178,15 @@ const EventDetails = () => {
                     marginRight: "4px",
                   }}
                 >
-                  <FaLocationArrow style={{ color: "blue" }} />
+                  <FaLocationArrow style={{ color: "whtie" }} />
                 </svg>
                 <Typography
                   variant="body2"
-                  sx={{ color: "#000", fontWeight: "bold", mr: 2 }}
+                  sx={{ color: "white", fontWeight: "bold", mr: 2 }}
                 >
                   {eventData.location || "N/A"}
                 </Typography>
-                <Typography variant="body2" sx={{ color: "#000" }}>
+                <Typography variant="body2" sx={{ color: "white" }}>
                   {eventData.entryFee || "N/A"}{" "}
                 </Typography>
               </Box>
@@ -198,23 +199,25 @@ const EventDetails = () => {
         </Grid>
       </Grid>
       <Grid container spacing={3} sx={{ mt: 2 }}>
-        <Grid item xs>
-          <Paper sx={{ p: 2 }}>
+
+        <Grid item xs  sx={{ mt: 2  }}>
+          <Paper sx={{ p: 2 , backgroundColor: '#0f0e0e' , border: "1px solid white"}}>
             <Box
               sx={{
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
+                
               }}
             >
-              <Typography variant="body1" sx={{ mb: 1 }}>
+              <Typography variant="body1" sx={{ mb: 1 ,color:'white'}}>
                 Guests
               </Typography>
               <Avatar
                 src={eventData.guestImage}
                 sx={{ width: 70, height: 70 }}
               />
-              <Typography variant="body1" sx={{ mb: 1 }}>
+              <Typography variant="body1" sx={{ mb: 1 ,color:'white'}}>
                 {eventData.guestName}
               </Typography>
             </Box>
@@ -229,12 +232,12 @@ const EventDetails = () => {
             justifyContent: "space-between",
             alignItems: "center",
             mr: 2,
-            backgroundColor: "#f5f5f5",
+           
           }}
         >
           <Grid container direction="column" spacing={2}>
             <Grid item>
-              <Paper sx={{ p: 2 }}>
+              <Paper sx={{ p: 2 , backgroundColor: '#0f0e0e' , border: "1px solid white"}}>
                 <Box
                   sx={{
                     display: "flex",
@@ -244,11 +247,11 @@ const EventDetails = () => {
                   }}
                 >
                   <div>
-                    <Typography variant="body1" sx={{ mb: 1 }}>
+                    <Typography variant="body1" sx={{ mb: 1,color:'white' }}>
                       Click on Interested to stay updated about this event.
                     </Typography>
-                    <FaThumbsUp />
-                    <Typography variant="body2">
+                    <FaThumbsUp style={{ backgroundColor:'white',margin:'5px'}}/>
+                    <Typography variant="body2" sx={{ mb: 1 ,color:'white'}}>
                       {" "}
                       People have shown interest recently.
                     </Typography>
@@ -264,7 +267,7 @@ const EventDetails = () => {
               </Paper>
             </Grid>
             <Grid item>
-              <Paper sx={{ p: 2 }}>
+              <Paper sx={{ p: 2 , backgroundColor: '#0f0e0e' , border: "1px solid white"}}>
                 <Box
                   sx={{
                     display: "flex",
@@ -274,16 +277,16 @@ const EventDetails = () => {
                   }}
                 >
                   <div>
-                    <Typography variant="body1" sx={{ mb: 1 }}>
+                    <Typography variant="body1" sx={{ mb: 1 ,color:'white'}}>
                       Event Details
                     </Typography>
-                    <Typography variant="body2" sx={{ mb: 1 }}>
+                    <Typography variant="body2" sx={{ mb: 1 ,color:'white'}}>
                       {eventData.eventDescription || "N/A"}
                     </Typography>
-                    <Typography variant="body1" sx={{ mb: 1 }}>
+                    <Typography variant="body1" sx={{ mb: 1 ,color:'white'}}>
                       Eligibility:
                     </Typography>
-                    <Typography variant="body2" component="ul">
+                    <Typography variant="body2" component="ul" sx={{ mb: 1 ,color:'white'}}>
                       <li>{eventData.eligibility}</li>
                       <li>Students with valid ID</li>
                     </Typography>
@@ -294,7 +297,9 @@ const EventDetails = () => {
           </Grid>
         </Grid>
         <Grid item xs>
-          <Item>xs</Item>
+         <Paper  sx={{ p: 2 , backgroundColor: '#0f0e0e' , border: "1px solid white"}} >
+         <Typography  sx={{ mb: 1 ,color:'white'}}>Info</Typography>
+         </Paper>
         </Grid>
       </Grid>
       {/* Dialog component */}
