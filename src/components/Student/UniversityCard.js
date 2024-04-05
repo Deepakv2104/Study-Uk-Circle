@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import {useNavigate} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import OutlineButton from './outline-button';
 import './place-card.css';
 
-const PlaceCard = (props) => {
+const UniversityCard = (props) => {
+  const navigate = useNavigate();
   const [showFullDescription, setShowFullDescription] = useState(false);
 
   const toggleDescription = () => {
@@ -15,7 +17,10 @@ const PlaceCard = (props) => {
     const truncatedText = text.substr(0, text.lastIndexOf(' ', maxLength));
     return truncatedText + '...';
   };
-
+const handleClick=()=>{
+  console.log('c')
+navigate('university-name')
+}
   return (
     <div className="place-card-container">
       <img
@@ -38,13 +43,16 @@ const PlaceCard = (props) => {
             </button>
           )}
         </span>
-        <OutlineButton button1="Discover place"></OutlineButton>
+        <div onClick={handleClick}>
+        <OutlineButton button1="Discover place" ></OutlineButton>
+        </div>
+     
       </div>
     </div>
   );
 };
 
-PlaceCard.defaultProps = {
+UniversityCard.defaultProps = {
   image:
     'https://media.tacdn.com/media/attractions-splice-spp-674x446/0b/27/a8/8d.jpg',
   imageAlt: 'image',
@@ -53,11 +61,11 @@ PlaceCard.defaultProps = {
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.',
 };
 
-PlaceCard.propTypes = {
+UniversityCard.propTypes = {
   image: PropTypes.string,
   imageAlt: PropTypes.string,
   city: PropTypes.string,
   description: PropTypes.string,
 };
 
-export default PlaceCard;
+export default UniversityCard;

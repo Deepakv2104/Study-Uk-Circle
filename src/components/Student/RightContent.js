@@ -7,6 +7,7 @@ import {
   FaCheckCircle,
   FaClock,
 } from "react-icons/fa";
+import './UserDashboard.css'
 const RightContent = () => {
   const isSunHidden = true;
   const moonIcon = document.querySelector(".moon");

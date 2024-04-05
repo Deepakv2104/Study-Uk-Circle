@@ -26,6 +26,9 @@ import University from "./components/Student/University";
 import StudentProfile from "./components/Student/StudentProfile";
 import AutoGrid from "./components/Student/EventDetails";
 import EventDetails from "./components/Student/EventDetails";
+import UniversityDetails from "./components/Student/UniversityDetails";
+import Form from "./components/Testing";
+import Explore from "./components/Student/Explore";
 gsap.registerPlugin();
 function App() {
   return (
@@ -46,10 +49,14 @@ function App() {
             </Route>
             <Route path="/user-dashboard" element={<UserDashboard/>} >
             <Route path="/user-dashboard/events" element={<ExploreEvents/>} />
+            <Route path="/user-dashboard/events/testing" element={<Form/>} />
             <Route path="/user-dashboard/events/:eventId" element={<EventDetails/>} />
             <Route path="/user-dashboard/stay" element={<Accommodation/>} />
             <Route path="/user-dashboard/university" element={<University/>} />
+            <Route path="/user-dashboard/university/university-name" element={<UniversityDetails/>} />
+            <Route path="/user-dashboard/explore" element={<Explore/>} />
             <Route path="/user-dashboard/settings/:userId" element={<StudentProfile/>} />
+            
             </Route>
 
             <Route path="/event" element={<EventUploadForm />} />

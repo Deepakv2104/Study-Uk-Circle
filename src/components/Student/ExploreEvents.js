@@ -51,7 +51,7 @@ const ExploreEvents = () => {
   return (
  <div className='explore-events'>
        <div class="header1">
-    <picture class="morning-img">
+    {/* <picture class="morning-img">
       <img
         class="header-mobile"
         src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/b4f4845f-4dc7-4470-b81a-677f46f211c2"
@@ -67,9 +67,9 @@ const ExploreEvents = () => {
         src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/cce4084a-01a4-428d-961f-935bafe7a6e3"
         alt=""
       />
-    </picture>
+    </picture> */}
 
-    <picture class="night-img hidden">
+    <picture class="night-img ">
       <img
         class="header-mobile"
         src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/e349d3c2-ee2c-4982-866e-776236508fc9"

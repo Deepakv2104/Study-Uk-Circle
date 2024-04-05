@@ -10,7 +10,8 @@ import {
     FaSignOutAlt,
     FaSchool,
     FaHome,
-    FaSearch
+
+FaUtensils,
 } from 'react-icons/fa';
 import { Avatar } from '@mui/material';
 import { useAuth } from '../../auth/userProvider/AuthProvider'; // Import the useAuth hook
@@ -87,8 +88,8 @@ const Menu = ({user}) => {
                         </li>
                         <li className="nav-item1">
                             <a >
-                                <FaChartBar className="nav-icon" />
-                                <span className="nav-text">Analytics</span>
+                                <FaUtensils className="nav-icon" />
+                                <span className="nav-text">Explore</span>
                             </a>
                         </li>
                         <li className="nav-item1">
