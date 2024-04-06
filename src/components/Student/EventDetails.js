@@ -108,6 +108,7 @@ const EventDetails = () => {
     } catch (error) {
       console.error("Error adding booking: ", error);
     }
+    setOpenDialog(false);
   };
   return (
     <Box sx={{ flexGrow: 1, m: 2 }}>
@@ -362,10 +363,9 @@ const EventDetails = () => {
         </DialogContent>
 
         <DialogActions>
-          <Button onClick={handleCloseDialog}>Cancel</Button>
-          <Button onClick={handleCloseDialog} color="primary">
-            Confirm
-          </Button>
+          <Button onClick={() => setOpenDialog(false)} >Cancel</Button>
+          <Button onClick={handleCloseDialog} color="primary">Confirm</Button>
+
         </DialogActions>
       </Dialog>
     </Box>

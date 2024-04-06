@@ -55,6 +55,7 @@ function App() {
             <Route path="/user-dashboard/university" element={<University/>} />
             <Route path="/user-dashboard/university/university-name" element={<UniversityDetails/>} />
             <Route path="/user-dashboard/explore" element={<Explore/>} />
+            <Route path="/user-dashboard/favorites" element={<Testing/>} />
             <Route path="/user-dashboard/settings/:userId" element={<StudentProfile/>} />
             
             </Route>

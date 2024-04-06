@@ -148,7 +148,7 @@ const LoginPage = () => {
       toast.success("Login with Google successful!");
   
       // Navigate to the dashboard
-      navigate("/dashboard/overview");
+      navigate("/user-dashboard/events");
     } catch (error) {
       // Display error toast
       toast.error(`Error: ${error.message}`);

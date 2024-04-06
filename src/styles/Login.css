@@ -1,170 +1,158 @@
+/* Common styles */
 .login-page {
-    display: flex;
-    flex-direction: row; 
-    height: 100vh;
-    z-index: 10;
-    position: relative;
-   color: white;
-   
-  }
-  
-  .lottie-container, .login-form {
-    width: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .lottie-container {
-    min-height: 300px;
-    min-width: 300px; 
-    opacity: 1; 
-    background-color: white;
-  }
-  
-  
-  .lottie-container img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100px; 
-    height: auto; 
-    filter: brightness(10%) contrast(200%); 
-  }
-  
-  .login-form {
-    background: linear-gradient(to right, #000428, #004e92);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    
-  }
-  
-  .login-form form {
-    width: 80%;
-    max-width: 360px;
-    border: 2px solid white; 
-    padding: 100px 30px; 
-    border-radius: 10px;  
-  }
-  
-  .form-group {
-    margin-bottom: 20px;
-  
-  }
-  .new-user-check{
-    margin: 10px 0px;
-  }
-  .new-user-check span{
-color:#d00000;
-cursor: pointer;
-  }
-  input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-    color: #000;
-  }
-  
-  .login-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .login-button:hover {
-    background-color: #45a049;
-  }
-  .login-options {
-    text-align: center;
-    margin-top: 20px;
-  }
-  
-  .login-options p {
-    margin-bottom: 10px;
-  }
-  
-  .option {
-    display: inline-block;
-    width: 30px; 
-    height: 30px; 
-    border-radius: 50%;
-    overflow: hidden;
-    margin: 0 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    cursor: pointer; 
-  }
-  
-  .option img {
-    width: 100%;
-    height: auto;
-  }
-  .lottie-container, .login-form {
-  width: 50%;
+  display: flex;
+  flex-direction: row; 
+  height: 100vh;
+  z-index: 10;
+  position: relative;
+  color: white;
 }
 
-  .reset1{
-   padding:20px 85px;
-  }
-  /* Minimalist tweaks for input placeholders */
-  ::placeholder {
-    color: #bbb;
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .lottie-container, .login-form {
-      width: 100%;
-    }
-  
-    .login-page {
-      flex-direction: column; 
-    }
-  
-    .login-form form {
-      width: 90%; 
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .lottie-container {
-      width: 100%; /* Adjust Lottie container to full width */
-      height: auto; /* Adjust height automatically */
-      display: block; /* Use block layout for the Lottie animation */
-      order: -1; /* Ensure Lottie animation is above the form */
-    }
-  
-    .lottie-options{
-      height: 150;/* Adjust Lottie animation size for small screens */
-      width: 150, /* Adjust Lottie animation size for small screens */
-    }
-  
-    .login-form {
-      width: 100%; /* Ensure form uses available screen width */
-      background: none; /* Optional: simplify background on very small screens */
-      order: 1; /* Ensure form follows the Lottie animation */
-      margin-top: 10px;
-      
+.lottie-container, .login-form {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-    }
-  
-    .login-form form {
-      max-width: 600px; /* Allow the form to stretch within its container */
-    }
+.lottie-container {
+  min-height: 300px;
+  min-width: 300px; 
+  opacity: 1; 
+  background-color: white;
+}
 
-    input, .login-button {
-      padding: 15px; /* Increase padding for better touch targets */
-    }
-  
-    .form-title, .form-group label, .new-user-check a {
-      font-size: larger; /* Increase font size for better readability */
-    }
-  
+.lottie-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px; 
+  height: auto; 
+  filter: brightness(10%) contrast(200%); 
+}
+
+.login-form {
+  background-color:rgb(15, 14, 14);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-form form {
+  width: 80%;
+  max-width: 360px;
+  border: 2px solid white; 
+  padding: 100px 30px; 
+  border-radius: 10px;  
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.new-user-check{
+  margin: 10px 0px;
+}
+
+.new-user-check span{
+  color:#d00000;
+  cursor: pointer;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  color: #000;
+}
+
+.login-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background-color: #45a049;
+}
+
+.login-options {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.login-options p {
+  margin-bottom: 10px;
+}
+
+.option {
+  display: inline-block;
+  width: 30px; 
+  height: 30px; 
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  cursor: pointer; 
+}
+
+.option img {
+  width: 100%;
+  height: auto;
+}
+
+.reset1 {
+  padding:20px 85px;
+}
+
+/* Minimalist tweaks for input placeholders */
+::placeholder {
+  color: #bbb;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .login-page {
+    flex-direction: column; 
   }
+  
+  .lottie-container, .login-form {
+    width: 100%;
+    height: 100%;
+  }
+
+  .login-form form {
+    width: 90%; 
+  }
+}
+
+@media (max-width: 480px) {
+  .lottie-container {
+    display: none; /* Hide Lottie container on small screens */
+  }
+
+  .login-form {
+    width: 100%; /* Ensure form uses available screen width */
+   
+    padding: 30px; /* Adjust padding for better spacing */
+ 
+  }
+
+  .login-form form {
+    max-width: 600px; /* Allow the form to stretch within its container */
+  }
+
+  input, .login-button {
+    padding: 15px; /* Increase padding for better touch targets */
+  }
+
+  .form-title, .form-group label, .new-user-check a {
+    font-size: larger; /* Increase font size for better readability */
+  }
+}

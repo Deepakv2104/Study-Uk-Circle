@@ -106,7 +106,7 @@ const BannerSections = () => {
   return (
     <section className="banner-sections" id="services">
        <span className="tagline" style={{ fontSize: "36px" }}>
-              Welcome to <span style={{   color: "#02ffab" }}>WorldLynk</span>
+              Welcome to <span className="app-name">WorldLynk</span>
             </span>
       <Container>
         {sections.map((section) => (

@@ -239,6 +239,8 @@ img {
 
 .header-desktop {
   display: block;
+  margin-top: 10px;
+  border-radius: 10px;
 }
 
 /* UPCOMING EVENTS */

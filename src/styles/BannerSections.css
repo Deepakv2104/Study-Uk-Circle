@@ -20,12 +20,17 @@ position: relative;
 opacity: 0;
  
 }
+
+.banner-sections .app-name{
+  color:rgb(194, 33, 105);;
+
+}
 .banner-sections h1 {
   font-family: Ubuntu, Helvetica, sans-serif;
   font-size: 2rem;
   margin-bottom: 20px;
   /* color: white; */
-  color: rgb(0, 210, 154);
+  color:rgb(194, 33, 105);;
   font-weight: 700;
     line-height: 100%;
     
@@ -53,13 +58,20 @@ opacity: 0;
 }
 
 
+/* Default styles */
 .banner-sections p {
   color: #ffffff;
   font-size: 18px;
   letter-spacing: 0.8px;
   line-height: 1.5em;
   width: 96%;
-  
+}
+
+/* Media query for mobile devices */
+@media only screen and (max-width: 600px) {
+  .banner-sections p {
+    font-size: 12px; /* Adjust the font size for mobile devices */
+  }
 }
 
 .banner-sections button {

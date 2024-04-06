@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import "./UserDashboard.css";
 import EventCard from './EventCard';
+import sample2 from '../../assets/img/sample2.jpg'
 
 import { firestore } from "../../firebase";
 import {
@@ -82,7 +83,7 @@ const ExploreEvents = () => {
       />
       <img
         class="header-desktop"
-        src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/91011799-2b47-457d-9e11-65fe38a105d0"
+        src={sample2}
         alt=""
       />
     </picture>
@@ -105,7 +106,7 @@ const ExploreEvents = () => {
 
       </div>
 
-  <div className="reviews">
+  {/* <div className="reviews">
     <h1>Past Event Reviews</h1>
     <div className="review-container">
       <div className="card review-card">
@@ -156,7 +157,7 @@ const ExploreEvents = () => {
         </p>
       </div>
     </div>
-  </div>
+  </div> */}
  </div>
   )
 }

@@ -41,7 +41,7 @@ import CollegeReviews from "./CollegeReview";
 
 const UniversityDetails = () => {
   const universityId = useParams();
-  const id = "gmx2ihiwslmTEzZhAdEf";
+  const id = "1Ck6BKqP67QGQWlPNQHh";
   const [openDialog, setOpenDialog] = useState(false);
   const [value, setValue] = useState(0);
   const [formData, setFormData] = useState({
@@ -53,16 +53,16 @@ const UniversityDetails = () => {
   });
 
   const [universityData, setUniversityData] = useState({});
-  // State to store the image URL
+
   const [imageUrl, setImageUrl] = useState("");
 
-  // Placeholder image URL
+
   const placeholderImageUrl = "https://via.placeholder.com/800x200";
 
   const formatTimestamp = (timestamp) => {
     if (timestamp && timestamp.seconds) {
-      const date = new Date(timestamp.seconds * 1000); // Convert seconds to milliseconds
-      return date.toLocaleString(); // Format date as needed
+      const date = new Date(timestamp.seconds * 1000);
+      return date.toLocaleString(); 
     } else {
       return "Invalid Date";
     }
@@ -75,33 +75,29 @@ const UniversityDetails = () => {
   };
 
   useEffect(() => {
-    console.log("universityId:", id); // Log the universityId to check its value
+    console.log("universityId:", id); 
     const fetchUniversityData = async () => {
       try {
         if (id) {
-          // Check if id exists
+         
           const universityDocRef = doc(firestore, "universities", id);
           const universityDocSnapshot = await getDoc(universityDocRef);
           if (universityDocSnapshot.exists()) {
             setUniversityData(universityDocSnapshot.data());
-            
           } else {
             console.log("University document not found");
           }
         }
-  
       } catch (error) {
         console.error("Error fetching university data:", error);
       }
-   
     };
 
     fetchUniversityData();
-  }, [id]); // Make sure to include id in the dependency array
+  }, [id]);
   console.log(universityData);
   return (
-    <Box sx={{ flexGrow: 1, m: 2
-    }}>
+    <Box sx={{ flexGrow: 1, m: 2 }}>
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Box
@@ -128,16 +124,15 @@ const UniversityDetails = () => {
               borderRadius: "4px",
               boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
               backgroundColor: "black ",
-              color:'white',
+              color: "white",
             }}
           >
             <Box
-              sx={{ 
+              sx={{
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
                 mr: 2,
-              
               }}
             >
               <div>
@@ -150,19 +145,23 @@ const UniversityDetails = () => {
 
                 <Typography
                   variant="body2"
-                  sx={{ display: "flex", alignItems: "center", mb: 1, color: "white", }}
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    mb: 1,
+                    color: "white",
+                  }}
                 >
                   <img
-  src={pin}
-  style={{
-    width: "20px",
-    height: "20px",
-    marginRight: "5px",
-    filter: "invert(100%)", // Invert the color to white
-  }}
-/>
-
-                  {universityData.location || "N/A"} |
+                    src={pin}
+                    style={{
+                      width: "20px",
+                      height: "20px",
+                      marginRight: "5px",
+                      filter: "invert(100%)", 
+                    }}
+                  />
+                  {universityData.CollegeAboutlocation || "N/A"} |
                   <FaStar style={{ margin: "5px" }} />{" "}
                   {universityData.rating || "N/A"} |{" "}
                   {universityData.established || "N/A"}
@@ -170,13 +169,13 @@ const UniversityDetails = () => {
               </div>
               <Box width={{ xs: "100%", sm: "auto" }}>
                 {" "}
-                {/* Set width to 100% on mobile and auto on larger screens */}
+         
                 <Button
                   variant="contained"
                   color="success"
                   sx={{ borderRadius: "20px" }}
                   onClick={handleOpenDialog}
-                  fullWidth={true} // Ensure the button takes up the full width of its container
+                  fullWidth={true} 
                 >
                   Brochure
                 </Button>
@@ -185,7 +184,7 @@ const UniversityDetails = () => {
 
             <Box sx={{ display: "flex", alignItems: "center", mb: 1 }}>
               <Typography variant="body2" sx={{ mr: 2 }}>
-                {/* {formatTimestamp(universityData.TimeAndDate)} */}
+             
               </Typography>
               <svg
                 viewBox="0 0 18 22"
@@ -199,28 +198,25 @@ const UniversityDetails = () => {
             </Box>
           </Box>
 
-          <Box sx={{ borderBottom: 1, borderColor: "divider"}}>
-  <Tabs value={value} onChange={handleChange} textColor="white"> {/* Set textColor to white */}
-    <Tab label="About" sx={{ color: 'white' }} /> {/* Apply color: white to each individual Tab */}
-    <Tab label="Courses & Fees" sx={{ color: 'white' }} />
-    <Tab label="Reviews" sx={{ color: 'white' }} />
-    <Tab label="Contact" sx={{ color: 'white' }} />
-  </Tabs>
-</Box>
+          {/* <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+            <Tabs value={value} onChange={handleChange} textColor="white">
+              {" "}
+        
+              <Tab label="About" sx={{ color: "white" }} />{" "}
+             
+              <Tab label="Courses & Fees" sx={{ color: "white" }} />
+              <Tab label="Reviews" sx={{ color: "white" }} />
+              <Tab label="Contact" sx={{ color: "white" }} />
+            </Tabs>
+          </Box>
 
-          {/* Content for different tabs */}
+      
           <Box>
-  {value === 0 && universityData ? (
-    <CollegeAbout data={universityData} />
-  ) : (
-    <Typography></Typography>
-  )}
-  {value === 1 && <CoursesAndFees data={universityData} />}
-  {value === 2 && <CollegeReviews />}
-  {value === 3 && <Typography>Contact Content</Typography>}
-</Box>
-
-
+          {value === 0 && <CollegeAbout />}
+            {value === 1 && <CoursesAndFees  />}
+            {value === 2 && <CollegeReviews />}
+            {value === 3 && <Typography>Contact Content</Typography>}
+          </Box> */}
         </Grid>
       </Grid>
     </Box>
