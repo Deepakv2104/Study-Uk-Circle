@@ -71,7 +71,7 @@ nav ul {
 	list-style: none;
 }
 nav h2{
-	 color: rgb(194, 33, 105);
+	color:hsl(28, 100%, 60%);;
     position: absolute;
 	top:5%;
 	left: 5%;
@@ -102,7 +102,7 @@ nav ul li a{
 
 }
 nav ul li:hover{
-	color: rgb(194, 33, 105);;
+	color:hsl(28, 100%, 60%);;
 }
 
 nav ul li a:after{

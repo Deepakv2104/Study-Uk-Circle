@@ -22,7 +22,7 @@ opacity: 0;
 }
 
 .banner-sections .app-name{
-  color:rgb(194, 33, 105);;
+  color:hsl(28, 100%, 60%);;
 
 }
 .banner-sections h1 {
@@ -30,7 +30,7 @@ opacity: 0;
   font-size: 2rem;
   margin-bottom: 20px;
   /* color: white; */
-  color:rgb(194, 33, 105);;
+  color:hsl(28, 100%, 60%);;
   font-weight: 700;
     line-height: 100%;
     

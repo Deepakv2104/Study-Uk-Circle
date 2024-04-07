@@ -8,6 +8,9 @@ import { firestore } from "../../firebase";
 import { FaSearch } from "react-icons/fa";
 import Menu from "./Menu";
 import RightContent from "./RightContent";
+import animationData from "../../assets/lotties/loader1.json";
+import Lottie from "react-lottie";
+
 
 // ErrorBoundary component
 // class ErrorBoundary extends React.Component {
@@ -41,6 +44,7 @@ const UserDashboard = () => {
   const [loading, setLoading] = useState(true);
   const [initialLoad, setInitialLoad] = useState(true);
   const [userData, setUserData] = useState(null);
+  
 
   useEffect(() => {
     if (!auth) return;
@@ -75,7 +79,22 @@ const UserDashboard = () => {
   return (
     // <ErrorBoundary>
       <div className="user-dashboard">
-        <Menu user={userData} />
+        {initialLoad?(
+           <div className="overlay-container">
+           <Lottie
+             options={{
+               loop: true,
+               autoplay: true,
+               animationData: animationData,
+             }}
+             height={200}
+             width={200}
+           />
+         </div>
+        ):loading?(
+          null
+        ):<>
+              <Menu user={userData} />
         <div className="content">
           <div className="left-content">
             <div className="search-and-check">
@@ -94,7 +113,8 @@ const UserDashboard = () => {
             {userData ? <Outlet user={[userData]} /> : <div>Loading...</div>}
           </div>
           <RightContent user={userData} />
-        </div>
+        </div></>}
+  
       </div>
     // </ErrorBoundary>
   );
