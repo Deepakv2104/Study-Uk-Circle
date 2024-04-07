@@ -1,0 +1,42 @@
+.place-card-container {
+    width: 300px;
+    display: flex;
+   align-items: center; /* Adjust alignment as needed */
+   flex-direction: column;
+  }
+  
+  .place-card-container1 {
+    width: 100%; /* Take full width by default */
+  }
+  
+  .place-card-image {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .place-card-text1 {
+    margin-top: 10px;
+    line-height: 1.5;
+  }
+  
+  .learn-more-button,
+  .show-less-button {
+    margin-top: 10px;
+    border: none;
+    background-color: transparent;
+    color: #007bff;
+    cursor: pointer;
+  }
+  
+  .learn-more-button:hover,
+  .show-less-button:hover {
+    text-decoration: underline;
+  }
+  
+  /* Media query for mobile devices */
+  @media (max-width: 768px) {
+    .place-card-container {
+      flex-direction: column;
+    }
+  }
+  

@@ -29,6 +29,7 @@ import EventDetails from "./components/Student/EventDetails";
 import UniversityDetails from "./components/Student/UniversityDetails";
 import Form from "./components/Testing";
 import Explore from "./components/Student/Explore";
+import Favorites from './components/Student/Favorites';
 gsap.registerPlugin();
 function App() {
   return (
@@ -55,7 +56,7 @@ function App() {
             <Route path="/user-dashboard/university" element={<University/>} />
             <Route path="/user-dashboard/university/university-name" element={<UniversityDetails/>} />
             <Route path="/user-dashboard/explore" element={<Explore/>} />
-            <Route path="/user-dashboard/favorites" element={<Testing/>} />
+            <Route path="/user-dashboard/favorites" element={<Favorites/>} />
             <Route path="/user-dashboard/settings/:userId" element={<StudentProfile/>} />
             
             </Route>

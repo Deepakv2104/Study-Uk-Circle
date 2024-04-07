@@ -98,12 +98,12 @@ const Menu = ({user}) => {
                                 <span className="nav-text">Favorites</span>
                             </a>
                         </li>
-                        <li className="nav-item1">
+                        {/* <li className="nav-item1">
                             <a >
                                 <FaPenSquare className="nav-icon" />
                                 <span className="nav-text">Reviews</span>
                             </a>
-                        </li>
+                        </li> */}
                     </ul>
                 </div>
 

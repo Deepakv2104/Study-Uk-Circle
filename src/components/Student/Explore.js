@@ -21,7 +21,8 @@ const Explore = () => {
 </div>
 
           </article>
-          {/* Add other articles similarly */}
+      
+  
         </main>
       </div>
     </div>
