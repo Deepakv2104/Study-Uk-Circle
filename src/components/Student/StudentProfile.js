@@ -27,7 +27,7 @@ import {
   TableContainer,
   TableCell,
   TableRow,
-  Paper
+  Paper,Box
 } from "@mui/material";
 // import { IconButton } from "@material-ui/core";
   import { useAuth } from "../../auth/userProvider/AuthProvider";
@@ -80,19 +80,20 @@ const StudentProfile = () => {
   };
 
   return (
-    <div style={{margin:'30px'}}>
+    <div style={{marginTop:'20px'}}>
       {/* Conditionally render EditProfile component */}
 
       {/* Conditionally render EditProfile component based on isEditing state */}
       {/* {isEditing && <EditProfile onEditDone={handleEditDone} />} */}
 
-      <Grid container spacing={2} >
+      <Grid container spacing={2}>
         {/* Left Grid (30%) */}
         <Grid item xs={12} md={3}>
           <Grid container spacing={2} >
             {/* Left Top Grid (70% of the left grid) */}
             <Grid item xs={12} style={{ height: "40%" }}>
-              <Paper
+              <Box
+              className="card"
                 style={{
                   height: "84%",
                   padding: 20,
@@ -111,10 +112,10 @@ const StudentProfile = () => {
                 <Typography variant="h6" align="center" className="username">
                   {userData.name || "User"}
                 </Typography>
-              </Paper>
+              </Box>
             </Grid>
             <Grid item xs={12} style={{ height: "100%" }}>
-              <Paper style={{ height: "60%", padding: 20 }}>
+              <Box className="card" style={{ height: "60%", padding: 20 }}>
                 {/* Content for the left bottom grid */}
                 <h2>Social Links </h2>
                 <Table>
@@ -128,32 +129,33 @@ const StudentProfile = () => {
                           target="_blank"
                           rel="noopener noreferrer"
                         >
+                          <Typography style={{color:"white"}}>
                           Website
+                          </Typography>
+                      
                         </Link>
                       </TableCell>
                     </TableRow>
                     <TableRow>
                       <TableCell>
-                        <GitHub sx={{ color: "#333", marginRight: 15 }} />
+                        <GitHub sx={{ color: "#000", marginRight: 15 }} />
                         <Link
                           href={userData.github}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
+                      <Typography style={{color:"white"}}>
                           GitHub
+                          </Typography>
                         </Link>
                       </TableCell>
                     </TableRow>
                     <TableRow>
                       <TableCell>
                         <LinkedIn sx={{ color: "#0077b5", marginRight: 15 }} />
-                        <Link
-                          href={userData.linkedin}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          LinkedIn
-                        </Link>
+                        <Typography style={{color:"white"}}>
+                         LinkedIn
+                          </Typography>
                       </TableCell>
                     </TableRow>
                     <TableRow>
@@ -164,13 +166,15 @@ const StudentProfile = () => {
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          Twitter
+                          <Typography style={{color:"white"}}>
+                         Twitter
+                          </Typography>
                         </Link>
                       </TableCell>
                     </TableRow>
                   </TableBody>
                 </Table>
-              </Paper>
+              </Box >
             </Grid>
           </Grid>
         </Grid>
@@ -183,8 +187,8 @@ const StudentProfile = () => {
               {/* Display student details */}
               <Grid container spacing={2} style={{ height: "100%" }}>
                 <Grid item xs={12}>
-                  <Paper
-                    style={{ height: "90%", padding: 20, overflo: "auto" }}
+                  <Box className="card"
+                    style={{ height: "100%", padding: 20, overflo: "auto" }}
                   >
                     <div
                       style={{
@@ -209,20 +213,21 @@ const StudentProfile = () => {
                     </div>
 
                     <Grid item xs={12}>
-                      <TableContainer style={{ maxHeight: "80%" }}>
+                      <TableContainer >
                         <Table>
-                          <TableBody style={{ height: "60%" }}>
+                          <TableBody style={{ height: "100%" }}>
                             <TableRow>
                               <TableCell>
                                 <Typography
                                   variant="subtitle1"
                                   fontWeight="bold"
+                                  color="white"
                                 >
                                   Name:
                                 </Typography>
                               </TableCell>
                               <TableCell>
-                                <Typography variant="body1">
+                                <Typography variant="body1" color="white">
                                   {userData.name}
                                 </Typography>
                               </TableCell>
@@ -277,12 +282,13 @@ const StudentProfile = () => {
                                 <Typography
                                   variant="subtitle1"
                                   fontWeight="bold"
+                                  color="white"
                                 >
                                   City:
                                 </Typography>
                               </TableCell>
                               <TableCell>
-                                <Typography variant="body1">
+                                <Typography variant="body1" color="white">
                                   {userData.city}
                                 </Typography>
                               </TableCell>
@@ -292,12 +298,13 @@ const StudentProfile = () => {
                                 <Typography
                                   variant="subtitle1"
                                   fontWeight="bold"
+                                  color="white"
                                 >
                                   State:
                                 </Typography>
                               </TableCell>
                               <TableCell>
-                                <Typography variant="body1">
+                                <Typography variant="body1" color="white">
                                   {userData.state}
                                 </Typography>
                               </TableCell>
@@ -307,12 +314,13 @@ const StudentProfile = () => {
                                 <Typography
                                   variant="subtitle1"
                                   fontWeight="bold"
+                                  color="white"
                                 >
                                   Country:
                                 </Typography>
                               </TableCell>
                               <TableCell>
-                                <Typography variant="body1">
+                                <Typography variant="body1" color="white">
                                   {userData.country}
                                 </Typography>
                               </TableCell>
@@ -321,47 +329,12 @@ const StudentProfile = () => {
                         </Table>
                       </TableContainer>
                     </Grid>
-                  </Paper>
+                  </Box >
                 </Grid>
               </Grid>
             </Grid>
             {/* Right Bottom Grid (divided vertically) */}
-            <Grid item xs={12} md={6}>
-              <Paper style={{ height: "100%", padding: 20 }}>
-                {/* Content for the right bottom left grid */}
-                <h2>Skills</h2>
-
-                <div className="skills">
-                  <ul>
-                    {Array.isArray(userData.skills) &&
-                    userData.skills.length > 0 ? (
-                      userData.skills.map((skills, skillIndex) => (
-                        <li key={skillIndex}>{skills}</li>
-                      ))
-                    ) : (
-                      <li>No skills available</li>
-                    )}
-                  </ul>
-                </div>
-              </Paper>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <Paper
-                style={{
-                  height: "100%",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  cursor:'pointer'
-                }}
-                // onClick={handleClickProjectCount}
-              >
-                {/* Content for the right bottom right grid */}
-                <h2>Project Count</h2>
-                {/* <ProjectCount userId={studentId} /> */}
-              </Paper>
-            </Grid>
+        
           </Grid>
         </Grid>
       </Grid>

@@ -1,12 +1,17 @@
+// University.jsx
+
 import React, { Component } from 'react';
-import { Grid } from '@mui/material';
+import { Grid, CircularProgress } from '@mui/material';
 import Card from './card';
+import './University.css'; // Import the CSS file
 
 class University extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      loading: true,
       universities: [
+        // University data
         {
           collegeName: "Massachusetts Institute of Technology (MIT)",
           src: "https://media.tacdn.com/media/attractions-splice-spp-674x446/0b/27/a8/8d.jpg",
@@ -41,26 +46,59 @@ class University extends Component {
     };
   }
 
+  componentDidMount() {
+    // Simulate data fetching delay
+    setTimeout(() => {
+      this.setState({ loading: false });
+    }, 2000);
+  }
+
   render() {
+    const { loading, universities } = this.state;
+
     return (
       <div className="landing-page-container">
         <div id="main-section" className="landing-page-main">
-          <h1>Most Famous Universities</h1>
-          <span className="landing-page-text15">Recommended</span>
-          <Grid container spacing={3}>
-            {this.state.universities.map((university, index) => (
-              <Grid item xs={12} sm={6} md={4} key={index}>
-                <Card
-                  title={university.collegeName}
-                  img={university.src}
-                  description={university.description}
-                />
-              </Grid>
-            ))}
-          </Grid>
+          <div className="university-banner">
+          <img
+              src="https://source.unsplash.com/1200x400/?university"
+              srcSet="https://source.unsplash.com/600x200/?university 600w,
+                        https://source.unsplash.com/1200x400/?university 1200w"
+              sizes="(max-width: 600px) 600px, 1200px"
+              alt="Famous Universities Banner"
+            />
+            <div className="overlay">
+              <h1>Explore Your Dream University</h1>
+              <p>Discover the rich history and academic excellence of institutions like Oxford and Cambridge. From the picturesque landscapes of Scotland to the vibrant city life in London, the UK offers a diverse range of educational experiences to pursue your aspirations.</p>
+              <button>explore</button>
+            </div>
+          </div>
+
+          <div className="landing-page-text">
+            <h3>Popular Universities</h3>
+            <span className="landing-page-text15">Recommended</span>
+          </div>
+
+          {loading ? (
+            <div className="loading-spinner">
+              <CircularProgress />
+            </div>
+          ) : (
+            <Grid container spacing={3}>
+              {universities.map((university, index) => (
+                <Grid item xs={12} sm={6} md={4} key={index}>
+                  <Card
+                    title={university.collegeName}
+                    img={university.src}
+                    description={university.description}
+                  />
+                </Grid>
+              ))}
+            </Grid>
+          )}
         </div>
         <div className="landing-page-footer">
-          {/* Footer content */}
+          {/* Add footer content if needed */}
         </div>
       </div>
     );

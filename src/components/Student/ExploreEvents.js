@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import "./UserDashboard.css";
 import EventCard from './EventCard';
 import sample2 from '../../assets/img/sample2.jpg'
+import { Grid, CircularProgress } from '@mui/material';
 
 import { firestore } from "../../firebase";
 import {
@@ -93,9 +94,9 @@ const ExploreEvents = () => {
         <h1>Upcoming Events</h1>
         <div className="event-container">
   {loading ? (
-    <div style={{ textAlign: "center", marginTop: "20px" }}>
-      Loading...
-    </div>
+     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '300px' }}>
+     <CircularProgress />
+   </div>
   ) : (
     eventData.map((event, index) => (
       <EventCard key={index} eventData={event} />

@@ -98,128 +98,114 @@ const UniversityDetails = () => {
   console.log(universityData);
   return (
     <Box sx={{ flexGrow: 1, m: 2 }}>
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
+    <Grid container spacing={3}>
+      <Grid item xs={12}>
+        <Box
+          sx={{
+            position: 'relative',
+            overflow: 'hidden',
+            borderRadius: '5px',
+          }}
+        >
+          <img
+            src={universityData.universityImage || placeholderImageUrl}
+            alt="Random"
+            style={{
+              width: '100%',
+              height: 'auto',
+              objectFit: 'cover',
+            }}
+          />
+        </Box>
+        <Box
+          sx={{
+            p: 2,
+            borderRadius: '4px',
+            boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+            backgroundColor: 'black',
+            color: 'white',
+          }}
+        >
           <Box
             sx={{
-              position: "relative",
-              overflow: "hidden",
-              borderRadius: "5px",
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              mr: 2,
             }}
           >
-            <img
-              src={universityData.universityImage || placeholderImageUrl}
-              alt="Random"
-              style={{
-                width: "100%",
-                height: "auto",
-                objectFit: "cover",
-              }}
-            />
-          </Box>
-          <Box
-            sx={{
-              p: 2,
-              backgroundColor: "#f5f5f5",
-              borderRadius: "4px",
-              boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
-              backgroundColor: "black ",
-              color: "white",
-            }}
-          >
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                mr: 2,
-              }}
-            >
-              <div>
-                <Typography
-                  variant="h6"
-                  sx={{ mb: 1, color: "white", fontWeight: "bold" }}
-                >
-                  {universityData.title || "N/A"}
-                </Typography>
-
-                <Typography
-                  variant="body2"
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    mb: 1,
-                    color: "white",
-                  }}
-                >
-                  <img
-                    src={pin}
-                    style={{
-                      width: "20px",
-                      height: "20px",
-                      marginRight: "5px",
-                      filter: "invert(100%)", 
-                    }}
-                  />
-                  {universityData.CollegeAboutlocation || "N/A"} |
-                  <FaStar style={{ margin: "5px" }} />{" "}
-                  {universityData.rating || "N/A"} |{" "}
-                  {universityData.established || "N/A"}
-                </Typography>
-              </div>
-              <Box width={{ xs: "100%", sm: "auto" }}>
-                {" "}
-         
-                <Button
-                  variant="contained"
-                  color="success"
-                  sx={{ borderRadius: "20px" }}
-                  onClick={handleOpenDialog}
-                  fullWidth={true} 
-                >
-                  Brochure
-                </Button>
-              </Box>
-            </Box>
-
-            <Box sx={{ display: "flex", alignItems: "center", mb: 1 }}>
-              <Typography variant="body2" sx={{ mr: 2 }}>
-             
+            <div>
+              <Typography variant="h6" sx={{ mb: 1, color: 'white', fontWeight: 'bold' }}>
+                {universityData.title || 'N/A'}
               </Typography>
-              <svg
-                viewBox="0 0 18 22"
-                style={{
-                  width: "20px",
-                  height: "20px",
-                  fill: "#FFA500",
-                  marginRight: "4px",
+              <Typography
+                variant="body2"
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  mb: 1,
+                  color: 'white',
                 }}
-              ></svg>
+              >
+                <img
+                  src={pin}
+                  style={{
+                    width: '20px',
+                    height: '20px',
+                    marginRight: '5px',
+                    filter: 'invert(100%)',
+                  }}
+                />
+                {universityData.CollegeAboutlocation || 'N/A'} |
+                <FaStar style={{ margin: '5px' }} /> {universityData.rating || 'N/A'} |{' '}
+                {universityData.established || 'N/A'}
+              </Typography>
+            </div>
+            <Box width={{ xs: '100%', sm: 'auto' }}>
+              <Button
+                variant="contained"
+                color="success"
+                sx={{ borderRadius: '20px' }}
+                onClick={handleOpenDialog}
+                fullWidth={true}
+              >
+                Brochure
+              </Button>
             </Box>
           </Box>
-
-          {/* <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-            <Tabs value={value} onChange={handleChange} textColor="white">
-              {" "}
-        
-              <Tab label="About" sx={{ color: "white" }} />{" "}
-             
-              <Tab label="Courses & Fees" sx={{ color: "white" }} />
-              <Tab label="Reviews" sx={{ color: "white" }} />
-              <Tab label="Contact" sx={{ color: "white" }} />
-            </Tabs>
+          <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+            <Typography variant="body2" sx={{ mr: 2 }}></Typography>
+            <svg
+              viewBox="0 0 18 22"
+              style={{
+                width: '20px',
+                height: '20px',
+                fill: '#FFA500',
+                marginRight: '4px',
+              }}
+            ></svg>
           </Box>
+        </Box>
+        <Box sx={{ borderBottom: 1, borderColor: 'divider', overflowX: 'auto', maxWidth: '100%', scrollbarWidth: 'thin', '&::-webkit-scrollbar': { height: '6px' } }}>
+  <Tabs value={value} onChange={handleChange} textColor="white" scrollButtons="auto">
+    <Tab label="About" sx={{ color: 'white' }} />
+    <Tab label="Courses & Fees" sx={{ color: 'white' }} />
+    <Tab label="Reviews" sx={{ color: 'white' }} />
+    <Tab label="Contact" sx={{ color: 'white' }} />
+  </Tabs>
+</Box>
 
-      
-          <Box>
+
+
+        <Box>
           {value === 0 && <CollegeAbout />}
-            {value === 1 && <CoursesAndFees  />}
-            {value === 2 && <CollegeReviews />}
-            {value === 3 && <Typography>Contact Content</Typography>}
-          </Box> */}
-        </Grid>
+          {value === 1 && <CoursesAndFees coursesData={universityData} />}
+          {value === 2 && <CollegeReviews />}
+          {value === 3 && <Typography>Contact Content</Typography>}
+        </Box>
       </Grid>
-    </Box>
+    </Grid>
+  </Box>
   );
 };
 

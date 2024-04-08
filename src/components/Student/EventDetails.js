@@ -114,8 +114,7 @@ const EventDetails = () => {
     <Box sx={{ flexGrow: 1, m: 2 }}>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <Box sx={{  position: "relative",
-  border: "1px solid white"}}>
+          <Box className="card" sx={{  position: "relative"}}>
             <img
               src={eventData.eventImage}
               alt="Random"
@@ -129,6 +128,7 @@ const EventDetails = () => {
               }}
             />
             <Box
+            
               sx={{
                 p: 2,
                 // backgroundColor: "#f5f5f5",
@@ -201,9 +201,9 @@ const EventDetails = () => {
       </Grid>
       <Grid container spacing={3} sx={{ mt: 2 }}>
 
-        <Grid item xs  sx={{ mt: 2  }}>
-          <Paper sx={{ p: 2 , backgroundColor: '#0f0e0e' , border: "1px solid white"}}>
+        <Grid item xs>
             <Box
+            className="card"
               sx={{
                 display: "flex",
                 flexDirection: "column",
@@ -222,7 +222,6 @@ const EventDetails = () => {
                 {eventData.guestName}
               </Typography>
             </Box>
-          </Paper>
         </Grid>
 
         <Grid
@@ -238,20 +237,22 @@ const EventDetails = () => {
         >
           <Grid container direction="column" spacing={2}>
             <Grid item>
-              <Paper sx={{ p: 2 , backgroundColor: '#0f0e0e' , border: "1px solid white"}}>
                 <Box
+                            className="card"
+
                   sx={{
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
                     mr: 2,
+                      
                   }}
                 >
                   <div>
                     <Typography variant="body1" sx={{ mb: 1,color:'white' }}>
                       Click on Interested to stay updated about this event.
                     </Typography>
-                    <FaThumbsUp style={{ backgroundColor:'white',margin:'5px'}}/>
+                    <FaThumbsUp style={{margin:'5px'}}/>
                     <Typography variant="body2" sx={{ mb: 1 ,color:'white'}}>
                       {" "}
                       People have shown interest recently.
@@ -265,7 +266,6 @@ const EventDetails = () => {
                     Like
                   </Button>
                 </Box>
-              </Paper>
             </Grid>
             <Grid item>
               <Paper sx={{ p: 2 , backgroundColor: '#0f0e0e' , border: "1px solid white"}}>

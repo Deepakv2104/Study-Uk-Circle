@@ -1,7 +1,18 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
+import { firestore } from "../../firebase";
+import {
+  doc,
+  getDoc,
+  updateDoc,
+  collection,
+  query,
+  where,
+  getDocs,
+  onSnapshot,
+} from "firebase/firestore";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 
-const CoursesAndFees = ({courses}) => {
+const CoursesAndFees = ({coursesData}) => {
   // Data array with course information
   // const courseData = [
   //   { course: 'MS', coursesCount: 44, tuitionFees: 'INR 26 L - 50 L', duration: '9 months-3 years', examAccepted: 'IELTS: 7 - 7.5' },
@@ -23,7 +34,27 @@ const CoursesAndFees = ({courses}) => {
   //   { course: 'Ph.D.', coursesCount: 1, tuitionFees: 'INR 19 L', duration: '3 years', examAccepted: 'IELTS: 7.5 & Above' },
   //   { course: 'PG Certificate', coursesCount: 1, tuitionFees: 'INR 31 L', duration: '12 months', examAccepted: 'IELTS' },
   // ];
-  
+  const universityId = "1Ck6BKqP67QGQWlPNQHh"
+  // const [coursesData, setCoursesData] = useState(null);
+
+  // useEffect(() => {
+  //   const fetchCoursesData = async () => {
+  //     try {
+  //       const universityDocRef = doc(firestore, 'universities', universityId);
+  //       const universityDocSnapshot = await getDoc(universityDocRef);
+  //       if (universityDocSnapshot.exists()) {
+  //         setCoursesData(universityDocSnapshot.data());
+  //       } else {
+  //         console.log('University document not found');
+  //       }
+  //     } catch (error) {
+  //       console.error('Error fetching college about data:', error);
+  //     }
+  //   };
+
+  //   fetchCoursesData();
+  //   console.log(coursesData)
+  // }, [universityId]);
 
   return (
     <TableContainer component={Paper}>
@@ -34,16 +65,17 @@ const CoursesAndFees = ({courses}) => {
     <TableCell>Total Courses</TableCell>
     <TableCell>1st Year Tuition Fees</TableCell>
     <TableCell>Duration & Eligibility</TableCell>
+    {/* <TableCell>Exams Accepted</TableCell> */}
   </TableRow>
 </TableHead>
 
         <TableBody>
-          {courses.map((course, index) => (
+          {coursesData.coursesAndFees.map((course, index) => (
             <TableRow key={index}>
               <TableCell>{course.course}</TableCell>
-              <TableCell>{course.coursesCount}</TableCell>
+              <TableCell>{course.totalCourses}</TableCell>
               <TableCell>{course.tuitionFees}</TableCell>
-              <TableCell>{course.duration}<br />Exam Accepted: {course.examAccepted}</TableCell>
+              <TableCell>{course.durationAndEligibility}<br />Exam Accepted: {course.examAccepted}</TableCell>
             </TableRow>
           ))}
         </TableBody>
