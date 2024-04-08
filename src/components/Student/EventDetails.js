@@ -114,7 +114,7 @@ const EventDetails = () => {
     <Box sx={{ flexGrow: 1, m: 2 }}>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <Box className="card" sx={{  position: "relative"}}>
+          <Box  sx={{  position: "relative"}}>
             <img
               src={eventData.eventImage}
               alt="Random"
@@ -128,7 +128,7 @@ const EventDetails = () => {
               }}
             />
             <Box
-            
+            className="card"
               sx={{
                 p: 2,
                 // backgroundColor: "#f5f5f5",
@@ -242,9 +242,9 @@ const EventDetails = () => {
 
                   sx={{
                     display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
+               
                     mr: 2,
+                    p:2
                       
                   }}
                 >
@@ -268,12 +268,11 @@ const EventDetails = () => {
                 </Box>
             </Grid>
             <Grid item>
-              <Paper sx={{ p: 2 , backgroundColor: '#0f0e0e' , border: "1px solid white"}}>
                 <Box
+                 className="card"
                   sx={{
                     display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
+                   p:2,
                     mr: 2,
                   }}
                 >
@@ -293,14 +292,13 @@ const EventDetails = () => {
                     </Typography>
                   </div>
                 </Box>
-              </Paper>
             </Grid>
           </Grid>
         </Grid>
         <Grid item xs>
-         <Paper  sx={{ p: 2 , backgroundColor: '#0f0e0e' , border: "1px solid white"}} >
-         <Typography  sx={{ mb: 1 ,color:'white'}}>Info</Typography>
-         </Paper>
+         <Box      className="card"  >
+         <Typography  sx={{ mb: 1 ,color:'white',p:2}}>Info</Typography>
+         </Box>
         </Grid>
       </Grid>
       {/* Dialog component */}

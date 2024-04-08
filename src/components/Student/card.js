@@ -30,7 +30,7 @@ const Card = (props) => {
 
     return (
         <div className="container1">
-            <main className="grid">
+            <main className="grid card">
                 <article>
                     <div className="image-container">
                         <img src={props.img} style={{ objectFit: 'cover' }} alt="Sample photo" />
