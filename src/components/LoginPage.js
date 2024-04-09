@@ -126,35 +126,48 @@ const LoginPage = () => {
 
   const handleGoogleLogin = async () => {
     try {
-      // Sign in with Google
-      const result = await signInWithPopup(auth, provider);
-      const user = result.user;
-  
-      // Check if the user is already registered in Firestore
-      const userDoc = await getDoc(doc(firestore, "users", user.uid));
-  
-      if (!userDoc.exists()) {
-        // If the user is not registered, add user details to Firestore with role set to 'student'
-        const userDocRef = doc(firestore, "users", user.uid);
-        await setDoc(userDocRef, {
-          userId: user.uid,
-          role: "student", // Set the user role to 'student'
-          email: user.email,
-          name: user.displayName,
-        });
-      }
-  
-      // Display success toast
-      toast.success("Login with Google successful!");
-  
-      // Navigate to the dashboard
-      navigate("/user-dashboard/events");
+        // Sign in with Google
+        const result = await signInWithPopup(auth, provider);
+        const user = result.user;
+
+        // Check if the user is already registered in Firestore
+        const userDoc = await getDoc(doc(firestore, "users", user.uid));
+
+        if (userDoc.exists()) {
+            // If the user document exists, check the user role
+            const userData = userDoc.data();
+            if (userData.role === "admin") {
+                // If the role is 'admin', navigate to the admin dashboard
+                navigate("/dashboard/overview");
+            } else if (userData.role === "student") {
+                // If the role is 'student', navigate to the user dashboard
+                navigate("/user-dashboard/events");
+            }
+        } else {
+            // If the user is not registered, add user details to Firestore with role set to 'student'
+            const userDocRef = doc(firestore, "users", user.uid);
+            await setDoc(userDocRef, {
+                userId: user.uid,
+                role: "student", // Set the user role to 'student'
+                email: user.email,
+                name: user.displayName,
+            });
+
+            // Display success toast for registration
+            toast.success("Registration successful!");
+            
+            // Navigate to the user dashboard
+            navigate("/user-dashboard/events");
+        }
+
+        // Display success toast for login
+        toast.success("Login with Google successful!");
     } catch (error) {
-      // Display error toast
-      toast.error(`Error: ${error.message}`);
+        // Display error toast
+        toast.error(`Error: ${error.message}`);
     }
-  };
-  
+};
+
 
   const handleSignUp = async () => {
     try {
