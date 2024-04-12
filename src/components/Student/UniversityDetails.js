@@ -40,8 +40,9 @@ import CoursesAndFees from "./CoursesAndFees";
 import CollegeReviews from "./CollegeReview";
 
 const UniversityDetails = () => {
-  const universityId = useParams();
-  const id = "1Ck6BKqP67QGQWlPNQHh";
+  const {universityId }= useParams();
+  console.log(universityId)
+  // const id = "1Ck6BKqP67QGQWlPNQHh";
   const [openDialog, setOpenDialog] = useState(false);
   const [value, setValue] = useState(0);
   const [formData, setFormData] = useState({
@@ -75,12 +76,12 @@ const UniversityDetails = () => {
   };
 
   useEffect(() => {
-    console.log("universityId:", id); 
+    console.log("universityId:", universityId); 
     const fetchUniversityData = async () => {
       try {
-        if (id) {
+        if (universityId) {
          
-          const universityDocRef = doc(firestore, "universities", id);
+          const universityDocRef = doc(firestore, "universities", universityId);
           const universityDocSnapshot = await getDoc(universityDocRef);
           if (universityDocSnapshot.exists()) {
             setUniversityData(universityDocSnapshot.data());
@@ -94,7 +95,7 @@ const UniversityDetails = () => {
     };
 
     fetchUniversityData();
-  }, [id]);
+  }, [universityId]);
   console.log(universityData);
   return (
     <Box sx={{ flexGrow: 1, m: 2 }}>
@@ -108,7 +109,7 @@ const UniversityDetails = () => {
           }}
         >
           <img
-            src={universityData.universityImage || placeholderImageUrl}
+            src={universityData.collegeImage || placeholderImageUrl}
             alt="Random"
             style={{
               width: '100%',
@@ -136,7 +137,7 @@ const UniversityDetails = () => {
           >
             <div>
               <Typography variant="h6" sx={{ mb: 1, color: 'white', fontWeight: 'bold' }}>
-                {universityData.title || 'N/A'}
+                {universityData.collegeName || 'N/A'}
               </Typography>
               <Typography
                 variant="body2"
@@ -156,7 +157,7 @@ const UniversityDetails = () => {
                     filter: 'invert(100%)',
                   }}
                 />
-                {universityData.CollegeAboutlocation || 'N/A'} |
+                {universityData.location || 'N/A'} |
                 <FaStar style={{ margin: '5px' }} /> {universityData.rating || 'N/A'} |{' '}
                 {universityData.established || 'N/A'}
               </Typography>

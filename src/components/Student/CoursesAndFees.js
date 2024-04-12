@@ -1,4 +1,5 @@
 import React,{useState,useEffect} from 'react';
+import {useParams} from 'react-router-dom'
 import { firestore } from "../../firebase";
 import {
   doc,
@@ -13,6 +14,8 @@ import {
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 
 const CoursesAndFees = ({coursesData}) => {
+  // const [coursesData, setCoursesData] = useState([]);
+
   // Data array with course information
   // const courseData = [
   //   { course: 'MS', coursesCount: 44, tuitionFees: 'INR 26 L - 50 L', duration: '9 months-3 years', examAccepted: 'IELTS: 7 - 7.5' },
@@ -34,8 +37,7 @@ const CoursesAndFees = ({coursesData}) => {
   //   { course: 'Ph.D.', coursesCount: 1, tuitionFees: 'INR 19 L', duration: '3 years', examAccepted: 'IELTS: 7.5 & Above' },
   //   { course: 'PG Certificate', coursesCount: 1, tuitionFees: 'INR 31 L', duration: '12 months', examAccepted: 'IELTS' },
   // ];
-  const universityId = "1Ck6BKqP67QGQWlPNQHh"
-  // const [coursesData, setCoursesData] = useState(null);
+  const {universityId} = useParams();
 
   // useEffect(() => {
   //   const fetchCoursesData = async () => {

@@ -25,7 +25,7 @@ const Card = (props) => {
     const remainingDescription = descriptionWords.slice(18).join(' ');
 
     const handleClick = () => {
-        navigate('university-name');
+        navigate(props.id);
     };
 
     return (

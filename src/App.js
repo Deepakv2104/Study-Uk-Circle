@@ -30,6 +30,7 @@ import UniversityDetails from "./components/Student/UniversityDetails";
 import Form from "./components/Testing";
 import Explore from "./components/Student/Explore";
 import Favorites from './components/Student/Favorites';
+import AddJobPost from "./components/Admin/AddJobPost";
 gsap.registerPlugin();
 function App() {
   return (
@@ -46,7 +47,7 @@ function App() {
             <Route path="/dashboard/overview" element={<Overview />} />
             <Route path="/dashboard/add-event" element={<EventUploadForm />} />
             <Route path="/dashboard/add-college" element={<CollegeUpload />} />
-           
+            <Route path="/dashboard/add-job-post" element={<AddJobPost />} />
             </Route>
             <Route path="/user-dashboard" element={<UserDashboard/>} >
             <Route path="/user-dashboard/events" element={<ExploreEvents/>} />
@@ -54,7 +55,7 @@ function App() {
             <Route path="/user-dashboard/events/:eventId" element={<EventDetails/>} />
             <Route path="/user-dashboard/stay" element={<Accommodation/>} />
             <Route path="/user-dashboard/university" element={<University/>} />
-            <Route path="/user-dashboard/university/university-name" element={<UniversityDetails/>} />
+            <Route path="/user-dashboard/university/:universityId" element={<UniversityDetails/>} />
             <Route path="/user-dashboard/explore" element={<Explore/>} />
             <Route path="/user-dashboard/favorites" element={<Favorites/>} />
             <Route path="/user-dashboard/settings/:userId" element={<StudentProfile/>} />
