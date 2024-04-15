@@ -56,7 +56,7 @@ const Menu = ({user}) => {
 
     return (
         <div>
-            <div className="main-menu">
+            <div className="main-menu" >
                 <div>
                     <div className="user-info">
                         {/* <img

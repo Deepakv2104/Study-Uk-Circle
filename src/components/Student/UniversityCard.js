@@ -24,7 +24,7 @@ navigate('university-name')
   return (
     <div className="place-card-container">
       <img
-        alt={props.imageAlt}
+        alt={props.imageAlt || image}
         src={props.image}
         className="place-card-image"
       />

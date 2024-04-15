@@ -17,7 +17,7 @@ import "../styles/Login.css";
 import { firestore } from "../firebase";
 import { GoogleAuthProvider } from "firebase/auth";
 
-import { getAuth, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, signInWithPopup,createUserWithEmailAndPassword } from "firebase/auth";
 import { getDoc, doc, setDoc } from "firebase/firestore";
 import { signOut } from "firebase/auth";
 import Register from "./register";
@@ -25,9 +25,8 @@ import Register from "./register";
 const LoginPage = () => {
   const {
     
-    createUserWithEmailAndPassword,
     getUserRole,
-    userRole
+  
   } = useAuth();
   const navigate = useNavigate();
   const container = useRef(null);
@@ -149,7 +148,7 @@ const LoginPage = () => {
   const handleSignUp = async () => {
     try {
       // 1. Create a new user with Firebase Authentication
-     const userCredential =  await createUserWithEmailAndPassword(email, password);
+     const userCredential =  await createUserWithEmailAndPassword(auth,email, password);
       const { user } = userCredential;
 
       // 2. Add user details to Firestore with role set to 'student'

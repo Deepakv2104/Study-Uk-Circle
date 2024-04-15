@@ -128,10 +128,11 @@ const EventDetails = () => {
               }}
             />
             <Box
-            className="card"
+            // className="card"
               sx={{
                 p: 2,
-                // backgroundColor: "#f5f5f5",
+                backgroundColor: 'black',
+                color: 'white',
                 borderRadius: "4px",
                 boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
               }}
