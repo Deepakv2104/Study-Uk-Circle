@@ -31,6 +31,7 @@ import Form from "./components/Testing";
 import Explore from "./components/Student/Explore";
 import Favorites from './components/Student/Favorites';
 import AddJobPost from "./components/Admin/AddJobPost";
+import PrivateRoute from "./auth/PrivateRoute/PrivateRoute";
 gsap.registerPlugin();
 function App() {
   return (
@@ -43,24 +44,31 @@ function App() {
             <Route path="/details" element={<DetailsPage />} />
             <Route path = "/login"element={<LoginPage />} />
             <Route path = "/welcome"element={<Welcome />} />
-            <Route path="/dashboard" element={<Dashboard />} >
-            <Route path="/dashboard/overview" element={<Overview />} />
-            <Route path="/dashboard/add-event" element={<EventUploadForm />} />
-            <Route path="/dashboard/add-college" element={<CollegeUpload />} />
-            <Route path="/dashboard/add-job-post" element={<AddJobPost />} />
+
+            <Route  exact path='/' element={<PrivateRoute role="admin"/>}> 
+            <Route path="/dashboard" role="admin" element={<Dashboard />} >
+            <Route path="/dashboard/overview" role="admin" element={<Overview />} />
+            <Route path="/dashboard/add-event"role="admin" element={<EventUploadForm />} />
+            <Route path="/dashboard/add-college"  role="admin" element={<CollegeUpload />} />
+            <Route path="/dashboard/add-job-post" role="admin" element={<AddJobPost />} />
             </Route>
-            <Route path="/user-dashboard" element={<UserDashboard/>} >
-            <Route path="/user-dashboard/events" element={<ExploreEvents/>} />
-            <Route path="/user-dashboard/events/testing" element={<Form/>} />
+            </Route>
+
+         <Route  path='/' element={<PrivateRoute  role="student"/>}>
+         <Route path="/user-dashboard" role="student" element={<UserDashboard/>} >
+            <Route path="/user-dashboard/events" role="student" element={<ExploreEvents/>} />
+            <Route path="/user-dashboard/events/testing"  role="student"  element={<Form/>} />
             <Route path="/user-dashboard/events/:eventId" element={<EventDetails/>} />
-            <Route path="/user-dashboard/stay" element={<Accommodation/>} />
-            <Route path="/user-dashboard/university" element={<University/>} />
-            <Route path="/user-dashboard/university/:universityId" element={<UniversityDetails/>} />
-            <Route path="/user-dashboard/explore" element={<Explore/>} />
-            <Route path="/user-dashboard/favorites" element={<Favorites/>} />
-            <Route path="/user-dashboard/settings/:userId" element={<StudentProfile/>} />
+            <Route path="/user-dashboard/stay" role="student" element={<Accommodation/>} />
+            <Route path="/user-dashboard/university" role="student" element={<University/>} />
+            <Route path="/user-dashboard/university/:universityId" role="student" element={<UniversityDetails/>} />
+            <Route path="/user-dashboard/explore" role="student" element={<Explore/>} />
+            <Route path="/user-dashboard/favorites" role="student" element={<Favorites/>} />
+            <Route path="/user-dashboard/settings/:userId" role="student"  element={<StudentProfile/>} />
             
             </Route>
+         </Route>
+         
 
             <Route path="/event" element={<EventUploadForm />} />
           

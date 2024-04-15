@@ -17,7 +17,7 @@ const EventCard = ({ eventData }) => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [heartColor, setHeartColor] = useState("white");
   const navigate = useNavigate();
-console.log(eventData,'inside eventcard')
+// console.log(eventData,'inside eventcard')
   // Event handlers
   const handleDialogOpen = () => {
     setDialogOpen(true);

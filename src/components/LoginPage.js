@@ -15,28 +15,31 @@ import linkedin from "../assets/img/linkedin.svg";
 import meta from "../assets/img/meta.svg";
 import "../styles/Login.css";
 import { firestore } from "../firebase";
-import {
-  GoogleAuthProvider,
-  signInWithPopup,
-  createUserWithEmailAndPassword,
-} from "firebase/auth";
+// import { GoogleAuthProvider } from "firebase/auth";
+
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { getDoc, doc, setDoc } from "firebase/firestore";
 import { signOut } from "firebase/auth";
 import Register from "./register";
 
 const LoginPage = () => {
+  const {
+    
+    createUserWithEmailAndPassword,
+    getUserRole,
+    userRole
+  } = useAuth();
   const navigate = useNavigate();
   const container = useRef(null);
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-  const auth = getAuth();
+  // const auth = getAuth();
   const [showSignUpForm, setShowSignUpForm] = useState(false);
 
   const [user, loading] = useAuthState(auth);
 
-  const provider = new GoogleAuthProvider();
+  // const provider = new GoogleAuthProvider();
 
   // useEffect(() => {
   //   if (loading) {
@@ -66,28 +69,10 @@ const LoginPage = () => {
     };
   }, []);
 
-  const fetchUserData = async (uid) => {
-    const userDoc = await getDoc(doc(firestore, "users", uid));
-    return userDoc.exists() ? userDoc.data() : null;
-  };
-
-  // useEffect(() => {
-  //   const unsubscribe = auth.onAuthStateChanged(async (user) => {
-  //     if (user) {
-  //       const userData = await fetchUserData(user.uid);
-
-  //       if (userData?.role === "student") {
-  //         navigate("/dashboard/overview");
-  //       } else {
-  //         console.log("User is not a student", userData);
-  //       }
-  //     } else {
-  //       console.log("User is not logged in");
-  //     }
-  //   });
-
-  //   return () => unsubscribe();
-  // }, [auth, navigate]);
+  // const fetchUserData = async (uid) => {
+  //   const userDoc = await getDoc(doc(firestore, "users", uid));
+  //   return userDoc.exists() ? userDoc.data() : null;
+  // };
 
   const toggleSignUpForm = () => {
     setShowSignUpForm(!showSignUpForm);
@@ -96,20 +81,18 @@ const LoginPage = () => {
   const handleLogin = async () => {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-  
-      // Assuming you have a function to fetch user data based on UID
-      const userData = await fetchUserData(user.uid);
-  
-      if (userData?.role === "admin") {
+       const user = userRole;
+       console.log('inside handleLogin',user)
+
+      if (user === "admin") {
         navigate("/dashboard/overview");
-      } else if (userData?.role === "student") {
+      } else if (user === "student") {
         navigate("/user-dashboard/events");
       } else {
         await signOut(auth);
         throw new Error("Access denied: User is not a student or admin");
       }
-  
+
       toast.success("Login successful!", {
         position: "top-right",
         autoClose: 1200,
@@ -122,64 +105,50 @@ const LoginPage = () => {
       });
     }
   };
-  
 
-  const handleGoogleLogin = async () => {
-    try {
-        // Sign in with Google
-        const result = await signInWithPopup(auth, provider);
-        const user = result.user;
+  //   const handleGoogleLogin = async () => {
+  //     try {
+  //         const result = await signInWithPopup(auth, provider);
+  //         const user = result.user;
 
-        // Check if the user is already registered in Firestore
-        const userDoc = await getDoc(doc(firestore, "users", user.uid));
+  //         const userDoc = await getDoc(doc(firestore, "users", user.uid));
 
-        if (userDoc.exists()) {
-            // If the user document exists, check the user role
-            const userData = userDoc.data();
-            if (userData.role === "admin") {
-                // If the role is 'admin', navigate to the admin dashboard
-                navigate("/dashboard/overview");
-            } else if (userData.role === "student") {
-                // If the role is 'student', navigate to the user dashboard
-                navigate("/user-dashboard/events");
-            }
-        } else {
-            // If the user is not registered, add user details to Firestore with role set to 'student'
-            const userDocRef = doc(firestore, "users", user.uid);
-            await setDoc(userDocRef, {
-                userId: user.uid,
-                role: "student", // Set the user role to 'student'
-                email: user.email,
-                name: user.displayName,
-            });
+  //         if (userDoc.exists()) {
+  //             const userData = userDoc.data();
+  //             if (userData.role === "admin") {
+  //                 navigate("/dashboard/overview");
+  //             } else if (userData.role === "student") {
 
-            // Display success toast for registration
-            toast.success("Registration successful!");
-            
-            // Navigate to the user dashboard
-            navigate("/user-dashboard/events");
-        }
+  //                 navigate("/user-dashboard/events");
+  //             }
+  //         } else {
 
-        // Display success toast for login
-        toast.success("Login with Google successful!");
-    } catch (error) {
-        // Display error toast
-        toast.error(`Error: ${error.message}`);
-    }
-};
+  //             const userDocRef = doc(firestore, "users", user.uid);
+  //             await setDoc(userDocRef, {
+  //                 userId: user.uid,
+  //                 role: "student",
+  //                 email: user.email,
+  //                 name: user.displayName,
+  //             });
 
+  //             toast.success("Registration successful!");
+
+  //             navigate("/user-dashboard/events");
+  //         }
+
+  //         toast.success("Login with Google successful!");
+  //     } catch (error) {
+
+  //         toast.error(`Error: ${error.message}`);
+  //     }
+  // };
 
   const handleSignUp = async () => {
     try {
       // 1. Create a new user with Firebase Authentication
-      const auth = getAuth();
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
+     const userCredential =  await createUserWithEmailAndPassword(email, password);
       const { user } = userCredential;
-  
+
       // 2. Add user details to Firestore with role set to 'student'
       const userDocRef = doc(firestore, "users", user.uid);
       await setDoc(userDocRef, {
@@ -189,7 +158,7 @@ const LoginPage = () => {
         password: password,
         name: name,
       });
-  
+
       // Show success toast
       toast.success("Signup successful!", {
         position: "top-center",
@@ -200,7 +169,7 @@ const LoginPage = () => {
         draggable: true,
         progress: undefined,
       });
-  
+
       // Refresh the page
       window.location.reload();
     } catch (error) {
@@ -214,11 +183,10 @@ const LoginPage = () => {
         draggable: true,
         progress: undefined,
       });
-  
+
       console.error("Error signing up:", error.message);
     }
   };
-  
 
   return (
     <div className="login-page">
@@ -267,7 +235,7 @@ const LoginPage = () => {
                 className="login-button"
                 onClick={handleSignUp}
               >
-               Register
+                Register
               </button>
             </div>
             <div className="new-user-check">
@@ -280,9 +248,9 @@ const LoginPage = () => {
             </div>
             <div className="login-options">
               <p>Or login with</p>
-              <div className="option" onClick={handleGoogleLogin}>
+              {/* <div className="option" onClick={handleGoogleLogin}>
                 <img src={googleSvg} alt="Google" />
-              </div>
+              </div> */}
               <div
                 className="option"
                 onClick={() => console.log("Login with LinkedIn")}
@@ -341,9 +309,9 @@ const LoginPage = () => {
             </div>
             <div className="login-options">
               <p>Or login with</p>
-              <div className="option" onClick={handleGoogleLogin}>
+              {/* <div className="option" onClick={handleGoogleLogin}>
                 <img src={googleSvg} alt="Google" />
-              </div>
+              </div> */}
               <div
                 className="option"
                 onClick={() => console.log("Login with LinkedIn")}

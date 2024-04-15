@@ -28,14 +28,13 @@ const ExploreEvents = () => {
       try {
         const eventsCollectionRef = collection(firestore, "events");
         const eventsQuerySnapshot = await getDocs(eventsCollectionRef);
-        console.log('inside')
+        // console.log('inside')
         if (!eventsQuerySnapshot.empty) {
           const data = [];
           eventsQuerySnapshot.forEach((doc) => {
             data.push({ id: doc.id, ...doc.data() });
           });
           setEventData(data);
-          console.log(data); // Log data, not eventData
         } else {
           console.log("No events found");
         }

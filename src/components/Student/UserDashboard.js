@@ -51,15 +51,15 @@ const UserDashboard = () => {
 
     const fetchData = async () => {
       try {
-        console.log("Fetching user data...");
+        // console.log("Fetching user data...");
 
         // Fetch user data from Firestore
         const userDocRef = doc(firestore, "users", auth.currentUser.uid);
         const userDoc = await getDoc(userDocRef);
 
         if (userDoc.exists()) {
-          console.log("User document exists");
-          console.log("User data:", userDoc.data());
+          // console.log("User document exists");
+          // console.log("User data:", userDoc.data());
 
           setUserData(userDoc.data());
         } else {
