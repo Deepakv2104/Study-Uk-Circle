@@ -15,9 +15,9 @@ import linkedin from "../assets/img/linkedin.svg";
 import meta from "../assets/img/meta.svg";
 import "../styles/Login.css";
 import { firestore } from "../firebase";
-// import { GoogleAuthProvider } from "firebase/auth";
+import { GoogleAuthProvider } from "firebase/auth";
 
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { getDoc, doc, setDoc } from "firebase/firestore";
 import { signOut } from "firebase/auth";
 import Register from "./register";
@@ -39,7 +39,7 @@ const LoginPage = () => {
 
   const [user, loading] = useAuthState(auth);
 
-  // const provider = new GoogleAuthProvider();
+  const provider = new GoogleAuthProvider();
 
   // useEffect(() => {
   //   if (loading) {
@@ -81,12 +81,15 @@ const LoginPage = () => {
   const handleLogin = async () => {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
-       const user = userRole;
-       console.log('inside handleLogin',user)
+       const user = userCredential.user.uid;
+      const role = await getUserRole(user);
+      console.log(role)
+       console.log('userCred:',userCredential)
+       console.log('userID:',user)
 
-      if (user === "admin") {
+      if (role === "admin") {
         navigate("/dashboard/overview");
-      } else if (user === "student") {
+      } else if (role === "student") {
         navigate("/user-dashboard/events");
       } else {
         await signOut(auth);
@@ -106,42 +109,42 @@ const LoginPage = () => {
     }
   };
 
-  //   const handleGoogleLogin = async () => {
-  //     try {
-  //         const result = await signInWithPopup(auth, provider);
-  //         const user = result.user;
+    const handleGoogleLogin = async () => {
+      try {
+          const result = await signInWithPopup(auth, provider);
+          const user = result.user;
 
-  //         const userDoc = await getDoc(doc(firestore, "users", user.uid));
+          const userDoc = await getDoc(doc(firestore, "users", user.uid));
 
-  //         if (userDoc.exists()) {
-  //             const userData = userDoc.data();
-  //             if (userData.role === "admin") {
-  //                 navigate("/dashboard/overview");
-  //             } else if (userData.role === "student") {
+          if (userDoc.exists()) {
+              const userData = userDoc.data();
+              if (userData.role === "admin") {
+                  navigate("/dashboard/overview");
+              } else if (userData.role === "student") {
 
-  //                 navigate("/user-dashboard/events");
-  //             }
-  //         } else {
+                  navigate("/user-dashboard/events");
+              }
+          } else {
 
-  //             const userDocRef = doc(firestore, "users", user.uid);
-  //             await setDoc(userDocRef, {
-  //                 userId: user.uid,
-  //                 role: "student",
-  //                 email: user.email,
-  //                 name: user.displayName,
-  //             });
+              const userDocRef = doc(firestore, "users", user.uid);
+              await setDoc(userDocRef, {
+                  userId: user.uid,
+                  role: "student",
+                  email: user.email,
+                  name: user.displayName,
+              });
 
-  //             toast.success("Registration successful!");
+              toast.success("Registration successful!");
 
-  //             navigate("/user-dashboard/events");
-  //         }
+              navigate("/user-dashboard/events");
+          }
 
-  //         toast.success("Login with Google successful!");
-  //     } catch (error) {
+          toast.success("Login with Google successful!");
+      } catch (error) {
 
-  //         toast.error(`Error: ${error.message}`);
-  //     }
-  // };
+          toast.error(`Error: ${error.message}`);
+      }
+  };
 
   const handleSignUp = async () => {
     try {
@@ -248,9 +251,9 @@ const LoginPage = () => {
             </div>
             <div className="login-options">
               <p>Or login with</p>
-              {/* <div className="option" onClick={handleGoogleLogin}>
+              <div className="option" onClick={handleGoogleLogin}>
                 <img src={googleSvg} alt="Google" />
-              </div> */}
+              </div>
               <div
                 className="option"
                 onClick={() => console.log("Login with LinkedIn")}
@@ -309,9 +312,9 @@ const LoginPage = () => {
             </div>
             <div className="login-options">
               <p>Or login with</p>
-              {/* <div className="option" onClick={handleGoogleLogin}>
+              <div className="option" onClick={handleGoogleLogin}>
                 <img src={googleSvg} alt="Google" />
-              </div> */}
+              </div>
               <div
                 className="option"
                 onClick={() => console.log("Login with LinkedIn")}

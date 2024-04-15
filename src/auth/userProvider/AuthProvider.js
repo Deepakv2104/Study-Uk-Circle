@@ -34,20 +34,6 @@ export const AuthProvider = ({ children }) => {
     return auth.sendPasswordResetEmail(email);
   };
 
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(async (user) => {
-      setCurrentUser(user);
-      if (user) {
-        const role = await getUserRole(user.uid);
-        setUserRole(role);
-      
-      }
-      setLoading(false);
-    });
-
-    return unsubscribe;
-  }, []);
-
   const getUserRole = async (uid) => {
     try {
       const userDoc = await getDoc(doc(firestore, "users", uid));
@@ -63,6 +49,22 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
+      setCurrentUser(user);
+      if (user) {
+        const role = await getUserRole(user.uid);
+        setUserRole(role);
+        console.log("setCurrentUser:",currentUser)
+        console.log("userRole",userRole)
+      }
+      setLoading(false);
+    });
+
+    return unsubscribe;
+  }, []);
+
+
   const value = {
     currentUser,
     userRole,
@@ -70,6 +72,7 @@ export const AuthProvider = ({ children }) => {
     signInWithEmailAndPassword,
     signInWithGoogle,
     logout,
+    getUserRole,
     resetPassword,
   };
 
