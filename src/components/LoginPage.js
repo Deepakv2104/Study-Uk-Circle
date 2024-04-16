@@ -35,7 +35,34 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   // const auth = getAuth();
   const [showSignUpForm, setShowSignUpForm] = useState(false);
+  const [step, setStep] = useState(1); // State to track the current step
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    studentStatus: '', // 'student' or 'non-student'
+    studentType: '', // 'international' or 'home' (if student)
+    professionalStatus: '', // 'working' or 'looking' (if non-student)
+    university: '',
+    graduationYear: '',
+    universityEmail: '', // If student
+    phone: '',
+    postCode: '',
+  });
+  
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
+  const handleNext = () => {
+    setStep(step + 1);
+  };
+
+  const handlePrev = () => {
+    setStep(step - 1);
+  };
+  const { firstName, lastName, studentStatus, studentType, professionalStatus, university, graduationYear, universityEmail, phone, postCode } = formData;
   const [user, loading] = useAuthState(auth);
 
   const provider = new GoogleAuthProvider();
@@ -148,17 +175,24 @@ const LoginPage = () => {
   const handleSignUp = async () => {
     try {
       // 1. Create a new user with Firebase Authentication
-     const userCredential =  await createUserWithEmailAndPassword(auth,email, password);
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const { user } = userCredential;
 
-      // 2. Add user details to Firestore with role set to 'student'
+      // 2. Add user details to Firestore
       const userDocRef = doc(firestore, "users", user.uid);
       await setDoc(userDocRef, {
         userId: user.uid,
-        role: "student", // Set the user role to 'student'
+        firstName: firstName,
+        lastName: lastName,
         email: email,
-        password: password,
-        name: name,
+        studentStatus: studentStatus,
+        studentType: studentType,
+        professionalStatus: professionalStatus,
+        university: university,
+        graduationYear: graduationYear,
+        universityEmail: universityEmail,
+        phone: phone,
+        postCode: postCode,
       });
 
       // Show success toast
@@ -172,8 +206,10 @@ const LoginPage = () => {
         progress: undefined,
       });
 
-      // Refresh the page
-      window.location.reload();
+      // Optionally, you can redirect the user to another page after successful signup instead of reloading the current page
+      // For example, using react-router-dom: history.push("/dashboard");
+      // or window.location.href = "/dashboard";
+
     } catch (error) {
       // Show error toast
       toast.error(`Signup failed: ${error.message}`, {
@@ -190,6 +226,7 @@ const LoginPage = () => {
     }
   };
 
+
   return (
     <div className="login-page">
       <div className="lottie-container">
@@ -202,74 +239,132 @@ const LoginPage = () => {
       </div>
       <div className="login-form">
         {showSignUpForm ? (
-          <form>
-            <h1 className="form-title">SignUp</h1>
-            <div className="form-group">
-              <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)} // Corrected
-                placeholder="Name"
-                autoComplete="username"
-              />
-            </div>
-            <div className="form-group">
-              <input
-                type="text"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="E-mail Address"
-                autoComplete="username"
-              />
-            </div>
-            <div className="form-group">
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
-                autoComplete="current-password"
-              />
-            </div>
-            <div className="form-action">
-              <button
-                type="button"
-                className="login-button"
-                onClick={handleSignUp}
-              >
-                Register
-              </button>
-            </div>
-            <div className="new-user-check">
-              <p>
-                {showSignUpForm ? "Already a member? " : "Not a member? "}
-                <span onClick={toggleSignUpForm}>
-                  {showSignUpForm ? "Login now" : "Sign up now"}
-                </span>
-              </p>
-            </div>
-            <div className="login-options">
-              <p>Or login with</p>
-              <div className="option" onClick={handleGoogleLogin}>
-                <img src={googleSvg} alt="Google" />
-              </div>
-              <div
-                className="option"
-                onClick={() => console.log("Login with LinkedIn")}
-              >
-                <img src={linkedin} alt="LinkedIn" />
-              </div>
-              <div
-                className="option"
-                onClick={() => console.log("Login with Meta")}
-              >
-                <img src={meta} alt="Meta" />
-              </div>
-            </div>
-            <div className="reset1">
-              <Link to="">Forgot Password</Link>
-            </div>
-          </form>
+   <form>
+   <h1 className="form-title">SignUp</h1>
+   {step === 1 && (
+     <div className="form-step">
+       <div className="form-group">
+         <input
+           type="text"
+           name="firstName"
+           value={formData.firstName}
+           onChange={handleChange}
+           placeholder="First Name"
+         />
+       </div>
+       <div className="form-group">
+         <input
+           type="text"
+           name="lastName"
+           value={formData.lastName}
+           onChange={handleChange}
+           placeholder="Last Name"
+         />
+       </div>
+       <div className="form-group">
+         <input
+           type="text"
+           name="email"
+           value={formData.email}
+           onChange={handleChange}
+           placeholder="E-mail Address"
+           autoComplete="username"
+         />
+       </div>
+       <div className="form-group">
+         <input
+           type="password"
+           name="password"
+           value={formData.password}
+           onChange={handleChange}
+           placeholder="Password"
+           autoComplete="current-password"
+         />
+       </div>
+       <div className="form-action">
+         <button type="button" className="login-button" onClick={handleNext}>
+           Next
+         </button>
+       </div>
+     </div>
+   )}
+   {step === 2 && (
+     <div className="form-step">
+       <div className="form-group">
+         <input
+           type="text"
+           name="phone"
+           value={formData.phone}
+           onChange={handleChange}
+           placeholder="Phone"
+           autoComplete="tel"
+         />
+       </div>
+       <div className="form-group">
+         <input
+           type="text"
+           name="university"
+           value={formData.university}
+           onChange={handleChange}
+           placeholder="University"
+         />
+       </div>
+       <div className="form-group">
+         <input
+           type="text"
+           name="graduationYear"
+           value={formData.graduationYear}
+           onChange={handleChange}
+           placeholder="Graduation Year"
+         />
+       </div>
+       <div className="form-group">
+         <input
+           type="text"
+           name="universityEmail"
+           value={formData.universityEmail}
+           onChange={handleChange}
+           placeholder="University Email"
+         />
+       </div>
+       <div className="form-action" style={{ display: 'flex', justifyContent: 'space-between' }}>
+         <button type="button" className="login-button" onClick={handlePrev} style={{ marginRight: '8px' }}>
+           Previous
+         </button>
+         <button type="button" className="login-button" onClick={handleSignUp}>
+           Register
+         </button>
+       </div>
+     </div>
+   )}     <div className="new-user-check">
+   <p>
+     {showSignUpForm ? "Already a member? " : "Not a member? "}
+     <span onClick={toggleSignUpForm}>
+       {showSignUpForm ? "Login now" : "Sign up now"}
+     </span>
+   </p>
+ </div>
+ <div className="login-options">
+   <p>Or login with</p>
+   <div className="option" onClick={handleGoogleLogin}>
+     <img src={googleSvg} alt="Google" />
+   </div>
+   <div
+     className="option"
+     onClick={() => console.log("Login with LinkedIn")}
+   >
+     <img src={linkedin} alt="LinkedIn" />
+   </div>
+   <div
+     className="option"
+     onClick={() => console.log("Login with Meta")}
+   >
+     <img src={meta} alt="Meta" />
+   </div>
+ </div>
+ <div className="reset1">
+   <Link to="">Forgot Password</Link>
+ </div></form>
         ) : (
           // Render login form when showSignUpForm is false
           <form>
