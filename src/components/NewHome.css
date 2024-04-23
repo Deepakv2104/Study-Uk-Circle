@@ -1,4 +1,4 @@
-/* html {
+html {
      -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
     font-family: sans-serif
@@ -6,7 +6,7 @@
 
 body {
     margin: 0
-} */
+}
 
 article,
 aside,
@@ -3692,7 +3692,6 @@ blockquote {
 .hero-image {
     width: 100%; /* Ensures the animation fills its container horizontally */
     height: auto; 
-    /* margin-bottom: 10px; */
 }
 
 

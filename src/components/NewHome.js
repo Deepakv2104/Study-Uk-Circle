@@ -122,7 +122,7 @@ const NewHome = () => {
         <div className="bento m" style={{ display: 'flex', justifyContent: 'space-between' }}>
           <div>
             <div className="limit-large">
-              <h2 className="heading">Are you studying in UK? Are you looking for <span className="text-color-green">Accommodation</span>, <span className="text-color-green">Jobs</span> and <span className="text-color-green">Mentorship </span>?</h2>
+              <h2 className="heading">Are you studying in UK ? Are you looking for <span className="text-color-green">Accommodation</span>, <span className="text-color-green">Jobs</span> and <span className="text-color-green">Mentorship ?</span></h2>
               {/* <div className="title-tag-wrapper">
                 <div className="title-tag-contents">
                   <div>United Kingdom</div>
@@ -214,7 +214,7 @@ const NewHome = () => {
                                 <div><img src={stay} 
                                     /></div>
                                 </div>
-                                <div>
+                                <div class="center-content center-text">
                                 <h4>Accommodation</h4>
                                     <p  style={{textAlign:"justify"}}>Find your ideal stay seamlessly. Explore diverse accommodation options tailored to your preferences. Break barriers, discover international stays, and elevate your living arrangements with WorldLynk.</p>
                                     {/* <div class="green-button-wrap full-width"><a href="/join-waiting-list" class="green-button with-icon w-inline-block"><img src="https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65ef442193061e6b4fb6caa7_white-bg_black-s_bright-green-hand.png" loading="lazy" width="29" sizes="(max-width: 991px) 29px, (max-width: 1279px) 100vw, (max-width: 1919px) 2vw, 29px" alt="" srcset="https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65ef442193061e6b4fb6caa7_white-bg_black-s_bright-green-hand-p-500.png 500w, https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65ef442193061e6b4fb6caa7_white-bg_black-s_bright-green-hand-p-800.png 800w, https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65ef442193061e6b4fb6caa7_white-bg_black-s_bright-green-hand-p-1080.png 1080w, https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65ef442193061e6b4fb6caa7_white-bg_black-s_bright-green-hand.png 1188w"/><div>Join now</div></a></div> */}
@@ -302,60 +302,7 @@ const NewHome = () => {
             </div>
         </div>
     </section>
-    {/* <section>
-        <div class="w-layout-blockcontainer container w-container">
-            <div class="space-top">
-                <div class="bento-grid-3x">
-                    <div id="w-node-f947e486-3c0c-5759-b069-aaae203b3f98-5c67f262" class="bento green-card">
-                        <div class="spread-vertical large">
-                            <div>
-                                <h2 class="green-text">Members</h2>
-                                <h5>Setting up your account is quick, taking just minutes, and completely free of charge.</h5>
-                            </div>
-                            <div class="portrait-widget">
-                                <div class="portrait-stack-wrapper">
-                                    <div class="portrait-stack"><img src="https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65ed8eb0c8c77c845c67f2c0_Small%20portrait%2010.png" loading="lazy" width="72" alt="" class="portrait-in-stack" /><img src="https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65ed8eb0c8c77c845c67f29d_green%20portrait.png"
-                                            loading="lazy" width="72" alt="" class="portrait-in-stack" />
-                                        <div class="portrait-in-stack final"><img src="https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65ed8eb0c8c77c845c67f2a7_plus.svg" loading="lazy" alt="" /></div>
-                                    </div>
-                                    <div>
-                                        <div><span class="opacity-white-text-2">Trusted by over </span>1.8m+ users</div>
-                                    </div>
-                                </div><img src="https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65ed8eb0c8c77c845c67f2a9_symbol.svg" loading="lazy" alt="" class="portrait-widget-handwritting" /></div>
-                        </div>
-                    </div>
-                    <div id="w-node-f947e486-3c0c-5759-b069-aaae203b3fa5-5c67f262" class="bento">
-                    <img src="https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65ed8eb0c8c77c845c67f2c4_Grid%20bg2.png" loading="lazy" width="379" sizes="(max-width: 479px) 95vw, (max-width: 767px) 46vw, (max-width: 991px) 45vw, (max-width: 1439px) 30vw, 414px"
-                            alt="" srcset="https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65ed8eb0c8c77c845c67f2c4_Grid%2520bg2-p-500.png 500w, https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65ed8eb0c8c77c845c67f2c4_Grid%20bg2.png 758w"
-                            class="grid-bg integrations" />
-                        <div class="bento-content-horizontal">
-                            <div class="bento-content-vertical limit left">
-                                <div>
-                                    <div class="title-tag-wrapper">
-                                        <div class="title-tag-contents"><img src="https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65f0415153e12c7daa9c1fba_white-bg_black-s_bright-green-hand%20(1).png" loading="lazy" width="23" sizes="(max-width: 991px) 23px, (max-width: 1439px) 2vw, (max-width: 1919px) 23px, 1vw"
-                                                alt="" srcset="https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65f0415153e12c7daa9c1fba_white-bg_black-s_bright-green-hand%20(1)-p-500.png 500w, https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65f0415153e12c7daa9c1fba_white-bg_black-s_bright-green-hand%20(1)-p-800.png 800w, https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65f0415153e12c7daa9c1fba_white-bg_black-s_bright-green-hand%20(1).png 813w"
-                                            />
-                                            <div>Join for free</div>
-                                        </div>
-                                    </div>
-                                    <h2>Create your free account today.</h2>
-                                </div>
-                                <div class="green-button-wrap"><a href="/join-waiting-list" class="green-button with-icon w-inline-block"><img src="https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65ef442193061e6b4fb6caa7_white-bg_black-s_bright-green-hand.png" loading="lazy" width="29" sizes="(max-width: 1279px) 29px, (max-width: 1919px) 2vw, 29px" alt="" srcset="https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65ef442193061e6b4fb6caa7_white-bg_black-s_bright-green-hand-p-500.png 500w, https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65ef442193061e6b4fb6caa7_white-bg_black-s_bright-green-hand-p-800.png 800w, https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65ef442193061e6b4fb6caa7_white-bg_black-s_bright-green-hand-p-1080.png 1080w, https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65ef442193061e6b4fb6caa7_white-bg_black-s_bright-green-hand.png 1188w"/><div>Join now</div></a></div>
-                            </div>
-                            <div><img src="https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65f04983276871899355360f_Brand_Superhand_2024%20(22).png" loading="lazy" width="591" sizes="(max-width: 479px) 88vw, (max-width: 767px) 23vw, (max-width: 991px) 24vw, (max-width: 1439px) 30vw, 414px"
-                                    alt="" srcset="https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65f04983276871899355360f_Brand_Superhand_2024%20(22)-p-500.png 500w, https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65f04983276871899355360f_Brand_Superhand_2024%20(22)-p-800.png 800w, https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65f04983276871899355360f_Brand_Superhand_2024%20(22).png 813w"
-                                    class="hero-image" /></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> */}
-    {/* <section>
-        <div class="w-layout-blockcontainer container w-container">
-            <div class="section-separator"></div>
-        </div>
-    </section> */}
+  
     <section class="footer">
         <div class="w-layout-blockcontainer container w-container">
             <div class="footer-content">
@@ -440,12 +387,7 @@ const NewHome = () => {
                 </div>
             </div>
         </div>
-        <div class="footer-bottom-wrap">
-            {/* <div id="w-node-f3b10b78-278d-2c6b-c975-d2648da07dae-8da07d68" class="footer-horizontal-links"><a href="#" class="small-footer-link">Legal Stuff</a>
-                <div class="footer-link-searator"></div><a href="#" class="small-footer-link">Youth Group Limited T/A Superhand, 71-75 Shelton Street, Covent Garden, London, WC2H 9JQ</a></div>
-            <div id="w-node-f3b10b78-278d-2c6b-c975-d2648da07dba-8da07d68" class="footer-bottom-content">
-                <div class="text-block-26">Powered by</div><a href="http://webflow.com" target="_blank" class="webflow-link w-inline-block"><img src="https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65ef4181dcb24628d8512977_superhand_logo_full_white_text_transparent.svg" loading="lazy" width="105" alt=""/></a></div> */}
-        </div>
+       
         </div>
     </section>
     </div>
