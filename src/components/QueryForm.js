@@ -4,6 +4,7 @@ import { useAuth } from "../auth/userProvider/AuthProvider";
 import { ArrowRightCircle } from "react-bootstrap-icons";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import './QueryForm.css'
 import {
   Button,
   TextField,
@@ -13,9 +14,11 @@ import {
   DialogActions,
   Typography,
   Container,
-
+  Radio,
+  RadioGroup,
   Grid,
-
+  FormControlLabel,
+  Chip,
 } from "@mui/material";
 
 import { collection, addDoc, doc, getDoc } from "firebase/firestore";
@@ -37,7 +40,7 @@ const QueryForm = () => {
     about: "",
     goals: "",
     dob: "",
-
+phone:'',
     skills: [],
     instagram: "",
     linkedIn: "",
@@ -47,12 +50,15 @@ const QueryForm = () => {
   const [wordCount, setWordCount] = useState({
     description: 0,
   });
-
+  const [userType, setUserType] = useState('student'); // Default to student
   const [wordCountDescription, setWordCountDescription] = useState(0);
   const [wordCountGoals, setWordCountGoals] = useState(0);
   const [wordCountProcess, setWordCountProcess] = useState(0);
   const [submissionDate, setSubmissionDate] = useState("");
+  const [selectedInterests, setSelectedInterests] = useState([]);
+  const [newInterest, setNewInterest] = useState('');
   const WORD_LIMIT_DESCRIPTION_GOALS = 100;
+  const [inputValue, setInputValue] = useState('');
   const WORD_LIMIT_PROCESS = 200;
 
   // Create storage reference for documentation files
@@ -130,7 +136,7 @@ const QueryForm = () => {
       about: "",
       goals: "",
       dob: "",
-  
+  phone:'',
       skills: [],
       instagram: "",
       linkedIn: "",
@@ -212,7 +218,7 @@ const QueryForm = () => {
         projectWithBranchAndDate
       );
       toast.success("Thank You!", {
-        position: "top-right",
+        position: "bottom-right",
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -261,13 +267,36 @@ const QueryForm = () => {
     }
   };
 
+  const handleInterestChange = (event) => {
+    setNewInterest(event.target.value);
+  };
+
+  const handleAddInterest = () => {
+    if (newInterest && !selectedInterests.includes(newInterest)) {
+      setSelectedInterests([...selectedInterests, newInterest]);
+      setNewInterest('');
+    }
+  };
+
+  const handleDeleteChip = (interest) => {
+    setSelectedInterests(selectedInterests.filter((item) => item !== interest));
+  };
+  const handleChipClick = (interest) => {
+    if (selectedInterests.includes(interest)) {
+      setSelectedInterests(selectedInterests.filter(item => item !== interest));
+    } else {
+      setSelectedInterests([...selectedInterests, interest]);
+    }
+  };
   return (
-    <Container>
-      <button onClick={handleOpen}>
-        Join the Waiting List <ArrowRightCircle size={25} />
-      </button>
+    <Container >
+       <div onClick={handleOpen} >
+   
+      Join
+    
+      </div>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Tell us about yourself</DialogTitle>
+        <DialogTitle >Tell us about yourself</DialogTitle>
         <DialogContent>
           <Grid container spacing={2} style={{ padding: "10px" }}>
             <DialogContent>
@@ -284,6 +313,7 @@ const QueryForm = () => {
   />
 </Grid>
 
+
                 <Grid item xs={12}>
                   <TextField
                     label="Email"
@@ -296,6 +326,28 @@ const QueryForm = () => {
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
+                    label="Phone"
+                    variant="outlined"
+                    fullWidth
+                    required
+                    value={projectData.phone}
+                    onChange={(e) => handleChange("phone", e.target.value)}
+                  />
+                </Grid>
+            <Grid item xs={12}>
+              <RadioGroup
+                aria-label="userType"
+                name="userType"
+                value={userType}
+                onChange={(e) => setUserType(e.target.value)}
+              >
+                <Typography variant="h6">Are you a Student or Working Professional?</Typography>
+                <FormControlLabel value="student" control={<Radio />} label="Student" />
+                <FormControlLabel value="professional" control={<Radio />} label="Working Professional" />
+              </RadioGroup>
+            </Grid>
+                <Grid item xs={12}>
+                  <TextField
                     label="College/University"
                     variant="outlined"
                     fullWidth
@@ -306,22 +358,20 @@ const QueryForm = () => {
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
-                    label="About"
+                    label="Graduation year"
                     variant="outlined"
                     fullWidth
-                    multiline
-                    rows={4}
                     value={projectData.description}
                     onChange={(e) =>
                       handleTextChange(
                         "about",
                         e.target.value,
-                        WORD_LIMIT_DESCRIPTION_GOALS
+                        
                       )
                     }
                   />
 
-                  <Typography
+                  {/* <Typography
                     variant="caption"
                     color={
                       wordCountDescription > WORD_LIMIT_DESCRIPTION_GOALS
@@ -332,26 +382,26 @@ const QueryForm = () => {
                     {`${
                       wordCountDescription || 0
                     } words / ${WORD_LIMIT_DESCRIPTION_GOALS} words limit`}
-                  </Typography>
+                  </Typography> */}
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
-                    label="Goals"
+                    label="Postal Code"
                     variant="outlined"
                     fullWidth
-                    multiline
-                    rows={4}
+                    // multiline
+                    // rows={4}
                     value={projectData.goals}
                     onChange={(e) =>
                       handleTextChange(
                         "goals",
                         e.target.value,
-                        WORD_LIMIT_DESCRIPTION_GOALS
+                        // WORD_LIMIT_DESCRIPTION_GOALS
                       )
                     }
                   />
 
-                  <Typography
+                  {/* <Typography
                     variant="caption"
                     color={
                       wordCountGoals > WORD_LIMIT_DESCRIPTION_GOALS
@@ -362,7 +412,7 @@ const QueryForm = () => {
                     {`${
                       wordCountGoals || 0
                     } words / ${WORD_LIMIT_DESCRIPTION_GOALS} words limit`}
-                  </Typography>
+                  </Typography> */}
                 </Grid>
 
                 <Grid item xs={12}>
@@ -379,7 +429,7 @@ const QueryForm = () => {
                     yearDropdownItemNumber={15} // Number of years shown in the dropdown
                   />
                 </Grid>
-
+{/* 
                 <Grid item xs={12}>
                   <Typography variant="h6" gutterBottom>
                     Skills
@@ -404,10 +454,10 @@ const QueryForm = () => {
                   >
                     + Add Skill
                   </Button>
-                </Grid>
+                </Grid> */}
                 <Grid item xs={12}>
                   <Typography variant="h6" gutterBottom>
-                    Links
+                   Social Media 
                   </Typography>
                   {/* Link to the App */}
                   <TextField
@@ -445,6 +495,22 @@ const QueryForm = () => {
                   />
                 </Grid>
               </Grid>
+        <Grid item xs={12}>
+              <Typography variant="h6">Select Interests:</Typography>
+            <Grid container spacing={1}>
+                {['Jobs', 'Entrepreneurship', 'Mentor', 'Events', 'Accommodation'].map((interest) => (
+                  <Grid item key={interest}>
+                    <Chip
+                      label={interest}
+                      clickable
+                      color={selectedInterests.includes(interest) ? 'primary' : 'default'}
+                      onClick={() => handleChipClick(interest)}
+                      onDelete={selectedInterests.includes(interest) ? () => handleChipClick(interest) : undefined}
+                    />
+                  </Grid>
+                ))}
+              </Grid>
+            </Grid>
             </DialogContent>
           </Grid>
         </DialogContent>

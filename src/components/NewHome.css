@@ -1265,7 +1265,7 @@ textarea.w-select {
 }
 
 .w-slider-nav {
-    z-index: 2;
+    /* z-index: 2; */
     text-align: center;
     -webkit-tap-highlight-color: transparent;
     tap-highlight-color: transparent;
@@ -1401,7 +1401,7 @@ textarea.w-select {
 
 .w-dropdown {
     text-align: left;
-    z-index: 900;
+    /* z-index: 900; */
     margin-left: auto;
     margin-right: auto;
     display: inline-block;
@@ -1489,7 +1489,7 @@ textarea.w-select {
     word-wrap: normal;
     color: #fff;
     text-align: center;
-    z-index: 2000;
+    /* z-index: 2000; */
     opacity: 0;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -1896,7 +1896,7 @@ textarea.w-select {
 }
 
 .w-nav {
-    z-index: 1000;
+    z-index: 4;
     background: #ddd;
     position: relative
 }
@@ -3600,7 +3600,9 @@ blockquote {
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
-    display: flex
+    display: flex;
+    cursor:'pointer';
+   
 }
 
 .spread-vertical.large {
@@ -3662,12 +3664,14 @@ blockquote {
     border: 1px solid rgba(255, 255, 255, .1);
     border-radius: 16px;
     padding: 6px;
-    display: inline-block
+    display: inline-block;
+    cursor: pointer;
 }
 
 .green-button-wrap.smaller {
     border-radius: 12px;
-    padding: 4px
+    padding: 4px;
+    /* cursor: pointer; */
 }
 
 .showreel-button {

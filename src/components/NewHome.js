@@ -13,6 +13,7 @@ import brand from '../assets/img/brand.png';
 import eventsworldlynk from '../assets/img/eventsworldlynk.jpg';
 import mentor from '../assets/img/mentor.jpg';
 import NavBar from './NavBar';
+import QueryForm from './QueryForm';
 
 const NewHome = () => {
     
@@ -141,8 +142,9 @@ const NewHome = () => {
                 <div className="button-stack">
                   <div className="button-wrap">
                     <div className="green-button-wrap">
-                      <a href="/join-waiting-list" className="green-button with-icon w-inline-block">
-                        <div>Join now</div>
+                      <a  className="green-button with-icon w-inline-block">
+                        {/* <div>Join now</div> */}
+                        <QueryForm/>
                       </a>
                     </div>
                   </div>
@@ -290,9 +292,10 @@ const NewHome = () => {
                         <div class="space-top-medium">
                             <div class="button-stack">
                                 <div class="button-wrap">
-                                    <div class="green-button-wrap"><a href="/join-waiting-list" class="green-button with-icon w-inline-block">
-                                        
-                                           <div>Join now</div></a></div>
+                                    <div class="green-button-wrap"><a  class="green-button with-icon w-inline-block">
+                        {/* <div>Join now</div> */}
+                        <QueryForm/>
+                                           </a></div>
                                 </div>
                                 <div class="glass-button-wrap"><a href="#" class="glass-button w-button">Sign in</a></div>
                             </div>
