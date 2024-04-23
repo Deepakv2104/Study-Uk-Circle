@@ -45,7 +45,7 @@ const Menu = ({user}) => {
                 } else {
                     logout();
                     // Call the logout function to log the user out
-                    navigate('/welcome');
+                    navigate('/');
                 }
             });
         });

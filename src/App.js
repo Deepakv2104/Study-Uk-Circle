@@ -33,18 +33,21 @@ import Favorites from "./components/Student/Favorites";
 import AddJobPost from "./components/Admin/AddJobPost";
 import PrivateRoute from "./auth/PrivateRoute/PrivateRoute";
 import PageNotFound from "./components/PageNotFound";
+import NewHome from "./components/NewHome"
 gsap.registerPlugin();
 function App() {
   return (
     <Router>
       <div className="App">
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<NewHome />} />
           <Route path="/form" element={<QuizApp />} />
           <Route path="/details" element={<DetailsPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/blank" element={<PageNotFound />} />
+          {/* <Route path="/newHome" element={<NewHome/>} /> */}
+
 
           <Route exact path="/" element={<PrivateRoute role="admin" />}>
             <Route path="/dashboard" role="admin" element={<Dashboard />}>
