@@ -369,16 +369,16 @@ const NewHome = () => {
                         <p class="large-text white-text">WorldLynk is your one-stop solution for seamless student experience in UK.</p>
                 </div>
                 <div class="social-logos-wrap">
-                    <a href="https://www.linkedin.com/company/superhandhq" target="_blank" class="social-logo w-inline-block">
+                    <a href="/" target="_blank" class="social-logo w-inline-block">
                         <div class="icon-embed-xsmall w-embed"></div>
                     </a>
-                    <a href="https://www.instagram.com/superhandhq/" target="_blank" class="social-logo w-inline-block">
+                    <a href="/" target="_blank" class="social-logo w-inline-block">
                         <div class="icon-embed-xsmall w-embed"></div>
                     </a>
-                    <a href="https://twitter.com/superhandhq" target="_blank" class="social-logo w-inline-block">
+                    <a href="/" target="_blank" class="social-logo w-inline-block">
                         <div class="icon-embed-xsmall w-embed"></div>
                     </a>
-                    <a href="https://www.youtube.com/@SuperhandHQ" target="_blank" class="social-logo w-inline-block">
+                    <a href="/" target="_blank" class="social-logo w-inline-block">
                         <div class="icon-embed-xsmall w-embed"></div>
                     </a>
                 </div>
