@@ -70,11 +70,18 @@ const NewHome = () => {
                             </div>
                         </div>
                     </div><a href="/partnerships" class="nav-link">Partner with us</a><a href="/about" class="nav-link">Learn about us</a><a href="/contact" class="nav-link">Speak with us</a>
-                    <div class="nav-right-content mobile"><a href="/join-waiting-list" class="glass-button smaller w-button">Sign in</a><a href="/join-waiting-list" class="green-button w-button">Join</a></div>
+                    <div class="nav-right-content mobile"><a href="/join-waiting-list" class="glass-button smaller w-button">Sign in</a><a class="green-button w-button"><QueryForm/></a></div>
                     </nav>
                     <div id="w-node-_06216545-40ad-bd51-1b83-2f6c6ddd31cb-6ddd3191" class="nav-right">
                         <div class="menu-button w-nav-button"><img src="https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65ed8eb0c8c77c845c67f274_menu%20icon%201.svg" loading="lazy" alt="" class="menu-icon" /></div>
-                        <div class="nav-right-content desktop"><a href="/join-waiting-list" class="glass-button smaller w-button">Sign in</a><a href="/join-waiting-list" class="green-button w-button">Join now</a>
+                        <div class="nav-right-content desktop"><a href="/join-waiting-list" class="glass-button smaller w-button">Sign in</a><div >
+                    <div className="green-button-wrap">
+                      <a  className="green-button with-icon">
+                        {/* <div>Join now</div> */}
+                        <QueryForm/>
+                      </a>
+                    </div>
+                  </div>
                             {/* <div class="locales-wrapper-2 w-locales-list">
                                 <div data-delay="200" data-hover="false" class="margin-0 w-dropdown">
                                     <div class="green-button with-icon small hollow w-dropdown-toggle">
