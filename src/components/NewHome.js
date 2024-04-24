@@ -130,7 +130,7 @@ const NewHome = () => {
         <div className="bento m" style={{ display: 'flex', justifyContent: 'space-between' }}>
           <div>
             <div className="limit-large">
-              <h2 className="heading">Are you studying in UK ? Are you looking for <span className="text-color-green">Accommodation, </span><span className="text-color-green">Jobs</span> and <span className="text-color-green">Mentorship ?</span></h2>
+              <h2 className="heading">Are you studying in UK ? looking for <span className="text-color-green">Accommodation, </span><span className="text-color-green">Jobs</span> and <span className="text-color-green">Mentorship ?</span></h2>
               {/* <div className="title-tag-wrapper">
                 <div className="title-tag-contents">
                   <div>United Kingdom</div>
