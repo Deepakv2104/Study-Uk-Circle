@@ -70,11 +70,11 @@ const NewHome = () => {
                             </div>
                         </div>
                     </div><a href="/partnerships" class="nav-link">Partner with us</a><a href="/about" class="nav-link">Learn about us</a><a href="/contact" class="nav-link">Speak with us</a>
-                    <div class="nav-right-content mobile"><a href="/join-waiting-list" class="glass-button smaller w-button">Sign in</a><a class="green-button w-button"><QueryForm/></a></div>
+                    <div class="nav-right-content mobile"><a href="/login" class="glass-button smaller w-button">Sign in</a><a class="green-button w-button"><QueryForm/></a></div>
                     </nav>
                     <div id="w-node-_06216545-40ad-bd51-1b83-2f6c6ddd31cb-6ddd3191" class="nav-right">
                         <div class="menu-button w-nav-button"><img src="https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65ed8eb0c8c77c845c67f274_menu%20icon%201.svg" loading="lazy" alt="" class="menu-icon" /></div>
-                        <div class="nav-right-content desktop"><a href="/join-waiting-list" class="glass-button smaller w-button">Sign in</a><div >
+                        <div class="nav-right-content desktop"><a href="/login" class="glass-button smaller w-button">Sign in</a><div >
                     <div className="green-button-wrap">
                       <a  className="green-button with-icon">
                         {/* <div>Join now</div> */}
@@ -130,7 +130,7 @@ const NewHome = () => {
         <div className="bento m" style={{ display: 'flex', justifyContent: 'space-between' }}>
           <div>
             <div className="limit-large">
-              <h2 className="heading">Are you studying in UK ? Are you looking for <span className="text-color-green">Accommodation</span>, <span className="text-color-green">Jobs</span> and <span className="text-color-green">Mentorship ?</span></h2>
+              <h2 className="heading">Are you studying in UK ? Are you looking for <span className="text-color-green">Accommodation, </span><span className="text-color-green">Jobs</span> and <span className="text-color-green">Mentorship ?</span></h2>
               {/* <div className="title-tag-wrapper">
                 <div className="title-tag-contents">
                   <div>United Kingdom</div>
@@ -156,7 +156,7 @@ const NewHome = () => {
                     </div>
                   </div>
                   <div className="glass-button-wrap">
-                    <a href="/join-waiting-list" className="glass-button w-button">Sign in</a>
+                    <a href="/login" className="glass-button w-button">Sign in</a>
                   </div>
                 </div>
               </div>
@@ -304,7 +304,7 @@ const NewHome = () => {
                         <QueryForm/>
                                            </a></div>
                                 </div>
-                                <div class="glass-button-wrap"><a href="#" class="glass-button w-button">Sign in</a></div>
+                                <div class="glass-button-wrap"><a href="/login" class="glass-button w-button">Sign in</a></div>
                             </div>
                         </div>
                     </div>
@@ -363,10 +363,10 @@ const NewHome = () => {
                 <div id="w-node-_3cf6e9e0-961c-5f0d-35c1-94757fe19ece-8da07d68" class="footer-stack">
                     <div id="w-node-f3b10b78-278d-2c6b-c975-d2648da07d97-8da07d68" class="footer-link-column">
                         <div id="w-node-f3b10b78-278d-2c6b-c975-d2648da07d98-8da07d68" class="footer-column-titile">Platform</div>
-                        <a href="/join-waiting-list" id="w-node-f3b10b78-278d-2c6b-c975-d2648da07d9a-8da07d68" class="footer-link w-inline-block">
+                        <a id="w-node-f3b10b78-278d-2c6b-c975-d2648da07d9a-8da07d68" class="footer-link w-inline-block">
                             <div>Join </div>
                         </a>
-                        <a href="/join-waiting-list" id="w-node-_05bed204-af49-6806-586c-d0440a0b7f82-8da07d68" class="footer-link w-inline-block">
+                        <a href="/login" id="w-node-_05bed204-af49-6806-586c-d0440a0b7f82-8da07d68" class="footer-link w-inline-block">
                             <div>Sign in</div>
                         </a>
                         <div class="alignment-line smaller"></div>

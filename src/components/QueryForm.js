@@ -296,7 +296,7 @@ phone:'',
     
       </div>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle >Tell us about yourself</DialogTitle>
+        <DialogTitle >Join waiting list</DialogTitle>
         <DialogContent>
           <Grid container spacing={2} style={{ padding: "10px" }}>
             <DialogContent>
