@@ -1,4 +1,6 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
+
 import './NewHome.css'
 import logo from "../assets/img/logo.svg";
 import LottieAnimation from "./LottieAnimation";
@@ -16,7 +18,10 @@ import NavBar from './NavBar';
 import QueryForm from './QueryForm';
 
 const NewHome = () => {
-    
+    const navigate = useNavigate(); // Initialize useNavigate hook
+const handleJoinClick =()=>{
+    navigate('/join-waiting-list')
+}
   return (
     <div>
        
@@ -76,9 +81,9 @@ const NewHome = () => {
                         <div class="menu-button w-nav-button"><img src="https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65ed8eb0c8c77c845c67f274_menu%20icon%201.svg" loading="lazy" alt="" class="menu-icon" /></div>
                         <div class="nav-right-content desktop"><a href="/login" class="glass-button smaller w-button">Sign in</a><div >
                     <div className="green-button-wrap">
-                      <a  className="green-button with-icon">
+                      <a  className="green-button with-icon" onClick={handleJoinClick}>
                         {/* <div>Join now</div> */}
-                        <QueryForm/>
+                        Join Now
                       </a>
                     </div>
                   </div>
@@ -149,9 +154,10 @@ const NewHome = () => {
                 <div className="button-stack">
                   <div className="button-wrap">
                     <div className="green-button-wrap">
-                      <a  className="green-button with-icon w-inline-block">
+                      <a  className="green-button with-icon w-inline-block" onClick={handleJoinClick}>
                         {/* <div>Join now</div> */}
-                        <QueryForm/>
+                        {/* <QueryForm/> */}
+                        Join Now
                       </a>
                     </div>
                   </div>

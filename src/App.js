@@ -34,6 +34,7 @@ import AddJobPost from "./components/Admin/AddJobPost";
 import PrivateRoute from "./auth/PrivateRoute/PrivateRoute";
 import PageNotFound from "./components/PageNotFound";
 import NewHome from "./components/NewHome"
+import Join from "./components/Join";
 gsap.registerPlugin();
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/blank" element={<PageNotFound />} />
+          <Route path="/join-waiting-list" element={<Join />} />
           {/* <Route path="/newHome" element={<NewHome/>} /> */}
 
 
