@@ -1,212 +1,273 @@
 /* Join.css */
+body {
+  margin: 0;
+  padding: 0;
+}
 
 .join-page {
-    background-color: black;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-    background-size: 80%;
-    background-position-y: unset !important;
-    background-repeat: repeat-y;
-    background-position: right;
-    background-image: url("https://join.getwyld.in/assets/images/Background.png");
-    
- 
-  }
+  min-height: 100vh;
+  background-color: black;
+  /* height: 100%; */
+  color: white;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  background-size: 80%;
+  background-position-y: unset !important;
+  background-repeat: no-repeat;
+  background-position: right;
+  /* background-image: url("https://join.getwyld.in/assets/images/Background.png"); */
+}
+
+.join-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
   
+}
+
+.left-column,
+.right-column {
+  flex: 1;
+  height: 100%;
+}
+
+.title-section {
+  /* padding: 20px; */
+}
+
+.left-column {
+  padding: 20px;
+}
+
+.join-container p {
+  font-size: 20px;
+  font-family: "Nanum Myeongjo", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.title-section p {
+font-size: 50px !important;
+line-height: 2ch;
+}
+
+.decorative-img img {
+  width: 100%;
+  max-width: 500px; /* Adjust the width of the image as needed */
+}
+
+.form-section {
+  padding: 20px;
+}
+
+.right-column .form-section h2 {
+  font-size: xx-large;
+  font-family: "Nanum Myeongjo", serif !important;
+  font-weight: 400;
+  font-style: normal;
+}
+
+form {
+
+  /* display: flex; */
+  border: 2px solid white;
+  padding: 20px;
+  border-radius: 5px;
+  border-radius: 20px 20px 20px 20px;
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-group {
+  /* margin-bottom: 20px; */
+  flex: 1; /* Ensure equal width for form fields */
+}
+
+/* Add margin between form fields */
+.form-group:not(:last-child) {
+  margin-right: 10px; /* Adjust the margin as needed */
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid white;
+  border-radius: 10px;
+  background-color: rgb(59, 42, 76);
+  color: white;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #ff9233;
+  box-shadow: 0 0 5px rgba(255, 146, 51, 0.5);
+}
+
+.form-group button {
+  padding: 10px 20px;
+  background-color: rgb(255, 255, 255) !important;
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.form-group button:hover {
+  background-color: #ff9233 !important;
+  color: white;
+}
+
+/* New CSS for the image grid */
+.image-grid {
+  display: flex;
+  overflow: hidden;
+  animation: scroll 10s linear infinite;
+}
+
+.image-grid img {
+  width: 200px; /* Adjust width as needed */
+  height: auto;
+  margin: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.message-container {
+
+  border: 2px solid #ccc; /* Add a border */
+  border-radius: 8px; /* Optional: Add border radius for rounded corners */
+  padding: 20px; /* Add padding for spacing */
+  text-align: center; /* Center-align text */
+}
+
+.message-container h2 {
+  margin-bottom: 10px; /* Add margin below the heading */
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+
+.user-type-group {
+  margin-bottom: 20px;
+}
+
+.user-type-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.user-type-options {
+  display: flex;
+  flex-direction: row;
+}
+
+.user-type-option {
+  display: flex;
+  align-items: center;
+  margin-right: 20px; /* Adjust spacing between options */
+}
+
+.user-type-option input[type="radio"],
+.user-type-option input[type="checkbox"] {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid #757575;
+  background-color: transparent;
+  outline: none;
+}
+
+.user-type-option input[type="radio"]:checked,
+.user-type-option input[type="checkbox"]:checked {
+  background-color: #ff9233;
+}
+
+.interests-group {
+  margin-bottom: 20px;
+}
+
+.interests-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.interests-options {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Style for individual chip */
+.MuiChip-root {
+  margin-right: 10px; /* Adjust spacing between chips */
+  margin-bottom: 10px; /* Adjust vertical spacing between chips */
+}
+
+/* Style for chip label */
+.MuiChip-label {
+  padding: 6px 12px; /* Adjust padding inside each chip */
+  color: white;
+}
+
+/* Style for chip outline */
+.MuiChip-outlined {
+  border-color: #757575; /* Adjust border color */
+  color: #757575; /* Adjust text color */
+}
+
+.join-logo {
+  width: 200px; /* Adjust width as needed */
+  height: 200px; /* Adjust height as needed */
+}
+
+.join-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Maintain aspect ratio and fit within the container */
+  margin: 0; /* Remove margin */
+  padding: 0; /* Remove padding */
+}
+
+.form-group button {
+  width: 100%;
+}
+
+/* Media query for screens smaller than 768px (e.g., mobile devices) */
+/* Media query for screens smaller than 768px (e.g., mobile devices) */
+@media only screen and (max-width: 768px) {
   .join-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    
+    flex-direction: column; /* Display columns as a single column on mobile */
+    align-items: center; /* Center-align content */
   }
-  
+
   .left-column,
   .right-column {
-    flex: 1;
-    height: 100%;
+    width: 100%; /* Take up full width on mobile */
   }
-  
-  .title-section {
-    /* padding: 20px; */
-  }
-  
-  .left-column {
-    padding: 20px;
-  }
-  
-  .join-container p {
-    font-size: 30px;
-    font-family: "Nanum Myeongjo", serif;
-    font-weight: 400;
-    font-style: normal;
-  }
-  
-  .title-section h1 {
-    font-family: "Nanum Myeongjo", serif;
-    font-weight: 400;
-    font-style: normal;
-  }
-  
-  .decorative-img img {
-    width: 100%;
-    max-width: 500px; /* Adjust the width of the image as needed */
-  }
-  
-  .form-section {
-    padding: 20px;
-  }
-  form h2{
-    font-family: "Nanum Myeongjo", serif;
-    font-weight: 400;
-    font-style: normal;
-  }
-  form {
-    border: 2px solid white;
-    padding: 20px;
-    border-radius: 5px;
-    border-radius: 20px 20px 20px 20px;
- 
-  }
-  
-  .form-row {
-    display: flex;
-    justify-content: space-between;
- 
-  
-  }
-  
-  .form-group {
-    margin-bottom: 20px;
-    flex: 1; /* Ensure equal width for form fields */
-  }
-  
-  /* Add margin between form fields */
-  .form-group:not(:last-child) {
-    margin-right: 10px; /* Adjust the margin as needed */
-  }
-  label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid white;
-    border-radius: 10px;
-    background-color: rgb(29, 12, 60);
-    color: white;
-  }
-  
-  .form-group button {
-    padding: 10px 20px;
-    background-color: rgb(255, 255, 255) !important;
-    color: rgb(0, 0, 0);
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .form-group button:hover {
-    background-color: #ff9233 !important;
-  }
-  
-  /* New CSS for the image grid */
   .image-grid {
-    display: flex;
-    overflow: hidden;
-    animation: scroll 10s linear infinite;
+    flex-direction: row; /* Ensure images stay in a row on mobile */
+    justify-content: center; /* Center-align images */
+    margin-top: 20px; /* Add margin to separate images from form */
   }
-  
-  .image-grid img {
-    width: 200px; /* Adjust width as needed */
-    height: auto;
-    margin: 10px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  @keyframes scroll {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(calc(-200px * 3)); /* Adjust image width and number of images */
-    }
-  }
-  .user-type-group {
-    margin-bottom: 20px;
-  }
-  
-  .user-type-group label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  .user-type-options {
-    display: flex;
-    flex-direction: row;
-  }
-  
-  .user-type-option {
-    display: flex;
-    align-items: center;
-    margin-right: 20px; /* Adjust spacing between options */
-  }
-  
-  .user-type-option input[type="radio"] {
-    margin-right: 5px; /* Adjust spacing between radio button and label */
-  }
-  .interests-group {
-    margin-bottom: 20px;
-  }
-  
-  .interests-group label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  .interests-options {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  
-  /* Style for individual chip */
-  .MuiChip-root {
-    margin-right: 10px; /* Adjust spacing between chips */
-    margin-bottom: 10px; /* Adjust vertical spacing between chips */
-  }
-  
-  /* Style for chip label */
-  .MuiChip-label {
-    padding: 6px 12px; /* Adjust padding inside each chip */
-    color:white
-  }
-  
-  /* Style for chip outline */
-  .MuiChip-outlined {
-    border-color: #757575; /* Adjust border color */
-    color: #757575; /* Adjust text color */
-  }
-  
 
-  .join-logo {
-    width: 200px; /* Adjust width as needed */
-    height: 200px; /* Adjust height as needed */
-   
+  .image-grid img {
+    width: 120px; /* Adjust width of images on mobile */
   }
-  
-  .join-logo img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* Maintain aspect ratio and fit within the container */
-    margin: 0; /* Remove margin */
-    padding: 0; /* Remove padding */
-  }
-  
-  .form-group button {
-    width: 100%;
-  }
-  
+}
+
+
