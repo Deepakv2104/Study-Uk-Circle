@@ -305,9 +305,9 @@ const handleJoinClick =()=>{
                         <div class="space-top-medium">
                             <div class="button-stack">
                                 <div class="button-wrap">
-                                    <div class="green-button-wrap"><a  class="green-button with-icon w-inline-block">
-                        {/* <div>Join now</div> */}
-                        <QueryForm/>
+                                    <div class="green-button-wrap" onClick={handleJoinClick}><a  class="green-button with-icon w-inline-block"  >
+                        <div>Join now</div>
+                       
                                            </a></div>
                                 </div>
                                 <div class="glass-button-wrap"><a href="/join-waiting-list" class="glass-button w-button">Sign in</a></div>
