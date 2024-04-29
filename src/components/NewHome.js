@@ -404,7 +404,7 @@ const handleJoinClick =()=>{
                 </div>
             </div>
         </div>
-        <p class="large-text white-text">@copyrights reserved by Jashwanth</p>
+        <p class="large-text white-text">@copyrights reserved</p>
 
         </div>
 

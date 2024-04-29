@@ -210,14 +210,14 @@ const Join = () => {
          
 <div class="footer-brand-logos">
 <h4 class="brand-text">BRANDS THAT<br/>LOVE US !</h4>  <div class="brand-logos">
-    <a href="/webapp/wcs/stores/servlet/en/thebay/brand/TOPSHOP/womens-apparel">
+    <a href="https://www.haldiramuk.com/">
         <img src={haldiram3} alt="HALDIRAM'S"/>
     </a>
-    <a href="/webapp/wcs/stores/servlet/en/thebay/brand/TOPMAN">
+    <a href="https://www.iqstudentaccommodation.com/">
         <img src={IQ} alt="IQ-STUDENT-ACCOMODATION"/>
     </a>
-    <a href="http://beautytheguide.com/magazine/">
-        <img src="https://assets.nationbuilder.com/themes/660d3381d0055b53937ac0db/attachments/original/1659555380/logo.webp?1659555380" alt="WORLDLYNK"/>
+    <a href="https://www.nus.org.uk/">
+        <img src="https://assets.nationbuilder.com/themes/660d3381d0055b53937ac0db/attachments/original/1659555380/logo.webp?1659555380" alt="NUS"/>
     </a>
   </div>
 </div>

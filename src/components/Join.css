@@ -270,26 +270,40 @@ body {
 .footer-brand-logos {
   display: flex;
   align-items: center;
+  justify-content: space-around; /* Align items evenly */
   background-color: #ffffff;
-  padding: 10px 0; /* Adjust vertical padding */
+  padding: 20px 10px; /* Increased padding for better spacing */
+  flex-wrap: wrap; /* Allow items to wrap to next line on smaller screens */
 }
 
 .brand-text {
   color: #000000;
-  margin-right: 80px; /* Adjust right margin */
+  margin-bottom: 10px; /* Adjust spacing between text and logos */
   font-weight: 900;
+  text-align: center; /* Center align the text */
 }
 
 .brand-logos {
   display: flex;
-  flex-direction: row; /* Align logos vertically */
+  flex-wrap: wrap; /* Allow logos to wrap to next line on smaller screens */
+  justify-content: center; /* Center align the logos */
 }
 
 .brand-logos a {
-  margin-bottom: 5px; /* Adjust spacing between logos */
+  margin: 5px; /* Adjust spacing between logos */
 }
 
 .brand-logos img {
   height: 56px;
-  margin-right: 80px;
+  margin: 0 10px; /* Adjust spacing between logos */
+}
+
+@media (max-width: 768px) {
+  .brand-text {
+    margin-right: 0; /* Remove right margin on smaller screens */
+  }
+  
+  .brand-logos img {
+    margin: 5px; /* Adjust spacing between logos on smaller screens */
+  }
 }
