@@ -6,7 +6,9 @@ body {
 
 .join-page {
   min-height: 100vh;
-  background-color: black;
+  background-color: var(--black);
+  -webkit-text-stroke-color: var(--black);
+  background-image: none;
   /* height: 100%; */
   color: white;
   display: flex;
@@ -23,6 +25,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+ 
   
 }
 
@@ -38,20 +41,15 @@ body {
 
 .left-column {
   padding: 20px;
+ 
+    
 }
 
-.join-container p {
-  font-size: 20px;
-  font-family: "Nanum Myeongjo", serif;
-  font-weight: 400;
-  font-style: normal;
-}
 
-.title-section p {
-font-size: 50px !important;
-line-height: 2ch;
-}
 
+.join-page .waitlist-heading p{
+  font-size: x-large !important;
+}
 .decorative-img img {
   width: 100%;
   max-width: 500px; /* Adjust the width of the image as needed */
@@ -61,14 +59,9 @@ line-height: 2ch;
   padding: 20px;
 }
 
-.right-column .form-section h2 {
-  font-size: xx-large;
-  font-family: "Nanum Myeongjo", serif !important;
-  font-weight: 400;
-  font-style: normal;
-}
 
-form {
+
+.right-column .form-section form {
 
   /* display: flex; */
   border: 2px solid white;
@@ -77,12 +70,12 @@ form {
   border-radius: 20px 20px 20px 20px;
 }
 
-.form-row {
+.right-column .form-section .form-row {
   display: flex;
   justify-content: space-between;
 }
 
-.form-group {
+.right-column .form-section .form-group {
   /* margin-bottom: 20px; */
   flex: 1; /* Ensure equal width for form fields */
 }
@@ -92,19 +85,23 @@ form {
   margin-right: 10px; /* Adjust the margin as needed */
 }
 
-label {
+.right-column .form-section label {
   display: block;
   margin-bottom: 5px;
 }
 
-input {
+.right-column .form-section input {
   width: 100%;
   padding: 10px;
-  border: 1px solid white;
+  border: 1px solid rgb(255, 255, 255);
   border-radius: 10px;
-  background-color: rgb(59, 42, 76);
-  color: white;
+  background-color: #626060;
+  color: #000000;
 }
+.right-column .form-section input::placeholder {
+  color: #ffffff; /* Change this to your desired color */
+}
+
 
 .form-group input:focus {
   outline: none;
@@ -114,7 +111,7 @@ input {
 
 .form-group button {
   padding: 10px 20px;
-  background-color: rgb(255, 255, 255) !important;
+  background-color:#ff9233 !important;
   color: rgb(0, 0, 0);
   border: none;
   border-radius: 5px;
@@ -122,7 +119,7 @@ input {
 }
 
 .form-group button:hover {
-  background-color: #ff9233 !important;
+  background-color: white !important;
   color: white;
 }
 
@@ -131,15 +128,16 @@ input {
   display: flex;
   overflow: hidden;
   animation: scroll 10s linear infinite;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+}
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 200px); /* Adjust width as needed */
+  grid-gap: 20px; /* Adjust gap between images */
 }
 
-.image-grid img {
-  width: 200px; /* Adjust width as needed */
-  height: auto;
-  margin: 10px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+
 .message-container {
 
   border: 2px solid #ccc; /* Add a border */
@@ -154,7 +152,7 @@ input {
 
 @keyframes scroll {
   0% {
-    transform: translateX(0);
+    transform: translateX(100%);
   }
   100% {
     transform: translateX(-100%);
@@ -269,5 +267,29 @@ input {
     width: 120px; /* Adjust width of images on mobile */
   }
 }
+.footer-brand-logos {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 10px 0; /* Adjust vertical padding */
+}
 
+.brand-text {
+  color: #000000;
+  margin-right: 80px; /* Adjust right margin */
+  font-weight: 900;
+}
 
+.brand-logos {
+  display: flex;
+  flex-direction: row; /* Align logos vertically */
+}
+
+.brand-logos a {
+  margin-bottom: 5px; /* Adjust spacing between logos */
+}
+
+.brand-logos img {
+  height: 56px;
+  margin-right: 80px;
+}

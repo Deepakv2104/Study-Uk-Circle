@@ -1,6 +1,11 @@
 // Join.js
 import React, { useState } from 'react';
 import logo1 from '.././assets/img/logo1.png';
+import haldiram3 from '.././assets/img/haldiram3.png';
+import IQ from '.././assets/img/IQ.svg';
+import nus from '.././assets/img/nus.png';
+
+
 import './Join.css';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
@@ -78,12 +83,12 @@ const Join = () => {
          
             <div className="join-container">
                 <div className="left-column">
-                    <p>WELCOME TO<span className='text-color-green'>  WORLDLYNK</span></p>
-                    <div className="title-section">
-                        <p>SEAMLESS STUDENT EXPERIENCE IN THE UK: A ONE-STOP SOLUTION</p>
+                    <p className='waitlist-heading'>WELCOME TO<span className='text-color-green'>  WORLDLYNK</span></p>
+                    <div className="heading">
+                        <h2>SEAMLESS STUDENT EXPERIENCE IN THE UK: A ONE-STOP SOLUTION</h2>
 
                     </div>
-                    <p>Be among the first to experience the future of student life in the UK! Join our waiting list today and gain early access to our comprehensive platform designed to revolutionize your student experience.</p>
+                    <p className='large-text'>Be among the first to experience the future of student life in the UK! Join our waiting list today and gain early access to our comprehensive platform designed to revolutionize your student experience.</p>
 
                     <div>
                         <img src="https://join.getwyld.in/assets/images/line.png" alt="Decorative Image" />
@@ -203,12 +208,21 @@ const Join = () => {
                   
             </div>
          
-            <div className="join-container image-grid">
-                <img src={logo1} alt="Sample Image" />
-                <img src={logo1}alt="Sample Image" />
-                <img src={logo1} alt="Sample Image" />
-                {/* Add more images here */}
-            </div>
+<div class="footer-brand-logos">
+<h4 class="brand-text">BRANDS THAT<br/>LOVE US !</h4>  <div class="brand-logos">
+    <a href="/webapp/wcs/stores/servlet/en/thebay/brand/TOPSHOP/womens-apparel">
+        <img src={haldiram3} alt="HALDIRAM'S"/>
+    </a>
+    <a href="/webapp/wcs/stores/servlet/en/thebay/brand/TOPMAN">
+        <img src={IQ} alt="IQ-STUDENT-ACCOMODATION"/>
+    </a>
+    <a href="http://beautytheguide.com/magazine/">
+        <img src="https://assets.nationbuilder.com/themes/660d3381d0055b53937ac0db/attachments/original/1659555380/logo.webp?1659555380" alt="WORLDLYNK"/>
+    </a>
+  </div>
+</div>
+
+
         </div>
     );
 };

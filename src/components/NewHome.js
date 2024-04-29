@@ -23,7 +23,7 @@ const handleJoinClick =()=>{
     navigate('/join-waiting-list')
 }
   return (
-    <div>
+    <div className='home-page'>
        
          <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar w-nav">
         <div class="w-layout-blockcontainer container w-container">
@@ -75,11 +75,11 @@ const handleJoinClick =()=>{
                             </div>
                         </div>
                     </div><a href="/partnerships" class="nav-link">Partner with us</a><a href="/about" class="nav-link">Learn about us</a><a href="/contact" class="nav-link">Speak with us</a>
-                    <div class="nav-right-content mobile"><a href="/login" class="glass-button smaller w-button">Sign in</a><a class="green-button w-button"><QueryForm/></a></div>
+                    <div class="nav-right-content mobile"><a href="/join-waiting-list" class="glass-button smaller w-button">Sign in</a><a class="green-button w-button"><QueryForm/></a></div>
                     </nav>
                     <div id="w-node-_06216545-40ad-bd51-1b83-2f6c6ddd31cb-6ddd3191" class="nav-right">
                         <div class="menu-button w-nav-button"><img src="https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65ed8eb0c8c77c845c67f274_menu%20icon%201.svg" loading="lazy" alt="" class="menu-icon" /></div>
-                        <div class="nav-right-content desktop"><a href="/login" class="glass-button smaller w-button">Sign in</a><div >
+                        <div class="nav-right-content desktop"><a href="/join-waiting-list" class="glass-button smaller w-button">Sign in</a><div >
                     <div className="green-button-wrap">
                       <a  className="green-button with-icon" onClick={handleJoinClick}>
                         {/* <div>Join now</div> */}
@@ -135,7 +135,7 @@ const handleJoinClick =()=>{
         <div className="bento m" style={{ display: 'flex', justifyContent: 'space-between' }}>
           <div>
             <div className="limit-large">
-              <h2 className="heading">Are you studying in UK ? Looking for <span className="text-color-green">Mentorship, </span><span className="text-color-green">Accommodation</span> and <span className="text-color-green">Jobs ?</span></h2>
+              <h2 className="heading">Are you studying in UK ? Looking for <span className="text-color-green">Mentorship, </span><span className="text-color-green">Accommodation</span> and <span className="text-color-green">  Jobs ?</span></h2>
               {/* <div className="title-tag-wrapper">
                 <div className="title-tag-contents">
                   <div>United Kingdom</div>
@@ -162,7 +162,7 @@ const handleJoinClick =()=>{
                     </div>
                   </div>
                   <div className="glass-button-wrap">
-                    <a href="/login" className="glass-button w-button">Sign in</a>
+                    <a href="/join-waiting-list" className="glass-button w-button">Sign in</a>
                   </div>
                 </div>
               </div>
@@ -310,7 +310,7 @@ const handleJoinClick =()=>{
                         <QueryForm/>
                                            </a></div>
                                 </div>
-                                <div class="glass-button-wrap"><a href="/login" class="glass-button w-button">Sign in</a></div>
+                                <div class="glass-button-wrap"><a href="/join-waiting-list" class="glass-button w-button">Sign in</a></div>
                             </div>
                         </div>
                     </div>
@@ -372,7 +372,7 @@ const handleJoinClick =()=>{
                         <a id="w-node-f3b10b78-278d-2c6b-c975-d2648da07d9a-8da07d68" class="footer-link w-inline-block">
                             <div>Join </div>
                         </a>
-                        <a href="/login" id="w-node-_05bed204-af49-6806-586c-d0440a0b7f82-8da07d68" class="footer-link w-inline-block">
+                        <a href="/join-waiting-list" id="w-node-_05bed204-af49-6806-586c-d0440a0b7f82-8da07d68" class="footer-link w-inline-block">
                             <div>Sign in</div>
                         </a>
                         <div class="alignment-line smaller"></div>
