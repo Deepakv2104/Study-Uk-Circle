@@ -89,14 +89,21 @@ body {
   display: block;
   margin-bottom: 5px;
 }
-
+.right-column .form-section textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 10px;
+  background-color: #626060;
+  color: #ffffff;
+}
 .right-column .form-section input {
   width: 100%;
   padding: 10px;
   border: 1px solid rgb(255, 255, 255);
   border-radius: 10px;
   background-color: #626060;
-  color: #000000;
+  color: #ffffff;
 }
 .right-column .form-section input::placeholder {
   color: #ffffff; /* Change this to your desired color */
@@ -120,7 +127,7 @@ body {
 
 .form-group button:hover {
   background-color: white !important;
-  color: white;
+  color: rgb(0, 0, 0);
 }
 
 /* New CSS for the image grid */

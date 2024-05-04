@@ -11,21 +11,23 @@ import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import {firestore }from '../firebase'
 import { collection, addDoc } from 'firebase/firestore';
+import { Input } from '@mui/base';
 
-const Join = () => {
+const SmeForm = () => {
   const [selectedInterests, setSelectedInterests] = useState([]);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formData, setFormData] = useState({
-      name: '',
-      email: '',
+      CompanyName: '',
+      ComapanyMail: '',
       phone: '',
-      gender: '',
-      userType: '',
-      university: '',
-      graduationYear: '',
+    //   gender: '',
+    //   userType: '',
+    //   university: '',
+    //   graduationYear: '',
       address: '',
       postalCode: '',
-      interests: []
+      about:'',
+    //   interests: []
   });
 
   const handleChipClick = (interest) => {
@@ -44,8 +46,8 @@ const Join = () => {
 
 
   const handleChange = (e) => {
-      const { name, value } = e.target;
-      setFormData({ ...formData, [name]: value });
+      const { CompanyName, value } = e.target;
+      setFormData({ ...formData, [CompanyName]: value });
   };
 
   const handleSubmit = async (e) => {
@@ -53,21 +55,22 @@ const Join = () => {
     
     // Extracting data from the form data and setting default value for interests if none selected
     const interests = selectedInterests.length > 0 ? selectedInterests : ['None'];
-    const { name, email, phone, gender, userType, university, graduationYear, address, postalCode } = formData;
+    const { CompanyName, ComapanyMail, phone,  address, postalCode, about } = formData;
     
     try {
         // Accessing the "form" collection in Firestore and adding a new document
-        await addDoc(collection(firestore, 'form'), {
-            name,
-            email,
+        await addDoc(collection(firestore, 'sme'), {
+            CompanyName,
+            ComapanyMail,
             phone,
-            gender,
-            userType,
-            university,
-            graduationYear,
+            // gender,
+            // userType,
+            // university,
+            // graduationYear,
             address,
             postalCode,
-            interests,
+            // interests,
+            about,
             timestamp: new Date() // Adding a timestamp field with the current date and time
         });
       console.log(formData)
@@ -85,10 +88,10 @@ const Join = () => {
                 <div className="left-column">
                     <p className='waitlist-heading'>WELCOME TO<span className='text-color-green'>  WORLDLYNK</span></p>
                     <div className="heading">
-                        <h2>Seamless student experience in the UK: a one-stop solution</h2>
+                        <h2>Unlock the full potential of your brand by partnering with us at WorldLynk.</h2>
 
                     </div>
-                    <p className='large-text'>Be among the first to experience the future of student life in the UK! Join our waiting list today and gain early access to our comprehensive platform designed to revolutionize your student experience.</p>
+                    {/* <p className='large-text'>Be among the first to experience the future of student life in the UK! Join our waiting list today and gain early access to our comprehensive platform designed to revolutionize your student experience.</p> */}
 
                     <div>
                         <img src="https://join.getwyld.in/assets/images/line.png" alt="Decorative Image" />
@@ -101,14 +104,14 @@ const Join = () => {
                     <div className="form-section">
                     {!formSubmitted ? (
                         <form onSubmit={handleSubmit}>
-                            <h2>Join waiting list</h2>
+                            <h2>Contact Us</h2>
                             <div className="form-row">
                                 <div className="form-group">
-                                    <label htmlFor="name">Name:</label>
+                                    <label htmlFor="name">Company name:</label>
                                     <input type="text" id="name" name="name" placeholder="Enter your name"  onChange={handleChange} />
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="email">Email:</label>
+                                    <label htmlFor="email">Company mail:</label>
                                     <input type="email" id="email" name="email" placeholder="Enter your email address"  onChange={handleChange} />
                                 </div>
                             </div>
@@ -117,12 +120,12 @@ const Join = () => {
                                     <label htmlFor="phone">Phone:</label>
                                     <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" onChange={handleChange}  />
                                 </div>
-                                <div className="form-group">
+                                {/* <div className="form-group">
                                     <label htmlFor="gender">Gender:</label>
                                     <input type="text" id="gender" name="gender" placeholder="Enter your gender" onChange={handleChange}  />
-                                </div>
+                                </div> */}
                             </div>
-                            <div className="form-row">
+                            {/* <div className="form-row">
                                 <div className="form-group user-type-group">
                                     <label>User Type:</label>
                                     <div className="user-type-options">
@@ -136,8 +139,8 @@ const Join = () => {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="form-row">
+                            </div> */}
+                            {/* <div className="form-row">
                                 <div className="form-group">
                                     <label htmlFor="university">University Name:</label>
                                     <input type="text" id="university" name="university" placeholder="Enter your university name" onChange={handleChange}  />
@@ -146,7 +149,7 @@ const Join = () => {
                                     <label htmlFor="graduationYear">Graduation Year:</label>
                                     <input type="text" id="graduationYear" name="graduationYear" placeholder="Enter your graduation year" onChange={handleChange}  />
                                 </div>
-                            </div>
+                            </div> */}
                             <div className="form-row">
                                 <div className="form-group">
                                     <label htmlFor="address">Address:</label>
@@ -158,6 +161,16 @@ const Join = () => {
                                 </div>
                             </div>
                             <div className="form-row">
+                                <div className="form-group">
+                                    <label htmlFor="about">Tell us about your brand:</label>
+                                    <textarea type="text" id="about" rows="4"name="about" placeholder="Enter brand details" onChange={handleChange}  />
+                                </div>
+                                {/* <div className="form-group">
+                                    <label htmlFor="postalCode">Postal Code:</label>
+                                    <input type="text" id="postalCode" name="postalCode" placeholder="Enter your postal code"  onChange={handleChange} />
+                                </div> */}
+                            </div>
+                            {/* <div className="form-row">
                                 <div className="form-group interests-group">
                                     <label htmlFor="interests">Interests:</label>
                                     <Stack direction="row" spacing={1}>
@@ -191,13 +204,13 @@ const Join = () => {
                                         />
                                     </Stack>
                                 </div>
-                            </div>
+                            </div> */}
                             <div className="form-group">
                                 <button type="submit">Join</button>
                             </div>
                         </form>
                       ) : (
-                      <div className="message-container">
+                      <div className="message-container" >
                           <h2>You are in waitlist!</h2>
                           <p>Your application has been received.</p>
                           {/* Add any additional content or styling for the message */}
@@ -227,4 +240,4 @@ const Join = () => {
     );
 };
 
-export default Join;
+export default SmeForm;

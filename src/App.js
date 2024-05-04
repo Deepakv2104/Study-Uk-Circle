@@ -35,6 +35,7 @@ import PrivateRoute from "./auth/PrivateRoute/PrivateRoute";
 import PageNotFound from "./components/PageNotFound";
 import NewHome from "./components/NewHome"
 import Join from "./components/Join";
+import SmeForm from './components/SmeForm';
 gsap.registerPlugin();
 function App() {
   return (
@@ -48,6 +49,8 @@ function App() {
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/blank" element={<PageNotFound />} />
           <Route path="/join-waiting-list" element={<Join />} />
+          <Route path="/write-to-us" element={<SmeForm />} />
+
           {/* <Route path="/newHome" element={<NewHome/>} /> */}
 
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React , {useState} from 'react'
 import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
 
 import './NewHome.css'
@@ -19,8 +19,16 @@ import QueryForm from './QueryForm';
 
 const NewHome = () => {
     const navigate = useNavigate(); // Initialize useNavigate hook
+    const [sidebarOpen, setSidebarOpen] = useState(false);
+
+    const toggleSidebar = () => {
+        setSidebarOpen(!sidebarOpen);
+    };
 const handleJoinClick =()=>{
     navigate('/join-waiting-list')
+}
+const handleBrandFormClick =()=>{
+    navigate('/write-to-us')
 }
   return (
     <div className='home-page'>
@@ -36,46 +44,7 @@ const handleJoinClick =()=>{
                     </a></div>
                 <nav
                     role="navigation" id="w-node-_06216545-40ad-bd51-1b83-2f6c6ddd3197-6ddd3191" class="nav-menu w-nav-menu">
-                    <div class="tablet">
-                        <div class="locales-wrapper-2 w-locales-list">
-                            <div data-delay="200" data-hover="false" class="margin-0 w-dropdown">
-                                <div class="green-button with-icon small hollow w-dropdown-toggle">
-                                    <div>UK</div>
-                                    <div class="icon-embed-xxsmall w-embed"></div>
-                                </div>
-                                <nav class="table9_dropdown-list small w-dropdown-list">
-                                    <div role="list" class="w-locales-items">
-                                        <div role="listitem" class="w-locales-item">
-                                            <a hreflang="en-GB" href="/" aria-current="page" class="table9_dropdown-link w-inline-block w--current">
-                                                <div class="text-size-small-2">UK</div>
-                                            </a>
-                                        </div>
-                                        <div role="listitem" class="w-locales-item">
-                                            <a hreflang="es-AR" href="/es-ar" class="table9_dropdown-link w-inline-block">
-                                                <div class="text-size-small-2">AR</div>
-                                            </a>
-                                        </div>
-                                        <div role="listitem" class="w-locales-item">
-                                            <a hreflang="en-NZ" href="/en-nz" class="table9_dropdown-link w-inline-block">
-                                                <div class="text-size-small-2">NZ</div>
-                                            </a>
-                                        </div>
-                                        <div role="listitem" class="w-locales-item">
-                                            <a hreflang="en-US" href="/en-us" class="table9_dropdown-link w-inline-block">
-                                                <div class="text-size-small-2">US</div>
-                                            </a>
-                                        </div>
-                                        <div role="listitem" class="w-locales-item">
-                                            <a hreflang="en-CA" href="/en-ca" class="table9_dropdown-link w-inline-block">
-                                                <div class="text-size-small-2">CA</div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </nav>
-                            </div>
-                        </div>
-                    </div><a href="/partnerships" class="nav-link">Partner with us</a><a href="/about" class="nav-link">Learn about us</a><a href="/contact" class="nav-link">Speak with us</a>
-                    <div class="nav-right-content mobile"><a href="/join-waiting-list" class="glass-button smaller w-button">Sign in</a><a class="green-button w-button"><QueryForm/></a></div>
+              
                     </nav>
                     <div id="w-node-_06216545-40ad-bd51-1b83-2f6c6ddd31cb-6ddd3191" class="nav-right">
                         <div class="menu-button w-nav-button"><img src="https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65ed8eb0c8c77c845c67f274_menu%20icon%201.svg" loading="lazy" alt="" class="menu-icon" /></div>
@@ -87,43 +56,7 @@ const handleJoinClick =()=>{
                       </a>
                     </div>
                   </div>
-                            {/* <div class="locales-wrapper-2 w-locales-list">
-                                <div data-delay="200" data-hover="false" class="margin-0 w-dropdown">
-                                    <div class="green-button with-icon small hollow w-dropdown-toggle">
-                                        <div>UK</div>
-                                        <div class="icon-embed-xxsmall w-embed"></div>
-                                    </div>
-                                    <nav class="table9_dropdown-list small w-dropdown-list">
-                                        <div role="list" class="w-locales-items">
-                                            <div role="listitem" class="w-locales-item">
-                                                <a hreflang="en-GB" href="/" aria-current="page" class="table9_dropdown-link w-inline-block w--current">
-                                                    <div class="text-size-small-2">UK</div>
-                                                </a>
-                                            </div>
-                                            <div role="listitem" class="w-locales-item">
-                                                <a hreflang="es-AR" href="/es-ar" class="table9_dropdown-link w-inline-block">
-                                                    <div class="text-size-small-2">AR</div>
-                                                </a>
-                                            </div>
-                                            <div role="listitem" class="w-locales-item">
-                                                <a hreflang="en-NZ" href="/en-nz" class="table9_dropdown-link w-inline-block">
-                                                    <div class="text-size-small-2">NZ</div>
-                                                </a>
-                                            </div>
-                                            <div role="listitem" class="w-locales-item">
-                                                <a hreflang="en-US" href="/en-us" class="table9_dropdown-link w-inline-block">
-                                                    <div class="text-size-small-2">US</div>
-                                                </a>
-                                            </div>
-                                            <div role="listitem" class="w-locales-item">
-                                                <a hreflang="en-CA" href="/en-ca" class="table9_dropdown-link w-inline-block">
-                                                    <div class="text-size-small-2">CA</div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </nav>
-                                </div>
-                            </div> */}
+                           
                         </div>
                     </div>
             </div>
@@ -136,17 +69,7 @@ const handleJoinClick =()=>{
           <div>
             <div className="limit-large">
               <h2 className="heading">Are you studying in UK ? Looking for <span className="text-color-green">Mentorship, </span><span className="text-color-green">Accommodation</span> and <span className="text-color-green"><br/>Jobs ?</span></h2>
-              {/* <div className="title-tag-wrapper">
-                <div className="title-tag-contents">
-                  <div>United Kingdom</div>
-                </div>
-              </div> */}
-              {/* <a href="#" className="showreel-button w-inline-block w-lightbox">
-                <div className="play-button-wrap">
-                  <img src="https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65ed8eb0c8c77c845c67f287_play%20button.svg" loading="lazy" alt="" />
-                </div>
-                <div>Watch now</div>
-              </a> */}
+             
             </div>
             <div className="spread-vertical large">
               <div className="limit-medium">
@@ -273,7 +196,8 @@ const handleJoinClick =()=>{
                                     <div>Account</div>
                                 </div>
                             </div> */}
-                            <h2>Join the <span>community.</span></h2>
+                            <h2>Partner <span>With Us.</span></h2>
+                            <span>Embark on a journey of mutual growth and success by aligning your brand with WorldLynk. Partnering with us offers unparalleled advantages:</span>
                         </div>
                         <div class="space-top-medium">
                             <div class="three-column-grid">
@@ -284,33 +208,33 @@ const handleJoinClick =()=>{
                                             <img src="https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65ed8eb0c8c77c845c67f35e_application-one%201.svg"
                                              loading="lazy" alt="" /></div>
                                     </div>
-                                    <h5 class="no-space-bottom">Create an account</h5>
+                                    <h5 class="no-space-bottom">Amplified Reach</h5>
                                 </div>
                                 <div id="w-node-aad99063-6a7c-d8e1-3dce-51d0a2bf2aca-5c67f262" class="feature-card limit-tiny">
                                     <div class="alignment-line bigger"></div>
                                     <div class="green-button-wrap smaller">
                                         <div class="green-icon-wrap smaller"><img src="https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65ed8eb0c8c77c845c67f35d_graphic-stitching%201.svg" loading="lazy" alt="" /></div>
                                     </div>
-                                    <h5 class="no-space-bottom">Connect with brands</h5>
+                                    <h5 class="no-space-bottom">Enhanced Engagement</h5>
                                 </div>
                                 <div id="w-node-aad99063-6a7c-d8e1-3dce-51d0a2bf2ad1-5c67f262" class="feature-card limit-tiny">
                                     <div class="alignment-line bigger"></div>
                                     <div class="green-button-wrap smaller">
                                         <div class="green-icon-wrap smaller"><img src="https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65ed8eb0c8c77c845c67f35c_shield%201.svg" loading="lazy" alt="" /></div>
                                     </div>
-                                    <h5 class="no-space-bottom">Explore the missions</h5>
+                                    <h5 class="no-space-bottom">Insightful Analytics</h5>
                                 </div>
                             </div>
                         </div>
                         <div class="space-top-medium">
                             <div class="button-stack">
                                 <div class="button-wrap">
-                                    <div class="green-button-wrap" onClick={handleJoinClick}><a  class="green-button with-icon w-inline-block"  >
-                        <div>Join now</div>
+                                    <div class="green-button-wrap" onClick={handleBrandFormClick}><a  class="green-button with-icon w-inline-block"  >
+                        <div style={{color:'black',fontWidth:'700'}}>Write to us</div>
                        
                                            </a></div>
                                 </div>
-                                <div class="glass-button-wrap"><a href="/join-waiting-list" class="glass-button w-button">Sign in</a></div>
+                                <div class="glass-button-wrap"><a href="/write-to-us" class="glass-button w-button">Sign in</a></div>
                             </div>
                         </div>
                     </div>
