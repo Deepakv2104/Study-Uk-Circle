@@ -14,34 +14,33 @@ import { collection, addDoc } from 'firebase/firestore';
 import { Input } from '@mui/base';
 
 const SmeForm = () => {
-  const [selectedInterests, setSelectedInterests] = useState([]);
+  const [selectedCommunications, setSelectedCommunications] = useState([]);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formData, setFormData] = useState({
-      CompanyName: '',
-      ComapanyMail: '',
-      phone: '',
-    //   gender: '',
-    //   userType: '',
-    //   university: '',
-    //   graduationYear: '',
-      address: '',
-      postalCode: '',
-      about:'',
-    //   interests: []
+      companyName: '',
+      comapanyMail: '',
+      role:'',
+      primaryContact: '',
+      secondaryContact: '',
+      websiteLink:'',
+      description:'',
+      purpose:'',
+  
+      preferedCommunication: []
   });
 
   const handleChipClick = (interest) => {
-    let updatedInterests = [];
-    if (selectedInterests.includes(interest)) {
-        updatedInterests = selectedInterests.filter(item => item !== interest);
+    let updatedCommunications = [];
+    if (selectedCommunications.includes(interest)) {
+        updatedCommunications = selectedCommunications.filter(item => item !== interest);
     } else {
-        updatedInterests = [...selectedInterests, interest];
+        updatedCommunications = [...selectedCommunications, interest];
     }
 
-    setSelectedInterests(updatedInterests); // Update the selectedInterests state
+    setSelectedCommunications(updatedCommunications); // Update the selectedInterests state
 
     // Update the formData state to include the updated interests
-    setFormData({ ...formData, interests: updatedInterests });
+    setFormData({ ...formData, preferedCommunication: updatedCommunications });
 };
 
 
@@ -54,23 +53,33 @@ const SmeForm = () => {
     e.preventDefault(); // Prevent the default form submission behavior
     
     // Extracting data from the form data and setting default value for interests if none selected
-    const interests = selectedInterests.length > 0 ? selectedInterests : ['None'];
-    const { CompanyName, ComapanyMail, phone,  address, postalCode, about } = formData;
+    const preferedCommunication = selectedCommunications.length > 0 ? selectedCommunications : ['None'];
+    const {   companyName,
+        comapanyMail,
+        role,
+        primaryContact,
+        secondaryContact,
+        websiteLink,
+        description,
+        purpose,
+    
+        preferedCommunication: [] } = formData;
     
     try {
+        console.log(formData)
+
         // Accessing the "form" collection in Firestore and adding a new document
         await addDoc(collection(firestore, 'sme'), {
-            CompanyName,
-            ComapanyMail,
-            phone,
-            // gender,
-            // userType,
-            // university,
-            // graduationYear,
-            address,
-            postalCode,
-            // interests,
-            about,
+            companyName,
+      comapanyMail,
+      role,
+      primaryContact,
+      secondaryContact,
+      websiteLink,
+      description,
+      purpose,
+  
+      preferedCommunication: [],
             timestamp: new Date() // Adding a timestamp field with the current date and time
         });
       console.log(formData)
@@ -86,7 +95,7 @@ const SmeForm = () => {
          
             <div className="join-container">
                 <div className="left-column">
-                    <p className='waitlist-heading'>WELCOME TO<span className='text-color-green'>  WORLDLYNK</span></p>
+                    <h3 className='waitlist-heading'>WELCOME TO<span className='text-color-green'>  WORLDLYNK</span></h3>
                     <div className="heading">
                         <h2>Unlock the full potential of your brand by partnering with us at WorldLynk.</h2>
 
@@ -107,23 +116,24 @@ const SmeForm = () => {
                             <h2>Contact Us</h2>
                             <div className="form-row">
                                 <div className="form-group">
-                                    <label htmlFor="name">Company name:</label>
-                                    <input type="text" id="name" name="name" placeholder="Enter your name"  onChange={handleChange} />
+                                    <label htmlFor="companyName">Company name:</label>
+                                    <input type="text" id="companyName" name="companyName" placeholder="Enter company name"  onChange={handleChange} />
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="email">Company mail:</label>
-                                    <input type="email" id="email" name="email" placeholder="Enter your email address"  onChange={handleChange} />
+                                    <label htmlFor="companyEmail">Company mail:</label>
+                                    <input type="email" id="companyEmail" name="companyEmail" placeholder="Enter company mail address"  onChange={handleChange} />
                                 </div>
                             </div>
                             <div className="form-row">
-                                <div className="form-group">
-                                    <label htmlFor="phone">Phone:</label>
-                                    <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" onChange={handleChange}  />
+                            <div className="form-group">
+                                    <label htmlFor="role">Role in Company:</label>
+                                    <input type="text" id="role" name="role" placeholder="Enter your role" onChange={handleChange}  />
                                 </div>
-                                {/* <div className="form-group">
-                                    <label htmlFor="gender">Gender:</label>
-                                    <input type="text" id="gender" name="gender" placeholder="Enter your gender" onChange={handleChange}  />
-                                </div> */}
+                                <div className="form-group">
+                                    <label htmlFor="primaryContact">Primary Contact:</label>
+                                    <input type="tel" id="primaryContact" name="primaryContact" placeholder="Enter primary contact" onChange={handleChange}  />
+                                </div>
+                                
                             </div>
                             {/* <div className="form-row">
                                 <div className="form-group user-type-group">
@@ -151,62 +161,73 @@ const SmeForm = () => {
                                 </div>
                             </div> */}
                             <div className="form-row">
-                                <div className="form-group">
-                                    <label htmlFor="address">Address:</label>
-                                    <input type="text" id="address" name="address" placeholder="Enter your address" onChange={handleChange}  />
+                            <div className="form-group">
+                                    <label htmlFor="secondayContact">Secondary Contact:</label>
+                                    <input type="text" id="secondaryContact" name="secondaryContact" placeholder="Enter secondary contact"  onChange={handleChange} />
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="postalCode">Postal Code:</label>
-                                    <input type="text" id="postalCode" name="postalCode" placeholder="Enter your postal code"  onChange={handleChange} />
+                                    <label htmlFor="websiteLink">Website URL:</label>
+                                    <input type="text" id="websiteLink" name="websiteLink" placeholder="Enter company website link" onChange={handleChange}  />
                                 </div>
+                              
                             </div>
                             <div className="form-row">
                                 <div className="form-group">
-                                    <label htmlFor="about">Tell us about your brand:</label>
-                                    <textarea type="text" id="about" rows="4"name="about" placeholder="Enter brand details" onChange={handleChange}  />
+                                    <label htmlFor="descripton">Brief description about your company:</label>
+                                    <textarea type="text" id="descripton" rows="3"name="descripton" placeholder="Enter company details" onChange={handleChange}  />
                                 </div>
                                 {/* <div className="form-group">
                                     <label htmlFor="postalCode">Postal Code:</label>
                                     <input type="text" id="postalCode" name="postalCode" placeholder="Enter your postal code"  onChange={handleChange} />
                                 </div> */}
                             </div>
-                            {/* <div className="form-row">
+                            <div className="form-row">
+                                <div className="form-group">
+                                    <label htmlFor="purpose">Why are you interested in forming a partnership ?</label>
+                                    <textarea type="text" id="purpose" rows="5"name="purpose" placeholder="Enter your answer" onChange={handleChange}  />
+                                </div>
+                                {/* <div className="form-group">
+                                    <label htmlFor="postalCode">Postal Code:</label>
+                                    <input type="text" id="postalCode" name="postalCode" placeholder="Enter your postal code"  onChange={handleChange} />
+                                </div> */}
+                            </div>
+                            <div className="form-row">
                                 <div className="form-group interests-group">
-                                    <label htmlFor="interests">Interests:</label>
+                                    <label htmlFor="preferedCommunication">Prefered method of Communications:</label>
                                     <Stack direction="row" spacing={1}>
                                         <Chip
-                                            label="Jobs"
+                                            label="Email"
                                             variant="outlined"
                                             clickable
-                                            onClick={() => handleChipClick("Jobs")}
-                                            color={selectedInterests.includes("Jobs") ? "primary" : "default"}
+                                            onClick={() => handleChipClick("Email")}
+                                            color={selectedCommunications.includes("Email") ? "primary" : "default"}
                                         />
                                         <Chip
-                                            label="Mentorship"
+                                            label="Phone"
                                             variant="outlined"
                                             clickable
-                                            onClick={() => handleChipClick("Mentorship")}
-                                            color={selectedInterests.includes("Mentorship") ? "primary" : "default"}
+                                            onClick={() => handleChipClick("Phone")}
+                                            color={selectedCommunications.includes("Phone") ? "primary" : "default"}
                                         />
                                         <Chip
-                                            label="Events"
+                                            label="Whatsapp"
                                             variant="outlined"
                                             clickable
-                                            onClick={() => handleChipClick("Events")}
-                                            color={selectedInterests.includes("Events") ? "primary" : "default"}
+                                            onClick={() => handleChipClick("Whatsapp")}
+                                            color={selectedCommunications.includes("Whatsapp") ? "primary" : "default"}
                                         />
-                                        <Chip
+                                        {/* <Chip
                                             label="Accommodation"
                                             variant="outlined"
                                             clickable
                                             onClick={() => handleChipClick("Accommodation")}
-                                            color={selectedInterests.includes("Accommodation") ? "primary" : "default"}
-                                        />
+                                            color={selectedCommunications.includes("Accommodation") ? "primary" : "default"}
+                                        /> */}
                                     </Stack>
                                 </div>
-                            </div> */}
+                            </div>
                             <div className="form-group">
-                                <button type="submit">Join</button>
+                                <button type="submit">Submit</button>
                             </div>
                         </form>
                       ) : (

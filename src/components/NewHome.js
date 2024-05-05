@@ -234,7 +234,7 @@ const handleBrandFormClick =()=>{
                        
                                            </a></div>
                                 </div>
-                                <div class="glass-button-wrap"><a href="/write-to-us" class="glass-button w-button">Sign in</a></div>
+                                {/* <div class="glass-button-wrap"><a href="/write-to-us" class="glass-button w-button">Sign in</a></div> */}
                             </div>
                         </div>
                     </div>
@@ -277,7 +277,7 @@ const handleBrandFormClick =()=>{
                     <a href="/" id="w-node-f3b10b78-278d-2c6b-c975-d2648da07d7b-8da07d68" aria-current="page" class="footer-link w-inline-block w--current">
                         <div>Home </div>
                     </a>
-                    <a href="/" id="w-node-f3b10b78-278d-2c6b-c975-d2648da07d7e-8da07d68" class="footer-link w-inline-block">
+                    <a href="/write-to-us" id="w-node-f3b10b78-278d-2c6b-c975-d2648da07d7e-8da07d68" class="footer-link w-inline-block">
                         <div>Partnerships</div>
                     </a>
                     <a href="/" id="w-node-f3b10b78-278d-2c6b-c975-d2648da07d94-8da07d68" class="footer-link w-inline-block">

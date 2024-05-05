@@ -83,7 +83,7 @@ const Join = () => {
          
             <div className="join-container">
                 <div className="left-column">
-                    <p className='waitlist-heading'>WELCOME TO<span className='text-color-green'>  WORLDLYNK</span></p>
+                    <h3 className='waitlist-heading'>WELCOME TO<span className='text-color-green'>  WORLDLYNK</span></h3>
                     <div className="heading">
                         <h2>Seamless student experience in the UK: a one-stop solution</h2>
 
