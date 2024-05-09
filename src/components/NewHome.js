@@ -68,7 +68,7 @@ const handleBrandFormClick =()=>{
         <div className="bento m" style={{ display: 'flex', justifyContent: 'space-between' }}>
           <div>
             <div className="limit-large">
-              <h2 className="heading">Are you studying in UK ? Looking for <span className="text-color-green">Mentorship, </span><span className="text-color-green">Accommodation</span> and <span className="text-color-green"><br/>Jobs ?</span></h2>
+              <h3 className="heading">Are you studying in UK ? Looking for <span className="text-color-green">Mentorship, </span><span className="text-color-green">Accommodation</span> and <span className="text-color-green"><br/>Jobs ?</span></h3>
              
             </div>
             <div className="spread-vertical large">
@@ -113,10 +113,10 @@ const handleBrandFormClick =()=>{
         <div style={{margin:"0 0 10px 0"}}>
         <img  src={jobs}/>
         </div>
-        <div class="horizontal-spread">
+        <div class="center-content center-text">
             <div>
-                <h3>Job Opportunities</h3>
-                <p class="no-space-bottom">Your gateway to global job opportunities. Break geographical boundaries and access international opportunities. Empower your career with WorldLynk.</p>
+                <h4>Job Opportunities</h4>
+                <p class="no-space-bottom" style={{textAlign:"justify"}}>Your gateway to global job opportunities. Break geographical boundaries and access international opportunities. Empower your career with WorldLynk.</p>
             </div>
         </div>
     </div>
@@ -127,10 +127,10 @@ const handleBrandFormClick =()=>{
             <img src={eventsworldlynk}/>
 
         </div>
-        <div class="horizontal-spread">
+        <div class="center-content center-text">
             <div>
-                <h3>Events</h3>
-                <p class="no-space-bottom">Discover and participate in engaging events tailored for international students. Explore academic, social, and cultural gatherings that enhance your educational journey in the UK.</p>
+                <h4>Events</h4>
+                <p class="no-space-bottom" style={{textAlign:"justify"}}>Discover and participate in engaging events tailored for international students. Explore academic, social, and cultural gatherings that enhance your educational journey in the UK.</p>
             </div>
         </div>
     </div>
