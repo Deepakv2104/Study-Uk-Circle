@@ -83,9 +83,12 @@ const Join = () => {
          
             <div className="join-container">
                 <div className="left-column">
-                    <h3 className='waitlist-heading'>WELCOME TO<span className='text-color-green'>  WORLDLYNK</span></h3>
+                    <div  className="heading">
+                    <h3 >Welcome to<span className='text-color-green'>  WorldLynk</span></h3>
+
+                    </div>
                     <div className="heading">
-                        <h2>Seamless student experience in the UK: a one-stop solution</h2>
+                        <h3>Seamless student experience in the UK: a one-stop solution</h3>
 
                     </div>
                     <p className='large-text'>Be among the first to experience the future of student life in the UK! Join our waiting list today and gain early access to our comprehensive platform designed to revolutionize your student experience.</p>
@@ -101,7 +104,7 @@ const Join = () => {
                     <div className="form-section">
                     {!formSubmitted ? (
                         <form onSubmit={handleSubmit}>
-                            <h2>Join waiting list</h2>
+                            <h3>Join waiting list</h3>
                             <div className="form-row">
                                 <div className="form-group">
                                     <label htmlFor="name">Name:</label>
