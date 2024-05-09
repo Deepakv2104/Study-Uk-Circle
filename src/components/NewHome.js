@@ -1,5 +1,8 @@
 import React , {useState} from 'react'
 import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
+import megaphone from '../assets/img/megaphone.png'
+import engagement from '../assets/img/engagement.png'
+import insight from '../assets/img/insight.png'
 
 import './NewHome.css'
 import logo from "../assets/img/logo.svg";
@@ -205,7 +208,7 @@ const handleBrandFormClick =()=>{
                                     <div class="alignment-line bigger"></div>
                                     <div class="green-button-wrap smaller">
                                         <div class="green-icon-wrap smaller">
-                                            <img src="https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65ed8eb0c8c77c845c67f35e_application-one%201.svg"
+                                            <img src={megaphone}
                                              loading="lazy" alt="" /></div>
                                     </div>
                                     <h5 class="no-space-bottom">Amplified Reach</h5>
@@ -213,14 +216,14 @@ const handleBrandFormClick =()=>{
                                 <div id="w-node-aad99063-6a7c-d8e1-3dce-51d0a2bf2aca-5c67f262" class="feature-card limit-tiny">
                                     <div class="alignment-line bigger"></div>
                                     <div class="green-button-wrap smaller">
-                                        <div class="green-icon-wrap smaller"><img src="https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65ed8eb0c8c77c845c67f35d_graphic-stitching%201.svg" loading="lazy" alt="" /></div>
+                                        <div class="green-icon-wrap smaller"><img src={engagement} loading="lazy" alt="" /></div>
                                     </div>
                                     <h5 class="no-space-bottom">Enhanced Engagement</h5>
                                 </div>
                                 <div id="w-node-aad99063-6a7c-d8e1-3dce-51d0a2bf2ad1-5c67f262" class="feature-card limit-tiny">
                                     <div class="alignment-line bigger"></div>
                                     <div class="green-button-wrap smaller">
-                                        <div class="green-icon-wrap smaller"><img src="https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65ed8eb0c8c77c845c67f35c_shield%201.svg" loading="lazy" alt="" /></div>
+                                        <div class="green-icon-wrap smaller"><img src={insight} loading="lazy" alt="" /></div>
                                     </div>
                                     <h5 class="no-space-bottom">Insightful Analytics</h5>
                                 </div>
