@@ -1,10 +1,10 @@
-html {
+/* html {
      -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
     font-family: sans-serif
-}
+} */
 
-body {
+/* body {
     margin: 0
 }
 
@@ -22,43 +22,43 @@ nav,
 section,
 summary {
     display: block
-}
+} */
 
-audio,
+/* audio,
 canvas,
 progress,
 video {
     vertical-align: baseline;
     display: inline-block
-}
+} */
 
-audio:not([controls]) {
+/* audio:not([controls]) {
     height: 0;
     display: none
-}
+} */
 
-[hidden],
+/* [hidden],
 template {
     display: none
 }
 
 a {
     background-color: transparent
-}
+} */
 
-a:active,
+/* a:active,
 a:hover {
     outline: 0
 }
 
 abbr[title] {
     border-bottom: 1px dotted
-}
+} */
 
-b,
+/* b,
 strong {
     font-weight: 700
-}
+} */
 
 dfn {
     font-style: italic
@@ -94,9 +94,9 @@ sub {
     bottom: -.25em
 }
 
-img {
+/* img {
     border: 0
-}
+} */
 
 svg:not(:root) {
     overflow: hidden
@@ -266,11 +266,11 @@ body {
     line-height: 20px
 }
 
-img {
+/* img {
     vertical-align: middle;
     max-width: 100%;
     display: inline-block
-}
+} */
 
 html.w-mod-touch * {
     background-attachment: scroll !important
@@ -3606,7 +3606,7 @@ blockquote {
 }
 
 .spread-vertical.large {
-    z-index: 1;
+    /* z-index: 1; */
     grid-row-gap: 210px;
     position: relative
 }

@@ -36,6 +36,8 @@ import PageNotFound from "./components/PageNotFound";
 import NewHome from "./components/NewHome"
 import Join from "./components/Join";
 import SmeForm from './components/SmeForm';
+import AnimatedNav from './components/Admin/Navbar'
+import NewNav from "./components/NewNav";
 gsap.registerPlugin();
 function App() {
   return (

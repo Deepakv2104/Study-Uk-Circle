@@ -1,70 +1,68 @@
-import React, { useRef } from 'react';
-import { useNavigate } from "react-router-dom";
-import gsap from 'gsap';
-import './Navbar.css'
+import React, { useEffect } from 'react';
+import gsap from 'gsap'; // Import GSAP library
+import './Navbar.css'; // Import CSS file
+import NewHome from '../NewHome';
+import logo from "../../assets/img/logo.svg";
 
 const AnimatedNav = () => {
-  const navigate = useNavigate();
-    const navRef = useRef(null);
+  useEffect(() => {
+    const open = document.querySelector('.container1');
+    const close = document.querySelector('.close');
+
+    // GSAP timeline setup
     const tl = gsap.timeline({ defaults: { duration: 1, ease: 'expo.inOut' } });
-  
-    const handleOpenNav = () => {
-        console.log('opened')
-        if (tl.reversed()) {
-          tl.play();
-        } else {
-          tl.to(navRef.current, { right: 0 })
-            .to(navRef.current, { height: '100vh' }, '-=.1')
-            .to('nav ul li a', { opacity: 1, pointerEvents: 'all', stagger: .2 }, '-=.8')
-            .to('.close', { opacity: 1, pointerEvents: 'all' }, '-=0.8')
-            .to('.nav-title', { opacity: 1 }, '-=1')
-            .to('nav h2', { opacity: 1 }, '-=1')
-            .play(); // Add this line to play the timeline
-        }
-      };
-    const handleCloseNav = () => {
+
+    open.addEventListener('click', () => {
+      if (tl.reversed()) {
+        tl.play();
+      }else {
+				tl.to('nav', { right: 0 })
+					.to('nav', { height: '100vh' }, '-=.1')
+					.to('nav ul li a', { opacity: 1, pointerEvents: 'all', stagger: .2 }, '-=.8')
+					.to('.close', { opacity: 1, pointerEvents: 'all' }, "-=.8")
+					.to('nav ch', { opacity: 1 }, '-=1');
+			}
+		});
+
+    close.addEventListener('click', () => {
       tl.reverse();
+    });
+
+    // Cleanup event listeners
+    return () => {
+      open.removeEventListener('click', () => {});
+      close.removeEventListener('click', () => {});
     };
-    const handleLogin = () => {
-      console.log("clicked");
-      navigate('/login');
-    };
+  }, []); // Empty dependency array to ensure the effect runs only once
+
+  return (
+    <div className="animatedNav">
+     <div className="container1 ">
+  {/* <img src={logo} alt="Logo" loading='lazy' className="logo1" /> */}
+  <div className="bars">
+
+  </div>
+</div>
 
 
-  
-    return (
-      <div>
-        <div className='b'>
-        
-        <div className="nav-container" onClick={handleOpenNav}>
-          <div className="nav-bars">
-            
-          </div>
-         
-        </div>
-    
-    
+      <div className='ch'>
+        <NewHome/>
+      </div>
      
-  
-        <nav ref={navRef}>
-        <h2 className='nav-title'>WorldLynk</h2>
+      <nav>
+        <h2>WorldLynk</h2>
+        <div className="close">
+          <div></div>
+        </div>
+        <ul>
+          <li><p>Home</p></li>
+          <li><p >pbout</p></li>
+          <li><p>Pprtnership</p></li>
+          <li><p>Sign In</p></li>
+        </ul>
+      </nav>
+    </div>
+  );
+};
 
-          <div className="close" onClick={handleCloseNav}>
-            <div></div>
-          </div>
-          <ul>
-            <li className="nav-item"><a >HOME</a></li>
-            <li className="nav-item"><a >EVENTS</a></li>
-            <li className="nav-item"><a>ENTREPRENEUR <span className="coming-soon">-Coming Soon</span></a></li>
-<li className="nav-item"><a>SME <span className="coming-soon">-Coming Soon</span></a></li>
-
-
-            <li className="nav-item" onClick={handleLogin}><a >LOGIN</a></li>
-          </ul>
-        </nav>
-      </div>
-      </div>
-    );
-  };
-  
-  export default AnimatedNav;
+export default AnimatedNav;
