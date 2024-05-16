@@ -12,7 +12,7 @@ const NewNav = () => {
 
     return (
         <div>
-            <div className={click ? "mainContainer" : ""} onClick={() => Close()} />
+            <div className="main-container" onClick={() => Close()} />
             <nav className="navbar" onClick={e => e.stopPropagation()}>
                 <div className="nav-container">
                     <div className="nav-logo" onClick={() => navigate('/')}>
@@ -21,7 +21,7 @@ const NewNav = () => {
                     <ul className={click ? "navMenu active" : "navMenu"}>
                         <li className="nav-item">
                             <div
-                                // onClick={() => { navigate('/'); handleClick(); }}
+                                onClick={() => navigate('/')}
                                 className="nav-links"
                             >
                                 Home

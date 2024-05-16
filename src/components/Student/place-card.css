@@ -7,19 +7,21 @@
 
 .place-card-container1 {
   width: 100%; /* Take full width by default */
+
 }
 
-.place-card-image {
+ .place-card-image {
   max-width: 100%;
   height: auto;
 }
 
-.place-card-text1 {
+ .place-card-text1 {
   margin-top: 10px;
   line-height: 1.5;
+  margin: 10px;
 }
 
-.learn-more-button,
+.place-card-container .learn-more-button,
 .show-less-button {
   margin-top: 10px;
   border: none;
@@ -28,7 +30,7 @@
   cursor: pointer;
 }
 
-.learn-more-button:hover,
+.place-card-container .learn-more-button:hover,
 .show-less-button:hover {
   text-decoration: underline;
 }

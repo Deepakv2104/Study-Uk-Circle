@@ -22,7 +22,7 @@ const Explore = () => {
           <CircularProgress />
         </div>
       ) : (
-        <div className="container1">
+        <div className="explore-container">
           <main className="grid">
             <article className='card'>
               <div className="image-container">

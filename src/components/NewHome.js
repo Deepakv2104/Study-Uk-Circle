@@ -196,7 +196,7 @@ const handleBrandFormClick =()=>{
                 <img src="https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65ed8eb0c8c77c845c67f284_Grid%20bg.png" loading="lazy" sizes="(max-width: 479px) 95vw, (max-width: 991px) 93vw, (max-width: 1439px) 94vw, 1278px" srcset="https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65ed8eb0c8c77c845c67f284_Grid%2520bg-p-500.png 500w, https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65ed8eb0c8c77c845c67f284_Grid%2520bg-p-800.png 800w, https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65ed8eb0c8c77c845c67f284_Grid%2520bg-p-1080.png 1080w, https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65ed8eb0c8c77c845c67f284_Grid%2520bg-p-1600.png 1600w, https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65ed8eb0c8c77c845c67f284_Grid%2520bg-p-2000.png 2000w, https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65ed8eb0c8c77c845c67f284_Grid%20bg.png 2414w"
                         alt="" class="centered-bg-grid" />
                     <div>
-                        <div class="limit-medium">
+                        <div >
                             {/* <div class="title-tag-wrapper">
                                 <div class="title-tag-contents"><img src="https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65f0415153e12c7daa9c1fba_white-bg_black-s_bright-green-hand%20(1).png" loading="lazy" width="23" sizes="(max-width: 991px) 23px, (max-width: 1439px) 2vw, (max-width: 1919px) 23px, 1vw"
                                         alt="" srcset="https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65f0415153e12c7daa9c1fba_white-bg_black-s_bright-green-hand%20(1)-p-500.png 500w, https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65f0415153e12c7daa9c1fba_white-bg_black-s_bright-green-hand%20(1)-p-800.png 800w, https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65f0415153e12c7daa9c1fba_white-bg_black-s_bright-green-hand%20(1).png 813w"
@@ -205,7 +205,7 @@ const handleBrandFormClick =()=>{
                                 </div>
                             </div> */}
                             <h2>Partner <span>With Us.</span></h2>
-                            <span>Embark on a journey of mutual growth and success by aligning your brand with WorldLynk. Partnering with us offers unparalleled advantages:</span>
+                            <p>Embark on a journey of mutual growth and success by aligning your brand with WorldLynk. Partnering with us offers unparalleled advantages:</p>
                         </div>
                         <div class="space-top-medium">
                             <div class="three-column-grid">

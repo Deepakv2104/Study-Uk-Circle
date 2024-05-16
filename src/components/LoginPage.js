@@ -21,6 +21,8 @@ import { getAuth, signInWithEmailAndPassword, signInWithPopup,createUserWithEmai
 import { getDoc, doc, setDoc } from "firebase/firestore";
 import { signOut } from "firebase/auth";
 import Register from "./register";
+import NewNav from "./NewNav";
+import Footer from "./Footer";
 
 const LoginPage = () => {
   const {
@@ -228,13 +230,16 @@ const LoginPage = () => {
 
 
   return (
-    <div className="login-page">
-      <div className="lottie-container">
-        <img
+    <div>
+            <NewNav/>
+
+    <div className="login-page" style={{marginTop:'60px'}}>
+      <div className="lottie-container" >
+        {/* <img
           src={logo}
           alt="Logo"
           style={{ maxWidth: "100px", margin: "20px" }}
-        />
+        /> */}
         <div ref={container}></div>
       </div>
       <div className="login-form">
@@ -433,6 +438,10 @@ const LoginPage = () => {
 
       <ToastContainer />
     </div>
+    <Footer/>
+    </div>
+
+
   );
 };
 

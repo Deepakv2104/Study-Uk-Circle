@@ -6,130 +6,88 @@ import logo from "../assets/img/logo.svg";
 import '../styles/Footer.css'
 
 const Footer = () => {
-  const history = useNavigate();
+  const navigate = useNavigate();
 
-  const handleGoBack = () => {
-    history('/');
-  }
+  const handleJoinClick =()=>{
+    navigate('/join-waiting-list')
+}
+const handleBrandFormClick =()=>{
+    navigate('/write-to-us')
+}
 
   return (  
 
- <div>
- <footer className="footer-section">
-    <div className="container">
-        <div className="footer-cta pt-5 pb-5">
-            <div className="row">
-                <div className="col-xl-4 col-md-4 mb-30">
-                    <div className="single-cta">
-                        <i className="fas fa-map-marker-alt"></i>
-                        <div className="cta-text">
-                            <h4>Find us</h4>
-                            <span>1 Atlantic Crescent Wembley HA9 0UF United Kingdom</span>
-                        </div>
-                    </div>
+    <section class="footer">
+        <div class="w-layout-blockcontainer container w-container">
+            <div class="footer-content">
+                
+                <div id="w-node-f3b10b78-278d-2c6b-c975-d2648da07d6b-8da07d68" class="limit-small"><a class="w-inline-block"></a>
+                <img src={logo} loading="lazy" alt="" class="heading-logo"/>
+
+                    <div
+                        class="space-top-small">
+                            
+                        <p class="large-text white-text">WorldLynk is your one-stop solution for seamless student experience in UK.</p>
                 </div>
-                <div className="col-xl-4 col-md-4 mb-30">
-                    <div className="single-cta">
-                        <i className="fas fa-phone"></i>
-                        <div className="cta-text">
-                            <h4>Call us</h4>
-                            <span>+44-7470802451</span>
-                        </div>
-                    </div>
+            
+
+            </div>
+            <div id="w-node-f3b10b78-278d-2c6b-c975-d2648da07d77-8da07d68" class="footer-columns">
+                <div     id="w-node-f3b10b78-278d-2c6b-c975-d2648da07d78-8da07d68" class="footer-link-column">
+                    <div id="w-node-f3b10b78-278d-2c6b-c975-d2648da07d79-8da07d68" class="footer-column-titile">Company</div>
+                    <a  id="w-node-f3b10b78-278d-2c6b-c975-d2648da07d7b-8da07d68" aria-current="page" class="footer-link w-inline-block w--current">
+                        <div>Home </div>
+                    </a>
+                    <a onClick={handleBrandFormClick}id="w-node-f3b10b78-278d-2c6b-c975-d2648da07d7e-8da07d68" class="footer-link w-inline-block">
+                        <div>Partnerships</div>
+                    </a>
+                    <a id="w-node-f3b10b78-278d-2c6b-c975-d2648da07d94-8da07d68" class="footer-link w-inline-block">
+                        <div>About</div>
+                    </a>
+                    <a id="w-node-_0e8a5424-6d07-d04a-8956-a42956017799-8da07d68" class="footer-link w-inline-block">
+                        <div>Newsroom</div>
+                    </a>
+                    <div class="alignment-line smaller"></div>
+                    <a  id="w-node-b07bc73a-1591-149d-a41a-d1699793fdbe-8da07d68" class="footer-link w-inline-block">
+                        <div>Contact</div>
+                    </a>
                 </div>
-                <div className="col-xl-4 col-md-4 mb-30">
-                    <div className="single-cta">
-                        <i className="far fa-envelope-open"></i>
-                        <div className="cta-text">
-                            <h4>Mail us</h4>
-                            <span>worldlynk76@gmail.com</span>
-                        </div>
+                <div id="w-node-_3cf6e9e0-961c-5f0d-35c1-94757fe19ece-8da07d68" class="footer-stack">
+                    <div id="w-node-f3b10b78-278d-2c6b-c975-d2648da07d97-8da07d68" class="footer-link-column">
+                        <div id="w-node-f3b10b78-278d-2c6b-c975-d2648da07d98-8da07d68" class="footer-column-titile">Platform</div>
+                        <a onClick={handleJoinClick}id="w-node-f3b10b78-278d-2c6b-c975-d2648da07d9a-8da07d68" class="footer-link w-inline-block">
+                            <div>Join </div>
+                        </a>
+                        <a onClick={handleJoinClick}id="w-node-_05bed204-af49-6806-586c-d0440a0b7f82-8da07d68" class="footer-link w-inline-block">
+                            <div>Sign in</div>
+                        </a>
+                        <div class="alignment-line smaller"></div>
                     </div>
+                   
+                </div>
+                <div id="w-node-_1b1e73d0-b89e-9f53-3549-ef6d4862bba4-8da07d68" class="footer-link-column">
+                    <div id="w-node-_1b1e73d0-b89e-9f53-3549-ef6d4862bba5-8da07d68" class="footer-column-titile">Solution</div>
+                    <a  id="w-node-_1b1e73d0-b89e-9f53-3549-ef6d4862bba7-8da07d68" class="footer-link w-inline-block">
+                        <div>Talent </div>
+                    </a>
+                    <a id="w-node-_2da2c486-3f70-1690-3115-0e283b12c042-8da07d68" class="footer-link w-inline-block">
+                        <div>Communications</div>
+                    </a>
+                    <a  id="w-node-_3c8ac7a1-bd89-3e61-ee45-f00bacee3c9b-8da07d68" class="footer-link w-inline-block">
+                        <div>Development</div>
+                    </a>
+                    <a  id="w-node-fdf00af3-65a4-8598-ffe5-6cc32eb0133e-8da07d68" class="footer-link w-inline-block">
+                        <div>Pricing</div>
+                    </a>
+                    <div class="alignment-line smaller"></div>
                 </div>
             </div>
         </div>
-        <div className="footer-content pt-5 pb-5">
-            <div className="row">
-                <div className="col-xl-4 col-lg-4 mb-50">
-                    <div className="footer-widget">
-                        <div className="footer-logo">
-                            <a href="index.html"><img src={logo} className="img-fluid" alt="logo"/></a>
-                        </div>
-                        <div className="footer-text">
-                            {/* <p>Lorem ipsum dolor sit amet, consec tetur adipisicing elit, sed do eiusmod tempor incididuntut consec tetur adipisicing
-                            elit,Lorem ipsum dolor sit amet.</p> */}
-                        </div>
-                        <div className="footer-social-icon">
-                            <span>Follow us</span>
-                            <i className="fab fa-facebook-f facebook-bg"></i>
-                            <i className="fab fa-twitter twitter-bg"></i>
-                            <i className="fab fa-google-plus-g google-bg"></i>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-xl-4 col-lg-4 col-md-6 mb-30">
-                    <div className="footer-widget">
-                        <div className="footer-widget-heading">
-                            <h3>Useful Links</h3>
-                        </div>
-                        <ul>
-                            <li>Home</li>
-                            <li>about</li>
-                            <li>services</li>
-                            <li>portfolio</li>
-                            <li>Contact</li>
-                            <li>About us</li>
-                            <li>Our Services</li>
-                            <li>Expert Team</li>
-                            <li>Contact us</li>
-                            <li>Latest News</li>
-                        </ul>
-                    </div>
-                </div>
-                <div className="col-xl-4 col-lg-4 col-md-6 mb-50">
-                    <div className="footer-widget">
-                        <div className="footer-widget-heading">
-                            <h3>Subscribe</h3>
-                        </div>
-                        <div className="footer-text mb-25">
-                            <p>Don’t miss to subscribe to our new feeds, kindly fill the form below.</p>
-                        </div>
-                        <div className="subscribe-form">
-                            <form action="#">
-                                <input type="text" placeholder="Email Address"/>
-                                <button><i className="fab fa-telegram-plane"></i></button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <p class="large-text white-text">@copyright all rights reserved</p>
+
         </div>
-    </div>
-    <div className="copyright-area">
-        <div className="container">
-            <div className="row">
-                <div className="col-xl-6 col-lg-6 text-center text-lg-left">
-                    <div className="copyright-text">
-                        <p>Copyright &copy; 2024, All Right Reserved </p>
-                    </div>
-                </div>
-                <div className="col-xl-6 col-lg-6 d-none d-lg-block text-right">
-                    <div className="footer-menu">
-                        <ul>
-                            <li>Home</li>
-                            <li>Terms</li>
-                            <li>Privacy</li>
-                            <li>Policy</li>
-                            <li>Contact</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
-   
- </div>
+
+    </section>
    
   );
 }

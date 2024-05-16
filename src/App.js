@@ -43,7 +43,9 @@ function App() {
   return (
     <Router>
       <div className="App">
+  
         <Routes>
+          
           <Route path="/" element={<NewHome />} />
           <Route path="/form" element={<QuizApp />} />
           <Route path="/details" element={<DetailsPage />} />
