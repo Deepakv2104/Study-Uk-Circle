@@ -104,12 +104,12 @@ const SmeForm = () => {
                      <h3>Unlock the full potential of your brand by partnering with us at WorldLynk.</h3>
 
                  </div>
-                 {/* <p className='large-text'>Be among the first to experience the future of student life in the UK! Join our waiting list today and gain early access to our comprehensive platform designed to revolutionize your student experience.</p> */}
+                 <p className='large-text'>Position yourself as a leader in shaping the future of student life in the UK! Forge a partnership with us today and access our cutting-edge platform early. Crafted to revolutionize the student experience, our comprehensive platform offers endless opportunities for collaboration and innovation in education.</p>
 
                  <div>
                      <img src="https://join.getwyld.in/assets/images/line.png" alt="Decorative Image" />
                  </div>
-                 <div class="nav-right-content desktop"><a href="/" class="glass-button smaller w-button">Back to  homepage</a></div >
+                 <div class="nav-right-content desktop" style={{marginTop:'10px'}}><a href="/" class="glass-button smaller w-button">Back to  homepage</a></div >
 
              </div>
             

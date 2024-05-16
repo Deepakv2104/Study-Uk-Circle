@@ -100,7 +100,7 @@ const Join = () => {
                <div>
                    <img src="https://join.getwyld.in/assets/images/line.png" alt="Decorative Image" />
                </div>
-               <div class="nav-right-content desktop"><a href="/" class="glass-button smaller w-button">Back to  homepage</a></div >
+               <div class="nav-right-content desktop" style={{marginTop:'10px'}}><a href="/" class="glass-button smaller w-button">Back to  homepage</a></div >
 
            </div>
           
