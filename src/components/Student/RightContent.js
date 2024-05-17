@@ -41,16 +41,16 @@ const RightContent = () => {
         <div className="interaction-control interactions">
           <FaEnvelope className="notified" />
           <FaBell className="notified" />
-          <div className="toggle" onclick={switchTheme}>
+          {/* <div className="toggle" onclick={switchTheme}>
             <div className="mode-icon moon">
               <FaMoon className="bx bxs-moon" />
             </div>
             <div className={`mode-icon sun ${isSunHidden ? "hidden" : ""}`}>
               <FaSun className="bx bxs-sun" />
             </div>
-          </div>
+          </div> */}
         </div>
-        <div className="analytics">
+        {/* <div className="analytics">
           <h1>Analytics</h1>
           <div class="analytics-container">
             <div class="total-events">
@@ -72,7 +72,7 @@ const RightContent = () => {
               <ul></ul>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div class="contacts">
           <h1>Contacts</h1>

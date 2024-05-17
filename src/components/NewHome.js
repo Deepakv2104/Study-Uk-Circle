@@ -24,6 +24,9 @@ import NavBar from './NavBar';
 import QueryForm from './QueryForm';
 import university from '../assets/img/university.png'
 import amp from '../assets/img/amp.png'
+import job from '../assets/img/job.png';
+import accomadation from '../assets/img/accomadation .png';
+
 import NewNav from './NewNav';
 const NewHome = () => {
     const navigate = useNavigate(); // Initialize useNavigate hook
@@ -41,34 +44,7 @@ const handleBrandFormClick =()=>{
   return (
     <div className='home-page'>
        <NewNav/>
-         {/* <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar w-nav">
-        <div class="w-layout-blockcontainer container w-container">
-           
-            <div class="navbar-contents">
-                <div id="w-node-_06216545-40ad-bd51-1b83-2f6c6ddd3194-6ddd3191" class="brand"><a id="w-node-_06216545-40ad-bd51-1b83-2f6c6ddd3195-6ddd3191" aria-current="page" class="brand-link w-nav-brand w--current">
-                   
-                    <img src={logo} loading="lazy" alt="" class="heading-logo"/>
-                    </a></div>
-                <nav
-                    role="navigation" id="w-node-_06216545-40ad-bd51-1b83-2f6c6ddd3197-6ddd3191" class="nav-menu w-nav-menu">
-              
-                    </nav>
-                    <div id="w-node-_06216545-40ad-bd51-1b83-2f6c6ddd31cb-6ddd3191" class="nav-right">
-                        <div class="menu-button w-nav-button"><img src="https://assets-global.website-files.com/65ed8eb0c8c77c845c67f1ff/65ed8eb0c8c77c845c67f274_menu%20icon%201.svg" loading="lazy" alt="" class="menu-icon" /></div>
-                        <div class="nav-right-content desktop"><a onClick={handleJoinClick} class="glass-button smaller w-button">Sign in</a><div >
-                    <div className="green-button-wrap">
-                      <a  className="green-button with-icon" onClick={handleJoinClick}>
-                        Join Now
-                      </a>
-                    </div>
-                  </div>
-                           
-                        </div>
-                    </div>
-            </div>
-        </div>
-    </div> */}
-    
+        
     <section>
     <div className="w-layout-blockcontainer container w-container" style={{marginTop:'80px'}}>
         <div className="bento m" style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -86,8 +62,7 @@ const handleBrandFormClick =()=>{
                   <div className="button-wrap">
                     <div className="green-button-wrap">
                       <a  className="green-button with-icon w-inline-block" onClick={handleJoinClick}>
-                        {/* <div>Join now</div> */}
-                        {/* <QueryForm/> */}
+                       
                         Join Now
                       </a>
                     </div>
@@ -120,7 +95,7 @@ const handleBrandFormClick =()=>{
             <div id="w-node-_7a84004a-190d-05e0-4cc8-df053c58d6df-5c67f262" class="bento">
     <div class="bento-content-vertical">
         <div style={{margin:"0 0 10px 0", display: "flex", justifyContent: "center"}}>
-        <img  src={jobOpp} style={{height:'350px', width:'500px'}}/>
+        <img  src={job} style={{height:'350px', width:'500px'}}/>
         </div>
         <div class="center-content center-text">
             <div>
@@ -158,7 +133,7 @@ const handleBrandFormClick =()=>{
                         <div id="w-node-_7a84004a-190d-05e0-4cc8-df053c58d705-5c67f262" class="bento">
                             <div class="bento-content-vertical">
                                 <div>
-                                <div><img src={tour} style={{height:'350px'}}
+                                <div><img src={accomadation} style={{height:'350px'}}
                                     /></div>
                                 </div>
                                 <div class="center-content center-text">
