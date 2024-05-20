@@ -75,12 +75,12 @@ const handleBrandFormClick =()=>{
             </div>
           </div>
           <div>
-            {/* <LottieAnimation
+            <LottieAnimation
               animationData={animationData}
               className="hero-image"
               style={{ maxWidth: '100%', height: 'auto' }}
-            /> */}
-            <img src={animation}/>
+            />
+            {/* <img src={animationData}/> */}
           </div>
         </div>
       </div>
