@@ -52,7 +52,7 @@ const handleBrandFormClick =()=>{
             <div className="limit-large">
             {/* <h3 className="heading">Welcome to <span className="text-color-green">WorldLynk </span></h3> */}
 
-              <h3 className="heading">Are you studying in UK ? Looking for <span className="text-color-green">Mentorship, </span><span className="text-color-green">Accommodation</span> and <span className="text-color-green"><br/>Jobs ?</span></h3>
+              <h3 className="heading">Are you studying in UK ? Looking for <span className="text-color-green">Mentorship, </span><span className="text-color-green">Accommodations</span> and <span className="text-color-green"><br/>Jobs ?</span></h3>
              
             </div>
             <div className="spread-vertical large">
