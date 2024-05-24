@@ -121,7 +121,7 @@ const ExploreEvents = () => {
             }}
           />
         </Grid>
-        <Grid item xs={12} md={5}>
+        <Grid item xs={12} md={5} >
           <FormControl fullWidth variant="outlined" sx={{
             '& .MuiOutlinedInput-root': {
               '& fieldset': {
@@ -151,6 +151,7 @@ const ExploreEvents = () => {
                   sx: {
                     bgcolor: '#333', // Background color of dropdown
                     color: 'white', // Text color of dropdown
+                    padding:'10px'
                   },
                 },
               }}

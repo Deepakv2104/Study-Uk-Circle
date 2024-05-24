@@ -61,7 +61,7 @@
   -o-user-select: none;
 } */
 
-ul,
+.main-menu ul,
 ul li {
   outline: 0;
   list-style: none;
@@ -138,7 +138,7 @@ ul li a {
   display: block;
   cursor: pointer;
 }
-.nav-item ul li{
+.nav-item1 ul li{
   outline: 0;
   list-style: none;
   padding-left: 0 !important;
