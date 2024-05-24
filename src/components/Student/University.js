@@ -39,6 +39,7 @@ const University = () => {
             srcSet="https://source.unsplash.com/600x200/?university 600w,
                         https://source.unsplash.com/1200x400/?university 1200w"
             sizes="(max-width: 600px) 600px, 1200px"
+            loading='lazy'
             alt="Famous Universities Banner"
           />
           <div className="overlay">

@@ -117,6 +117,7 @@ const EventDetails = () => {
           <Box  sx={{  position: "relative"}}>
             <img
               src={eventData.eventImage}
+              loading="lazy"
               alt="Random"
               style={{
                 width: "100%",

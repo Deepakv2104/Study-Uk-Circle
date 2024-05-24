@@ -65,6 +65,7 @@ ul,
 ul li {
   outline: 0;
   list-style: none;
+  padding-left: 0 !important;
 }
 
 ul li a {
@@ -136,6 +137,11 @@ ul li a {
 .nav-item1 {
   display: block;
   cursor: pointer;
+}
+.nav-item ul li{
+  outline: 0;
+  list-style: none;
+  padding-left: 0 !important;
 }
 
 .nav-item1 a {
@@ -1020,5 +1026,63 @@ body::-webkit-scrollbar-thumb {
 
   .chart {
     width: 100%;
+  }
+}
+
+.carousel-container {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+  height: auto;
+  overflow-x: hidden; /* Hide horizontal overflow */
+}
+
+.category-slider {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  width: calc(100% - 50px); /* Adjust width according to your needs */
+}
+
+.category-slider::-webkit-scrollbar {
+  display: none; /* Webkit */
+}
+
+.category-item {
+  flex: 0 0 auto;
+  text-align: center;
+  cursor: pointer;
+  width: 200px; /* Fixed width for each item */
+  position: relative; /* Add relative positioning */
+  height: 220px;
+}
+
+.category-image {
+  height: 180px;
+  width: 100%; /* Set width to 100% to fill the container horizontally */
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s ease; /* Add transition for smooth animation */
+}
+
+.category-name {
+  margin-top: 10px; /* Add margin to separate image and name */
+  color: white; /* Set the text color */
+  font-size: 12px;
+}
+
+.category-item:hover .category-image {
+  transform: scale(1.1); /* Zoom in the image by 10% */
+}
+
+@media screen and (max-width: 768px) {
+  .category-item {
+    width: 150px; /* Adjust width for smaller screens */
+  }
+
+  .category-image {
+    height: 150px; /* Adjust image height for smaller screens */
   }
 }

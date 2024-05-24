@@ -49,7 +49,7 @@ const EventCard = ({ eventData }) => {
         {/* {eventData.map((event) => ( */}
           <React.Fragment key={eventData.eventId}>
             <div className="event-header">
-              <img src={eventData.eventImage|| 'NA'} alt="" />
+              <img src={eventData.eventImage|| 'NA'} loading="lazy"alt="" />
               <p>{formatTimestamp(eventData.TimeAndDate)}</p>
 
               <FaHeart

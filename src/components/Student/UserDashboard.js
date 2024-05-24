@@ -74,7 +74,7 @@ const UserDashboard = () => {
           <button className="menu-toggle-button" onClick={toggleMenu}>
             <FaBars />
           </button>
-          <Menu user={userData} className={menuVisible ? 'visible' : ''} />
+          <Menu user={userData}  />
           <div className="content">
             <div className="left-content">
               <div className="w-full sm:flex p-2 items-end">
@@ -94,7 +94,7 @@ const UserDashboard = () => {
                     className="block sm:hidden"
                   />
                 </div>
-                <div className="w-full sm:w-56 mt-4 sm:mt-0 relative">
+                {/* <div className="w-full sm:w-56 mt-4 sm:mt-0 relative">
                   <Icon
                     path="res-react-dash-search"
                     className="w-5 h-5 search-icon left-3 absolute"
@@ -108,7 +108,7 @@ const UserDashboard = () => {
                       placeholder="search"
                     />
                   </form>
-                </div>
+                </div> */}
               </div>
               {userData ? <Outlet user={[userData]} /> : <div>Loading...</div>}
             </div>

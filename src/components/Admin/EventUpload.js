@@ -10,6 +10,8 @@ import "react-time-picker/dist/TimePicker.css";
 import { updateDoc, doc } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { useAuth } from "../../auth/userProvider/AuthProvider";
+import { Grid, CircularProgress, TextField, MenuItem, Select, InputLabel, FormControl, IconButton } from '@mui/material';
+
 const Loader = () => (
   <div className="loader-container">
     <div className="loader"></div>
@@ -19,6 +21,7 @@ const EventUploadForm = (user) => {
   const auth = useAuth();
   const [refresh, setRefresh] = useState(false);
   const [dateTime, setDateTime] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState('');
 
   // const [location, setLocation] = useState("");
 
@@ -131,8 +134,12 @@ const EventUploadForm = (user) => {
   };
 
   const handleEventCategoryChange = (e) => {
-    setEventData({ ...eventData, eventCategory: e.target.value });
+    const selectedCategory = e.target.value;
+    console.log("Selected Category:", selectedCategory); // Log the selected category
+    setSelectedCategory(selectedCategory); // Update the selected category state
   };
+  
+  
 
   const handleDateTimeChange = (e) => {
     setDateTime(e.target.value);
@@ -374,21 +381,55 @@ const EventUploadForm = (user) => {
             </div>
 
             <div className="flex-grow">
-              <label
-                htmlFor="message"
-                className="block text-sm font-medium text-white-700"
-              >
-                Category
-              </label>
-              <input
-                type="text"
-                id="Category"
-                name="Category"
-                placeholder="Enter Category"
+            <FormControl fullWidth variant="outlined" sx={{
+              '& .MuiOutlinedInput-root': {
+                '& fieldset': {
+                  borderColor: 'white',
+                },
+                '&:hover fieldset': {
+                  borderColor: 'white',
+                },
+                '&.Mui-focused fieldset': {
+                  borderColor: 'white',
+                },
+              },
+              '& .MuiInputLabel-root': {
+                color: 'white',
+              },
+              '& .MuiSelect-select': {
+                color: 'white',
+              },
+            }}>
+              <InputLabel sx={{ color: 'white' }}>Category</InputLabel>
+              <Select
+                value={selectedCategory}
                 onChange={handleEventCategoryChange}
-                className="mt-1 p-2 w-full border rounded-md text-black"
-              />
-            </div>
+                label="Category"
+                MenuProps={{
+                  PaperProps: {
+                    sx: {
+                      bgcolor: '#333', // Background color of dropdown
+                      color: 'white', // Text color of dropdown
+                    },
+                  },
+                }}
+              >
+                <MenuItem value="">
+                  <em>All Categories</em>
+                </MenuItem>
+                <MenuItem value="Academic Events">Academic Events</MenuItem>
+                <MenuItem value="Cultural Events">Cultural Events</MenuItem>
+                <MenuItem value="Social Events">Social Events</MenuItem>
+                <MenuItem value="Sports and Recreation">Sports and Recreation</MenuItem>
+                <MenuItem value="Professional Development">Professional Development</MenuItem>
+                <MenuItem value="Health and Wellness">Health and Wellness</MenuItem>
+                <MenuItem value="Volunteer and Community Service">Volunteer and Community Service</MenuItem>
+                <MenuItem value="Orientation and Information Sessions">Orientation and Information Sessions</MenuItem>
+                <MenuItem value="Arts and Entertainment">Arts and Entertainment</MenuItem>
+                <MenuItem value="Technology and Innovation">Technology and Innovation</MenuItem>
+              </Select>
+            </FormControl>
+    </div>
           </div>
         </div>
       </div>
