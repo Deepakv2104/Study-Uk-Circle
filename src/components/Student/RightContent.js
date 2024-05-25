@@ -1,38 +1,17 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   FaEnvelope,
   FaBell,
-  FaMoon,
-  FaSun,
-  FaCheckCircle,
-  FaClock,
+  // FaMoon,
+  // FaSun,
+  // FaCheckCircle,
+  // FaClock,
 } from "react-icons/fa";
 import './UserDashboard.css'
 const RightContent = () => {
-  const isSunHidden = true;
-  const moonIcon = document.querySelector(".moon");
-  const sunIcon = document.querySelector(".sun");
-  const nightImage = document.querySelector(".night-img");
-  const morningImage = document.querySelector(".morning-img");
-  const toggle = document.querySelector(".toggle");
+ 
 
-  const switchTheme = () => {
-    console.log("clik");
-    document.body.classList.toggle("darkmode");
-    if (document.body.classList.contains("darkmode")) {
-      sunIcon.classList.remove("hidden");
-      moonIcon.classList.add("hidden");
-      morningImage.classList.add("hidden");
-      nightImage.classList.remove("hidden");
-      localStorage.setItem("theme", "dark");
-    } else {
-      sunIcon.classList.add("hidden");
-      moonIcon.classList.remove("hidden");
-      morningImage.classList.remove("hidden");
-      nightImage.classList.add("hidden");
-      localStorage.setItem("theme", "light");
-    }
-  };
+
 
   return (
     <div>

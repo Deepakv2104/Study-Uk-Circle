@@ -1,9 +1,7 @@
 // Join.js
 import React, { useState } from 'react';
-import logo1 from '.././assets/img/logo1.png';
 import haldiram3 from '.././assets/img/haldiram3.png';
 import IQ from '.././assets/img/IQ.svg';
-import nus from '.././assets/img/nus.png';
 
 
 import './Join.css';
@@ -83,7 +81,7 @@ const Join = () => {
     return (
        <div>
         <NewNav/>
-         <div className='join-page'style={{marginTop:'80px'}}>
+         <div className='join-page'>
        
        <div className="join-container">
            <div className="left-column">
@@ -98,7 +96,7 @@ const Join = () => {
                <p className='large-text'>Be among the first to experience the future of student life in the UK! Join our waiting list today and gain early access to our comprehensive platform designed to revolutionize your student experience.</p>
 
                <div>
-                   <img src="https://join.getwyld.in/assets/images/line.png" alt="Decorative Image" />
+                   <img src="https://join.getwyld.in/assets/images/line.png" alt="" />
                </div>
                <div class="nav-right-content desktop" style={{marginTop:'10px'}}><a href="/" class="glass-button smaller w-button">Back to  homepage</a></div >
 

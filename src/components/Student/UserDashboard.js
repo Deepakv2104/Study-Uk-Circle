@@ -4,7 +4,7 @@ import "./UserDashboard.css";
 import { useAuth } from "../../auth/userProvider/AuthProvider";
 import { getDoc, doc } from "firebase/firestore";
 import { firestore } from "../../firebase";
-import { FaSearch, FaBars } from "react-icons/fa";
+import {  FaBars } from "react-icons/fa";
 import Menu from "./Menu";
 import RightContent from "./RightContent";
 import animationData from "../../assets/lotties/loader1.json";

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaHeart, FaShare, FaTwitter, FaWhatsapp } from 'react-icons/fa';
 import {
@@ -7,7 +7,7 @@ import {
   DialogTitle,
   DialogContent,
   DialogActions,
-  Typography,
+
   IconButton,
   Grid,
 } from "@mui/material";

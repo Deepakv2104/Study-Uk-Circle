@@ -5,12 +5,12 @@ import './card.css';
 const Card = (props) => {
     const navigate = useNavigate();
     const [showFullDescription, setShowFullDescription] = useState(false);
-    const [loading, setLoading] = useState(true); // State to manage loading status
+    // const [loading, setLoading] = useState(true); 
 
     // Simulate loading delay
     useEffect(() => {
         const timer = setTimeout(() => {
-            setLoading(false);
+            // setLoading(false);
         }, 1000); // Adjust the delay as needed
         return () => clearTimeout(timer);
     }, []);
@@ -33,7 +33,7 @@ const Card = (props) => {
             <main className="grid card">
                 <article>
                     <div className="image-container">
-                        <img src={props.img} style={{ objectFit: 'cover' }} alt="Sample photo" />
+                        <img src={props.img} style={{ objectFit: 'cover' }} alt="Sample" />
                         {/* <div className="overlay">
                             <h3>Coming Soon</h3>
                         </div> */}

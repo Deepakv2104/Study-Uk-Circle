@@ -138,13 +138,13 @@ ul li a {
   display: block;
   cursor: pointer;
 }
-.nav-item1 ul li{
+.nav-item1 ul li {
   outline: 0;
   list-style: none;
   padding-left: 0 !important;
 }
 
-.nav-item1 a {
+.nav-item1 div {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -153,9 +153,9 @@ ul li a {
   padding: 12px 0;
   margin: 0 8px;
   border-radius: 5px;
+  text-decoration: none; /* Added this to ensure text doesn't look like a link */
 }
-
-.nav-item1.active a {
+.nav-item1.active div {
   background: rgba(106, 109, 155, 0.4);
   text-decoration: none;
   box-shadow: 0px 1px 4px var(--shadow-color);
@@ -164,14 +164,13 @@ ul li a {
 .nav-icon {
   width: 50px;
   height: 25px;
-  /* font-size: 1.1rem; */
   padding-right: 8px;
+  color: white;
 }
-.nav-item1 img{
+.nav-item1 img {
   width: 30px;
   height: 30px;
   margin-right: 12px;
-  
 }
 
 .nav-text {
@@ -179,8 +178,9 @@ ul li a {
   width: 70px;
   height: 20px;
   letter-spacing: 0;
-  
+  color: white;
 }
+
 
 /* CONTENT */
 

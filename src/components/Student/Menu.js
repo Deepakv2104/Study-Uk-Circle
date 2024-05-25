@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-    FaMap,
+
     FaHeart,
     FaCog,
     FaSignOutAlt,
-    FaHome,
+
     FaUtensils,
 } from 'react-icons/fa';
 import { Avatar } from '@mui/material';
@@ -57,51 +57,52 @@ const Menu = ({ user }) => {
                         <p>{user?.name || 'Guest'}</p>
                     </div>
                     <ul>
-                        <li className="nav-item1">
-                            <a>
-                            <img src={event}  alt="" />
-                                <span className="nav-text">Events</span>
-                            </a>
-                        </li>
-                        <li className="nav-item1">
-                            <a>
-                            <img src={accommodation}  alt="" />
-                                <span className="nav-text">Stay</span>
-                            </a>
-                        </li>
-                        <li className="nav-item1">
-                            <a>
-                                <img src={university}  alt="" />
-                                <span className="nav-text">University</span>
-                            </a>
-                        </li>
-                        <li className="nav-item1">
-                            <a>
-                                <FaUtensils className="nav-icon" />
-                                <span className="nav-text">Explore</span>
-                            </a>
-                        </li>
-                        <li className="nav-item1">
-                            <a>
-                                <FaHeart className="nav-icon" />
-                                <span className="nav-text">Favorites</span>
-                            </a>
-                        </li>
+                    <li className="nav-item1">
+    <div>
+        <img src={event} alt="" />
+        <span className="nav-text">Events</span>
+    </div>
+</li>
+<li className="nav-item1">
+    <div>
+        <img src={accommodation} alt="" />
+        <span className="nav-text">Stay</span>
+    </div>
+</li>
+<li className="nav-item1">
+    <div>
+        <img src={university} alt="" />
+        <span className="nav-text">University</span>
+    </div>
+</li>
+<li className="nav-item1">
+    <div>
+        <FaUtensils className="nav-icon" />
+        <span className="nav-text">Explore</span>
+    </div>
+</li>
+<li className="nav-item1">
+    <div>
+        <FaHeart className="nav-icon" />
+        <span className="nav-text">Favorites</span>
+    </div>
+</li>
+
                     </ul>
                 </div>
 
                 <ul>
                     <li className="nav-item1">
-                        <a>
+                        <div>
                             <FaCog className="nav-icon" />
                             <span className="nav-text">Settings</span>
-                        </a>
+                        </div>
                     </li>
                     <li className="nav-item1">
-                        <a>
+                        <div>
                             <FaSignOutAlt className="nav-icon" />
                             <span className="nav-text">Logout</span>
-                        </a>
+                        </div>
                     </li>
                 </ul>
             </div>

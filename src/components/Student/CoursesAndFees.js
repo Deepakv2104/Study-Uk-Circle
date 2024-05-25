@@ -1,16 +1,16 @@
-import React,{useState,useEffect} from 'react';
+import React from 'react';
 import {useParams} from 'react-router-dom'
-import { firestore } from "../../firebase";
-import {
-  doc,
-  getDoc,
-  updateDoc,
-  collection,
-  query,
-  where,
-  getDocs,
-  onSnapshot,
-} from "firebase/firestore";
+// import { firestore } from "../../firebase";
+// import {
+//   doc,
+//   getDoc,
+//   updateDoc,
+//   collection,
+//   query,
+//   where,
+//   getDocs,
+//   onSnapshot,
+// } from "firebase/firestore";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 
 const CoursesAndFees = ({coursesData}) => {
@@ -37,7 +37,7 @@ const CoursesAndFees = ({coursesData}) => {
   //   { course: 'Ph.D.', coursesCount: 1, tuitionFees: 'INR 19 L', duration: '3 years', examAccepted: 'IELTS: 7.5 & Above' },
   //   { course: 'PG Certificate', coursesCount: 1, tuitionFees: 'INR 31 L', duration: '12 months', examAccepted: 'IELTS' },
   // ];
-  const {universityId} = useParams();
+  // const {universityId} = useParams();
 
   // useEffect(() => {
   //   const fetchCoursesData = async () => {

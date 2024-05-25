@@ -1,15 +1,12 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Link, useNavigate, outlet } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useAuth } from "../auth/userProvider/AuthProvider";
-import Lottie from "react-lottie";
 import gsap from "gsap";
 import lottie from "lottie-web";
 import animationData from "../assets/lotties/students.json";
-import logo from "../assets/img/logo.svg";
 import googleSvg from "../assets/img/googleSvg.svg";
 import linkedin from "../assets/img/linkedin.svg";
 import meta from "../assets/img/meta.svg";
@@ -17,10 +14,9 @@ import "../styles/Login.css";
 import { firestore } from "../firebase";
 import { GoogleAuthProvider } from "firebase/auth";
 
-import { getAuth, signInWithEmailAndPassword, signInWithPopup,createUserWithEmailAndPassword } from "firebase/auth";
+import {  signInWithEmailAndPassword, signInWithPopup,createUserWithEmailAndPassword } from "firebase/auth";
 import { getDoc, doc, setDoc } from "firebase/firestore";
 import { signOut } from "firebase/auth";
-import Register from "./register";
 import NewNav from "./NewNav";
 import Footer from "./Footer";
 
@@ -33,7 +29,6 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const container = useRef(null);
   const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   // const auth = getAuth();
   const [showSignUpForm, setShowSignUpForm] = useState(false);
@@ -65,7 +60,6 @@ const LoginPage = () => {
     setStep(step - 1);
   };
   const { firstName, lastName, studentStatus, studentType, professionalStatus, university, graduationYear, universityEmail, phone, postCode } = formData;
-  const [user, loading] = useAuthState(auth);
 
   const provider = new GoogleAuthProvider();
 
@@ -233,7 +227,7 @@ const LoginPage = () => {
     <div>
             <NewNav/>
 
-    <div className="login-page" style={{marginTop:'60px'}}>
+    <div className="login-page" >
       <div className="lottie-container" >
         {/* <img
           src={logo}

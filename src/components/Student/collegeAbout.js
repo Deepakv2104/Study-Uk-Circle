@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableRow, Paper } from '@mui/material';
 import { doc, getDoc } from 'firebase/firestore';
 import { firestore } from '../../firebase';
 

@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   getAuth,
   createUserWithEmailAndPassword,
 } from 'firebase/auth';
-import { doc, setDoc, getDocs, collection } from 'firebase/firestore';
+import { doc, setDoc } from 'firebase/firestore';
 import { firestore } from '../firebase';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';

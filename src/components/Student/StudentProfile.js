@@ -1,25 +1,25 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate ,useParams} from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { useParams} from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 import{Avatar} from "@mui/material";
   import {
     doc,
     getDoc,
-    updateDoc,
-    collection,
-    query,
-    where,
-    getDocs,
-    onSnapshot,
+    // updateDoc,
+    // collection,
+    // query,
+    // where,
+    // getDocs,
+    // onSnapshot,
   } from "firebase/firestore";
 //   import intToRoman from "./RomanNo";
 import {
 Grid,
   Typography,
-  Button,
+  // Button,
   Link,
 } from "@mui/material";
-import { Web, GitHub, LinkedIn, Twitter, Language } from "@mui/icons-material";
+import {  GitHub, LinkedIn, Twitter, Language } from "@mui/icons-material";
 // import ProjectCount from "./ProjectCount";
 import {
   Table,
@@ -27,21 +27,21 @@ import {
   TableContainer,
   TableCell,
   TableRow,
-  Paper,Box
+  Box
 } from "@mui/material";
 // import { IconButton } from "@material-ui/core";
-  import { useAuth } from "../../auth/userProvider/AuthProvider";
+  // import { useAuth } from "../../auth/userProvider/AuthProvider";
   import { firestore } from "../../firebase";
   import 'react-toastify/dist/ReactToastify.css';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 
 
 const StudentProfile = () => {
     const { userId } = useParams();
-  const location = useLocation();
-  const { user } = useAuth();
+  // const location = useLocation();
+  // const { user } = useAuth();
   const [userData, setUserData] = useState({});
-  const [isEditing, setIsEditing] = useState(false);
+  // const [isEditing, setIsEditing] = useState(false);
 
 
   useEffect(() => {
@@ -71,13 +71,13 @@ const StudentProfile = () => {
 
 
 
-  const handleEditClick = () => {
-    setIsEditing(true);
-  };
+  // const handleEditClick = () => {
+  //   setIsEditing(true);
+  // };
 
-  const handleEditDone = () => {
-    setIsEditing(false);
-  };
+  // const handleEditDone = () => {
+  //   setIsEditing(false);
+  // };
 
   return (
     <div style={{marginTop:'20px'}}>

@@ -26,7 +26,7 @@ const Explore = () => {
           <main className="grid">
             <article className='card'>
               <div className="image-container">
-                <img src={haldirams} style={{ objectFit: 'cover' }} alt="Sample photo" />
+                <img src={haldirams} style={{ objectFit: 'cover' }} alt="" />
                 <div className="overlay">
                   <h3>Coming Soon</h3>
                 </div>

@@ -1,33 +1,21 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import UserProvider from "./auth/userProvider/AuthProvider";
-import Testing from "./components/Testing";
-import Reset from "./components/reset";
-import Welcome from "./components/Welcome";
-import Login from "./components/LoginPage"; // Assuming you have a Login component
-import Register from "./components/register";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Dashboard from "./components/Admin/adminDashboard";
 import EventUploadForm from "./components/Admin/EventUpload";
 import Overview from "./components/Admin/Overview";
-import SignIn from "./components/SignIn";
 import LoginPage from "./components/LoginPage";
-import YourComponent from "./components/home";
-import HomePage from "./components/home";
-import DetailsPage from "./components/Testing";
+
+// import DetailsPage from "./components/Testing";
 import { gsap } from "gsap";
-import PageTransition from "./components/home";
-import QuizApp from "./components/QueryForm";
 import CollegeUpload from "./components/Admin/CollgeUpload";
 import UserDashboard from "./components/Student/UserDashboard";
 import ExploreEvents from "./components/Student/ExploreEvents";
 import Accommodation from "./components/Student/Accommodation";
 import University from "./components/Student/University";
 import StudentProfile from "./components/Student/StudentProfile";
-import AutoGrid from "./components/Student/EventDetails";
 import EventDetails from "./components/Student/EventDetails";
 import UniversityDetails from "./components/Student/UniversityDetails";
-import Form from "./components/Testing";
 import Explore from "./components/Student/Explore";
 import Favorites from "./components/Student/Favorites";
 import AddJobPost from "./components/Admin/AddJobPost";
@@ -36,8 +24,7 @@ import PageNotFound from "./components/PageNotFound";
 import NewHome from "./components/NewHome"
 import Join from "./components/Join";
 import SmeForm from './components/SmeForm';
-import AnimatedNav from './components/Admin/Navbar'
-import NewNav from "./components/NewNav";
+
 gsap.registerPlugin();
 function App() {
   return (
@@ -47,10 +34,10 @@ function App() {
         <Routes>
           
           <Route path="/" element={<NewHome />} />
-          <Route path="/form" element={<QuizApp />} />
-          <Route path="/details" element={<DetailsPage />} />
+          {/* <Route path="/form" element={<QuizApp />} /> */}
+          {/* <Route path="/details" element={<DetailsPage />} /> */}
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/welcome" element={<Welcome />} />
+          {/* <Route path="/welcome" element={<Welcome />} /> */}
           <Route path="/blank" element={<PageNotFound />} />
           <Route path="/join-waiting-list" element={<Join />} />
           <Route path="/write-to-us" element={<SmeForm />} />
@@ -94,11 +81,7 @@ function App() {
                 role="student"
                 element={<ExploreEvents />}
               />
-              <Route
-                path="/user-dashboard/events/testing"
-                role="student"
-                element={<Form />}
-              />
+          
               <Route
                 path="/user-dashboard/events/:eventId"
                 element={<EventDetails />}

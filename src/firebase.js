@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+// import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "@firebase/firestore";
 import { getStorage } from 'firebase/storage';
 import { getAuth , setPersistence, browserSessionPersistence} from "firebase/auth";
@@ -23,7 +23,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const firebase = initializeApp(firebaseConfig);
 const firestore = getFirestore(firebase);
-const analytics = getAnalytics(firebase);
+// const analytics = getAnalytics(firebase);
 const auth = getAuth(firebase);
 const googleProvider = new GoogleAuthProvider(auth);
 const storage = getStorage(firebase);

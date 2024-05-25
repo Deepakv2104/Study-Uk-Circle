@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { styled } from "@mui/material/styles";
+// import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
+// import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import { Typography, Button, Avatar, TextField } from "@mui/material";
 import { FaLocationArrow, FaThumbsUp } from "react-icons/fa";
-import { FaLocationDot } from "react-icons/fa";
-import { useAuth } from "../../auth/userProvider/AuthProvider";
+// import { FaLocationDot } from "react-icons/fa";
+// import { useAuth } from "../../auth/userProvider/AuthProvider";
 import { firestore } from "../../firebase";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
@@ -20,19 +20,19 @@ import {
   getDoc,
   updateDoc,
   collection,
-  query,
-  where,
-  getDocs,
-  onSnapshot,
+  // query,
+  // where,
+  // getDocs,
+  // onSnapshot,
 } from "firebase/firestore";
-import { event } from "jquery";
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
+// import { event } from "jquery";
+// const Item = styled(Paper)(({ theme }) => ({
+//   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+//   ...theme.typography.body2,
+//   padding: theme.spacing(1),
+//   textAlign: "center",
+//   color: theme.palette.text.secondary,
+// }));
 
 const EventDetails = () => {
   const eventId = useParams();
@@ -47,7 +47,7 @@ const EventDetails = () => {
 
   const [eventData, setEventData] = useState({});
   // State to store the image URL
-  const [imageUrl, setImageUrl] = useState("");
+  // const [imageUrl, setImageUrl] = useState("");
 
   const formatTimestamp = (timestamp) => {
     if (timestamp && timestamp.seconds) {

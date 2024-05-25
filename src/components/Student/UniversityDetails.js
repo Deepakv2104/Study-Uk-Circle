@@ -1,40 +1,29 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { styled } from "@mui/material/styles";
+// import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
+// import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import {
   Typography,
   Button,
-  Avatar,
-  TextField,
+  // Avatar,
+  // TextField,
   Tab,
   Tabs,
 } from "@mui/material";
-import { FaLocationArrow, FaThumbsUp } from "react-icons/fa";
-import { FaLocationDot } from "react-icons/fa";
-import { useAuth } from "../../auth/userProvider/AuthProvider";
+
 import { firestore } from "../../firebase";
-import Dialog from "@mui/material/Dialog";
-import DialogTitle from "@mui/material/DialogTitle";
-import DialogContent from "@mui/material/DialogContent";
-import DialogActions from "@mui/material/DialogActions";
-import { addDoc, serverTimestamp } from "firebase/firestore";
+
 import pin from "../../assets/img/pin.svg";
 import { FaStar } from "react-icons/fa";
 
 import {
   doc,
   getDoc,
-  updateDoc,
-  collection,
-  query,
-  where,
-  getDocs,
-  onSnapshot,
+
 } from "firebase/firestore";
-import { university } from "jquery";
+// import { university } from "jquery";
 import CollegeAbout from "./collegeAbout";
 import CoursesAndFees from "./CoursesAndFees";
 import CollegeReviews from "./CollegeReview";
@@ -45,29 +34,29 @@ const UniversityDetails = () => {
   // const id = "1Ck6BKqP67QGQWlPNQHh";
   const [openDialog, setOpenDialog] = useState(false);
   const [value, setValue] = useState(0);
-  const [formData, setFormData] = useState({
-    fullName: "",
-    email: "",
-    phoneNumber: "",
-    gender: "",
-    universityName: "",
-  });
+  // const [formData, setFormData] = useState({
+  //   fullName: "",
+  //   email: "",
+  //   phoneNumber: "",
+  //   gender: "",
+  //   universityName: "",
+  // });
 
   const [universityData, setUniversityData] = useState({});
 
-  const [imageUrl, setImageUrl] = useState("");
+  // const [imageUrl, setImageUrl] = useState("");
 
 
   const placeholderImageUrl = "https://via.placeholder.com/800x200";
 
-  const formatTimestamp = (timestamp) => {
-    if (timestamp && timestamp.seconds) {
-      const date = new Date(timestamp.seconds * 1000);
-      return date.toLocaleString(); 
-    } else {
-      return "Invalid Date";
-    }
-  };
+  // const formatTimestamp = (timestamp) => {
+  //   if (timestamp && timestamp.seconds) {
+  //     const date = new Date(timestamp.seconds * 1000);
+  //     return date.toLocaleString(); 
+  //   } else {
+  //     return "Invalid Date";
+  //   }
+  // };
   const handleChange = (university, newValue) => {
     setValue(newValue);
   };
@@ -149,6 +138,7 @@ const UniversityDetails = () => {
                 }}
               >
                 <img
+                alt=""
                   src={pin}
                   style={{
                     width: '20px',

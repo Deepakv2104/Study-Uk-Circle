@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import "./UserDashboard.css";
 import EventCard from './EventCard';
-import { Grid, CircularProgress, TextField, MenuItem, Select, InputLabel, FormControl, IconButton, Typography } from '@mui/material';
+import { Grid, CircularProgress, TextField, MenuItem, Select, InputLabel, FormControl, IconButton } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { firestore } from "../../firebase";
 import { collection, getDocs } from "firebase/firestore";
-import { FaStar, FaStarHalf } from "react-icons/fa";
 
 const categories = [
   { name: "Academic Events", imageUrl: "https://cdn-ember.fatsoma.com/assets/models/images/category/category-club-nights-156c2e26e09bbcb1def7873e179c6715.jpg" },

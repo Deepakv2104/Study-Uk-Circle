@@ -1,9 +1,7 @@
 // Join.js
 import React, { useState } from 'react';
-import logo1 from '.././assets/img/logo1.png';
 import haldiram3 from '.././assets/img/haldiram3.png';
 import IQ from '.././assets/img/IQ.svg';
-import nus from '.././assets/img/nus.png';
 
 
 import './Join.css';
@@ -11,7 +9,6 @@ import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import {firestore }from '../firebase'
 import { collection, addDoc } from 'firebase/firestore';
-import { Input } from '@mui/base';
 import NewNav from './NewNav';
 import Footer from './Footer';
 
@@ -54,9 +51,27 @@ const SmeForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent the default form submission behavior
     
-    // Extracting data from the form data and setting default value for interests if none selected
+    // Extracting data from the form data
+    const { 
+      companyName,
+      comapanyMail,
+      role,
+      primaryContact,
+      secondaryContact,
+      websiteLink,
+      description,
+      purpose
+    } = formData;
+  
+    // Setting default value for interests if none selected
     const preferedCommunication = selectedCommunications.length > 0 ? selectedCommunications : ['None'];
-    const {   companyName,
+    
+    try {
+      console.log(formData);
+  
+      // Accessing the "form" collection in Firestore and adding a new document
+      await addDoc(collection(firestore, 'sme'), {
+        companyName,
         comapanyMail,
         role,
         primaryContact,
@@ -64,38 +79,23 @@ const SmeForm = () => {
         websiteLink,
         description,
         purpose,
-    
-        preferedCommunication: [] } = formData;
-    
-    try {
-        console.log(formData)
-
-        // Accessing the "form" collection in Firestore and adding a new document
-        await addDoc(collection(firestore, 'sme'), {
-            companyName,
-      comapanyMail,
-      role,
-      primaryContact,
-      secondaryContact,
-      websiteLink,
-      description,
-      purpose,
-  
-      preferedCommunication: [],
-            timestamp: new Date() // Adding a timestamp field with the current date and time
-        });
-      console.log(formData)
-        setFormSubmitted(true); // Setting formSubmitted state to true after successful submission
+        preferedCommunication, // Use the preferedCommunication variable here
+        timestamp: new Date() // Adding a timestamp field with the current date and time
+      });
+      
+      console.log(formData);
+      setFormSubmitted(true); // Setting formSubmitted state to true after successful submission
     } catch (error) {
-        console.error('Error adding document: ', error); // Logging any errors that occur during the process
+      console.error('Error adding document: ', error); // Logging any errors that occur during the process
     }
-};
+  };
+  
 
 
     return (
        <div>
         <NewNav/>
-         <div className='join-page'style={{marginTop:'80px'}}>
+         <div className='join-page'>
          
          <div className="join-container">
              <div className="left-column">
@@ -107,7 +107,7 @@ const SmeForm = () => {
                  <p className='large-text'>Position yourself as a leader in shaping the future of student life in the UK! Forge a partnership with us today and access our cutting-edge platform early. Crafted to revolutionize the student experience, our comprehensive platform offers endless opportunities for collaboration and innovation in education.</p>
 
                  <div>
-                     <img src="https://join.getwyld.in/assets/images/line.png" alt="Decorative Image" />
+                     <img src="https://join.getwyld.in/assets/images/line.png" alt="" />
                  </div>
                  <div class="nav-right-content desktop" style={{marginTop:'10px'}}><a href="/" class="glass-button smaller w-button">Back to  homepage</a></div >
 
