@@ -61,7 +61,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "analyze": "react-scripts build && webpack-bundle-analyzer build/static/js/main.*.js"
   },
   "eslintConfig": {
     "extends": [
@@ -86,6 +87,7 @@
     "less": "^4.2.0",
     "less-loader": "^12.2.0",
     "postcss-nesting": "^12.1.4",
-    "tailwindcss": "^3.4.1"
+    "tailwindcss": "^3.4.1",
+    "webpack-bundle-analyzer": "^4.10.2"
   }
 }

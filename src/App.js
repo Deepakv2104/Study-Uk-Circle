@@ -5,12 +5,12 @@ import Dashboard from "./components/Admin/adminDashboard";
 import EventUploadForm from "./components/Admin/EventUpload";
 import Overview from "./components/Admin/Overview";
 import LoginPage from "./components/LoginPage";
-
+import FilterEventsPage from './components/Student/FilterEventsPage'
 // import DetailsPage from "./components/Testing";
 import { gsap } from "gsap";
 import CollegeUpload from "./components/Admin/CollgeUpload";
 import UserDashboard from "./components/Student/UserDashboard";
-import ExploreEvents from "./components/Student/ExploreEvents";
+import EventsPage from "./components/Student/EventsPage";
 import Accommodation from "./components/Student/Accommodation";
 import University from "./components/Student/University";
 import StudentProfile from "./components/Student/StudentProfile";
@@ -79,9 +79,19 @@ function App() {
               <Route
                 path="/user-dashboard/events"
                 role="student"
-                element={<ExploreEvents />}
+                element={<EventsPage />}
               />
           
+          <Route
+                path="/user-dashboard/events/all-events/:eventCategory"
+                role="student"
+                element={<FilterEventsPage />}
+              />
+                 <Route
+                path="/user-dashboard/events/all-events/:eventCategory/:eventId"
+                role="student"
+                element={<EventDetails />}
+              />
               <Route
                 path="/user-dashboard/events/:eventId"
                 element={<EventDetails />}
