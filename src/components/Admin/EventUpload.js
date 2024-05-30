@@ -17,196 +17,183 @@ const Loader = () => (
     <div className="loader"></div>
   </div>
 );
-const EventUploadForm = (user) => {
-  const auth = useAuth();
+const EventUploadForm = ({ user }) => { // Remove firestore from props
   const [refresh, setRefresh] = useState(false);
   const [dateTime, setDateTime] = useState("");
   const [selectedCategory, setSelectedCategory] = useState('');
 
-  // const [location, setLocation] = useState("");
-
   const [loading, setLoading] = useState(false);
 
   const [eventImageURL, setEventImageURL] = useState(null);
-
   const [guestImageURL, setGuestImageURL] = useState("");
 
   const [eventData, setEventData] = useState({
-    eventId: "",
-    TimeAndDate: new Date(),
-    duration: "",
-    eligibility: "",
-    entryFee: "",
-    eventCategory: "",
-    eventDescription: "",
-
-    eventName: "",
-    experince: "",
-    guestImage: "",
-    guestName: "",
-    language: "",
-    location: "",
-    eventImage: "",
+      eventId: "",
+      TimeAndDate: new Date(),
+      duration: "",
+      eligibility: "",
+      entryFee: "",
+      eventCategory: "",
+      eventDescription: "",
+      eventName: "",
+      experience: "",
+      guestImage: "",
+      guestName: "",
+      language: "",
+      location: "",
+      eventImage: "",
   });
 
   const handleFileChange = async (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const storage = getStorage();
-      const storageRef = ref(
-        storage,
-        `events/${eventData.eventId}/${eventData.eventName}/eventImage/${file.name}`
-      );
+      const file = event.target.files[0];
+      if (file) {
+          const storage = getStorage();
+          const storageRef = ref(
+              storage,
+              `events/${eventData.eventId}/${eventData.eventName}/eventImage/${file.name}`
+          );
 
-      try {
-        setLoading(true);
-        await uploadBytes(storageRef, file);
-        const downloadURL = await getDownloadURL(storageRef);
-        setEventImageURL(downloadURL); // Update state with the image URL
-        setLoading(false);
-      } catch (error) {
-        console.error("Error uploading image: ", error);
-        setLoading(false);
+          try {
+              setLoading(true);
+              await uploadBytes(storageRef, file);
+              const downloadURL = await getDownloadURL(storageRef);
+              setEventImageURL(downloadURL); // Update state with the image URL
+              setLoading(false);
+          } catch (error) {
+              console.error("Error uploading image: ", error);
+              setLoading(false);
+          }
       }
-    }
   };
 
   const handleTitleChange = (e) => {
-    setEventData({ ...eventData, eventName: e.target.value });
+      setEventData({ ...eventData, eventName: e.target.value });
   };
 
   const handleLocationChange = (e) => {
-    setEventData({ ...eventData, location: e.target.value });
+      setEventData({ ...eventData, location: e.target.value });
   };
 
   const handleDescriptionChange = (e) => {
-    setEventData({ ...eventData, eventDescription: e.target.value });
+      setEventData({ ...eventData, eventDescription: e.target.value });
   };
 
   const handleExperienceChange = (e) => {
-    setEventData({ ...eventData, experience: e.target.value });
+      setEventData({ ...eventData, experience: e.target.value });
   };
 
   const handleGuestImageChange = async (e) => {
-    const file = e.target.files[0]; // Get the first file from the input
-    if (file) {
-      const storage = getStorage();
-      const storageRef = ref(
-        storage,
-        `events/${eventData.eventId}/${eventData.eventName}/guestName/${eventData.guestName}/guestImage/${file.name}`
-      );
+      const file = e.target.files[0]; // Get the first file from the input
+      if (file) {
+          const storage = getStorage();
+          const storageRef = ref(
+              storage,
+              `events/${eventData.eventId}/${eventData.eventName}/guestName/${eventData.guestName}/guestImage/${file.name}`
+          );
 
-      try {
-        setLoading(true);
-        await uploadBytes(storageRef, file);
-        const downloadURL = await getDownloadURL(storageRef);
-        setGuestImageURL(downloadURL); // Update state with the guest image URL
-        setLoading(false);
-      } catch (error) {
-        console.error("Error uploading guest image: ", error);
-        setLoading(false);
+          try {
+              setLoading(true);
+              await uploadBytes(storageRef, file);
+              const downloadURL = await getDownloadURL(storageRef);
+              setGuestImageURL(downloadURL); // Update state with the guest image URL
+              setLoading(false);
+          } catch (error) {
+              console.error("Error uploading guest image: ", error);
+              setLoading(false);
+          }
       }
-    }
   };
 
   const handleGuestNameChange = (e) => {
-    setEventData({ ...eventData, guestName: e.target.value });
+      setEventData({ ...eventData, guestName: e.target.value });
   };
 
   const handleLanguageChange = (e) => {
-    setEventData({ ...eventData, language: e.target.value });
+      setEventData({ ...eventData, language: e.target.value });
   };
 
   const handleTimeAndDateChange = (date) => {
-    setEventData({ ...eventData, TimeAndDate: date });
+      setEventData({ ...eventData, TimeAndDate: date });
   };
 
   const handleDurationChange = (e) => {
-    setEventData({ ...eventData, duration: e.target.value });
+      setEventData({ ...eventData, duration: e.target.value });
   };
 
   const handleEligibilityChange = (e) => {
-    setEventData({ ...eventData, eligibility: e.target.value });
+      setEventData({ ...eventData, eligibility: e.target.value });
   };
 
   const handleEntryFeeChange = (e) => {
-    setEventData({ ...eventData, entryFee: e.target.value });
+      setEventData({ ...eventData, entryFee: e.target.value });
   };
 
   const handleEventCategoryChange = (e) => {
-    const selectedCategory = e.target.value;
-    console.log("Selected Category:", selectedCategory); // Log the selected category
-    setSelectedCategory(selectedCategory); // Update the selected category state
+      const selectedCategory = e.target.value;
+      console.log("Selected Category:", selectedCategory); // Log the selected category
+      setSelectedCategory(selectedCategory); // Update the selected category state
+      setEventData({ ...eventData, eventCategory: selectedCategory }); // Update the eventData with the selected category
   };
-  
-  
 
   const handleDateTimeChange = (e) => {
-    setDateTime(e.target.value);
-  };
-
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
+      setDateTime(e.target.value);
   };
 
   const handleFormSubmit = async (e) => {
-    e.preventDefault();
-    if (loading) {
-      return;
-    }
-    setLoading(true);
-    try {
-      // Upload data to Firestore
-      const docRef = await addDoc(collection(firestore, "events"), {
-        ...eventData, // Include all eventData
-        guestImage: guestImageURL,
-        eventImage: eventImageURL,
-      });
+      e.preventDefault();
+      if (loading) {
+          return;
+      }
+      setLoading(true);
+      try {
+          // Upload data to Firestore
+          const docRef = await addDoc(collection(firestore, "events"), {
+              ...eventData, // Include all eventData
+              guestImage: guestImageURL,
+              eventImage: eventImageURL,
+          });
 
-      // Get the newly generated document ID
-      const eventId = docRef.id;
-      setEventData({ ...eventData, eventId: eventId }); // Update eventId in state
+          // Get the newly generated document ID
+          const eventId = docRef.id;
+          setEventData({ ...eventData, eventId: eventId }); // Update eventId in state
 
-      // Update the document with the eventId
-      await updateDoc(doc(firestore, "events", eventId), {
-        eventId: eventId,
-      });
+          // Update the document with the eventId
+          await updateDoc(doc(firestore, "events", eventId), {
+              eventId: eventId,
+          });
 
-      // Reset form fields
-      setTimeout(() => {
-        setEventData({
-          ...eventData,
-          TimeAndDate: "",
-          duration: "",
-          eligibility: "",
-          entryFee: "",
-          eventCategory: "",
-          eventDescription: "",
-          eventName: "",
-          experience: "",
-          guestImage: null,
-          guestName: "",
-          language: "",
-          location: "",
-          eventImage: null,
-        });
-        setDateTime(""); // Reset dateTime state
-        setLoading(false);
-      }, 0);
+          // Reset form fields
+          setTimeout(() => {
+              setEventData({
+                  ...eventData,
+                  TimeAndDate: "",
+                  duration: "",
+                  eligibility: "",
+                  entryFee: "",
+                  eventCategory: "",
+                  eventDescription: "",
+                  eventName: "",
+                  experience: "",
+                  guestImage: null,
+                  guestName: "",
+                  language: "",
+                  location: "",
+                  eventImage: null,
+              });
+              setDateTime(""); // Reset dateTime state
+              setLoading(false);
+          }, 0);
 
-      // Show success message
-      toast.success("Event data uploaded successfully!");
-      setRefresh(true);
-    } catch (error) {
-      console.error("Error adding document: ", error);
-      toast.error("Error uploading event data");
-      setLoading(false);
-    }
+          // Show success message
+          toast.success("Event data uploaded successfully!");
+          setRefresh(true);
+      } catch (error) {
+          console.error("Error adding document: ", error);
+          toast.error("Error uploading event data");
+          setLoading(false);
+      }
   };
+
 
   return (
     

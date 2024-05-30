@@ -5,6 +5,9 @@ import EventCard from './EventCard';
 import { Grid, CircularProgress, IconButton } from '@mui/material';
 import { firestore } from "../../firebase";
 import { collection, getDocs } from "firebase/firestore";
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const categories = [
   { name: "Academic Events", imageUrl: "https://cdn-ember.fatsoma.com/assets/models/images/category/category-club-nights-156c2e26e09bbcb1def7873e179c6715.jpg" },
@@ -32,6 +35,18 @@ const EventsPage = () => {
     const matchesCategory = selectedCategory ? event.eventCategory === selectedCategory : true;
     return matchesSearchTerm && matchesCategory;
   });
+
+  const academicEvents = eventData.filter(event => event.eventCategory === "Academic Events");
+  const culturalEvents = eventData.filter(event => event.eventCategory === "Cultural Events");
+  const socialEvents = eventData.filter(event => event.eventCategory === "Social Events");
+  const sportsEvents = eventData.filter(event => event.eventCategory === "Sports and Recreation");
+  const professionalEvents = eventData.filter(event => event.eventCategory === "Professional Development");
+  const healthEvents = eventData.filter(event => event.eventCategory === "Health and Wellness");
+  const volunteerEvents = eventData.filter(event => event.eventCategory === "Volunteer and Community Service");
+  const orientationEvents = eventData.filter(event => event.eventCategory === "Orientation and Information Sessions");
+  const artsEvents = eventData.filter(event => event.eventCategory === "Arts and Entertainment");
+  const techEvents = eventData.filter(event => event.eventCategory === "Technology and Innovation");
+  
 
   const fetchEventData = async () => {
     try {
@@ -70,6 +85,14 @@ const EventsPage = () => {
     navigate(`all-events/${categoryName}`);
   };
 
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1
+  };
+
   return (
     <div className='explore-events'>
       <h1>Popular Categories</h1>
@@ -104,6 +127,62 @@ const EventsPage = () => {
             </div>
           ) : (
             filteredEvents.map((event, index) => (
+              <EventCard key={index} eventData={event} />
+            ))
+          )}
+        </div>
+      </div>
+      <div className="upcoming-events">
+        <h1>Academic Events</h1>
+        <div className="event-container">
+          {loading ? (
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '300px' }}>
+              <CircularProgress />
+            </div>
+          ) : (
+            academicEvents.map((event, index) => (
+              <EventCard key={index} eventData={event} />
+            ))
+          )}
+        </div>
+      </div>
+      <div className="upcoming-events">
+        <h1>Cultural Events</h1>
+        <div className="event-container">
+          {loading ? (
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '300px' }}>
+              <CircularProgress />
+            </div>
+          ) : (
+            culturalEvents.map((event, index) => (
+              <EventCard key={index} eventData={event} />
+            ))
+          )}
+        </div>
+      </div>
+      <div className="upcoming-events">
+        <h1>Social Events</h1>
+        <div className="event-container">
+          {loading ? (
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '300px' }}>
+              <CircularProgress />
+            </div>
+          ) : (
+            socialEvents.map((event, index) => (
+              <EventCard key={index} eventData={event} />
+            ))
+          )}
+        </div>
+      </div>
+      < div className="upcoming-events">
+        <h1>Sports Events</h1>
+        <div className="event-container">
+          {loading ? (
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '300px' }}>
+              <CircularProgress />
+            </div>
+          ) : (
+            sportsEvents.map((event, index) => (
               <EventCard key={index} eventData={event} />
             ))
           )}
