@@ -71,13 +71,13 @@ const UserDashboard = () => {
         null
       ) : (
         <>
-          <button className="menu-toggle-button" onClick={toggleMenu}>
+          {/* <button className="menu-toggle-button" onClick={toggleMenu}>
             <FaBars />
-          </button>
+          </button> */}
           <Menu user={userData}  />
           <div className="content">
             <div className="left-content">
-              <div className="w-full sm:flex p-2 items-end">
+              {/* <div className="w-full sm:flex p-2 items-end"> */}
                 <div className="sm:flex-grow flex justify-between">
                   <div>
                     {/* <div className="flex items-center">
@@ -89,10 +89,10 @@ const UserDashboard = () => {
                       </div>
                     </div> */}
                   </div>
-                  <IconButton
+                  {/* <IconButton
                     icon="res-react-dash-sidebar-open"
                     className="block sm:hidden"
-                  />
+                  /> */}
                 </div>
                 {/* <div className="w-full sm:w-56 mt-4 sm:mt-0 relative">
                   <Icon
@@ -109,7 +109,7 @@ const UserDashboard = () => {
                     />
                   </form>
                 </div> */}
-              </div>
+              {/* </div> */}
               {userData ? <Outlet user={[userData]} /> : <div>Loading...</div>}
             </div>
             <RightContent user={userData} />

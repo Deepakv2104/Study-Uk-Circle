@@ -87,6 +87,11 @@ function App() {
                 role="student"
                 element={<FilterEventsPage />}
               />
+                <Route
+                path="/user-dashboard/events/all-events"
+                role="student"
+                element={<FilterEventsPage />}
+              />
                  <Route
                 path="/user-dashboard/events/all-events/:eventCategory/:eventId"
                 role="student"

@@ -84,6 +84,9 @@ const EventsPage = () => {
   const handleCategoryClick = (categoryName) => {
     navigate(`all-events/${categoryName}`);
   };
+  const handleBannerClick = ()=>{
+    navigate('all-events')
+  };
 
   const settings = {
     dots: true,
@@ -95,6 +98,18 @@ const EventsPage = () => {
 
   return (
     <div className='explore-events'>
+
+<div class="_discover_wz3ty0">
+  <div class="_container_wz3ty0">
+    <h1 class="_discover-title_wz3ty0">Find something great to do.</h1>
+
+    <div class="_discover-container_wz3ty0">
+      <div class="_discover-button_wz3ty0" onClick={handleBannerClick}>
+        Find an event
+      </div>
+    </div>
+  </div>
+</div>
       <h1>Popular Categories</h1>
       <div className="carousel-container">
         <IconButton onClick={handlePrev} className="carousel-btn" sx={{ color: 'white' }}>
@@ -174,20 +189,153 @@ const EventsPage = () => {
           )}
         </div>
       </div>
-      < div className="upcoming-events">
-        <h1>Sports Events</h1>
-        <div className="event-container">
-          {loading ? (
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '300px' }}>
-              <CircularProgress />
-            </div>
-          ) : (
+      <div className="upcoming-events">
+      <h1>Sports and Recreation</h1>
+      <div className="event-container">
+        {loading ? (
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '300px' }}>
+            <CircularProgress />
+          </div>
+        ) : (
+          sportsEvents && sportsEvents.length > 0 ? (
             sportsEvents.map((event, index) => (
               <EventCard key={index} eventData={event} />
             ))
-          )}
-        </div>
+          ) : (
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'white' }}>
+              No data
+            </div>
+          )
+        )}
       </div>
+      
+    </div>
+    <div className="upcoming-events">
+      <h1>Professional Development</h1>
+      <div className="event-container">
+        {loading ? (
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '300px' }}>
+            <CircularProgress />
+          </div>
+        ) : (
+          professionalEvents && professionalEvents.length > 0 ? (
+            professionalEvents.map((event, index) => (
+              <EventCard key={index} eventData={event} />
+            ))
+          ) : (
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'white' }}>
+              No data
+            </div>
+          )
+        )}
+      </div>
+      
+    </div>
+    <div className="upcoming-events">
+      <h1>Health and Wellness</h1>
+      <div className="event-container">
+        {loading ? (
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '300px' }}>
+            <CircularProgress />
+          </div>
+        ) : (
+          healthEvents && healthEvents.length > 0 ? (
+            healthEvents.map((event, index) => (
+              <EventCard key={index} eventData={event} />
+            ))
+          ) : (
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'white' }}>
+              No data
+            </div>
+          )
+        )}
+      </div>
+      
+    </div>
+    <div className="upcoming-events">
+      <h1>Volunteer and Community Service</h1>
+      <div className="event-container">
+        {loading ? (
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '300px' }}>
+            <CircularProgress />
+          </div>
+        ) : (
+          volunteerEvents && volunteerEvents.length > 0 ? (
+            volunteerEvents.map((event, index) => (
+              <EventCard key={index} eventData={event} />
+            ))
+          ) : (
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'white' }}>
+              No data
+            </div>
+          )
+        )}
+      </div>
+      
+    </div>
+    <div className="upcoming-events">
+      <h1>Orientation and Information Sessions</h1>
+      <div className="event-container">
+        {loading ? (
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '300px' }}>
+            <CircularProgress />
+          </div>
+        ) : (
+          orientationEvents && orientationEvents.length > 0 ? (
+            orientationEvents.map((event, index) => (
+              <EventCard key={index} eventData={event} />
+            ))
+          ) : (
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'white' }}>
+              No data
+            </div>
+          )
+        )}
+      </div>
+      
+    </div>
+    <div className="upcoming-events">
+      <h1>Arts and Entertainment</h1>
+      <div className="event-container">
+        {loading ? (
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '300px' }}>
+            <CircularProgress />
+          </div>
+        ) : (
+          artsEvents && artsEvents.length > 0 ? (
+            artsEvents.map((event, index) => (
+              <EventCard key={index} eventData={event} />
+            ))
+          ) : (
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'white' }}>
+              No data
+            </div>
+          )
+        )}
+      </div>
+      
+    </div>
+    <div className="upcoming-events">
+      <h1>Technology and Innovation</h1>
+      <div className="event-container">
+        {loading ? (
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '300px' }}>
+            <CircularProgress />
+          </div>
+        ) : (
+          techEvents && techEvents.length > 0 ? (
+            techEvents.map((event, index) => (
+              <EventCard key={index} eventData={event} />
+            ))
+          ) : (
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'white' }}>
+              No data
+            </div>
+          )
+        )}
+      </div>
+      
+    </div>
     </div>
   );
 };

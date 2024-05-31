@@ -76,7 +76,7 @@ ul li a {
   width: 100%;
 }
 
-.explore-events h1 {
+.explore-events .upcoming-events h1 {
   font-size: clamp(1rem, 4vw, 1.2rem);
 }
 
@@ -1085,4 +1085,67 @@ body::-webkit-scrollbar-thumb {
   .category-image {
     height: 150px; /* Adjust image height for smaller screens */
   }
+}
+
+._discover_wz3ty0 {
+  position: relative;
+  background-image: url(https://cdn-ember.fatsoma.com/assets/components/page/home/hero-bg-mobile-fcf4e8a8d873664a3deee9793223c205.jpg);
+  background-size: cover;
+  background-position: center center;
+  color: var(--color-primary-white);
+  overflow: hidden;
+  padding: 7.5rem 0;
+}
+
+._discover_wz3ty0 ._container_wz3ty0 {
+  position: relative;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (max-width: 640px) {
+  ._discover_wz3ty0 ._container_wz3ty0 {
+      padding: 0 .9375rem;
+  }
+}
+._discover-title_wz3ty0 {
+  max-width: 19.6875rem;
+  font-weight: 700;
+  font-size: 2.5rem;
+  line-height: 2.5rem;
+  letter-spacing: -.1rem;
+  color: var(--color-primary-white);
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: .625rem;
+}
+._discover-title_wz3ty0 h1 {
+  font-size: 1.5rem;
+  line-height: 2.5rem;
+  letter-spacing: -.03125rem;
+  font-weight: var(--font-weight-bold);
+}
+._discover-container_wz3ty0 {
+  position: relative;}
+._discover-button_wz3ty0 {
+    position: relative;
+    display: inline-block;
+    font-size: .875rem;
+    line-height: 1.125rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary-white);
+    text-align: center;
+    background-color: var(--color-primary-black);
+    border: 1px solid var(--color-primary-black);
+    border-radius: .25rem;
+    padding: .75rem;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+    background-color: black;
+
+}
+._discover_wz3ty0{
+  text-decoration: none;
+
+  transition: color .2s ease-in-out;
 }

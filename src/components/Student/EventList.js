@@ -19,6 +19,7 @@ const EventList = ({ searchTerm, eventType, universityId }) => {
   const [eventData, setEventData] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const [expandedDescriptions, setExpandedDescriptions] = useState({});
 
 
   const fetchEventData = async () => {
@@ -63,6 +64,12 @@ const EventList = ({ searchTerm, eventType, universityId }) => {
 
   const handleBuyClick = (eventId) => {
     navigate(`${eventId}`);
+  };
+  const handleReadMoreClick = (eventId) => {
+    setExpandedDescriptions((prev) => ({
+      ...prev,
+      [eventId]: !prev[eventId]
+    }));
   };
   return (
     <Box>
@@ -110,8 +117,15 @@ const EventList = ({ searchTerm, eventType, universityId }) => {
                     {event.eventCategory}
                   </Typography>
                   <Typography variant="body2" color="white" sx={{ lineHeight: 1.5 }}>
-                    {event.eventDescription}
+                    {expandedDescriptions[event.id] ? event.eventDescription : `${event.eventDescription.slice(0, 100)}...`}
                   </Typography>
+                  <Button
+                    size="small"
+                    color="secondary"
+                    onClick={() => handleReadMoreClick(event.id)}
+                  >
+                    {expandedDescriptions[event.id] ? "Show Less" : "Read More"}
+                  </Button>
                 </CardContent>
                 <Box sx={{ display: "flex", justifyContent: "space-between", padding: 1 }}>
                   <Button variant="outlined" color="secondary" startIcon={<ShareIcon />}>Share</Button>
