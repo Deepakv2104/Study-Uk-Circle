@@ -1032,6 +1032,7 @@ body::-webkit-scrollbar-thumb {
 .carousel-container {
   display: flex;
   align-items: center;
+  /* flex-direction: row; */
   margin: 20px 0;
   height: auto;
   overflow-x: hidden; /* Hide horizontal overflow */
@@ -1054,27 +1055,27 @@ body::-webkit-scrollbar-thumb {
   flex: 0 0 auto;
   text-align: center;
   cursor: pointer;
-  width: 200px; /* Fixed width for each item */
-  position: relative; /* Add relative positioning */
+  width: 200px; 
+  position: relative; 
   height: 220px;
 }
 
 .category-image {
   height: 180px;
-  width: 100%; /* Set width to 100% to fill the container horizontally */
+  width: 100%; 
   object-fit: cover;
   border-radius: 8px;
-  transition: transform 0.3s ease; /* Add transition for smooth animation */
+  transition: transform 0.3s ease; 
 }
 
 .category-name {
-  margin-top: 10px; /* Add margin to separate image and name */
-  color: white; /* Set the text color */
+  margin-top: 10px; 
+  color: white; 
   font-size: 12px;
 }
 
 .category-item:hover .category-image {
-  transform: scale(1.1); /* Zoom in the image by 10% */
+  transform: scale(1.1); 
 }
 
 @media screen and (max-width: 768px) {
@@ -1089,7 +1090,7 @@ body::-webkit-scrollbar-thumb {
 
 ._discover_wz3ty0 {
   position: relative;
-  background-image: url(https://cdn-ember.fatsoma.com/assets/components/page/home/hero-bg-mobile-fcf4e8a8d873664a3deee9793223c205.jpg);
+  background-image: url(https://firebasestorage.googleapis.com/v0/b/worldlynk-97994.appspot.com/o/assets%2Fevents_cover.jpg?alt=media&token=6e71dc8b-5567-4e02-b011-aac03091debd);
   background-size: cover;
   background-position: center center;
   color: var(--color-primary-white);

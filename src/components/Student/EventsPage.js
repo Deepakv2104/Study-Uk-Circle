@@ -8,18 +8,20 @@ import { collection, getDocs } from "firebase/firestore";
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import EventCover from '../../assets/img/events_cover.jpg'
+import CardSlider from './CardSlider';
 
 const categories = [
-  { name: "Academic Events", imageUrl: "https://cdn-ember.fatsoma.com/assets/models/images/category/category-club-nights-156c2e26e09bbcb1def7873e179c6715.jpg" },
-  { name: "Cultural Events", imageUrl: "https://cdn-ember.fatsoma.com/assets/models/images/category/category-gigs-f071e499e930231fee8bc09de3495d1d.jpg" },
-  { name: "Social Events", imageUrl: "https://cdn-ember.fatsoma.com/assets/models/images/category/category-classes-a88385b6ee2ed458fd511c984ddb92c8.jpg" },
-  { name: "Sports and Recreation", imageUrl: "https://cdn-ember.fatsoma.com/assets/models/images/category/category-business-809788c128d481bae6d4a6e173dfc737.jpg" },
-  { name: "Professional Development", imageUrl: "https://cdn-ember.fatsoma.com/assets/models/images/category/category-arts-7116d71219f4332ae17a0c260cf43714.jpg" },
-  { name: "Health and Wellness", imageUrl: "https://cdn-ember.fatsoma.com/assets/models/images/category/category-food-and-drink-ceac1cd53584ba0c9c3100768db05896.jpg" },
-  { name: "Volunteer and Community Service", imageUrl: "https://cdn-ember.fatsoma.com/assets/models/images/category/category-festivals-966143a0ebbebe550ab712d30d11e5f6.jpg" },
+  { name: "Academic Events", imageUrl: "https://firebasestorage.googleapis.com/v0/b/worldlynk-97994.appspot.com/o/assets%2Facademic%20events.jpg?alt=media&token=6ac2e42d-daac-4470-a1b0-c0db106ea740" },
+  { name: "Cultural Events", imageUrl: "https://firebasestorage.googleapis.com/v0/b/worldlynk-97994.appspot.com/o/assets%2Fcultural%20events.jpg?alt=media&token=25640cc9-35ac-497f-a115-954ca7cccdb9" },
+  { name: "Social Events", imageUrl: "https://firebasestorage.googleapis.com/v0/b/worldlynk-97994.appspot.com/o/assets%2Fsocial%20events.jpg?alt=media&token=85df17bb-62c1-43b5-bca3-11c0205849e4" },
+  { name: "Sports and Recreation", imageUrl: "https://firebasestorage.googleapis.com/v0/b/worldlynk-97994.appspot.com/o/assets%2Fsports%20events.jpg?alt=media&token=95a6345e-400d-4c8a-bea6-f95d8e85570a" },
+  { name: "Professional Development", imageUrl: "https://firebasestorage.googleapis.com/v0/b/worldlynk-97994.appspot.com/o/assets%2Fprofessional%20development.jpg?alt=media&token=7c741c38-9383-48d2-b375-028145949f81" },
+  { name: "Health and Wellness", imageUrl: "https://firebasestorage.googleapis.com/v0/b/worldlynk-97994.appspot.com/o/assets%2Fhealth%20and%20wellness.jpg?alt=media&token=0ddf4b74-35d9-4e34-a7c2-8171f89f5fb1" },
+  // { name: "Volunteer and Community Service", imageUrl: "https://cdn-ember.fatsoma.com/assets/models/images/category/category-festivals-966143a0ebbebe550ab712d30d11e5f6.jpg" },
   { name: "Orientation and Information Sessions", imageUrl: "https://cdn-ember.fatsoma.com/assets/models/images/category/category-comedy-fc098385c6204c4abf2ced0b1d397725.jpg" },
-  { name: "Arts and Entertainment", imageUrl: "https://cdn-ember.fatsoma.com/assets/models/images/category/category-fitness-fed748a130a814b3c0efa422d4880b8d.jpg" },
-  { name: "Technology and Innovation", imageUrl: "https://cdn-ember.fatsoma.com/assets/models/images/category/category-dating-67e882792b63608f6a889ecf1b3d2a0f.jpg" }
+  { name: "Arts and Entertainment", imageUrl: "https://firebasestorage.googleapis.com/v0/b/worldlynk-97994.appspot.com/o/assets%2Fart.jpg?alt=media&token=42108d75-b8bf-4856-b592-23f51c5e1b24" },
+  { name: "Technology and Innovation", imageUrl: "https://firebasestorage.googleapis.com/v0/b/worldlynk-97994.appspot.com/o/assets%2Ftech.jpg?alt=media&token=e5a71b37-b49b-4d97-9026-8f79a9e2c0e4" }
 ];
 
 const EventsPage = () => {
@@ -42,7 +44,6 @@ const EventsPage = () => {
   const sportsEvents = eventData.filter(event => event.eventCategory === "Sports and Recreation");
   const professionalEvents = eventData.filter(event => event.eventCategory === "Professional Development");
   const healthEvents = eventData.filter(event => event.eventCategory === "Health and Wellness");
-  const volunteerEvents = eventData.filter(event => event.eventCategory === "Volunteer and Community Service");
   const orientationEvents = eventData.filter(event => event.eventCategory === "Orientation and Information Sessions");
   const artsEvents = eventData.filter(event => event.eventCategory === "Arts and Entertainment");
   const techEvents = eventData.filter(event => event.eventCategory === "Technology and Innovation");
@@ -99,39 +100,19 @@ const EventsPage = () => {
   return (
     <div className='explore-events'>
 
-<div class="_discover_wz3ty0">
-  <div class="_container_wz3ty0">
-    <h1 class="_discover-title_wz3ty0">Find something great to do.</h1>
+<div className="_discover_wz3ty0">
+  <div className="_container_wz3ty0">
+    <h1 className="_discover-title_wz3ty0">Find something great to do.</h1>
 
-    <div class="_discover-container_wz3ty0">
-      <div class="_discover-button_wz3ty0" onClick={handleBannerClick}>
+    <div className="_discover-container_wz3ty0">
+      <div className="_discover-button_wz3ty0" onClick={handleBannerClick}>
         Find an event
       </div>
     </div>
   </div>
 </div>
       <h1>Popular Categories</h1>
-      <div className="carousel-container">
-        <IconButton onClick={handlePrev} className="carousel-btn" sx={{ color: 'white' }}>
-          &lt;
-        </IconButton>
-        <div className="category-slider">
-          {/* Render category cards */}
-          {categories.map((category, index) => (
-            <div
-              key={index}
-              className={`category-item ${currentIndex === index ? "active" : ""}`}
-              onClick={() => handleCategoryClick(category.name)}
-            >
-              <img src={category.imageUrl} alt={category.name} className="category-image" />
-              <p className="category-name">{category.name}</p>
-            </div>
-          ))}
-        </div>
-        <IconButton onClick={handleNext} className="carousel-btn" sx={{ color: 'white' }}>
-          &gt;
-        </IconButton>
-      </div>
+     <CardSlider/>
 
       <div className="upcoming-events">
         <h1>Upcoming Events</h1>
@@ -252,27 +233,7 @@ const EventsPage = () => {
       </div>
       
     </div>
-    <div className="upcoming-events">
-      <h1>Volunteer and Community Service</h1>
-      <div className="event-container">
-        {loading ? (
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '300px' }}>
-            <CircularProgress />
-          </div>
-        ) : (
-          volunteerEvents && volunteerEvents.length > 0 ? (
-            volunteerEvents.map((event, index) => (
-              <EventCard key={index} eventData={event} />
-            ))
-          ) : (
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'white' }}>
-              No data
-            </div>
-          )
-        )}
-      </div>
-      
-    </div>
+  
     <div className="upcoming-events">
       <h1>Orientation and Information Sessions</h1>
       <div className="event-container">
@@ -336,6 +297,7 @@ const EventsPage = () => {
       </div>
       
     </div>
+    {/* <CardSlider/> */}
     </div>
   );
 };
