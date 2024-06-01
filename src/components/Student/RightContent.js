@@ -53,7 +53,7 @@ const RightContent = () => {
           </div>
         </div> */}
 
-        <div class="contacts">
+        {/* <div class="contacts">
           <h1>Contacts</h1>
           <div class="contacts-container">
             <div class="contact-status">
@@ -139,7 +139,7 @@ const RightContent = () => {
               <small>6 day ago</small>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

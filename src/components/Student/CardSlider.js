@@ -31,7 +31,7 @@ const CardSlider = () => {
     <div className="slide-container">
       <Swiper
         className="slide-content"
-        slidesPerView={4}
+        slidesPerView={6}
         spaceBetween={0}
         loop={true}
         centeredSlides={true}
@@ -42,11 +42,11 @@ const CardSlider = () => {
           0: { slidesPerView: 1 },
           520: { slidesPerView: 2 },
           950: { slidesPerView: 3 },
-          1200: { slidesPerView: 4 }, // Ensure 4 slides per view on larger screens
+          1200: { slidesPerView: 6 }, // Ensure 4 slides per view on larger screens
         }}
       >
         {categories.map((category, index) => (
-          <SwiperSlide key={index}>
+          <SwiperSlide key={index } >
             <div
               className="category-item"
               onClick={() => handleCategoryClick(category.name)}

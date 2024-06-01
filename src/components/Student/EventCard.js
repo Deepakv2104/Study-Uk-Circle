@@ -32,7 +32,7 @@ const EventCard = ({ eventData }) => {
   };
 
   const handleBuyClick = (eventId) => {
-    navigate(`${eventId}`);
+    navigate(`/user-dashboard/eventDetails/${eventId}`);
   };
   const formatTimestamp = (timestamp) => {
     if (timestamp && timestamp.seconds) {

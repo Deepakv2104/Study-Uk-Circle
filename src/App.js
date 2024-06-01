@@ -97,8 +97,9 @@ function App() {
                 role="student"
                 element={<EventDetails />}
               />
+           
               <Route
-                path="/user-dashboard/events/:eventId"
+                path="/user-dashboard/eventDetails/:eventId"
                 element={<EventDetails />}
               />
               <Route

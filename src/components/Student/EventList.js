@@ -63,7 +63,7 @@ const EventList = ({ searchTerm, eventType, universityId }) => {
   });
 
   const handleBuyClick = (eventId) => {
-    navigate(`${eventId}`);
+    navigate(`/user-dashboard/eventDetails/${eventId}`);
   };
   const handleReadMoreClick = (eventId) => {
     setExpandedDescriptions((prev) => ({

@@ -98,7 +98,7 @@ const EventsPage = () => {
   };
 
   return (
-    <div className='explore-events'>
+    <div className='events-page'>
 
 <div className="_discover_wz3ty0">
   <div className="_container_wz3ty0">
