@@ -38,15 +38,7 @@ const EventsPage = () => {
     return matchesSearchTerm && matchesCategory;
   });
 
-  const academicEvents = eventData.filter(event => event.eventCategory === "Academic Events");
-  const culturalEvents = eventData.filter(event => event.eventCategory === "Cultural Events");
-  const socialEvents = eventData.filter(event => event.eventCategory === "Social Events");
-  const sportsEvents = eventData.filter(event => event.eventCategory === "Sports and Recreation");
-  const professionalEvents = eventData.filter(event => event.eventCategory === "Professional Development");
-  const healthEvents = eventData.filter(event => event.eventCategory === "Health and Wellness");
-  const orientationEvents = eventData.filter(event => event.eventCategory === "Orientation and Information Sessions");
-  const artsEvents = eventData.filter(event => event.eventCategory === "Arts and Entertainment");
-  const techEvents = eventData.filter(event => event.eventCategory === "Technology and Innovation");
+
   
 
   const fetchEventData = async () => {
@@ -74,13 +66,7 @@ const EventsPage = () => {
     fetchEventData();
   }, []);
 
-  const handleNext = () => {
-    setCurrentIndex(prevIndex => (prevIndex === categories.length - 1 ? 0 : prevIndex + 1));
-  };
 
-  const handlePrev = () => {
-    setCurrentIndex(prevIndex => (prevIndex === 0 ? categories.length - 1 : prevIndex - 1));
-  };
 
   const handleCategoryClick = (categoryName) => {
     navigate(`all-events/${categoryName}`);
@@ -89,217 +75,68 @@ const EventsPage = () => {
     navigate('all-events')
   };
 
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1
-  };
+
 
   return (
     <div className='events-page'>
-
-<div className="_discover_wz3ty0">
-  <div className="_container_wz3ty0">
-    <h1 className="_discover-title_wz3ty0">Find something great to do.</h1>
-
-    <div className="_discover-container_wz3ty0">
-      <div className="_discover-button_wz3ty0" onClick={handleBannerClick}>
-        Find an event
-      </div>
-    </div>
-  </div>
-</div>
-      <h1>Popular Categories</h1>
-     <CardSlider/>
-
-      <div className="upcoming-events">
-        <h1>Upcoming Events</h1>
-        <div className="event-container">
-          {loading ? (
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '300px' }}>
-              <CircularProgress />
-            </div>
-          ) : (
-            filteredEvents.map((event, index) => (
-              <EventCard key={index} eventData={event} />
-            ))
-          )}
-        </div>
-      </div>
-      <div className="upcoming-events">
-        <h1>Academic Events</h1>
-        <div className="event-container">
-          {loading ? (
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '300px' }}>
-              <CircularProgress />
-            </div>
-          ) : (
-            academicEvents.map((event, index) => (
-              <EventCard key={index} eventData={event} />
-            ))
-          )}
-        </div>
-      </div>
-      <div className="upcoming-events">
-        <h1>Cultural Events</h1>
-        <div className="event-container">
-          {loading ? (
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '300px' }}>
-              <CircularProgress />
-            </div>
-          ) : (
-            culturalEvents.map((event, index) => (
-              <EventCard key={index} eventData={event} />
-            ))
-          )}
-        </div>
-      </div>
-      <div className="upcoming-events">
-        <h1>Social Events</h1>
-        <div className="event-container">
-          {loading ? (
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '300px' }}>
-              <CircularProgress />
-            </div>
-          ) : (
-            socialEvents.map((event, index) => (
-              <EventCard key={index} eventData={event} />
-            ))
-          )}
-        </div>
-      </div>
-      <div className="upcoming-events">
-      <h1>Sports and Recreation</h1>
-      <div className="event-container">
-        {loading ? (
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '300px' }}>
-            <CircularProgress />
+    <div className="_discover_wz3ty0">
+      <div className="_container_wz3ty0">
+        <h1 className="_discover-title_wz3ty0">Find something great to do.</h1>
+        <div className="_discover-container_wz3ty0">
+          <div className="_discover-button_wz3ty0" onClick={handleBannerClick}>
+            Find an event
           </div>
-        ) : (
-          sportsEvents && sportsEvents.length > 0 ? (
-            sportsEvents.map((event, index) => (
-              <EventCard key={index} eventData={event} />
-            ))
-          ) : (
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'white' }}>
-              No data
-            </div>
-          )
-        )}
+        </div>
       </div>
-      
-    </div>
-    <div className="upcoming-events">
-      <h1>Professional Development</h1>
-      <div className="event-container">
-        {loading ? (
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '300px' }}>
-            <CircularProgress />
-          </div>
-        ) : (
-          professionalEvents && professionalEvents.length > 0 ? (
-            professionalEvents.map((event, index) => (
-              <EventCard key={index} eventData={event} />
-            ))
-          ) : (
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'white' }}>
-              No data
-            </div>
-          )
-        )}
-      </div>
-      
-    </div>
-    <div className="upcoming-events">
-      <h1>Health and Wellness</h1>
-      <div className="event-container">
-        {loading ? (
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '300px' }}>
-            <CircularProgress />
-          </div>
-        ) : (
-          healthEvents && healthEvents.length > 0 ? (
-            healthEvents.map((event, index) => (
-              <EventCard key={index} eventData={event} />
-            ))
-          ) : (
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'white' }}>
-              No data
-            </div>
-          )
-        )}
-      </div>
-      
     </div>
   
-    <div className="upcoming-events">
-      <h1>Orientation and Information Sessions</h1>
-      <div className="event-container">
-        {loading ? (
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '300px' }}>
-            <CircularProgress />
-          </div>
-        ) : (
-          orientationEvents && orientationEvents.length > 0 ? (
-            orientationEvents.map((event, index) => (
-              <EventCard key={index} eventData={event} />
-            ))
-          ) : (
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'white' }}>
-              No data
+    <h1>Popular Categories</h1>
+    <CardSlider/>
+  
+    <div className="upcoming-events relative">
+      <div className="flex flex-col">
+        <h1 className="text-2xl font-bold mb-4">Upcoming Events</h1>
+        <div className="event-container grid grid-cols-1 sm:grid-cols-3 gap-4 relative">
+          {loading ? (
+            <div className="flex justify-center items-center h-60">
+              <CircularProgress />
             </div>
-          )
-        )}
-      </div>
-      
-    </div>
-    <div className="upcoming-events">
-      <h1>Arts and Entertainment</h1>
-      <div className="event-container">
-        {loading ? (
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '300px' }}>
-            <CircularProgress />
-          </div>
-        ) : (
-          artsEvents && artsEvents.length > 0 ? (
-            artsEvents.map((event, index) => (
-              <EventCard key={index} eventData={event} />
-            ))
           ) : (
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'white' }}>
-              No data
-            </div>
-          )
-        )}
-      </div>
-      
-    </div>
-    <div className="upcoming-events">
-      <h1>Technology and Innovation</h1>
-      <div className="event-container">
-        {loading ? (
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '300px' }}>
-            <CircularProgress />
-          </div>
-        ) : (
-          techEvents && techEvents.length > 0 ? (
-            techEvents.map((event, index) => (
-              <EventCard key={index} eventData={event} />
+            filteredEvents.slice(0, 4).map((event, index) => (
+              <div key={index} className="card-container">
+                <EventCard eventData={event} />
+              </div>
             ))
-          ) : (
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'white' }}>
-              No data
-            </div>
-          )
-        )}
+          )}
+          <button onClick={() => navigate("all-events")} className="see-more-btn bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded absolute top-1/2 transform -translate-y-1/2 right-0">
+            See More
+          </button>
+        </div>
       </div>
-      
     </div>
-    {/* <CardSlider/> */}
-    </div>
+  
+    {categories.map((category, index) => (
+      <div className="upcoming-events" key={index}>
+        <h1>{category.name}</h1>
+        <div className="event-container">
+          {loading ? (
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '300px' }}>
+              <CircularProgress />
+            </div>
+          ) : (
+            eventData.filter(event => event.eventCategory === category.name).slice(0, 4).map((event, index) => (
+              <div key={index} className="card-container">
+                <EventCard eventData={event} />
+              </div>
+            ))
+          )}
+        </div>
+      </div>
+    ))}
+  </div>
+  
   );
+  
 };
 
 export default EventsPage;

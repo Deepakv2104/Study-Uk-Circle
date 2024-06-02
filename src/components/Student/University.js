@@ -59,18 +59,19 @@ const University = () => {
             <CircularProgress />
           </div>
         ) : (
-          <Grid container spacing={3}>
-            {universities.map((university, index) => (
-              <Grid item xs={12} sm={6} md={4} key={index}>
-                <Card
-                  title={university.collegeName}
-                  img={university.cardImage}
-                  description={university.description}
-                  id={university.collegeId}
-                />
-              </Grid>
-            ))}
-          </Grid>
+          <Grid container spacing={1}> {/* Adjust spacing value as needed */}
+          {universities.map((university, index) => (
+            <Grid item xs={12} sm={6} md={3} key={index}>
+              <Card
+                title={university.collegeName}
+                img={university.cardImage}
+                description={university.description}
+                id={university.collegeId}
+              />
+            </Grid>
+          ))}
+        </Grid>
+        
         )}
       </div>
       <div className="landing-page-footer">

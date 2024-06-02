@@ -29,27 +29,28 @@ const CollegeReviews = () => {
   };
 
   return (
-    <Paper sx={{ p: 2 }}>
-      <Typography variant="h6" gutterBottom>
-        College Reviews
-      </Typography>
-      <Box mt={2}>
+    <div className="bg-gray-800 text-white p-4">
+    <h6 className="text-xl font-bold mb-2">College Reviews</h6>
+    <div className="mt-2">
         {reviewsData.map((review, index) => (
-          <Card key={index} sx={{ mb: 2 }}>
-            <CardHeader
-              avatar={<Avatar>{review.avatar}</Avatar>}
-              title={review.user}
-              subheader={renderStars(review.rating)}
-            />
-            <CardContent>
-              <Typography variant="body2" color="text.secondary">
-                {review.review}
-              </Typography>
-            </CardContent>
-          </Card>
+            <div key={index} className="bg-gray-700 rounded-lg mb-2">
+                <div className="p-4">
+                    <div className="flex items-center mb-2">
+                        <div className="bg-gray-600 w-10 h-10 flex items-center justify-center rounded-full mr-4">
+                            {review.avatar}
+                        </div>
+                        <div>
+                            <p className="font-bold">{review.user}</p>
+                            <p>{renderStars(review.rating)}</p>
+                        </div>
+                    </div>
+                    <p className="text-sm text-gray-300">{review.review}</p>
+                </div>
+            </div>
         ))}
-      </Box>
-    </Paper>
+    </div>
+</div>
+
   );
 };
 

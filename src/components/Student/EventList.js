@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Box from "@mui/material/Box";
 import { useNavigate } from 'react-router-dom';
-
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
 import IconButton from "@mui/material/IconButton";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -20,7 +16,6 @@ const EventList = ({ searchTerm, eventType, universityId }) => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const [expandedDescriptions, setExpandedDescriptions] = useState({});
-
 
   const fetchEventData = async () => {
     try {
@@ -65,80 +60,59 @@ const EventList = ({ searchTerm, eventType, universityId }) => {
   const handleBuyClick = (eventId) => {
     navigate(`/user-dashboard/eventDetails/${eventId}`);
   };
+  
   const handleReadMoreClick = (eventId) => {
     setExpandedDescriptions((prev) => ({
       ...prev,
       [eventId]: !prev[eventId]
     }));
   };
+
+  const formatTimestamp = (timestamp) => {
+    if (timestamp && timestamp.seconds) {
+      const date = new Date(timestamp.seconds * 1000);
+      return date.toLocaleString();
+    } else {
+      return "Invalid Date";
+    }
+  };
+
   return (
     <Box>
-      {filteredEvents.length > 0 ? (
-        <Grid container spacing={3}>
-          {filteredEvents.map((event) => (
-            <Grid item xs={12} sm={6} md={4} key={event.id}>
-              <Card sx={{ backgroundColor: "rgba(230, 231, 247, 0.1)", color: "white", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", position: "relative" }}>
-              <Card sx={{ backgroundColor: "rgba(230, 231, 247, 0.1)", color: "white", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", position: "relative" }}>
-  <CardMedia
-    component="img"
-    height="140"
-    image={event.eventImage || "https://via.placeholder.com/345x140"}
-    alt={event.eventName}
-    sx={{ position: "relative" }}
-  />
-  <Typography
-    variant="body2"
-    color="white"
-    sx={{
-      position: "absolute",
-      bottom: 0,
-      right: 0,
-      backgroundColor: "rgba(0, 0, 0, 0.5)",
-      padding: "8px"
-    }}
-  >
-    {event.TimeAndDate.toDate().toLocaleString([], { year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true })}
-  </Typography>
-</Card>
-
-             
-                <IconButton
-                  aria-label="favorite"
-                  sx={{ position: "absolute", top: 5, right: 5, color: event.favorite ? "red" : "white", transition: "color 0.3s ease" }}
-                  onClick={() => handleFavoriteClick(event.id)}
-                >
-                  {event.favorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-                </IconButton>
-                <CardContent>
-                  <Typography variant="h6" component="div" sx={{ fontWeight: 600, mb: 1 }}>
-                    {event.eventName}
-                  </Typography>
-                  <Typography variant="body2" color="white" sx={{ mb: 1 }}>
-                    {event.eventCategory}
-                  </Typography>
-                  <Typography variant="body2" color="white" sx={{ lineHeight: 1.5 }}>
-                    {expandedDescriptions[event.id] ? event.eventDescription : `${event.eventDescription.slice(0, 100)}...`}
-                  </Typography>
-                  <Button
-                    size="small"
-                    color="secondary"
-                    onClick={() => handleReadMoreClick(event.id)}
+    {filteredEvents.length > 0 ? (
+      <Grid container spacing={2}>
+        {filteredEvents.map((event) => (
+          <Grid item xs={12} sm={6} md={3} key={event.id}>
+            <div className="max-w-xs rounded-lg overflow-hidden shadow-lg bg-gray-900 text-white">
+              <div className="aspect-w-16 aspect-h-9">
+                <img src={event.eventImage || 'NA'} alt={event.eventName} className="w-full h-full object-cover" />
+              </div>
+              <div className="p-2 sm:p-3"> {/* Adjusted padding */}
+                <h2 className="text-base font-semibold mb-1 sm:mb-2">{event.eventName}</h2> {/* Adjusted font size */}
+                <p className="text-white-600 mb-1 sm:mb-2">{event.location}</p> 
+                <p className="text-white-500 mb-1 sm:mb-2">{formatTimestamp(event.TimeAndDate)}</p> 
+                <p className="text-white-500 mb-2 sm:mb-3">{event.eventCategory}</p> {/* Adjusted margin bottom */}
+                <div className="flex justify-between items-center">
+                  <button
+                    onClick={() => handleBuyClick(event.id)}
+                    className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600 transition duration-300 text-xs sm:text-sm" 
                   >
-                    {expandedDescriptions[event.id] ? "Show Less" : "Read More"}
-                  </Button>
-                </CardContent>
-                <Box sx={{ display: "flex", justifyContent: "space-between", padding: 1 }}>
-                  <Button variant="outlined" color="secondary" startIcon={<ShareIcon />}>Share</Button>
-                  <Button variant="contained" color="primary" onClick={() => handleBuyClick(event.eventId)}>Buy Ticket</Button>
-                </Box>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-      ) : (
-        <Typography variant="body1" color="white">No events found.</Typography>
-      )}
-    </Box>
+                    Buy Ticket
+                  </button>
+                  <IconButton aria-label="share" className="text-gray-500 hover:text-gray-700">
+                    <ShareIcon />
+                  </IconButton>
+                </div>
+              </div>
+            </div>
+          </Grid>
+        ))}
+      </Grid>
+    ) : (
+      <Typography variant="body1" color="white">No events found.</Typography>
+    )}
+  </Box>
+  
   );
 };
 

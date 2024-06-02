@@ -24,6 +24,7 @@ import PageNotFound from "./components/PageNotFound";
 import NewHome from "./components/NewHome"
 import Join from "./components/Join";
 import SmeForm from './components/SmeForm';
+import Jobs from "./components/Student/Jobs";
 
 gsap.registerPlugin();
 function App() {
@@ -111,6 +112,11 @@ function App() {
                 path="/user-dashboard/university"
                 role="student"
                 element={<University />}
+              />
+              <Route
+                path="/user-dashboard/jobs"
+                role="student"
+                element={<Jobs />}
               />
               <Route
                 path="/user-dashboard/university/:universityId"

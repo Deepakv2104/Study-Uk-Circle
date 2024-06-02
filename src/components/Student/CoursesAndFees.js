@@ -59,30 +59,30 @@ const CoursesAndFees = ({coursesData}) => {
   // }, [universityId]);
 
   return (
-    <TableContainer component={Paper}>
-      <Table aria-label="courses and fees table">
-      <TableHead style={{ backgroundColor: '#f5f5dc' }}>
-  <TableRow>
-    <TableCell>Course</TableCell>
-    <TableCell>Total Courses</TableCell>
-    <TableCell>1st Year Tuition Fees</TableCell>
-    <TableCell>Duration & Eligibility</TableCell>
-    {/* <TableCell>Exams Accepted</TableCell> */}
-  </TableRow>
-</TableHead>
+<div className="bg-gray-800 text-white rounded-lg shadow-md p-4">
+    <table className="w-full">
+        <thead className="bg-gray-700">
+            <tr>
+                <th className="px-6 py-3 text-left text-xs font-semibold uppercase">Course</th>
+                <th className="px-6 py-3 text-left text-xs font-semibold uppercase">Total Courses</th>
+                <th className="px-6 py-3 text-left text-xs font-semibold uppercase">1st Year Tuition Fees</th>
+                <th className="px-6 py-3 text-left text-xs font-semibold uppercase">Duration & Eligibility</th>
+            </tr>
+        </thead>
+        <tbody className="divide-y divide-gray-700">
+            {coursesData.coursesAndFees.map((course, index) => (
+                <tr key={index}>
+                    <td className="px-6 py-4 whitespace-nowrap">{course.course}</td>
+                    <td className="px-6 py-4 whitespace-nowrap">{course.totalCourses}</td>
+                    <td className="px-6 py-4 whitespace-nowrap">{course.tuitionFees}</td>
+                    <td className="px-6 py-4 whitespace-nowrap">{course.durationAndEligibility}<br />Exam Accepted: {course.examAccepted}</td>
+                </tr>
+            ))}
+        </tbody>
+    </table>
+</div>
 
-        <TableBody>
-          {coursesData.coursesAndFees.map((course, index) => (
-            <TableRow key={index}>
-              <TableCell>{course.course}</TableCell>
-              <TableCell>{course.totalCourses}</TableCell>
-              <TableCell>{course.tuitionFees}</TableCell>
-              <TableCell>{course.durationAndEligibility}<br />Exam Accepted: {course.examAccepted}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+
   );
 };
 

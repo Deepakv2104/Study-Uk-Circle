@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaBars, FaCog, FaHeart, FaSignOutAlt, FaUtensils } from 'react-icons/fa';
+import { FaBars, FaCog, FaHeart, FaSignOutAlt, FaUtensils, FaBriefcase } from 'react-icons/fa';
 import { Avatar } from '@mui/material';
 import university from '../../assets/img/university .png';
 import accommodation from '../../assets/img/accommodation.png';
@@ -84,6 +84,12 @@ const Menu = ({ user }) => {
                             <div>
                                 <img src={university} alt="" />
                                 <span className="nav-text">University</span>
+                            </div>
+                        </li>
+                        <li className="nav-item1">
+                            <div>
+                            <FaBriefcase className="nav-icon" />
+                                <span className="nav-text">Jobs</span>
                             </div>
                         </li>
                         <li className="nav-item1">

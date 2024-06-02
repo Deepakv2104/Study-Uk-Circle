@@ -19,7 +19,7 @@ const NewHome = () => {
 
  
 const handleJoinClick =()=>{
-    navigate('/login')
+    navigate('/join-waiting-list')
 }
 const handleBrandFormClick =()=>{
     navigate('/write-to-us')

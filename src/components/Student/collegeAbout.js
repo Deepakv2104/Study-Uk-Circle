@@ -31,42 +31,39 @@ const CollegeAbout = () => {
   }
 
   return (
-    <TableContainer component={Paper}>
-      <Table aria-label="college-about-table">
-        <TableBody>
-        <TableRow>
-            <TableCell colSpan={2} >
-              <strong>About {collegeAboutData.collegeName}</strong><br />
-             {collegeAboutData.description}
-            </TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Established</TableCell>
-            <TableCell>{collegeAboutData.established}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Location</TableCell>
-            <TableCell>{collegeAboutData.location}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Exams Accepted</TableCell>
-            <TableCell>{collegeAboutData.examsAccepted}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Ranking</TableCell>
-            <TableCell>{collegeAboutData.ranking}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Total Students</TableCell>
-            <TableCell>{collegeAboutData.totalStudents}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Type</TableCell>
-            <TableCell>{collegeAboutData.scholarships}</TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <div className="bg-gray-800 text-white rounded-lg shadow-md p-4">
+    <p className="font-semibold text-lg mb-4">About {collegeAboutData.collegeName}</p>
+    <p className="mb-4">{collegeAboutData.description}</p>
+    <table className="w-full">
+        <tbody className="divide-y divide-gray-700">
+            <tr>
+                <td className="py-2">Established</td>
+                <td className="py-2">{collegeAboutData.established}</td>
+            </tr>
+            <tr>
+                <td className="py-2">Location</td>
+                <td className="py-2">{collegeAboutData.location}</td>
+            </tr>
+            <tr>
+                <td className="py-2">Exams Accepted</td>
+                <td className="py-2">{collegeAboutData.examsAccepted}</td>
+            </tr>
+            <tr>
+                <td className="py-2">Ranking</td>
+                <td className="py-2">{collegeAboutData.ranking}</td>
+            </tr>
+            <tr>
+                <td className="py-2">Total Students</td>
+                <td className="py-2">{collegeAboutData.totalStudents}</td>
+            </tr>
+            <tr>
+                <td className="py-2">Type</td>
+                <td className="py-2">{collegeAboutData.scholarships}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
   );
 };
 

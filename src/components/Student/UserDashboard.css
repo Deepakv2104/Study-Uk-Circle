@@ -1,3 +1,4 @@
+
 .user-dashboard {
   --bg-body: rgb(245, 247, 255);
   --primary-color: rgb(42, 51, 65);
@@ -17,6 +18,7 @@
 }
 
 .overlay-container {
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -26,14 +28,16 @@
 
 .menu {
   background-color: black;
+  
   color: white;
 }
 
 .content {
+  --tw-bg-opacity: 1;
   flex-grow: 1; /* Takes up remaining space */
   padding: 20px;
   margin-left: 180px; /* Match this to the width of .main-menu */
-  background-color: #121212; /* Match the background color */
+  background-color: rgb(17 24 39 / var(--tw-bg-opacity));
   color: white;
   overflow-y: auto; /* Allows scrolling if content overflows */
 }
@@ -934,4 +938,12 @@ body::-webkit-scrollbar-thumb {
   text-decoration: none;
 
   transition: color .2s ease-in-out;
+}
+.card-container {
+  transition: transform 0.3s ease-in-out;
+  cursor:pointer;
+}
+
+.card-container:hover {
+  transform: scale(1.05);
 }
