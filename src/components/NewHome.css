@@ -5618,6 +5618,10 @@ blockquote {
     margin: 0
 }
 
+.custom-text-color {
+    color: hsl(28, 100%, 60%);
+  }
+  
 .margin-bottom.margin-small {
     margin-bottom: .8rem
 }

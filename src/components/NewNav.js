@@ -1,64 +1,68 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { FaBars, FaTimes } from 'react-icons/fa'; // Import icons from react-icons/fa
-import './NewNav.css';
-import logo from '../assets/img/logo.svg';
+    import React, { useState } from 'react';
+    import { useNavigate } from 'react-router-dom';
+    import { FaBars, FaTimes } from 'react-icons/fa';
+    import logo from '../assets/img/logo.svg';
+import './NewHome1.css'
+    const NewNav = () => {
+        const [click, setClick] = useState(false);
+        const navigate = useNavigate();
+        const handleClick = () => setClick(!click);
+        const Close = () => setClick(false);
 
-const NewNav = () => {
-    const [click, setClick] = useState(false);
-    const navigate = useNavigate(); // Initialize useNavigate hook
-    const handleClick = () => setClick(!click);
-    const Close = () => setClick(false);
-
-    return (
-        <div>
-            <div className="main-container" onClick={() => Close()} />
-            <nav className="navbar" onClick={e => e.stopPropagation()}>
-                <div className="nav-container">
-                    <div className="nav-logo" onClick={() => navigate('/')}>
-                        <img src={logo} alt="Logo" style={{ height: '60px', display: 'flex', alignItems: 'center',margin:'5px'}}/>
+        return (
+            <div className="bg-gray-900 text-white">
+                <nav className="container mx-auto flex items-center justify-between px-4 py-3">
+                    <div className="flex items-center" onClick={() => navigate('/')}>
+                        <img src={logo} alt="Logo" className="h-16 mr-2" />
                     </div>
-                    <ul className={click ? "navMenu active" : "navMenu"}>
+                    <div className="block lg:hidden">
+                        <button onClick={handleClick} className="text-white focus:outline-none">
+                            {click ? <FaTimes size={28} /> : <FaBars size={28} />}
+                        </button>
+                    </div>
+                    <ul className={`lg:flex lg:items-center lg:space-x-6 absolute lg:static left-0 w-full lg:w-auto bg-gray-900 lg:bg-transparent transition-transform transform ${click ? 'translate-x-0' : '-translate-x-full'} lg:transform-none`}>
                         <li className="nav-item">
                             <div
-                                onClick={() => navigate('/')}
-                                className="nav-links"
+                                onClick={() => { navigate('/'); Close(); }}
+                                className="nav-links block px-4 py-2 hover:custom-text-color cursor-pointer"
                             >
                                 Home
                             </div>
                         </li>
                         <li className="nav-item">
-                            <div
-                                // onClick={() => { navigate('/'); handleClick(); }}
-                                className="nav-links"
-                            >
-                                About
-                            </div>
+                        <a
+    href="#about"
+    className="nav-links block px-4 py-2"
+    onClick={Close}
+    style={{ textDecoration: 'none', color: 'white' }}
+>
+    <span className="hover:custom-text-color">About</span>
+</a>
+
+
+
+
                         </li>
                         <li className="nav-item">
                             <div
-                                onClick={() => { navigate('/write-to-us'); handleClick(); }}
-                                className="nav-links"
+                                onClick={() => { navigate('/write-to-us'); Close(); }}
+                                className="nav-links block px-4 py-2 hover:custom-text-color cursor-pointer"
                             >
                                 Partnerships
                             </div>
                         </li>
                         <li className="nav-item">
                             <div
-                                onClick={() => { navigate('/join-waiting-list'); handleClick(); }}
-                                className="nav-links"
+                                onClick={() => { navigate('/join-waiting-list'); Close(); }}
+                                className="nav-links block px-4 py-2 hover:custom-text-color cursor-pointer"
                             >
                                 Sign-In
                             </div>
                         </li>
                     </ul>
-                    <div className="navIcon" onClick={handleClick}>
-                        {click ? <FaTimes /> : <FaBars />} {/* Use FaBars and FaTimes directly */}
-                    </div>
-                </div>
-            </nav>
-        </div>
-    );
-}
+                </nav>
+            </div>
+        );
+    }
 
-export default NewNav;
+    export default NewNav;

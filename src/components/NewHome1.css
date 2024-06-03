@@ -1,0 +1,9 @@
+.custom-text-color {
+    color: hsl(28, 100%, 60%);
+  }
+  .custom-bg-color {
+    background-color: hsl(28, 100%, 60%);
+}
+.hover\:custom-text-color:hover {
+    color: hsl(28, 100%, 60%);
+}
