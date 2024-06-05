@@ -34,7 +34,7 @@ const NewHome = () => {
     return (
         <div className='bg-gray-900 text-white min-h-screen'>
             <NewNav />
-            <section className='h-screen mt-0'>
+            <section className=' mt-0'>
                 <div className="container mx-auto flex flex-col md:flex-row justify-between items-center px-4">
                     <div className="md:w-1/2">
                         <h3 className="text-3xl font-bold">
@@ -67,13 +67,13 @@ const NewHome = () => {
 
 
 
-<div  id="about">
+<section  id="about">
 <AboutUs/>
-</div>
+</section>
 
 
 
-<section className='py-10 bg-gray-900 text-white'>
+<section className='py-10 bg-gray-800 text-white'>
     <div className="container mx-auto px-4">
         <div className="text-center mb-10">
             <h2 className='text-3xl font-bold'>Partner <span className="custom-text-color">With Us.</span></h2>
