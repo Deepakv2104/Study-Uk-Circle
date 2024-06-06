@@ -38,10 +38,9 @@ const NewHome = () => {
                 <div className="container mx-auto flex flex-col md:flex-row justify-between items-center px-4">
                     <div className="md:w-1/2">
                         <h3 className="text-3xl font-bold">
-                            Are you studying in UK? Looking for
-                            <span className="custom-text-color"> Mentorship, </span>
-                            <span className="custom-text-color">Accommodations</span> and
-                            <span className="custom-text-color"><br />Jobs?</span>
+                        The ultimate ecosystem to <span className="custom-text-color"> connect </span> and                             <span className="custom-text-color">empower</span>
+ you in the UK!
+                            
                         </h3>
                         <p className="mt-4 text-lg">
                             WorldLynk is your one-stop solution for a seamless student experience in the UK.
@@ -67,7 +66,7 @@ const NewHome = () => {
 
 
 
-<section  id="about">
+<section  >
 <AboutUs/>
 </section>
 
@@ -106,6 +105,14 @@ const NewHome = () => {
         </div>
     </div>
 </section>
+<div id="about" className="about-containe m-3 mx-auto px-4">
+    <div className=" p-4 border-2 border-gray-600 rounded-lg text-center md:text-left transform transition-transform duration-300 hover:scale-105">
+        <h2 className='text-4xl font-bold mb-6'>About Us</h2>
+        <p className='text-lg text-justify'>
+            Worldlynk's goal is to create an ecosystem for international students by consolidating various solutions into a single platform, encompassing accommodation, travel, financial transactions, careers, and more. We are collaborating with universities to help them gain insights into their students and enhance their experiences. We have also partnered with accommodation providers. Our B2B model will be detailed further in our product demo. Our broader vision is to develop an interactive, AI-driven ecosystem that integrates and adapts all other platforms through our portal to meet your needs.
+        </p>
+    </div>
+</div>
 
 
             <Footer />

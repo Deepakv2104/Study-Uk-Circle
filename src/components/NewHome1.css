@@ -5,5 +5,20 @@
     background-color: hsl(28, 100%, 60%);
 }
 .hover\:custom-text-color:hover {
-    color: hsl(28, 100%, 60%);
+  color: hsl(28, 100%, 60%);
+}
+
+.about-container {
+  width: 100%; /* Set container width to full */
+}
+
+.slider-container {
+  max-width: 1600px; /* Adjust the max-width as needed */
+  width: 100%;
+  margin: 0 auto;
+}
+.custom-hr {
+  border: 1px solid white; /* Style the horizontal line */
+  width: 100%; /* Full width */
+  margin-bottom: 2rem; /* Space below the line */
 }
