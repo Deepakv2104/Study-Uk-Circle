@@ -85,8 +85,8 @@ const NewHome = () => {
                 <div className="container mx-auto flex flex-col md:flex-row justify-between items-center px-4">
                     <div className="md:w-1/2">
                     <h3 className="text-3xl font-bold">
-      The ultimate ecosystem to{' '}
-      <span className="custom-text-color" ref={typewriterRef}></span> in the UK
+      The ultimate ecosystem for{' '}
+      <span className="custom-text-color" ref={typewriterRef}></span> <br/>to connect in the United Kingdom
     </h3>          <p className="mt-4 text-lg">
                             WorldLynk is your one-stop solution for a seamless student experience in the UK.
                         </p>
