@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState,useEffect,useRef} from 'react'
 import { useNavigate } from 'react-router-dom';
 import insight from '../assets/img/insight.png'
 import events from '../assets/img/events.png'
@@ -19,7 +19,8 @@ import uni from '../assets/img/uni.jpeg'
 import eve from '../assets/img/eve.avif'
 import AboutUs from './About';
 import './NewHome1.css'
-
+import TypingEffect from './Typing';
+import Typewriter from "typewriter-effect";
 const NewHome = () => {
     const navigate = useNavigate();
 
@@ -30,6 +31,52 @@ const NewHome = () => {
     const handleBrandFormClick = () => {
         navigate('/write-to-us')
     }
+    const typewriterRef = useRef(null);
+
+    useEffect(() => {
+        const phrases = ["students", "brands", "entrepreneurs"];
+        let index = 0;
+        let typeInterval, deleteInterval;
+    
+        const typePhrase = () => {
+          const phrase = phrases[index];
+          const length = phrase.length;
+          let i = 0;
+    
+          typeInterval = setInterval(() => {
+            if (i <= length) {
+              typewriterRef.current.textContent = phrase.slice(0, i);
+              i++;
+            } else {
+              clearInterval(typeInterval);
+              setTimeout(deletePhrase, 1000);
+            }
+          }, 100);
+        };
+    
+        const deletePhrase = () => {
+          let length = typewriterRef.current.textContent.length;
+    
+          deleteInterval = setInterval(() => {
+            if (length >= 0) {
+              typewriterRef.current.textContent = typewriterRef.current.textContent.slice(0, length);
+              length--;
+            } else {
+              clearInterval(deleteInterval);
+              index = (index + 1) % phrases.length;
+              setTimeout(typePhrase, 1000);
+            }
+          }, 100);
+        };
+    
+        typePhrase();
+    
+        return () => {
+          clearInterval(typeInterval);
+          clearInterval(deleteInterval);
+        };
+      }, []);
+    
 
     return (
         <div className='bg-gray-900 text-white min-h-screen'>
@@ -37,12 +84,10 @@ const NewHome = () => {
             <section className=' mt-0'>
                 <div className="container mx-auto flex flex-col md:flex-row justify-between items-center px-4">
                     <div className="md:w-1/2">
-                        <h3 className="text-3xl font-bold">
-                        The ultimate ecosystem to <span className="custom-text-color"> connect </span> and                             <span className="custom-text-color">empower</span>
- you in the UK!
-                            
-                        </h3>
-                        <p className="mt-4 text-lg">
+                    <h3 className="text-3xl font-bold">
+      The ultimate ecosystem to{' '}
+      <span className="custom-text-color" ref={typewriterRef}></span> in the UK
+    </h3>          <p className="mt-4 text-lg">
                             WorldLynk is your one-stop solution for a seamless student experience in the UK.
                         </p>
                         <div className="flex mt-6">
