@@ -1,100 +1,25 @@
-// Join.js
-import React, { useState } from 'react';
-import haldiram3 from '.././assets/img/haldiram3.png';
-import IQ from '.././assets/img/IQ.svg';
-
-
-import './Join.css';
-import Chip from '@mui/material/Chip';
-import Stack from '@mui/material/Stack';
-import {firestore }from '../firebase'
-import { collection, addDoc } from 'firebase/firestore';
-import NewNav from './NewNav';
-import Footer from './Footer';
-
-const Join = () => {
-  const [selectedInterests, setSelectedInterests] = useState([]);
-  const [formSubmitted, setFormSubmitted] = useState(false);
-  const [formData, setFormData] = useState({
-      name: '',
-      email: '',
-      phone: '',
-      gender: '',
-      userType: '',
-      university: '',
-      graduationYear: '',
-      address: '',
-      postalCode: '',
-      interests: []
-  });
-
-  const handleChipClick = (interest) => {
-    let updatedInterests = [];
-    if (selectedInterests.includes(interest)) {
-        updatedInterests = selectedInterests.filter(item => item !== interest);
-    } else {
-        updatedInterests = [...selectedInterests, interest];
-    }
-
-    setSelectedInterests(updatedInterests); // Update the selectedInterests state
-
-    // Update the formData state to include the updated interests
-    setFormData({ ...formData, interests: updatedInterests });
-};
-
-
-  const handleChange = (e) => {
-      const { name, value } = e.target;
-      setFormData({ ...formData, [name]: value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent the default form submission behavior
-    
-    // Extracting data from the form data and setting default value for interests if none selected
-    const interests = selectedInterests.length > 0 ? selectedInterests : ['None'];
-    const { name, email, phone, gender, userType, university, graduationYear, address, postalCode } = formData;
-    
-    try {
-        // Accessing the "form" collection in Firestore and adding a new document
-        await addDoc(collection(firestore, 'form'), {
-            name,
-            email,
-            phone,
-            gender,
-            userType,
-            university,
-            graduationYear,
-            address,
-            postalCode,
-            interests,
-            timestamp: new Date() // Adding a timestamp field with the current date and time
-        });
-      console.log(formData)
-        setFormSubmitted(true); // Setting formSubmitted state to true after successful submission
-    } catch (error) {
-        console.error('Error adding document: ', error); // Logging any errors that occur during the process
-    }
-};
-
-
-    return (
-<div>
+import React from 'react'
+import NewNav from './NewNav'
+import Footer from './Footer'
+import './NewHome1.css'
+const AboutUsPage = () => {
+  return (
+    <div>
     <NewNav />
     <div className="bg-gray-900 text-white">
         <div className="join-container mx-auto max-w-5xl px-4 flex justify-center items-center">
-            <div className="left-column mr-12">
+            <div className="left-column">
                 <div className="heading mb-8">
-                    <h3 className="text-4xl font-bold">Welcome to<span className="text-color-green">  WorldLynk</span></h3>
-                    <h3 className="text-2xl font-bold">Seamless student experience in the UK: a one-stop solution</h3>
+                    <h3 className="text-4xl font-bold">About Us</h3>
+                    {/* <h3 className="text-2xl font-bold">Seamless student experience in the UK: a one-stop solution</h3> */}
                 </div>
-                <p className="large-text mb-8">Be among the first to experience the future of student life in the UK! Join our waiting list today and gain early access to our comprehensive platform designed to revolutionize your student experience.</p>
+                <p className="large-text mb-8">Worldlynk's goal is to create an ecosystem for international students by consolidating various solutions into a single platform, encompassing accommodation, travel, financial transactions, careers, and more. We are collaborating with universities to help them gain insights into their students and enhance their experiences. We have also partnered with accommodation providers. Our B2B model will be detailed further in our product demo. Our broader vision is to develop an interactive, AI-driven ecosystem that integrates and adapts all other platforms through our portal to meet your needs.</p>
                 <img src="https://join.getwyld.in/assets/images/line.png" alt="Divider" className="mb-8" />
                 <div className="nav-right-content desktop">
                     <a href="/" className="glass-button smaller w-button" style={{textDecoration:'none', color:'white'}}>Back to homepage</a>
                 </div>
             </div>
-            <div className="right-column rounded-lg shadow-md">
+            {/* <div className="right-column rounded-lg shadow-md">
     <div className="form-section">
         {!formSubmitted ? (
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -191,16 +116,15 @@ const Join = () => {
             <div className="message-container">
                 <h2 className="text-2xl font-bold">You are in waitlist!</h2>
                 <p>Your application has been received.</p>
-                {/* Add any additional content or styling for the message */}
             </div>
         )}
     </div>
-</div>
+</div> */}
 
         </div>
     </div>
     <Footer />
-    <div className="footer-brand-logos bg-gray-800 py-8">
+    {/* <div className="footer-brand-logos bg-gray-800 py-8">
         <h4 className="brand-text text-black text-xl mb-4">BRANDS THAT<br />LOVE US !</h4>
         <div className="brand-logos flex justify-center items-center">
             <a href="https://www.haldiramuk.com/" className="mr-4">
@@ -213,11 +137,9 @@ const Join = () => {
                 <img src="https://assets.nationbuilder.com/themes/660d3381d0055b53937ac0db/attachments/original/1659555380/logo.webp?1659555380" alt="NUS" className="h-12" />
             </a>
         </div>
-    </div>
+    </div> */}
 </div>
+  )
+}
 
-
-    );
-};
-
-export default Join;
+export default AboutUsPage

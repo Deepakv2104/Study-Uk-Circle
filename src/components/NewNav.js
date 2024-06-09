@@ -30,14 +30,13 @@ import './NewHome1.css'
                             </div>
                         </li>
                         <li className="nav-item">
-                        <a
-    href="#about"
-    className="nav-links block px-4 py-2"
-    onClick={Close}
-    style={{ textDecoration: 'none', color: 'white' }}
+                        <div
+                                    className="nav-links block px-4 py-2 hover:custom-text-color cursor-pointer"
+
+    onClick={()=>{navigate('/about-us')}}
 >
-    <span className="hover:custom-text-color">About</span>
-</a>
+   About
+</div>
 
 
 

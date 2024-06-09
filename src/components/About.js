@@ -38,7 +38,7 @@ const AboutUs = () => {
     return (
         <section className='py-10 bg-gray-900 text-white mt-8'>
             <div className="container mx-auto px-4">
-                <h2 className="text-3xl font-bold">Services</h2>
+                <h2 className="text-3xl font-bold">Get to know us</h2>
                 <hr className="custom-hr" />
                 <div className="slider-container mx-auto flex justify-center items-center">
                     <hr className="border-white mb-8" />
