@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import logo from "../assets/img/logo.svg";
+import finalLogo from '../assets/img/log.png'
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap justify-between items-center mb-8">
           <div className="w-full md:w-1/3 mb-6 md:mb-0">
-            <img src={logo} alt="WorldLynk Logo" className="h-10 mb-4" />
+            <img src={finalLogo} alt="WorldLynk Logo" className="h-10 mb-4" />
             <p className="text-lg">
               WorldLynk is your one-stop solution for a seamless experience in the UK.
             </p>

@@ -2,6 +2,8 @@
     import { useNavigate } from 'react-router-dom';
     import { FaBars, FaTimes } from 'react-icons/fa';
     import logo from '../assets/img/logo.svg';
+    import finalLogo from '../assets/img/log.png'
+
 import './NewHome1.css'
     const NewNav = () => {
         const [click, setClick] = useState(false);
@@ -13,7 +15,7 @@ import './NewHome1.css'
             <div className="bg-gray-900 text-white">
                 <nav className="container mx-auto flex items-center justify-between px-4 py-3">
                     <div className="flex items-center" onClick={() => navigate('/')}>
-                        <img src={logo} alt="Logo" className="h-16 mr-2" />
+                    <img src={finalLogo} alt="Logo" className="h-10 mr-1" style={{ backgroundColor: 'transparent' }} />
                     </div>
                     <div className="block lg:hidden">
                         <button onClick={handleClick} className="text-white focus:outline-none">
