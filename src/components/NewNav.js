@@ -15,7 +15,7 @@ import './NewHome1.css'
             <div className="bg-gray-900 text-white">
                 <nav className="container mx-auto flex items-center justify-between px-4 py-3">
                     <div className="flex items-center" onClick={() => navigate('/')}>
-                    <img src={finalLogo} alt="Logo" className="h-10 mr-1" style={{ backgroundColor: 'transparent' }} />
+                    <img src={finalLogo} alt="Logo" className="h-12 mr-1" style={{ backgroundColor: 'transparent' }} />
                     </div>
                     <div className="block lg:hidden">
                         <button onClick={handleClick} className="text-white focus:outline-none">

@@ -1,374 +1,312 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-// import { styled } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-// import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Grid";
-import { Typography, Button, Avatar, TextField } from "@mui/material";
-import { FaLocationArrow, FaThumbsUp } from "react-icons/fa";
-// import { FaLocationDot } from "react-icons/fa";
-// import { useAuth } from "../../auth/userProvider/AuthProvider";
-import { firestore } from "../../firebase";
-import Dialog from "@mui/material/Dialog";
-import DialogTitle from "@mui/material/DialogTitle";
-import DialogContent from "@mui/material/DialogContent";
-import DialogActions from "@mui/material/DialogActions";
-import { addDoc, serverTimestamp } from "firebase/firestore";
-
-import {
-  doc,
-  getDoc,
-  updateDoc,
-  collection,
-  // query,
-  // where,
-  // getDocs,
-  // onSnapshot,
-} from "firebase/firestore";
-// import { event } from "jquery";
-// const Item = styled(Paper)(({ theme }) => ({
-//   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-//   ...theme.typography.body2,
-//   padding: theme.spacing(1),
-//   textAlign: "center",
-//   color: theme.palette.text.secondary,
-// }));
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { FaLocationArrow, FaThumbsUp } from 'react-icons/fa';
+import { firestore } from '../../firebase';
+import { addDoc, serverTimestamp, doc, getDoc, updateDoc, collection } from 'firebase/firestore';
 
 const EventDetails = () => {
-  const eventId = useParams();
+  const { eventId } = useParams();
   const [openDialog, setOpenDialog] = useState(false);
   const [formData, setFormData] = useState({
-    fullName: "",
-    email: "",
-    phoneNumber: "",
-    gender: "",
-    universityName: "",
+    fullName: '',
+    email: '',
+    phoneNumber: '',
+    gender: '',
+    universityName: '',
   });
-
   const [eventData, setEventData] = useState({});
-  // State to store the image URL
-  // const [imageUrl, setImageUrl] = useState("");
+  const [tickets, setTickets] = useState([]);
+
+  const decreaseTicketCount = (index) => {
+    const newTickets = [...tickets];
+    newTickets[index].count = Math.max(0, newTickets[index].count - 1);
+    setTickets(newTickets);
+  };
+
+  const increaseTicketCount = (index) => {
+    const newTickets = [...tickets];
+    newTickets[index].count += 1;
+    setTickets(newTickets);
+  };
 
   const formatTimestamp = (timestamp) => {
     if (timestamp && timestamp.seconds) {
-      const date = new Date(timestamp.seconds * 1000); // Convert seconds to milliseconds
-      return date.toLocaleString(); // Format date as needed
+      const date = new Date(timestamp.seconds * 1000);
+      return date.toLocaleString();
     } else {
-      return "Invalid Date";
+      return 'Invalid Date';
     }
   };
+
   const handleOpenDialog = () => {
     setOpenDialog(true);
   };
 
-
-  
-
   useEffect(() => {
-    console.log("eventId:", eventId.eventId); // Log the eventId to check its value
     const fetchEventData = async () => {
       try {
         if (eventId) {
-          const eventDocRef = doc(firestore, "events", eventId.eventId);
+          const eventDocRef = doc(firestore, 'events', eventId);
           const eventDocSnapshot = await getDoc(eventDocRef);
           if (eventDocSnapshot.exists()) {
-            setEventData(eventDocSnapshot.data());
+            const eventData = eventDocSnapshot.data();
+            setEventData(eventData);
+            setTickets(eventData.tickets[0] || []); // Set tickets based on fetched event data
           } else {
-            console.log("Event document not found");
+            console.log('Event document not found');
           }
         }
       } catch (error) {
-        console.error("Error fetching event data:", error);
+        console.error('Error fetching event data:', error);
       }
     };
-
     fetchEventData();
   }, [eventId]);
-  
+  console.log(eventData)
+
   const handleCloseDialog = async () => {
     try {
-      // Add the booking to the "bookings" collection
-      const bookingRef = collection(firestore, "bookings");
+      const bookingRef = collection(firestore, 'bookings');
       const bookingDoc = {
         fullName: formData.fullName,
         email: formData.email,
         phoneNumber: formData.phoneNumber,
         gender: formData.gender,
         universityName: formData.universityName,
-        eventId: eventId.eventId,
-        timestamp: serverTimestamp(), // Add server timestamp for tracking
+        eventId: eventId,
+        timestamp: serverTimestamp(),
       };
-      // Add the document with its own ID
       const bookingDocRef = await addDoc(bookingRef, bookingDoc);
-      console.log("Booking added with ID: ", bookingDocRef.id);
-      // Update the booking document with its own ID as bookingId
+      console.log('Booking added with ID: ', bookingDocRef.id);
       await updateDoc(bookingDocRef, { bookingId: bookingDocRef.id });
-      // Close the dialog
       setOpenDialog(false);
     } catch (error) {
-      console.error("Error adding booking: ", error);
+      console.error('Error adding booking: ', error);
     }
-    setOpenDialog(false);
   };
+
   return (
-    <Box sx={{ flexGrow: 1, m: 2 }}>
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <Box  sx={{  position: "relative"}}>
-            <img
-              src={eventData.eventImage}
-              loading="lazy"
-              alt="Random"
-              style={{
-                width: "100%",
-                maxHeight: "400px",
-                objectFit: "cover",
-                borderTopLeftRadius: "4px",
-                borderTopRightRadius: "4px",
-                borderRadius: "5px",
-              }}
-            />
-            <Box
-            // className="card"
-              sx={{
-                p: 2,
-                backgroundColor: 'black',
-                color: 'white',
-                borderRadius: "4px",
-                boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
-              }}
-            >
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  mr: 2,
-                }}
-              >
-                <div>
-                  <Typography
-                    variant="h6"
-                    sx={{ mb: 1, color: "white", fontWeight: "bold" }}
-                  >
-                    {eventData.eventName || "N/A"}
-                  </Typography>
-
-                  <Typography variant="body2" sx={{ mb: 1 }}>
-                    {eventData.eventCategory} | {eventData.language || "N/A"} |{" "}
-                    {eventData.experience} | {eventData.duration}
-                  </Typography>
-                </div>
-                <Button
-                  variant="contained"
-                  sx={{ height: "40px", fontSize: "18px", flex: "0 0 auto" }}
-                  onClick={handleOpenDialog}
-                >
-                  Book
-                </Button>
-              </Box>
-
-              <Box sx={{ display: "flex", alignItems: "center", mb: 1 , color: "white"}}>
-                <Typography variant="body2" sx={{ mr: 2 }}>
-                  {formatTimestamp(eventData.TimeAndDate)}
-                </Typography>
-                <svg
-                  viewBox="0 0 18 22"
-                  style={{
-                    width: "20px",
-                    height: "20px",
-                    fill: "#FFA500",
-                    marginRight: "4px",
-                  }}
-                >
-                  <FaLocationArrow style={{ color: "whtie" }} />
-                </svg>
-                <Typography
-                  variant="body2"
-                  sx={{ color: "white", fontWeight: "bold", mr: 2 }}
-                >
-                  {eventData.location || "N/A"}
-                </Typography>
-                <Typography variant="body2" sx={{ color: "white" }}>
-                  {eventData.entryFee || "N/A"}{" "}
-                </Typography>
-              </Box>
-
-              <Typography variant="body2" sx={{ color: "#FF0000", mt: 1 }}>
-                Filling Fast
-              </Typography>
-            </Box>
-          </Box>
-        </Grid>
-      </Grid>
-      <Grid container spacing={3} sx={{ mt: 2 }}>
-
-        <Grid item xs>
-            <Box
-            className="card"
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                
-              }}
-            >
-              <Typography variant="body1" sx={{ mb: 1 ,color:'white'}}>
-                Guests
-              </Typography>
-              <Avatar
-                src={eventData.guestImage}
-                sx={{ width: 70, height: 70 }}
+    <div className="bg-gray-900 min-h-screen py-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="md:col-span-2">
+            <div className="relative rounded-lg overflow-hidden">
+              <img
+                src={eventData.eventImage}
+                alt="Event"
+                className="w-full h-96 object-cover"
               />
-              <Typography variant="body1" sx={{ mb: 1 ,color:'white'}}>
-                {eventData.guestName}
-              </Typography>
-            </Box>
-        </Grid>
-
-        <Grid
-          item
-          xs={6}
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            mr: 2,
-           
-          }}
-        >
-          <Grid container direction="column" spacing={2}>
-            <Grid item>
-                <Box
-                            className="card"
-
-                  sx={{
-                    display: "flex",
-               
-                    mr: 2,
-                    p:2
-                      
-                  }}
-                >
-                  <div>
-                    <Typography variant="body1" sx={{ mb: 1,color:'white' }}>
-                      Click on Interested to stay updated about this event.
-                    </Typography>
-                    <FaThumbsUp style={{margin:'5px'}}/>
-                    <Typography variant="body2" sx={{ mb: 1 ,color:'white'}}>
-                      {" "}
-                      People have shown interest recently.
-                    </Typography>
+              <div className="absolute inset-0 bg-black bg-opacity-50 p-6 flex flex-col justify-between">
+                <div>
+                  <h2 className="text-2xl font-bold text-white mb-2">
+                    {eventData.eventName || 'N/A'}
+                  </h2>
+                  <p className="text-gray-300 mb-2">
+                    {eventData.eventCategory} | {eventData.language || 'N/A'} |{' '}
+                    {eventData.experience} | {eventData.duration}
+                  </p>
+                  <div className="flex items-center mb-2">
+                    <FaLocationArrow className="text-yellow-500 mr-2" />
+                    <p className="text-white font-semibold">
+                      {eventData.location || 'N/A'}
+                    </p>
+                    <p className="text-gray-300 ml-4">{eventData.entryFee || 'N/A'}</p>
                   </div>
-                  <Button
-                    variant="outlined"
-                    color="error"
-                    sx={{ height: "30px", fontSize: "8px", flex: "0 0 auto" }}
+                  <p className="text-red-500">Filling Fast</p>
+                </div>
+                <div className="flex justify-end">
+                  <button
+                    className="bg-red-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400"
+                    onClick={handleOpenDialog}
                   >
-                    Like
-                  </Button>
-                </Box>
-            </Grid>
-            <Grid item>
-                <Box
-                 className="card"
-                  sx={{
-                    display: "flex",
-                   p:2,
-                    mr: 2,
-                  }}
-                >
-                  <div>
-                    <Typography variant="body1" sx={{ mb: 1 ,color:'white'}}>
-                      Event Details
-                    </Typography>
-                    <Typography variant="body2" sx={{ mb: 1 ,color:'white'}}>
-                      {eventData.eventDescription || "N/A"}
-                    </Typography>
-                    <Typography variant="body1" sx={{ mb: 1 ,color:'white'}}>
-                      Eligibility:
-                    </Typography>
-                    <Typography variant="body2" component="ul" sx={{ mb: 1 ,color:'white'}}>
-                      <li>{eventData.eligibility}</li>
-                      <li>Students with valid ID</li>
-                    </Typography>
+                    Book Now
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div className="mt-8">
+              <div className="bg-gray-800 p-6 rounded-lg">
+                <h3 className="text-xl font-semibold text-white mb-4">Event Details</h3>
+                <p className="text-gray-300 mb-4">{eventData.eventDescription || 'N/A'}</p>
+                <h4 className="text-lg font-semibold text-white mb-2">Eligibility:</h4>
+                <ul className="list-disc list-inside text-gray-300">
+                  <li>{eventData.eligibility}</li>
+                  <li>Students with valid ID</li>
+                </ul>
+
+                <h4 className="text-lg font-semibold text-white mb-4 mt-6">Tickets:</h4>
+                <div className="bg-gray-700 p-4 rounded-lg">
+                  {tickets.length > 0 ? (
+                    tickets.map((ticket, index) => (
+                      <div key={index} className="mb-4">
+                        <div className="flex justify-between items-center mb-2">
+                          <span className="text-gray-300">{ticket.type || "Example"}</span>
+                          <span className="text-gray-300">${ticket.price || "50$"}</span>
+                        </div>
+                        <div className="flex items-center">
+                          <button
+                            className="bg-gray-600 text-white px-2 py-1 rounded"
+                            onClick={() => decreaseTicketCount(index)}
+                          >
+                            -
+                          </button>
+                          <span className="text-white mx-2">{ticket.count}</span>
+                          <button
+                            className="bg-gray-600 text-white px-2 py-1 rounded"
+                            onClick={() => increaseTicketCount(index)}
+                          >
+                            +
+                          </button>
+                        </div>
+                      </div>
+                    ))
+                  ) : (
+                    <p className="text-gray-300">No tickets available</p>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div className="bg-gray-800 p-6 rounded-lg mb-8">
+              <h3 className="text-xl font-semibold text-white mb-4">Guests</h3>
+              <div className="flex flex-col items-center">
+                <div className="w-64 h-48 overflow-hidden mb-2">
+                  <img
+                    src={eventData.guestImage}
+                    alt="Guest"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <p className="text-gray-300">{eventData.guestName}</p>
+              </div>
+            </div>
+            <div className="bg-gray-800 p-6 rounded-lg mb-8">
+              <div className="flex flex-col">
+                <div className="mb-4">
+                  <p className="text-gray-300 mb-2">
+                    Click on Interested to stay updated about this event.
+                  </p>
+                  <div className="flex items-center">
+                    <FaThumbsUp className="text-yellow-500 mr-2" />
+                    <p className="text-gray-300">People have shown interest recently.</p>
                   </div>
-                </Box>
-            </Grid>
-          </Grid>
-        </Grid>
-        <Grid item xs>
-         <Box      className="card"  >
-         <Typography  sx={{ mb: 1 ,color:'white',p:2}}>Info</Typography>
-         </Box>
-        </Grid>
-      </Grid>
+                </div>
+                <button className="bg-red-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400">
+                  Like
+                </button>
+              </div>
+            </div>
+            <div className="bg-gray-800 p-6 rounded-lg">
+              <h3 className="text-xl font-semibold text-white mb-4">Info</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Dialog component */}
-      <Dialog open={openDialog} onClose={handleCloseDialog}>
-        <DialogTitle>Book Ticket</DialogTitle>
-        <DialogContent>
-          <form>
-            <TextField
-              id="fullName"
-              label="Full Name"
-              variant="outlined"
-              fullWidth
-              required
-              margin="normal"
-            />
-            <TextField
-              id="email"
-              label="Email"
-              variant="outlined"
-              fullWidth
-              required
-              margin="normal"
-            />
-            <TextField
-              id="phoneNumber"
-              label="Phone Number"
-              variant="outlined"
-              fullWidth
-              required
-              margin="normal"
-            />
-            <TextField
-              id="gender"
-              select
-              label="Gender"
-              variant="outlined"
-              fullWidth
-              required
-              SelectProps={{
-                native: true,
-              }}
-              margin="normal"
-            >
-              <option value="" disabled>
-                Select your gender
-              </option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-              <option value="other">Other</option>
-            </TextField>
-            <TextField
-              id="message"
-              label="University Name"
-              variant="outlined"
-              fullWidth
-              margin="normal"
-            />
-
-          </form>
-        </DialogContent>
-
-        <DialogActions>
-          <Button onClick={() => setOpenDialog(false)} >Cancel</Button>
-          <Button onClick={handleCloseDialog} color="primary">Confirm</Button>
-
-        </DialogActions>
-      </Dialog>
-    </Box>
+      {openDialog && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-gray-800 p-6 rounded-lg max-w-md w-full">
+            <h2 className="text-xl font-semibold text-white mb-4">Book Ticket</h2>
+            <form>
+              <div className="mb-4">
+                <label htmlFor="fullName" className="block text-gray-300 font-semibold mb-1">
+                  Full Name
+                </label>
+                <input
+                  type="text"
+                  id="fullName"
+                  className="w-full bg-gray-700 text-white rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                  value={formData.fullName}
+                  onChange={(e) =>
+                    setFormData({ ...formData, fullName: e.target.value })
+                  }
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="email" className="block text-gray-300 font-semibold mb-1">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  className="w-full bg-gray-700 text-white rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                  value={formData.email}
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
+                  }
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="phoneNumber" className="block text-gray-300 font-semibold mb-1">
+                  Phone Number
+                </label>
+                <input
+                  type="tel"
+                  id="phoneNumber"
+                  className="w-full bg-gray-700 text-white rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                  value={formData.phoneNumber}
+                  onChange={(e) =>
+                    setFormData({ ...formData, phoneNumber: e.target.value })
+                  }
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="gender" className="block text-gray-300 font-semibold mb-1">
+                  Gender
+                </label>
+                <select
+                  id="gender"
+                  className="w-full bg-gray-700 text-white rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                  value={formData.gender}
+                  onChange={(e) =>
+                    setFormData({ ...formData, gender: e.target.value })
+                  }
+                  required
+                >
+                  <option value="">Select your gender</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div className="mb-4">
+                <label htmlFor="universityName" className="block text-gray-300 font-semibold mb-1">
+                  University Name
+                </label>
+                <input
+                  type="text"
+                  id="universityName"
+                  className="w-full bg-gray-700 text-white rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                  value={formData.universityName}
+                  onChange={(e) =>
+                    setFormData({ ...formData, universityName: e.target.value })
+                  }
+                />
+              </div>
+            </form>
+            <div className="flex justify-end mt-6">
+              <button
+                className="bg-gray-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-gray-700 mr-2"
+                onClick={() => setOpenDialog(false)}
+              >
+                Cancel
+              </button>
+              <button
+                className="bg-yellow-500 text-black font-semibold py-2 px-4 rounded-md hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                onClick={handleCloseDialog}
+              >
+                Confirm
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
   );
 };
 

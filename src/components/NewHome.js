@@ -77,7 +77,7 @@ const NewHome = () => {
             <section className='mt-0'>
                 <div className="container mx-auto flex flex-col md:flex-row justify-between items-center px-4">
                     <div className="md:w-1/2">
-                        <h3 className="text-3xl font-bold">
+                        <h3 className="text-5xl font-bold">
                             The ultimate ecosystem for{' '}
                             <span className="custom-text-color" ref={typewriterRef}></span> <br />in the UK
                         </h3>
