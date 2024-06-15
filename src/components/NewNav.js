@@ -1,69 +1,63 @@
-    import React, { useState } from 'react';
-    import { useNavigate } from 'react-router-dom';
-    import { FaBars, FaTimes } from 'react-icons/fa';
-    import logo from '../assets/img/logo.svg';
-    import finalLogo from '../assets/img/log.png'
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { FaBars, FaTimes } from 'react-icons/fa';
+import finalLogo from '../assets/img/log.png';
+import './NewNav.css'; // New CSS file for navbar styles
 
-import './NewHome1.css'
-    const NewNav = () => {
-        const [click, setClick] = useState(false);
-        const navigate = useNavigate();
-        const handleClick = () => setClick(!click);
-        const Close = () => setClick(false);
+const NewNav = () => {
+    const [click, setClick] = useState(false);
+    const navigate = useNavigate();
 
-        return (
-            <div className="bg-gray-900 text-white">
-                <nav className="container mx-auto flex items-center justify-between px-4 py-3">
-                    <div className="flex items-center" onClick={() => navigate('/')}>
-                    <img src={finalLogo} alt="Logo" className="h-12 mr-1" style={{ backgroundColor: 'transparent' }} />
-                    </div>
-                    <div className="block lg:hidden">
-                        <button onClick={handleClick} className="text-white focus:outline-none">
-                            {click ? <FaTimes size={28} /> : <FaBars size={28} />}
-                        </button>
-                    </div>
-                    <ul className={`lg:flex lg:items-center lg:space-x-6 absolute lg:static left-0 w-full lg:w-auto bg-gray-900 lg:bg-transparent transition-transform transform ${click ? 'translate-x-0' : '-translate-x-full'} lg:transform-none`}>
-                        <li className="nav-item">
-                            <div
-                                onClick={() => { navigate('/'); Close(); }}
-                                className="nav-links block px-4 py-2 hover:custom-text-color cursor-pointer"
-                            >
-                                Home
-                            </div>
-                        </li>
-                        <li className="nav-item">
-                        <div
-                                    className="nav-links block px-4 py-2 hover:custom-text-color cursor-pointer"
+    const handleClick = () => setClick(!click);
+    const closeMobileMenu = () => setClick(false);
 
-    onClick={()=>{navigate('/about-us')}}
->
-   About
+    return (
+        <nav className="navbar bg-gray-900 px-2">
+            <div className="navbar-container container mx-auto px-1">
+            <div className="navbar-logo" onClick={() => navigate('/')}>
+    <img src={finalLogo} alt="Logo" className="h-9 md:h-12 mr-1" />
 </div>
 
-
-
-
-                        </li>
-                        <li className="nav-item">
-                            <div
-                                onClick={() => { navigate('/write-to-us'); Close(); }}
-                                className="nav-links block px-4 py-2 hover:custom-text-color cursor-pointer"
-                            >
-                                Partnerships
-                            </div>
-                        </li>
-                        <li className="nav-item">
-                            <div
-                                onClick={() => { navigate('/join-waiting-list'); Close(); }}
-                                className="nav-links block px-4 py-2 hover:custom-text-color cursor-pointer"
-                            >
-                                Sign-In
-                            </div>
-                        </li>
-                    </ul>
-                </nav>
+                <div className="menu-icon" onClick={handleClick}>
+                    {click ? <FaTimes size={28} /> : <FaBars size={28} />}
+                </div>
+                <ul className={click ? 'nav-menu active' : 'nav-menu'}>
+                    <li className="nav-item">
+                        <div
+                            onClick={() => { navigate('/'); closeMobileMenu(); }}
+                            className="nav-link"
+                        >
+                            Home
+                        </div>
+                    </li>
+                    <li className="nav-item">
+                        <div
+                            onClick={() => { navigate('/about-us'); closeMobileMenu(); }}
+                            className="nav-link"
+                        >
+                            About
+                        </div>
+                    </li>
+                    <li className="nav-item">
+                        <div
+                            onClick={() => { navigate('/write-to-us'); closeMobileMenu(); }}
+                            className="nav-link"
+                        >
+                            Partnerships
+                        </div>
+                    </li>
+                    <li className="nav-item">
+                        <div
+                            onClick={() => { navigate('/join-waiting-list'); closeMobileMenu(); }}
+                            className="nav-link"
+                        >
+                            Sign-In
+                        </div>
+                    </li>
+                </ul>
             </div>
-        );
-    }
+        </nav>
+    );
+}
 
-    export default NewNav;
+export default NewNav;

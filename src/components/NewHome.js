@@ -76,23 +76,24 @@ const NewHome = () => {
             <NewNav />
             <section className='mt-0'>
                 <div className="container mx-auto flex flex-col md:flex-row justify-between items-center px-4">
-                    <div className="md:w-1/2">
-                        <h3 className="text-5xl font-bold">
-                            The ultimate ecosystem for{' '}
-                            <span className="custom-text-color" ref={typewriterRef}></span> <br />in the UK
-                        </h3>
-                        <p className="mt-4 text-lg">
-                            WorldLynk is your one-stop solution for a seamless experience in the UK.
-                        </p>
-                        <div className="flex mt-6">
-                            <button onClick={handleJoinClick} className="custom-bg-color hover:bg-orange-600 text-black py-2 px-4 rounded mr-4">
-                                Join Now
-                            </button>
-                            <button onClick={handleJoinClick} className="custom-text-color border border-orange-500 hover:bg-white hover:text-black py-2 px-4 rounded">
-                                Sign in
-                            </button>
-                        </div>
-                    </div>
+                <div className="md:w-1/2">
+    <h3 className="text-3xl md:text-4xl font-bold">
+        The ultimate ecosystem for{' '}
+        <span className="custom-text-color" ref={typewriterRef}></span> <br />in the UK
+    </h3>
+    <p className="mt-4 text-base md:text-lg">
+        WorldLynk is your one-stop solution for a seamless experience in the UK.
+    </p>
+    <div className="flex flex-wrap mt-6">
+        <button onClick={handleJoinClick} className="custom-bg-color hover:bg-orange-600 text-black py-2 px-4 rounded mr-4 mb-2 md:mb-0">
+            Join Now
+        </button>
+        <button onClick={handleJoinClick} className="custom-text-color border border-orange-500 hover:bg-white hover:text-black py-2 px-4 rounded">
+            Sign in
+        </button>
+    </div>
+</div>
+
                     <div className="md:w-1/2 mt-6 md:mt-0 flex justify-center">
                         <LottieAnimation
                             animationData={animationData}
