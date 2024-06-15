@@ -170,28 +170,29 @@ const LoginPage = () => {
 
   const handleSignUp = async () => {
     try {
-      // 1. Create a new user with Firebase Authentication
+      // Create user with email and password
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      const { user } = userCredential;
-
-      // 2. Add user details to Firestore
+      const user = userCredential.user;
+  
+      // Store additional user data in Firestore
       const userDocRef = doc(firestore, "users", user.uid);
       await setDoc(userDocRef, {
         userId: user.uid,
-        firstName: firstName,
-        lastName: lastName,
+        firstName: formData.firstName,
+        lastName: formData.lastName,
         email: email,
-        studentStatus: studentStatus,
-        studentType: studentType,
-        professionalStatus: professionalStatus,
-        university: university,
-        graduationYear: graduationYear,
-        universityEmail: universityEmail,
-        phone: phone,
-        postCode: postCode,
+        studentStatus: formData.studentStatus,
+        studentType: formData.studentType,
+        professionalStatus: formData.professionalStatus,
+        university: formData.university,
+        graduationYear: formData.graduationYear,
+        universityEmail: formData.universityEmail,
+        phone: formData.phone,
+        postCode: formData.postCode,
+        role: "student", // Assuming default role for signup is "student"
       });
-
-      // Show success toast
+  
+      // Show success toast or redirect user to dashboard
       toast.success("Signup successful!", {
         position: "top-center",
         autoClose: 3000,
@@ -201,28 +202,39 @@ const LoginPage = () => {
         draggable: true,
         progress: undefined,
       });
-
-      // Optionally, you can redirect the user to another page after successful signup instead of reloading the current page
-      // For example, using react-router-dom: history.push("/dashboard");
-      // or window.location.href = "/dashboard";
-
+  
+      // Optionally, redirect the user to another page after successful signup
+      navigate("/user-dashboard/events");
     } catch (error) {
-      // Show error toast
-      toast.error(`Signup failed: ${error.message}`, {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-      });
-
-      console.error("Error signing up:", error.message);
+      if (error.code === 'auth/email-already-in-use') {
+        console.error("Email is already in use.");
+        // Handle the case where the email is already registered
+        // Redirect to login or display an error message to the user
+        toast.error("Email is already in use. Please use a different email.", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+        });
+      } else {
+        console.error("Error signing up:", error.message);
+        // Show a general error message for other authentication errors
+        toast.error(`Signup failed: ${error.message}`, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+        });
+      }
     }
   };
-
-
+  
   return (
     <div>
             <NewNav/>
