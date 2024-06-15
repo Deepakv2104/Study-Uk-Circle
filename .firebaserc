@@ -1,5 +1,9 @@
 {
   "projects": {
-    "default": "worldlynk-effa8"
-  }
+    "default": "worldlynk-97994",
+    "worldlynk": "worldlynk-97994"
+  },
+  "targets": {},
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
 }

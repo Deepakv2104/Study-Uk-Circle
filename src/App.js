@@ -26,6 +26,7 @@ import Join from "./components/Join";
 import SmeForm from './components/SmeForm';
 import Jobs from "./components/Student/Jobs";
 import AboutUsPage from "./components/AboutUsPage";
+import IQAgentMiddleware from "./components/Student/IQAgentMiddleware";
 gsap.registerPlugin();
 function App() {
   return (
@@ -107,7 +108,7 @@ function App() {
               <Route
                 path="/user-dashboard/stay"
                 role="student"
-                element={<Accommodation />}
+                element={<IQAgentMiddleware />}
               />
               <Route
                 path="/user-dashboard/university"
