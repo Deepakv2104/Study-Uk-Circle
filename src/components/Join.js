@@ -27,6 +27,7 @@ const Join = () => {
       postalCode: '',
       interests: []
   });
+  const [allFields,setAllfields] = useState(false)
 
   const handleChipClick = (interest) => {
     let updatedInterests = [];
@@ -70,6 +71,7 @@ const Join = () => {
             interests,
             timestamp: new Date() // Adding a timestamp field with the current date and time
         });
+
       console.log(formData)
         setFormSubmitted(true); // Setting formSubmitted state to true after successful submission
     } catch (error) {
@@ -102,52 +104,52 @@ const Join = () => {
                 <div className="grid grid-cols-2 gap-6">
                     <div className="form-group">
                         <label htmlFor="name" className="block text-sm font-medium text-white">Name:</label>
-                        <input type="text" id="name" name="name" placeholder="Enter your name" className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange} />
+                        <input type="text" id="name" name="name" placeholder="Enter your name" className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange} required />
                     </div>
                     <div className="form-group">
                         <label htmlFor="email" className="block text-sm font-medium text-white">Email:</label>
-                        <input type="email" id="email" name="email" placeholder="Enter your email address" className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange} />
+                        <input type="email" id="email" name="email" placeholder="Enter your email address" className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange} required />
                     </div>
                 </div>
                 <div className="grid grid-cols-2 gap-6">
                     <div className="form-group">
                         <label htmlFor="phone" className="block text-sm font-medium text-white">Phone:</label>
-                        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange} />
+                        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange} required />
                     </div>
                     <div className="form-group">
                         <label htmlFor="gender" className="block text-sm font-medium text-white">Gender:</label>
-                        <input type="text" id="gender" name="gender" placeholder="Enter your gender" className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange} />
+                        <input type="text" id="gender" name="gender" placeholder="Enter your gender" className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange} required />
                     </div>
                 </div>
                 <div className="grid grid-cols-2 gap-6">
                     <div className="form-group">
                         <label htmlFor="university" className="block text-sm font-medium text-white">University Name:</label>
-                        <input type="text" id="university" name="university" placeholder="Enter your university name" className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange} />
+                        <input type="text" id="university" name="university" placeholder="Enter your university name" className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange} required />
                     </div>
                     <div className="form-group">
                         <label htmlFor="graduationYear" className="block text-sm font-medium text-white">Graduation Year:</label>
-                        <input type="text" id="graduationYear" name="graduationYear" placeholder="Enter your graduation year" className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange} />
+                        <input type="text" id="graduationYear" name="graduationYear" placeholder="Enter your graduation year" className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange} required />
                     </div>
                 </div>
                 <div className="grid grid-cols-2 gap-6">
                     <div className="form-group">
                         <label htmlFor="address" className="block text-sm font-medium text-white">Address:</label>
-                        <input type="text" id="address" name="address" placeholder="Enter your address" className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange} />
+                        <input type="text" id="address" name="address" placeholder="Enter your address" className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange} required />
                     </div>
                     <div className="form-group">
                         <label htmlFor="postalCode" className="block text-sm font-medium text-white">Postal Code:</label>
-                        <input type="text" id="postalCode" name="postalCode" placeholder="Enter your postal code" className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange} />
+                        <input type="text" id="postalCode" name="postalCode" placeholder="Enter your postal code" className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange} required />
                     </div>
                 </div>
                 <div className="form-group">
                     <label className="block text-sm font-medium text-white">User Type:</label>
                     <div className="user-type-options">
                         <div className="user-type-option">
-                            <input type="radio" id="student" name="userType" value="student" onChange={handleChange} />
+                            <input type="radio" id="student" name="userType" value="student" onChange={handleChange} required />
                             <label htmlFor="student">Student</label>
                         </div>
                         <div className="user-type-option">
-                            <input type="radio" id="professional" name="userType" value="professional" onChange={handleChange} />
+                            <input type="radio" id="professional" name="userType" value="professional" onChange={handleChange} required/>
                             <label htmlFor="professional">Working Professional</label>
                         </div>
                     </div>
@@ -191,6 +193,7 @@ const Join = () => {
             <div className="message-container">
                 <h2 className="text-2xl font-bold">You are in waitlist!</h2>
                 <p>Your application has been received.</p>
+                <p>Follow us on <a href='https://www.instagram.com/worldlynk___/?igsh=MTdheTdhdTNoOTk0Ng%3D%3D'>Instagram</a></p>
                 {/* Add any additional content or styling for the message */}
             </div>
         )}
