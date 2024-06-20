@@ -142,7 +142,7 @@ const LoginPage = () => {
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
-
+  
       const userDocRef = doc(firestore, "users", user.uid);
       await setDoc(userDocRef, {
         userId: user.uid,
@@ -159,7 +159,7 @@ const LoginPage = () => {
         postCode: formData.postCode,
         role: "student", // Assuming default role for signup is "student"
       });
-
+  
       toast.success("Signup successful!", {
         position: "top-center",
         autoClose: 3000,
@@ -169,33 +169,43 @@ const LoginPage = () => {
         draggable: true,
         progress: undefined,
       });
-
+  
       navigate("/user-dashboard/events");
     } catch (error) {
       console.error("Signup Error:", error);
-      if (error.code === "auth/email-already-in-use") {
-        toast.error("Email is already in use. Please use a different email.", {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          progress: undefined,
-        });
-      } else {
-        toast.error(`Signup failed: ${error.message}`, {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          progress: undefined,
-        });
+  
+      let errorMessage = "Signup failed. Please try again.";
+  
+      switch (error.code) {
+        case "auth/email-already-in-use":
+          errorMessage = "Email is already in use. Please use a different email.";
+          break;
+        case "auth/invalid-email":
+          errorMessage = "Invalid email address. Please enter a valid email.";
+          break;
+        case "auth/weak-password":
+          errorMessage = "Password is too weak. Please enter a stronger password.";
+          break;
+        case "auth/operation-not-allowed":
+          errorMessage = "Operation not allowed. Please contact support.";
+          break;
+        default:
+          errorMessage = `Signup failed: ${error.message}`;
+          break;
       }
+  
+      toast.error(errorMessage, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
+  
 
   return (
     <div>
