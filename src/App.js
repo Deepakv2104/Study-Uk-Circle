@@ -27,6 +27,7 @@ import SmeForm from './components/SmeForm';
 import Jobs from "./components/Student/Jobs";
 import AboutUsPage from "./components/AboutUsPage";
 import IQAgentMiddleware from "./components/Student/IQAgentMiddleware";
+import PrivacyPolicy from "./components/PrivacyPolicy";
 gsap.registerPlugin();
 function App() {
   return (
@@ -40,6 +41,8 @@ function App() {
           {/* <Route path="/details" element={<DetailsPage />} /> */}
           <Route path="/login" element={<LoginPage />} />
           {/* <Route path="/welcome" element={<Welcome />} /> */}
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+
           <Route path="/blank" element={<PageNotFound />} />
           <Route path="/join-waiting-list" element={<Join />} />
           <Route path="/write-to-us" element={<SmeForm />} />

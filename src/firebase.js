@@ -13,7 +13,7 @@ import { GoogleAuthProvider } from "firebase/auth";
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyCTZK8tPL3ATp9QjeGUZpc7eFPnnB3pv9s",
-  authDomain: "www.worldlynk.co.uk",
+  authDomain: "worldlynk-97994.web.app",
   projectId: "worldlynk-97994",
   storageBucket: "worldlynk-97994.appspot.com",
   messagingSenderId: "681088031303",
