@@ -6,7 +6,7 @@ const PrivacyPolicy = () => {
   return (
     <div>
         <NewNav/>
-  <div className="bg-gray-900 text-gray-100 min-h-screen p-6">
+  <div className="bg-gray-800 text-gray-100 min-h-screen p-6">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl font-bold mb-6">Privacy Policy</h1>
         <p className="mb-4"><strong>Effective Date:</strong> [Insert Date]</p>

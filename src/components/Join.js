@@ -83,11 +83,11 @@ const Join = () => {
     return (
 <div>
     <NewNav />
-    <div className="bg-gray-900 text-white">
+    <div className="bg-gray-800 text-white">
         <div className="join-container mx-auto max-w-5xl px-4 flex justify-center items-center">
             <div className="left-column mr-12">
                 <div className="heading mb-8">
-                    <h3 className="text-4xl font-bold">Welcome to<span className="text-color-green">  WorldLynk</span></h3>
+                    <h3 className="text-2xl font-bold">Welcome to<span className="text-color-green">  WorldLynk</span></h3>
                     <h3 className="text-2xl font-bold">Seamless student experience in the UK: a one-stop solution</h3>
                 </div>
                 <p className="large-text mb-8">Be among the first to experience the future of student life in the UK! Join our waiting list today and gain early access to our comprehensive platform designed to revolutionize your student experience.</p>
@@ -188,6 +188,7 @@ const Join = () => {
                     </div>
                 </div>
                 <button type="submit" className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-green-300">Join</button>
+         
             </form>
         ) : (
             <div className="message-container">
@@ -204,7 +205,7 @@ const Join = () => {
     </div>
     <Footer />
     <div className="footer-brand-logos bg-gray-800 py-8">
-        <h4 className="brand-text text-black text-xl mb-4">BRANDS THAT<br />LOVE US !</h4>
+        <h4 className="brand-text text-black    ">BRANDS THAT<br />LOVE US !</h4>
         <div className="brand-logos flex justify-center items-center">
             <a href="https://www.haldiramuk.com/" className="mr-4">
                 <img src={haldiram3} alt="HALDIRAM'S" className="h-12" />

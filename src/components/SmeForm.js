@@ -94,7 +94,7 @@ const SmeForm = () => {
   return (
     <div>
       <NewNav />
-      <div className="bg-gray-900 text-white">
+      <div className="bg-gray-800 text-white">
         <div className="join-container mx-auto max-w-5xl px-4 flex justify-center items-center">
           <div className="left-column mr-12">
             <div className="heading mb-8">
@@ -308,7 +308,7 @@ const SmeForm = () => {
         </div>
         <Footer />
         <div className="footer-brand-logos">
-          <h4 className="brand-text text-white">
+          <h4 className="brand-text text-black">
             BRANDS THAT
             <br />
             LOVE US !

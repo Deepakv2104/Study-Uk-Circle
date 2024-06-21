@@ -13,7 +13,15 @@ const Footer = () => {
   const handleBrandFormClick = () => {
     navigate('/write-to-us');
   };
-
+  const handlePolicyClick = () => {
+    navigate('/privacy-policy');
+  };
+  const handleAboutClick = () => {
+    navigate('/about-us');
+  };
+  const handleHomeClick = () => {
+    navigate('/');
+  };
   return (
     <footer className="bg-gray-900 text-white py-10">
       <div className="container mx-auto px-4">
@@ -28,8 +36,10 @@ const Footer = () => {
             <div className="w-1/2 md:w-1/3 mb-6">
               <h5 className="text-lg font-semibold mb-4">Company</h5>
               <ul>
-                <li className="mb-2"><button to="/" className="hover:underline">Home</button></li>
-                <li className="mb-2"><button to="/about" className="hover:underline">About</button></li>
+                <li className="mb-2"><button onClick={handleHomeClick}className="hover:underline">Home</button></li>
+                <li className="mb-2"><button onClick={handleAboutClick} className="hover:underline">About</button></li>
+                <li className="mb-2"><button onClick={handlePolicyClick} className="hover:underline">Terms & policies</button></li>
+
                 {/* <li className="mb-2"><button to="/newsroom" className="hover:underline">Newsroom</button></li>
                 <li className="mb-2"><button to="/contact" className="hover:underline">Contact</button></li> */}
               </ul>

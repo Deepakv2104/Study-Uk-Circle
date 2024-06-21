@@ -6,7 +6,7 @@ const AboutUsPage = () => {
   return (
     <div>
     <NewNav />
-    <div className="bg-gray-900 text-white">
+    <div className="bg-gray-800 text-white">
         <div className="join-container mx-auto max-w-5xl px-4 flex justify-center items-center">
             <div className="left-column">
                 <div className="heading mb-8">
