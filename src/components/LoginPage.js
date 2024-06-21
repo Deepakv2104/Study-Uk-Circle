@@ -25,20 +25,11 @@ const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showSignUpForm, setShowSignUpForm] = useState(false);
-  const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
-    password: "",
-    studentStatus: "",
-    studentType: "",
-    professionalStatus: "",
-    university: "",
-    graduationYear: "",
-    universityEmail: "",
-    phone: "",
-    postCode: "",
+    password: ""
   });
 
   useEffect(() => {
@@ -65,13 +56,6 @@ const LoginPage = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleNext = () => {
-    setStep(step + 1);
-  };
-
-  const handlePrev = () => {
-    setStep(step - 1);
-  };
 
   const toggleSignUpForm = () => {
     setShowSignUpForm(!showSignUpForm);
@@ -140,42 +124,39 @@ const LoginPage = () => {
 
   const handleSignUp = async () => {
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
       const user = userCredential.user;
-  
-      const userDocRef = doc(firestore, "users", user.uid);
-      await setDoc(userDocRef, {
+
+      await setDoc(doc(firestore, "users", user.uid), {
         userId: user.uid,
         firstName: formData.firstName,
         lastName: formData.lastName,
-        email: email,
-        studentStatus: formData.studentStatus,
-        studentType: formData.studentType,
-        professionalStatus: formData.professionalStatus,
-        university: formData.university,
-        graduationYear: formData.graduationYear,
-        universityEmail: formData.universityEmail,
-        phone: formData.phone,
-        postCode: formData.postCode,
-        role: "student", // Assuming default role for signup is "student"
+        email: formData.email,
+        role: "student",
       });
-  
-      toast.success("Signup successful!", {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-      });
-  
-      navigate("/user-dashboard/events");
+
+      toast.success("Signup successful!", { position: "top-center", autoClose: 3000 });
+
+      // Wait for AuthProvider to update currentUser and userRole
+      let attempts = 0;
+      const maxAttempts = 10;
+      const delay = 300; // milliseconds
+
+      while (attempts < maxAttempts) {
+        const userRole = await getUserRole(user.uid);
+        if (userRole) {
+          navigate("/user-dashboard/events");
+          return;
+        }
+        attempts++;
+        await new Promise((resolve) => setTimeout(resolve, delay));
+      }
+
+      toast.error("Failed to retrieve user role. Please try again.", { position: "top-center", autoClose: 5000 });
     } catch (error) {
       console.error("Signup Error:", error);
-  
       let errorMessage = "Signup failed. Please try again.";
-  
+
       switch (error.code) {
         case "auth/email-already-in-use":
           errorMessage = "Email is already in use. Please use a different email.";
@@ -193,19 +174,10 @@ const LoginPage = () => {
           errorMessage = `Signup failed: ${error.message}`;
           break;
       }
-  
-      toast.error(errorMessage, {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-      });
+
+      toast.error(errorMessage, { position: "top-center", autoClose: 5000 });
     }
   };
-  
 
   return (
     <div>
@@ -218,120 +190,55 @@ const LoginPage = () => {
           {showSignUpForm ? (
             <form>
               <h1 className="form-title">SignUp</h1>
-              {step === 1 && (
-                <div className="form-step">
-                  <div className="form-group">
-                    <input
-                      type="text"
-                      name="firstName"
-                      value={formData.firstName}
-                      onChange={handleChange}
-                      placeholder="First Name"
-                    />
-                  </div>
-                  <div className="form-group">
-                    <input
-                      type="text"
-                      name="lastName"
-                      value={formData.lastName}
-                      onChange={handleChange}
-                      placeholder="Last Name"
-                    />
-                  </div>
-                  <div className="form-group">
-                    <input
-                      type="text"
-                      name="email"
-                      id="email" // Add id attribute here
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="E-mail Address"
-                      autoComplete="username"
-                    />
-                  </div>
-                  <div className="form-group">
-                    <input
-                      type="password"
-                      name="password"
-                      id="password" // Add id attribute here
-                      value={formData.password}
-                      onChange={handleChange}
-                      placeholder="Password"
-                      autoComplete="current-password"
-                    />
-                  </div>
-                  <div className="form-action">
-                    <button
-                      type="button"
-                      className="login-button"
-                      onClick={handleNext}
-                    >
-                      Next
-                    </button>
-                  </div>
-                </div>
-              )}
-              {step === 2 && (
-                <div className="form-step">
-                  <div className="form-group">
-                    <input
-                      type="text"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      placeholder="Phone"
-                      autoComplete="tel"
-                    />
-                  </div>
-                  <div className="form-group">
-                    <input
-                      type="text"
-                      name="university"
-                      value={formData.university}
-                      onChange={handleChange}
-                      placeholder="University"
-                    />
-                  </div>
-                  <div className="form-group">
-                    <input
-                      type="text"
-                      name="graduationYear"
-                      value={formData.graduationYear}
-                      onChange={handleChange}
-                      placeholder="Graduation Year"
-                    />
-                  </div>
-                  <div className="form-group">
-                    <input
-                      type="text"
-                      name="universityEmail"
-                      value={formData.universityEmail}
-                      onChange={handleChange}
-                      placeholder="University Email"
-                    />
-                  </div>
-                  <div
-                    className="form-action"
-                    style={{ display: "flex", justifyContent: "space-between" }}
-                  >
-                    <button
-                      type="button"
-                      className="login-button"
-                      onClick={handlePrev}
-                      style={{ marginRight: "8px" }}
-                    >
-                      Previous
-                    </button>
-                    <button
-                      type="button"
-                      className="login-button"
-                      onClick={handleSignUp}
-                    >
-                      Register
-                    </button>
-                  </div>
-                </div>
-              )}
+              <div className="form-group">
+                <input
+                  type="text"
+                  name="firstName"
+                  value={formData.firstName}
+                  onChange={handleChange}
+                  placeholder="First Name"
+                />
+              </div>
+              <div className="form-group">
+                <input
+                  type="text"
+                  name="lastName"
+                  value={formData.lastName}
+                  onChange={handleChange}
+                  placeholder="Last Name"
+                />
+              </div>
+              <div className="form-group">
+                <input
+                  type="text"
+                  name="email"
+                  id="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="E-mail Address"
+                  autoComplete="username"
+                />
+              </div>
+              <div className="form-group">
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  placeholder="Password"
+                  autoComplete="current-password"
+                />
+              </div>
+              <div className="form-action">
+                <button
+                  type="button"
+                  className="login-button"
+                  onClick={handleSignUp}
+                >
+                  Register
+                </button>
+              </div>
               <div className="new-user-check">
                 <p>
                   {showSignUpForm ? "Already a member? " : "Not a member? "}
@@ -363,7 +270,7 @@ const LoginPage = () => {
                 <input
                   type="text"
                   value={email}
-                  id="email" // Add id attribute here
+                  id="email"
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="E-mail Address"
                   autoComplete="username"
@@ -372,7 +279,7 @@ const LoginPage = () => {
               <div className="form-group">
                 <input
                   type="password"
-                  id="password" // Add id attribute here
+                  id="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Password"
@@ -413,10 +320,9 @@ const LoginPage = () => {
               </div>
             </form>
           )}
-
-          <ToastContainer />
         </div>
       </div>
+      <ToastContainer />
       <Footer />
     </div>
   );

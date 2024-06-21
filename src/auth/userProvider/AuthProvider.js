@@ -1,7 +1,7 @@
 // AuthContext.js
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { auth, googleProvider, firestore } from '../../firebase';
-import { getDoc, doc, setDoc } from "firebase/firestore";
+import { getDoc, doc } from "firebase/firestore";
 
 const AuthContext = createContext();
 
@@ -34,7 +34,7 @@ export const AuthProvider = ({ children }) => {
     return auth.sendPasswordResetEmail(email);
   };
 
-  const getUserRole = async (uid) => {
+  const getUserRole = useCallback(async (uid) => {
     try {
       const userDoc = await getDoc(doc(firestore, "users", uid));
       if (userDoc.exists) {
@@ -47,23 +47,23 @@ export const AuthProvider = ({ children }) => {
       console.error("Error fetching user role:", error);
       return null;
     }
-  };
+  }, []); // No dependencies needed for useCallback since we only want to create the function once
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
-      setCurrentUser(user);
       if (user) {
+        setCurrentUser(user);
         const role = await getUserRole(user.uid);
         setUserRole(role);
-        console.log("setCurrentUser:",currentUser)
-        console.log("userRole",userRole)
+      } else {
+        setCurrentUser(null);
+        setUserRole(null); // Reset userRole if no user is logged in
       }
       setLoading(false);
     });
 
     return unsubscribe;
-  }, []);
-
+  }, [getUserRole]); // Depend on getUserRole function as it is used inside useEffect
 
   const value = {
     currentUser,
@@ -72,7 +72,6 @@ export const AuthProvider = ({ children }) => {
     signInWithEmailAndPassword,
     signInWithGoogle,
     logout,
-    getUserRole,
     resetPassword,
   };
 

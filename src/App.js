@@ -11,7 +11,6 @@ import { gsap } from "gsap";
 import CollegeUpload from "./components/Admin/CollgeUpload";
 import UserDashboard from "./components/Student/UserDashboard";
 import EventsPage from "./components/Student/EventsPage";
-import Accommodation from "./components/Student/Accommodation";
 import University from "./components/Student/University";
 import StudentProfile from "./components/Student/StudentProfile";
 import EventDetails from "./components/Student/EventDetails";
@@ -28,6 +27,7 @@ import Jobs from "./components/Student/Jobs";
 import AboutUsPage from "./components/AboutUsPage";
 import IQAgentMiddleware from "./components/Student/IQAgentMiddleware";
 import PrivacyPolicy from "./components/PrivacyPolicy";
+import AuthComponent from "./components/Testing";
 gsap.registerPlugin();
 function App() {
   return (
@@ -40,7 +40,7 @@ function App() {
           {/* <Route path="/form" element={<QuizApp />} /> */}
           {/* <Route path="/details" element={<DetailsPage />} /> */}
           <Route path="/login" element={<LoginPage />} />
-          {/* <Route path="/welcome" element={<Welcome />} /> */}
+          <Route path="/testing" element={<AuthComponent />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
 
           <Route path="/blank" element={<PageNotFound />} />
