@@ -73,6 +73,7 @@ export const AuthProvider = ({ children }) => {
     signInWithGoogle,
     logout,
     resetPassword,
+    getUserRole
   };
 
   return (

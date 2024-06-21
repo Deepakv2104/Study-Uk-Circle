@@ -18,6 +18,7 @@ import { signOut } from "firebase/auth";
 import NewNav from "./NewNav";
 import Footer from "./Footer";
 
+
 const LoginPage = () => {
   const { getUserRole } = useAuth();
   const navigate = useNavigate();
