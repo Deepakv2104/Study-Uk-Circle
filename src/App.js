@@ -29,6 +29,7 @@ import IQAgentMiddleware from "./components/Student/IQAgentMiddleware";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import AuthComponent from "./components/Testing";
 import Restaurant from "./components/Student/Restaurant";
+import DownloadExcel from "./components/FetchData";
 gsap.registerPlugin();
 function App() {
   return (
@@ -88,6 +89,12 @@ function App() {
                 role="student"
                 element={<EventsPage />}
               />
+                 <Route
+                path="/user-dashboard/fetchData"
+                role="student"
+                element={<DownloadExcel />}
+              />
+          
           
           <Route
                 path="/user-dashboard/events/all-events/:eventCategory"
