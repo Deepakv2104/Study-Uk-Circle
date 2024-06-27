@@ -146,7 +146,7 @@ const Join = () => {
                                     <div className="grid grid-cols-2 gap-6">
                                         <div className="form-group">
                                             <label htmlFor="name" className="block text-sm font-medium text-white">Name:</label>
-                                            <input type="text" id="name" name="name" placeholder="Name" className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange}
+                                            <input type="text" id="name" name="name" placeholder="Full Name" className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange}
                                                 required />
                                         </div>
                                         <div className="form-group">
