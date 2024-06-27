@@ -54,14 +54,7 @@ const NewNav = () => {
                             Sign-In
                         </div>
                     </li>
-                    <li className="nav-item">
-                        <div
-                            onClick={() => { navigate('/privacy-policy'); closeMobileMenu(); }}
-                            className="nav-link"
-                        >
-                           Terms & Conditions
-                        </div>
-                    </li>
+                   
                 </ul>
             </div>
         </nav>
