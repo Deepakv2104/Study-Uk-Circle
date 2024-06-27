@@ -70,20 +70,20 @@ const Join = () => {
         const interests = selectedInterests.length > 0 ? selectedInterests : ['None'];
         const { name, email, phone, gender, userType, university, graduationYear, address, postalCode } = formData;
         // checking validity of phone number
-        if (!validateUKPhoneNumber(phone)) {
+        if (!validatePhoneNumber(phone)) {
             setValidPhone(true);
             console.log(`${phone} is not a valid UK phone number.`);
             return;
         }else{
             setValidPhone(false)
         }
-        if (!validateUKPostalCode(postalCode)) {
-            setValidPostalCode(true);
-            console.log(`${postalCode} is not a valid UK postal code.`);
-            return;
-        }else{
-            setValidPostalCode(false)
-        }
+        // if (!validateUKPostalCode(postalCode)) {
+        //     setValidPostalCode(true);
+        //     console.log(`${postalCode} is not a valid UK postal code.`);
+        //     return;
+        // }else{
+        //     setValidPostalCode(false)
+        // }
 
 
         try {
@@ -109,14 +109,14 @@ const Join = () => {
         }
     };
 
-    function validateUKPhoneNumber(phoneNumber) {
-        const pattern = /^(\+44\s?7\d{3}|\+44\s?1\d{3}|\+44\s?2\d{3}|\+44\s?3\d{3}|\+44\s?8\d{3}|\+44\s?9\d{3}|\(?07\d{3}\)?|\(?01\d{3}\)?|\(?02\d{3}\)?|\(?03\d{3}\)?|\(?08\d{3}\)?|\(?09\d{3}\)?)\s?\d{3}\s?\d{3,4}$/;
+    function validatePhoneNumber(phoneNumber) {
+        const pattern = /^\+(\d{1,3})\s?\(?\d{1,4}\)?\s?\d{1,4}\s?\d{1,4}\s?\d{1,4}$/;
         return pattern.test(phoneNumber);
     }
-    function validateUKPostalCode(postalCode) {
-        const pattern = /^([A-Z]{1,2}[0-9][0-9A-Z]?)\s?[0-9][A-Z]{2}$/i;
-        return pattern.test(postalCode);
-    }
+    // function validateUKPostalCode(postalCode) {
+    //     const pattern = /^([A-Z]{1,2}[0-9][0-9A-Z]?)\s?[0-9][A-Z]{2}$/i;
+    //     return pattern.test(postalCode);
+    // }
 
 
 
@@ -146,18 +146,18 @@ const Join = () => {
                                     <div className="grid grid-cols-2 gap-6">
                                         <div className="form-group">
                                             <label htmlFor="name" className="block text-sm font-medium text-white">Name:</label>
-                                            <input type="text" id="name" name="name" placeholder="Enter your name" className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange}
+                                            <input type="text" id="name" name="name" placeholder="Name" className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange}
                                                 required />
                                         </div>
                                         <div className="form-group">
                                             <label htmlFor="email" className="block text-sm font-medium text-white">Email:</label>
-                                            <input type="email" id="email" name="email" placeholder="Enter your email address" className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange} required />
+                                            <input type="email" id="email" name="email" placeholder="Email Address" className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange} required />
                                         </div>
                                     </div>
                                     <div className="grid grid-cols-2 gap-6">
                                         <div className="form-group">
                                             <label htmlFor="phone" className="block text-sm font-medium text-white">Phone:</label>
-                                            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange} required />
+                                            <input type="tel" id="phone" name="phone" placeholder="Phone Number" className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange} required />
                                         </div>
                                         <div className="form-group">
                                             <label htmlFor="gender" className="block text-sm font-medium text-white ">Gender:</label>
@@ -181,21 +181,21 @@ const Join = () => {
                                     <div className="grid grid-cols-2 gap-6">
                                         <div className="form-group">
                                             <label htmlFor="university" className="block text-sm font-medium text-white">University Name:</label>
-                                            <input type="text" id="university" name="university" placeholder="Enter your university name" className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange} required />
+                                            <input type="text" id="university" name="university" placeholder="University Name" className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange} required />
                                         </div>
                                         <div className="form-group">
                                             <label htmlFor="graduationYear" className="block text-sm font-medium text-white">Graduation Year:</label>
-                                            <input type="text" id="graduationYear" name="graduationYear" placeholder="Enter your graduation year" className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange} required />
+                                            <input type="text" id="graduationYear" name="graduationYear" placeholder="Graduation Year" className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange} required />
                                         </div>
                                     </div>
                                     <div className="grid grid-cols-2 gap-6">
                                         <div className="form-group">
                                             <label htmlFor="address" className="block text-sm font-medium text-white">Address:</label>
-                                            <input type="text" id="address" name="address" placeholder="Enter your address" className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange} required />
+                                            <input type="text" id="address" name="address" placeholder="Address" className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange} required />
                                         </div>
                                         <div className="form-group">
                                             <label htmlFor="postalCode" className="block text-sm font-medium text-white">Postal Code:</label>
-                                            <input type="text" id="postalCode" name="postalCode" placeholder="Enter your postal code" className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange} required />
+                                            <input type="text" id="postalCode" name="postalCode" placeholder="Postal Code" className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange} required />
                                         </div>
                                     </div>
                                     <div className="form-group">
