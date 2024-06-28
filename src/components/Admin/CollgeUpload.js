@@ -4,7 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { updateDoc, doc ,addDoc,collection} from "firebase/firestore";
-import { useAuth } from "../../auth/userProvider/AuthProvider";
+// import { useAuth } from "../../auth/userProvider/AuthProvider";
 import { firestore } from "../../firebase";
 const Loader = () => (
   <div className="loader-container">

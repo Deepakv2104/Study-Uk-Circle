@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { collection, addDoc } from "firebase/firestore";
-import { firestore, storage } from "../../firebase"; // Import your firebase configuration
+import { firestore } from "../../firebase"; // Import your firebase configuration
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "slick-carousel/slick/slick.css";
@@ -9,8 +9,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import "react-time-picker/dist/TimePicker.css";
 import { updateDoc, doc } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { useAuth } from "../../auth/userProvider/AuthProvider";
-import { Grid, CircularProgress, TextField, MenuItem, Select, InputLabel, FormControl, IconButton } from '@mui/material';
+// import { useAuth } from "../../auth/userProvider/AuthProvider";
+import { MenuItem, Select, InputLabel, FormControl } from '@mui/material';
 
 const Loader = () => (
   <div className="loader-container">

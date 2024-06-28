@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './Explore.css';
-import haldirams from '../../assets/img/haldirams.png';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useNavigate } from 'react-router-dom';
 
