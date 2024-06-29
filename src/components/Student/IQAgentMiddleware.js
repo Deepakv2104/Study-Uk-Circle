@@ -45,9 +45,9 @@ const IQAgentMiddleware = () => {
   const fetchLookupData = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`https://your-cloud-function-url/your-region/proxyRequest?path=/api/v1/lookup/${lookupEntity}`);
-      const data = await response.json();
-      setLookupData(data);
+      // const response = await fetch(`https://your-cloud-function-url/your-region/proxyRequest?path=/api/v1/lookup/${lookupEntity}`);
+      // const data = await response.json();
+      // setLookupData(data);
     } catch (error) {
       setError(error.message);
     }

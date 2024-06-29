@@ -5,7 +5,6 @@ import IQ from ".././assets/img/IQ.svg";
 
 import "./Join.css";
 import Chip from "@mui/material/Chip";
-import Stack from "@mui/material/Stack";
 import { firestore } from "../firebase";
 import { collection, addDoc } from "firebase/firestore";
 import NewNav from "./NewNav";

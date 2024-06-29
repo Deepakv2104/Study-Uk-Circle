@@ -3,7 +3,6 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "@firebase/firestore";
 import { getStorage } from 'firebase/storage';
 import { getAuth, setPersistence, browserSessionPersistence, GoogleAuthProvider } from "firebase/auth";
-import { getMessaging } from 'firebase/messaging';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -22,8 +21,7 @@ const firestore = getFirestore(firebase);
 const auth = getAuth(firebase);
 const googleProvider = new GoogleAuthProvider();
 const storage = getStorage(firebase);
-const messaging = getMessaging(firebase);
 
 setPersistence(auth, browserSessionPersistence);
 
-export { firestore, storage, auth, messaging, googleProvider, firebase };
+export { firestore, storage, auth, googleProvider, firebase };
