@@ -215,7 +215,6 @@ const Join = () => {
                                                         <option value="woman">Woman</option>
                                                         <option value="man">Man</option>
                                                         <option value="nonBinary">Non-binary</option>
-                                                        <option value="other">Other</option>
                                                         <option value="preferNotToSpecify">Prefer not to say</option>
                                                         <option value="letMeType">Let me type</option>
                                                     </select>
