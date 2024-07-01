@@ -30,14 +30,15 @@ import PrivacyPolicy from "./components/PrivacyPolicy";
 import AuthComponent from "./components/Testing";
 import Restaurant from "./components/Student/Restaurant";
 import DownloadExcel from "./components/FetchData";
+import AddRestaurant from "./components/Admin/AddRestaurant";
 gsap.registerPlugin();
 function App() {
   return (
     <Router>
       <div className="App">
-  
+
         <Routes>
-          
+
           <Route path="/" element={<NewHome />} />
           {/* <Route path="/form" element={<QuizApp />} /> */}
           {/* <Route path="/details" element={<DetailsPage />} /> */}
@@ -75,7 +76,11 @@ function App() {
                 role="admin"
                 element={<AddJobPost />}
               />
-            </Route>
+              <Route
+                path="/dashboard/add-restaurant"
+                role="admin"
+                element={<AddRestaurant />}
+              /></Route>
           </Route>
 
           <Route path="/" element={<PrivateRoute role="student" />}>
@@ -89,29 +94,29 @@ function App() {
                 role="student"
                 element={<EventsPage />}
               />
-                 <Route
+              <Route
                 path="/user-dashboard/fetchData"
                 role="student"
                 element={<DownloadExcel />}
               />
-          
-          
-          <Route
+
+
+              <Route
                 path="/user-dashboard/events/all-events/:eventCategory"
                 role="student"
                 element={<FilterEventsPage />}
               />
-                <Route
+              <Route
                 path="/user-dashboard/events/all-events"
                 role="student"
                 element={<FilterEventsPage />}
               />
-                 <Route
+              <Route
                 path="/user-dashboard/events/all-events/:eventCategory/:eventId"
                 role="student"
                 element={<EventDetails />}
               />
-           
+
               <Route
                 path="/user-dashboard/eventDetails/:eventId"
                 element={<EventDetails />}
@@ -141,7 +146,7 @@ function App() {
                 role="student"
                 element={<Explore />}
               />
-               <Route
+              <Route
                 path="/user-dashboard/explore/:restaurantName"
                 role="student"
                 element={<Restaurant />}
