@@ -123,7 +123,7 @@ const SmeForm = () => {
               className="nav-right-content desktop"
               style={{ marginTop: "10px" }}
             >
-              <a href="/" className="glass-button smaller w-button" style={{textDecoration:'none', color:'white'}}>
+              <a href="/" className="glass-button smaller w-button" style={{ textDecoration: 'none', color: 'white' }}>
                 Back to homepage
               </a>
             </div>
@@ -142,9 +142,10 @@ const SmeForm = () => {
                         type="text"
                         id="companyName"
                         name="companyName"
-                        placeholder="Enter company name"
+                        placeholder="Company name"
                         onChange={handleChange}
                         className="input-field"
+                        required
                       />
                     </div>
                     <div className="form-group">
@@ -155,9 +156,10 @@ const SmeForm = () => {
                         type="email"
                         id="companyEmail"
                         name="companyEmail"
-                        placeholder="Enter company mail address"
+                        placeholder="Mail address"
                         onChange={handleChange}
                         className="input-field"
+                        required
                       />
                     </div>
                   </div>
@@ -170,9 +172,10 @@ const SmeForm = () => {
                         type="text"
                         id="role"
                         name="role"
-                        placeholder="Enter your role"
+                        placeholder="Your role"
                         onChange={handleChange}
                         className="input-field"
+                        required
                       />
                     </div>
                     <div className="form-group">
@@ -183,9 +186,10 @@ const SmeForm = () => {
                         type="tel"
                         id="primaryContact"
                         name="primaryContact"
-                        placeholder="Enter primary contact"
+                        placeholder="Primary contact"
                         onChange={handleChange}
                         className="input-field"
+                        required
                       />
                     </div>
                   </div>
@@ -198,9 +202,10 @@ const SmeForm = () => {
                         type="text"
                         id="secondaryContact"
                         name="secondaryContact"
-                        placeholder="Enter secondary contact"
+                        placeholder="Secondary contact"
                         onChange={handleChange}
                         className="input-field"
+                        required
                       />
                     </div>
                     <div className="form-group">
@@ -211,9 +216,10 @@ const SmeForm = () => {
                         type="text"
                         id="websiteLink"
                         name="websiteLink"
-                        placeholder="Enter company website link"
+                        placeholder="Company website"
                         onChange={handleChange}
                         className="input-field"
+                        required
                       />
                     </div>
                   </div>
@@ -223,64 +229,66 @@ const SmeForm = () => {
                         Brief description about your company:
                       </label>
                       <textarea
-    type="text"
-    id="descripton"
-    rows="3"
-    name="descripton"
-    placeholder="Enter company details"
-    onChange={handleChange}
-    className="input-field text-white"
-    style={{ color: 'white', '::placeholder': { color: 'white' } }}
-/>
+                        type="text"
+                        id="descripton"
+                        rows="3"
+                        name="descripton"
+                        placeholder="Company details"
+                        onChange={handleChange}
+                        className="input-field text-white"
+                        style={{ color: 'white', '::placeholder': { color: 'white' } }}
+                        required
+                      />
 
                     </div>
                   </div>
                   <div className="form-row">
                     <div className="form-group">
                       <label htmlFor="purpose" className="text-white">
-                        Why are you interested in forming a partnership ?
+                        Why are you interested in forming  partnership ?
                       </label>
                       <textarea
                         type="text"
                         id="purpose"
                         rows="5"
                         name="purpose"
-                        placeholder="Enter your answer"
+                        placeholder="Your answer"
                         onChange={handleChange}
                         className="input-field"
+                        required
                       />
                     </div>
                   </div>
                   <div className="form-row">
-    <div className="form-group interests-group">
-        <label htmlFor="preferedCommunication" className="text-white">
-            Preferred method of Communications:
-        </label>
-        <div className="space-x-2">
-            <Chip
-                label="Email"
-                variant="outlined"
-                clickable
-                onClick={() => handleChipClick("Email")}
-                color={selectedCommunications.includes("Email") ? "primary" : "default"}
-            />
-            <Chip
-                label="Phone"
-                variant="outlined"
-                clickable
-                onClick={() => handleChipClick("Phone")}
-                color={selectedCommunications.includes("Phone") ? "primary" : "default"}
-            />
-            <Chip
-                label="Whatsapp"
-                variant="outlined"
-                clickable
-                onClick={() => handleChipClick("Whatsapp")}
-                color={selectedCommunications.includes("Whatsapp") ? "primary" : "default"}
-            />
-        </div>
-    </div>
-</div>
+                    <div className="form-group interests-group">
+                      <label htmlFor="preferedCommunication" className="text-white">
+                        Preferred method of Communications:
+                      </label>
+                      <div className="space-x-2">
+                        <Chip
+                          label="Email"
+                          variant="outlined"
+                          clickable
+                          onClick={() => handleChipClick("Email")}
+                          color={selectedCommunications.includes("Email") ? "primary" : "default"}
+                        />
+                        <Chip
+                          label="Phone"
+                          variant="outlined"
+                          clickable
+                          onClick={() => handleChipClick("Phone")}
+                          color={selectedCommunications.includes("Phone") ? "primary" : "default"}
+                        />
+                        <Chip
+                          label="Whatsapp"
+                          variant="outlined"
+                          clickable
+                          onClick={() => handleChipClick("Whatsapp")}
+                          color={selectedCommunications.includes("Whatsapp") ? "primary" : "default"}
+                        />
+                      </div>
+                    </div>
+                  </div>
 
                   <div className="form-group">
                     <button
