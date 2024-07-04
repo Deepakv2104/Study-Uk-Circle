@@ -191,8 +191,8 @@ const HotelBooking = () => {
                 />
                 <div className="p-4">
                   <h2 className="text-lg font-semibold mb-2">Rate: £{item.Rate}</h2>
-                  <p className="text-sm text-gray-600 mb-2">Location: {item.City}</p>
-                  <p className="text-sm text-gray-600 mb-2">Room Type: {item['Room Type']}</p>
+                  <p className="text-sm text-white-600 mb-2">Location: {item.City}</p>
+                  <p className="text-sm text-white-600 mb-2">Room Type: {item['Room Type']}</p>
                   <div className="flex justify-between items-center">
                     <button
                       className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600 transition duration-300 text-xs"
