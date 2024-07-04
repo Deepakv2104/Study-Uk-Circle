@@ -120,8 +120,8 @@ const HotelBooking = () => {
         />
 
         <div className="relative z-10">
-          <h1 className="text-4xl font-bold text-white mb-4">Find Your Ideal Hotel</h1>
-          <p className="text-lg text-gray-300">Browse through a wide selection of hotels and book your stay with ease.</p>
+          <h1 className="text-4xl font-bold text-white mb-4">Find Your Ideal Accomodation</h1>
+          <p className="text-lg text-gray-300">Browse through a wide selection of properties and book your stay with ease.</p>
         </div>
       </div>
 
