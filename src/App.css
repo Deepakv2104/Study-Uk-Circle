@@ -1,20 +1,19 @@
 /************ Custom Font ************/
 @font-face {
-	font-family: Centra;
-	src: url('./assets/font/CentraNo2-Bold.ttf');
-	font-weight: 700;
+  font-family: Centra;
+  src: url("./assets/font/CentraNo2-Bold.ttf");
+  font-weight: 700;
 }
 @font-face {
-	font-family: Centra;
-	src: url('./assets/font/CentraNo2-Medium.ttf');
-	font-weight: 500;
+  font-family: Centra;
+  src: url("./assets/font/CentraNo2-Medium.ttf");
+  font-weight: 500;
 }
 @font-face {
-	font-family: Centra;
-	src: url('./assets/font/CentraNo2-Book.ttf');
-	font-weight: 400;
+  font-family: Centra;
+  src: url("./assets/font/CentraNo2-Book.ttf");
+  font-weight: 400;
 }
-
 
 /************ Default Css ************/
 * {
@@ -23,10 +22,6 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 75px;
-}
 .header {
   background-color: #007bff;
   padding: 10px;
@@ -37,12 +32,11 @@ body {
   font-weight: 400;
   overflow-x: hidden;
   position: relative;
-/* background-color: #0f0e0e !important; */
-  font-family: 'Centra', sans-serif !important;
+  /* background-color: #0f0e0e !important; */
+  font-family: "Centra", sans-serif !important;
 }
 
-
- a:hover {
+a:hover {
   text-decoration: none;
 }
 
@@ -56,9 +50,11 @@ button {
   background-color: transparent;
 } */
 
-input:focus, textarea:focus, select:focus {
+input:focus,
+textarea:focus,
+select:focus {
   outline: none;
-} 
+}
 
 /* Styles for laptop view (screen width 768px and above) */
 @media (min-width: 768px) {
@@ -79,19 +75,18 @@ input:focus, textarea:focus, select:focus {
 }
 
 p.success {
-	color: green;
+  color: green;
 }
 
 p.danger {
-	color: red;
+  color: red;
 }
 /************ Navbar Css ************/
 /*  */
 
 @media only screen and (max-width: 768px) {
-.new-email-bx {
-display: flex;
-justify-content: space-between;
-
-}
+  .new-email-bx {
+    display: flex;
+    justify-content: space-between;
+  }
 }

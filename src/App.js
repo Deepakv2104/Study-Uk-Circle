@@ -28,9 +28,9 @@ import AboutUsPage from "./components/AboutUsPage";
 import IQAgentMiddleware from "./components/Student/IQAgentMiddleware";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import AuthComponent from "./components/Testing";
-import Restaurant from "./components/Student/Restaurant";
 import DownloadExcel from "./components/FetchData";
 import AddRestaurant from "./components/Admin/AddRestaurant";
+import Restaurant from "./components/Student/RestaurantTabs";
 gsap.registerPlugin();
 function App() {
   return (
@@ -146,6 +146,7 @@ function App() {
                 role="student"
                 element={<Explore />}
               />
+
               <Route
                 path="/user-dashboard/explore/:restaurantName"
                 role="student"

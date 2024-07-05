@@ -47,7 +47,7 @@ const Explore = () => {
   const [loading, setLoading] = useState(true);
   const [restaurants, setRestaurants] = useState(sampleFoods)
   const navigate = useNavigate()
-  function handleClick(foodName){
+  function handleClick(foodName) {
     navigate(`/user-dashboard/explore/${foodName}`)
   }
 
@@ -79,16 +79,16 @@ const Explore = () => {
   }, []);
 
   return (
-    <div style={{ marginTop: '20px' }}>
+    <div style={{ marginTop: '0px' }} className='flex justify-center items-center'>
       {loading ? (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '300px' }}>
           <CircularProgress />
         </div>
       ) : (
 
-        <section className="py-14">
+        <section className="py-4">
           <div className="max-w-screen-xl ">
-            <div className="max-w-xl mx-auto sm:text-center mx-auto px-2 md:px-6">
+            <div className="max-w-xl mx-auto sm:text-center  px-2 md:px-6">
               <h3 className="text-gray-100 text-3xl font-semibold sm:text-4xl">
                 Manchester
               </h3>
@@ -135,11 +135,11 @@ const Explore = () => {
               </div>
             </div>
             <div className="mt-12">
-              <ul className="grid gap-8 sm:grid-cols-2 md:grid-cols-3 mx-auto px-2 md:px-6">
+              <ul className="grid gap-10 sm:grid-cols-2 md:grid-cols-3 mx-auto px-2 md:px-6">
                 {
                   restaurants.map((item, idx) => (
                     // <a href={`/user-dashboard/explore/${item.foodName}`}>
-                    <li key={item.foodName} onClick={()=>handleClick(item.foodName)} >
+                    <li key={item.foodName} onClick={() => handleClick(item.foodName)} >
                       <div className="w-full h-60 sm:h-52 md:h-56 ">
                         <img
                           src={item.foodImage}

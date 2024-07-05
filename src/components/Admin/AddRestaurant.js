@@ -152,10 +152,6 @@ const AddRestaurant = ({ user }) => {
         setRestaurantData({ ...restaurantData, description: e.target.value });
     };
 
-    const handleTimingsChange = (e) => {
-        setRestaurantData({ ...restaurantData, timings: e.target.value });
-    };
-
     const handleCategoryChange = (e) => {
         const selectedCategory = e.target.value;
         console.log("Selected Category:", selectedCategory); // Log the selected category
@@ -176,6 +172,9 @@ const AddRestaurant = ({ user }) => {
     const handleFormSubmit = async (e) => {
         e.preventDefault();
         if (loading) {
+            return;
+        }
+        if (menuItems.length < 1) {
             return;
         }
         // setLoading(true);
@@ -209,17 +208,15 @@ const AddRestaurant = ({ user }) => {
                 menu: [],
             });
             setMenuItems([]);
-            //     setDateTime(""); // Reset dateTime state
-            //     setLoading(false);
-            // }, 0);
 
-            // Show success message
-            toast.success("Restaurant data uploaded successfully!");
-            console.log("success");
+            setTimeout(() => {
+                toast.success("Restaurant data uploaded successfully!");
+                console.log("success");
+            }, 0);
             setRefresh(true);
         } catch (error) {
             console.error("Error adding document: ", error);
-            toast.error("Error uploading restaurant data");
+            toast.error("Error uploading restaurant data. Please try again.");
             setLoading(false);
         }
     };
