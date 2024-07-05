@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useEffect } from 'react';
+import { useMediaQuery } from "@mui/material";
+
 
 
 const tabItems = [
@@ -67,6 +69,10 @@ const Timings = () => (
         <p>Saturday - Sunday: 10am - 11pm</p>
         <p>Monday - Friday: 9am - 10pm</p>
         <p>Saturday - Sunday: 10am - 11pm</p>
+        <p>Monday - Friday: 9am - 10pm</p>
+        <p>Saturday - Sunday: 10am - 11pm</p>
+        <p>Monday - Friday: 9am - 10pm</p>
+        <p>Saturday - Sunday: 10am - 11pm</p>
     </div>
 );
 
@@ -74,6 +80,7 @@ const Location = () => (
     <div id="location">
         <h1>Location</h1>
         <p>South Manchester</p>
+        <p>wildom street lane</p>
         <p>Monday - Friday: 9am - 10pm</p>
         <p>Saturday - Sunday: 10am - 11pm</p>
     </div>
@@ -89,7 +96,7 @@ const scrollToComponent = (id) => {
 const Restaurant = () => {
     const [selected, setSelected] = useState(tabItems[0].name);
     let { restaurantName } = useParams();
-
+    const isTabScreen = useMediaQuery('(max-width: 768px)');
     const handleTabClick = (tab) => {
         setSelected(tab.name);
         scrollToComponent(tab.id);
@@ -97,13 +104,16 @@ const Restaurant = () => {
 
     return (
         <div>
-            <section className="grid  gap-4 w-full mb-4 sm:grid-cols-2  lg:grid-cols-3">
-                {
-                    posts.map((item, index) => <img key={index} src={item.img} loading="lazy" alt={item.title} className="w-full h-[330px]" />)
-                }
-            </section>
+            {
+                isTabScreen ? <></> : <section className="grid  gap-4 w-full mb-4 sm:grid-cols-2  lg:grid-cols-3">
+                    {
+                        posts.map((item, index) => <img key={index} src={item.img} loading="lazy" alt={item.title} className="w-full h-[330px]" />)
+                    }
+                </section>
+            }
+
             <div className="lg:mx-56  mt-8">
-                <div className="sticky -top-5 bg-slate-900">
+                <div className="sticky z-50 -top-5 bg-slate-900">
                     <div className="flex  justify-between ">
                         <div>
                             <h1 >{restaurantName}</h1>
@@ -114,8 +124,8 @@ const Restaurant = () => {
                         <p>Location : South Manchester
                         </p>
                     </div>
-
-                    <div className=" py-2 bg-slate-900 flex items-center flex-wrap gap-2 pl-0">
+                    {/* flex items-center flex-wrap overflow-x-auto */}
+                    <div className=" py-2 bg-slate-900 grid grid-cols-4   sm:gap-6">
                         {tabItems.map((tab) => (
                             <Chip
                                 text={tab.name}
@@ -126,14 +136,12 @@ const Restaurant = () => {
                         ))}
                     </div>
                 </div>
-
-
-
-
-                <Deals />
-                <Menu />
-                <Timings />
-                <Location />
+                <div className="">
+                    <Deals />
+                    <Menu />
+                    <Timings />
+                    <Location />
+                </div>
             </div>
         </div>
 
@@ -153,7 +161,7 @@ const Chip = ({
                 : "text-slate-300 hover:text-slate-200 hover:bg-slate-700"
                 } text-xl transition-colors px-2.5 py-0.5 rounded-md relative md:mr-2`}
         >
-            <span className="relative z-10">{text}</span>
+            <span className="relative text-sm md:text-xl z-10">{text}</span>
             {selected && (
                 <motion.span
                     layoutId="pill-tab"
