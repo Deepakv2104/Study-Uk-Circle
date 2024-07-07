@@ -24,66 +24,90 @@ const posts = [
     }
 ]
 const Deals = () => (
-    <div id="deals" className="">
-        <h1>Deals</h1>
-        <p>Pizza Margherita : 15$</p>
-        <p>Sushi Platter : 25$</p>
-        <p>Burger Deluxe : 19$</p>
-        <p>Pizza Margherita : 15$</p>
-        <p>Sushi Platter : 25$</p>
-        <p>Burger Deluxe : 19$</p> <p>Pizza Margherita : 15$</p>
-        <p>Sushi Platter : 25$</p>
-        <p>Burger Deluxe : 19$</p> <p>Pizza Margherita : 15$</p>
-        <p>Sushi Platter : 25$</p>
-        <p>Burger Deluxe : 19$</p> <p>Pizza Margherita : 15$</p>
-        <p>Sushi Platter : 25$</p>
-        <p>Burger Deluxe : 19$</p> <p>Caesar Salad : 23$</p>
-        <p>Spaghetti Carbonara : 76$</p>
-        <p>Chocolate Cake : 12$</p> <p>Caesar Salad : 23$</p>
-        <p>Spaghetti Carbonara : 76$</p>
-        <p>Chocolate Cake : 12$</p> <p>Caesar Salad : 23$</p>
-        <p>Spaghetti Carbonara : 76$</p>
-        <p>Chocolate Cake : 12$</p>
+    <div id="deals" className="py-8 w-full xs:bg-red-500">
+
+        <h1 className="mb-2  font-bold text-3xl">Exclusive Worldlynk Deals</h1>
+        <p className="mb-8 text-xl">Here you will find all the deals that the restaurant offers exclusively for Worldlynk users</p>
+        {/* <h1>Deals</h1> */}
+        <div className="grid lg:grid-cols-2 w-full gap-16 ">
+            <div className="  bg-orange-500 rounded-3xl shadow-lg  p-4 ">
+                <div>
+                    {/* <h1 className="font-bold">Deal 1</h1> */}
+                    <p className="text-2xl font-bold">10% discount on all food items</p>
+                    <div className="flex gap-4 text-lg " >
+                        <p className="border-1 rounded-full px-6 py-2"> 10$</p>
+                        <p className="border-1 rounded-full px-6 py-2"> 30 days</p>
+                        <p className="border-1 rounded-full px-6 py-2">on site</p>
+                    </div>
+                    <p className="text-lg">sadlkhsdjh shsjkdhf fh sjkhfsjkd hsjkfh sjkhfsdkjj hsjkfh  sjkhfsjkd hsjkfh sjkhfsdkjj hsjkfh</p>
+                </div>
+            </div>
+            <div className="  bg-orange-500 rounded-3xl shadow-lg  p-4 ">
+                <div>
+                    {/* <h1 className="font-bold">Deal 2</h1> */}
+                    <p className="text-2xl font-bold">Free shakes or drinks</p>
+                    <div className="flex gap-4 text-lg " >
+                        <p className="border-1 rounded-full px-6 py-2"> 15$</p>
+                        <p className="border-1 rounded-full px-6 py-2"> 90 days</p>
+                        <p className="border-1 rounded-full px-6 py-2">on site</p>
+                    </div>
+                    <p className="text-lg">sadlkhsdjh shsjkdhf fh sjkhfsjkd hsjkfh sjkhfsdkjj hsjkfh  sjkhfsjkd hsjkfh sjkhfsdkjj hsjkfh</p>
+                </div>
+            </div>
+        </div>
+
     </div>
 );
 
 const Menu = () => (
     <div id="menu">
         <h1>Menu</h1>
-        <p>Caesar Salad : 23$</p>
-        <p>Spaghetti Carbonara : 76$</p>
-        <p>Chocolate Cake : 12$</p> <p>Caesar Salad : 23$</p>
-        <p>Spaghetti Carbonara : 76$</p>
-        <p>Chocolate Cake : 12$</p> <p>Caesar Salad : 23$</p>
-        <p>Spaghetti Carbonara : 76$</p>
-        <p>Chocolate Cake : 12$</p> <p>Caesar Salad : 23$</p>
-        <p>Spaghetti Carbonara : 76$</p>
-        <p>Chocolate Cake : 12$</p>
+        <div className="w-full bg-slate-700 rounded-2xl p-4 mb-4">
+            <p>Caesar Salad : 23$</p>
+            <p>Spaghetti Carbonara : 76$</p>
+            <p>Chocolate Cake : 12$</p> <p>Caesar Salad : 23$</p>
+            <p>Spaghetti Carbonara : 76$</p>
+            <p>Chocolate Cake : 12$</p> <p>Caesar Salad : 23$</p>
+            <p>Spaghetti Carbonara : 76$</p>
+            <p>Chocolate Cake : 12$</p> <p>Caesar Salad : 23$</p>
+            <p>Spaghetti Carbonara : 76$</p>
+            <p>Chocolate Cake : 12$</p>
+
+
+        </div>
     </div>
 );
 
 const Timings = () => (
-    <div id="timings">
+    <div>
         <h1>Timings</h1>
-        <p>Monday - Friday: 9am - 10pm</p>
-        <p>Saturday - Sunday: 10am - 11pm</p>
-        <p>Monday - Friday: 9am - 10pm</p>
-        <p>Saturday - Sunday: 10am - 11pm</p>
-        <p>Monday - Friday: 9am - 10pm</p>
-        <p>Saturday - Sunday: 10am - 11pm</p>
-        <p>Monday - Friday: 9am - 10pm</p>
-        <p>Saturday - Sunday: 10am - 11pm</p>
+        <div id="timings" className="bg-slate-700 p-4 rounded-2xl">
+            <p>Monday - Friday: 9am - 10pm</p>
+            <p>Saturday - Sunday: 10am - 11pm</p>
+            <p>Monday - Friday: 9am - 10pm</p>
+            <p>Saturday - Sunday: 10am - 11pm</p>
+            <p>Monday - Friday: 9am - 10pm</p>
+            <p>Saturday - Sunday: 10am - 11pm</p>
+            <p>Monday - Friday: 9am - 10pm</p>
+            <p>Saturday - Sunday: 10am - 11pm</p>
+        </div>
+
     </div>
+
 );
 
 const Location = () => (
-    <div id="location">
+    <div className="mt-4">
         <h1>Location</h1>
-        <p>South Manchester</p>
-        <p>wildom street lane</p>
-        <p>Monday - Friday: 9am - 10pm</p>
-        <p>Saturday - Sunday: 10am - 11pm</p>
+        <div id="location" className="bg-slate-700 p-4 rounded-2xl ">
+            <p>South Manchester</p>
+            <p>wildom street lane</p>
+            <p>Monday - Friday: 9am - 10pm</p>
+            <p>Saturday - Sunday: 10am - 11pm</p>
+        </div>
+
     </div>
+
 );
 
 
@@ -116,16 +140,16 @@ const Restaurant = () => {
                 <div className="sticky z-50 -top-5 bg-slate-900">
                     <div className="flex  justify-between ">
                         <div>
-                            <h1 >{restaurantName}</h1>
+                            <h1 className="font-extrabold">{restaurantName}</h1>
                             <p>Meat, Bowls, Asian
                             </p>
                         </div>
 
-                        <p>Location : South Manchester
+                        <p className="text-xl">Location : South Manchester
                         </p>
                     </div>
                     {/* flex items-center flex-wrap overflow-x-auto */}
-                    <div className=" py-2 bg-slate-900 grid grid-cols-4   sm:gap-6">
+                    <div className=" py-2 bg-slate-900 flex items-center flex-wrap sm:gap-8 ">
                         {tabItems.map((tab) => (
                             <Chip
                                 text={tab.name}
@@ -137,6 +161,7 @@ const Restaurant = () => {
                     </div>
                 </div>
                 <div className="">
+
                     <Deals />
                     <Menu />
                     <Timings />

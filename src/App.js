@@ -31,6 +31,7 @@ import AuthComponent from "./components/Testing";
 import DownloadExcel from "./components/FetchData";
 import AddRestaurant from "./components/Admin/AddRestaurant";
 import Restaurant from "./components/Student/RestaurantTabs";
+import  SwipeCarousel  from "./components/Student/SwipeCarousel";
 gsap.registerPlugin();
 function App() {
   return (
@@ -98,6 +99,11 @@ function App() {
                 path="/user-dashboard/fetchData"
                 role="student"
                 element={<DownloadExcel />}
+              />
+                 <Route
+                path="/user-dashboard/swipe"
+                role="student"
+                element={<SwipeCarousel />}
               />
 
 
