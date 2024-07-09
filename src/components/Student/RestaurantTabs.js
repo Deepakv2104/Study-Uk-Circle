@@ -35,11 +35,14 @@ const Deals = () => (
                     {/* <h1 className="font-bold">Deal 1</h1> */}
                     <p className="text-2xl font-bold">10% discount on all food items</p>
                     <div className="flex lg:gap-4 gap-2 text-lg " >
-                        <p className="border-1 rounded-full lg:px-6 lg:py-2 px-2 py-1"> 10$</p>
+                        <p className="border-1 rounded-full lg:px-6 lg:py-2 px-2 py-1"> 10£</p>
                         <p className="border-1 rounded-full lg:px-6 lg:py-2 px-2 py-1"> 30 days</p>
                         <p className="border-1 rounded-full lg:px-6 lg:py-2 px-2 py-1">on site</p>
                     </div>
-                    <p className="text-lg">sadlkhsdjh shsjkdhf fh sjkhfsjkd hsjkfh sjkhfsdkjj hsjkfh  sjkhfsjkd hsjkfh sjkhfsdkjj hsjkfh</p>
+                    <p className="text-lg">From a minimum order value of £25 you get £10 discount.
+
+
+</p>
                 </div>
             </div>
             <div className="  bg-orange-500 rounded-3xl shadow-lg  p-4 ">
@@ -47,11 +50,11 @@ const Deals = () => (
                     {/* <h1 className="font-bold">Deal 2</h1> */}
                     <p className="text-2xl font-bold">Free shakes or drinks</p>
                     <div className="flex gap-4 text-lg " >
-                        <p className="border-1 rounded-full lg:px-6 lg:py-2 px-2 py-1"> 15$</p>
+                        <p className="border-1 rounded-full lg:px-6 lg:py-2 px-2 py-1"> 15£</p>
                         <p className="border-1 rounded-full lg:px-6 lg:py-2 px-2 py-1"> 90 days</p>
                         <p className="border-1 rounded-full lg:px-6 lg:py-2 px-2 py-1">on site</p>
                     </div>
-                    <p className="text-lg">sadlkhsdjh shsjkdhf fh sjkhfsjkd hsjkfh sjkhfsdkjj hsjkfh  sjkhfsjkd hsjkfh sjkhfsdkjj hsjkfh</p>
+                    <p className="text-lg">You order a brunch item of your choice and get a hot drink for free.</p>
                 </div>
             </div>
         </div>
