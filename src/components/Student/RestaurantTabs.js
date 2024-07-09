@@ -30,14 +30,14 @@ const Deals = () => (
         <p className="mb-8 text-xl">Here you will find all the deals that the restaurant offers exclusively for Worldlynk users</p>
         {/* <h1>Deals</h1> */}
         <div className="grid lg:grid-cols-2 w-full gap-16 ">
-            <div className="  bg-orange-500 rounded-3xl shadow-lg  p-4 ">
+            <div className="  bg-orange-500 rounded-3xl shadow-lg  p-4 sm:p-0 ">
                 <div>
                     {/* <h1 className="font-bold">Deal 1</h1> */}
                     <p className="text-2xl font-bold">10% discount on all food items</p>
-                    <div className="flex gap-4 text-lg " >
-                        <p className="border-1 rounded-full px-6 py-2"> 10$</p>
-                        <p className="border-1 rounded-full px-6 py-2"> 30 days</p>
-                        <p className="border-1 rounded-full px-6 py-2">on site</p>
+                    <div className="flex lg:gap-4 gap-2 text-lg " >
+                        <p className="border-1 rounded-full lg:px-6 lg:py-2 px-2 py-1"> 10$</p>
+                        <p className="border-1 rounded-full lg:px-6 lg:py-2 px-2 py-1"> 30 days</p>
+                        <p className="border-1 rounded-full lg:px-6 lg:py-2 px-2 py-1">on site</p>
                     </div>
                     <p className="text-lg">sadlkhsdjh shsjkdhf fh sjkhfsjkd hsjkfh sjkhfsdkjj hsjkfh  sjkhfsjkd hsjkfh sjkhfsdkjj hsjkfh</p>
                 </div>
@@ -47,9 +47,9 @@ const Deals = () => (
                     {/* <h1 className="font-bold">Deal 2</h1> */}
                     <p className="text-2xl font-bold">Free shakes or drinks</p>
                     <div className="flex gap-4 text-lg " >
-                        <p className="border-1 rounded-full px-6 py-2"> 15$</p>
-                        <p className="border-1 rounded-full px-6 py-2"> 90 days</p>
-                        <p className="border-1 rounded-full px-6 py-2">on site</p>
+                        <p className="border-1 rounded-full lg:px-6 lg:py-2 px-2 py-1"> 15$</p>
+                        <p className="border-1 rounded-full lg:px-6 lg:py-2 px-2 py-1"> 90 days</p>
+                        <p className="border-1 rounded-full lg:px-6 lg:py-2 px-2 py-1">on site</p>
                     </div>
                     <p className="text-lg">sadlkhsdjh shsjkdhf fh sjkhfsjkd hsjkfh sjkhfsdkjj hsjkfh  sjkhfsjkd hsjkfh sjkhfsdkjj hsjkfh</p>
                 </div>
@@ -145,7 +145,7 @@ const Restaurant = () => {
                             </p>
                         </div>
 
-                        <p className="text-xl">Location : South Manchester
+                        <p className="lg:text-xl">Location : South Manchester
                         </p>
                     </div>
                     {/* flex items-center flex-wrap overflow-x-auto */}
