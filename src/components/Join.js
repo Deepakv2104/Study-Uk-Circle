@@ -206,12 +206,12 @@ const Join = () => {
                                                         style={{ backgroundColor: '#626060' }}
                                                         id="gender"
                                                         name="gender"
-                                                        value={gender}
+                                                        // value={gender}
                                                         onChange={handleGenderChange}
                                                         className="mt-1 p-2 border border-gray-300 bg-yellow-900 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200"
                                                         required
                                                     >
-                                                        <option value="" disabled>Gender</option>
+                                                        <option value="" >Gender</option>
                                                         <option value="woman">Woman</option>
                                                         <option value="man">Man</option>
                                                         <option value="nonBinary">Non-binary</option>
@@ -274,7 +274,7 @@ const Join = () => {
                                 <div className="message-container">
                                     <h2 className="text-2xl font-bold">You are in waitlist!</h2>
                                     <p>Your application has been received.</p>
-                                    <p>Follow us on <a href='https://www.instagram.com/worldlynk___/?igsh=MTdheTdhdTNoOTk0Ng%3D%3D'>Instagram</a></p>
+                                    <p>Follow us on <a href='https://www.instagram.com/_worldlynk_/'>Instagram</a></p>
                                     {/* Add any additional content or styling for the message */}
                                 </div>
                             )}
