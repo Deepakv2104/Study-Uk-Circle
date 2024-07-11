@@ -151,7 +151,7 @@ const Join = () => {
                             {!formSubmitted ? (
                                 <form onSubmit={handleSubmit} className="space-y-6">
                                     <h3 className="text-2xl font-bold text-white">Join waiting list</h3>
-                                    {validPhone && <h4 className='text-red-800'>Phone number is not valid, use +44 and 10 numbers</h4>}
+                                    {validPhone && <h4 className='text-red-800'>Please add your country code eg: +44 for UK.</h4>}
                                     {/* {validPostalCode && <h4 className='text-red-800'>Postal code is not valid</h4>} */}
                                     <div className="grid grid-cols-2 gap-6">
                                         <div className="form-group">
