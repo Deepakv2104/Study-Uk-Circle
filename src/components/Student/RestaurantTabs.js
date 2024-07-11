@@ -40,16 +40,14 @@ const Deals = () => (
                         <p className="border-1 rounded-full lg:px-6 lg:py-2 px-2 py-1">on site</p>
                     </div>
                     <p className="text-lg">From a minimum order value of £25 you get £10 discount.
-
-
-</p>
+                    </p>
                 </div>
             </div>
             <div className="  bg-orange-500 rounded-3xl shadow-lg  p-4 ">
                 <div>
                     {/* <h1 className="font-bold">Deal 2</h1> */}
                     <p className="text-2xl font-bold">Free shakes or drinks</p>
-                    <div className="flex gap-4 text-lg " >
+                    <div className="flex lg:gap-4 gap-2 text-lg " >
                         <p className="border-1 rounded-full lg:px-6 lg:py-2 px-2 py-1"> 15£</p>
                         <p className="border-1 rounded-full lg:px-6 lg:py-2 px-2 py-1"> 90 days</p>
                         <p className="border-1 rounded-full lg:px-6 lg:py-2 px-2 py-1">on site</p>
