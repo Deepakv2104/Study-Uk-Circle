@@ -138,7 +138,7 @@ const Restaurant = () => {
             }
 
             <div className="lg:mx-56  mt-8">
-                <div className="sticky z-50 -top-5 bg-slate-900">
+                <div className="sticky z-20 -top-6 bg-slate-900">
                     <div className="flex  justify-between ">
                         <div>
                             <h1 className="font-extrabold">{restaurantName}</h1>
