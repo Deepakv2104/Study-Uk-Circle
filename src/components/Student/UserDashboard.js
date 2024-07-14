@@ -15,8 +15,7 @@ const UserDashboard = () => {
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
-    if (!auth) return;
-
+    if (!auth || !auth.currentUser) return;
     const fetchData = async () => {
       try {
         console.log("Fetching user data...");

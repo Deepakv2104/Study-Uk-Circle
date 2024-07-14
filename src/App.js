@@ -28,7 +28,7 @@ import AboutUsPage from "./components/AboutUsPage";
 import IQAgentMiddleware from "./components/Student/IQAgentMiddleware";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import AuthComponent from "./components/Testing";
-import DownloadExcel from "./components/FetchData";
+// import DownloadExcel from "./components/FetchData";
 import AddRestaurant from "./components/Admin/AddRestaurant";
 import Restaurant from "./components/Student/RestaurantTabs";
 import  SwipeCarousel  from "./components/Student/SwipeCarousel";
@@ -97,11 +97,11 @@ function App() {
                 role="student"
                 element={<EventsPage />}
               />
-              <Route
+              {/* <Route
                 path="/user-dashboard/fetchData"
                 role="student"
                 element={<DownloadExcel />}
-              />
+              /> */}
                  <Route
                 path="/user-dashboard/swipe"
                 role="student"
