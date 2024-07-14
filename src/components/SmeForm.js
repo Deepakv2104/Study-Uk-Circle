@@ -186,7 +186,7 @@ const SmeForm = () => {
                         type="tel"
                         id="primaryContact"
                         name="primaryContact"
-                        placeholder="Primary contact"
+                        placeholder="(XXX) XXXXX-XXXXX"
                         onChange={handleChange}
                         className="input-field"
                         required
@@ -202,7 +202,7 @@ const SmeForm = () => {
                         type="text"
                         id="secondaryContact"
                         name="secondaryContact"
-                        placeholder="Secondary contact"
+                        placeholder="(XXX) XXXXX-XXXXX"
                         onChange={handleChange}
                         className="input-field"
                         required

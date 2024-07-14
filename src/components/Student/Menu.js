@@ -58,10 +58,10 @@ const Menu = ({ user }) => {
     };
 
     return (
-        <div>
-            <FaBars className="mobile-toggle" onClick={toggleMenu} />
+        <div className='z-50 top-1'>
+            <FaBars className="mobile-toggle bg-slate-700" onClick={toggleMenu} />
 
-            <div ref={menuRef} className={`main-menu ${menuOpen ? 'open' : ''}`}>
+            <div ref={menuRef} className={`main-menu fixed top-0 left-0 ${menuOpen ? 'open' : ''}`}>
                 <div>
                     <div className="user-info">
                         <Avatar sx={{ width: 50, height: 50, margin: 2 }} />
@@ -88,7 +88,7 @@ const Menu = ({ user }) => {
                         </li>
                         <li className="nav-item1">
                             <div>
-                            <FaBriefcase className="nav-icon" />
+                                <FaBriefcase className="nav-icon" />
                                 <span className="nav-text">Jobs</span>
                             </div>
                         </li>
@@ -127,4 +127,3 @@ const Menu = ({ user }) => {
 };
 
 export default Menu;
-    

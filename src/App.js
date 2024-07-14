@@ -32,6 +32,7 @@ import DownloadExcel from "./components/FetchData";
 import AddRestaurant from "./components/Admin/AddRestaurant";
 import Restaurant from "./components/Student/RestaurantTabs";
 import  SwipeCarousel  from "./components/Student/SwipeCarousel";
+import Mentorship from "./components/Mentorship";
 gsap.registerPlugin();
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
 
           <Route path="/blank" element={<PageNotFound />} />
           <Route path="/join-waiting-list" element={<Join />} />
+          <Route path="/mentorship" element={<Mentorship />} />
           <Route path="/write-to-us" element={<SmeForm />} />
           <Route path="/about-us" element={<AboutUsPage />} />
 

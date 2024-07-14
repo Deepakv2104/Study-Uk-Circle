@@ -12,7 +12,7 @@ import { collection, addDoc } from 'firebase/firestore';
 import NewNav from './NewNav';
 import Footer from './Footer';
 
-const Join = () => {
+const Mentorship = () => {
     const [selectedInterests, setSelectedInterests] = useState([]);
     const [formSubmitted, setFormSubmitted] = useState(false);
     const [formData, setFormData] = useState({
@@ -51,7 +51,7 @@ const Join = () => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        console.log(e.target.value,"handleChange")
+        console.log(e.target.value, "handleChange")
         setFormData({ ...formData, [name]: value });
         console.log(formData.gender)
     };
@@ -62,11 +62,11 @@ const Join = () => {
     const handleGenderChange = (event) => {
         // setGender(event.target.value);/
         const { name, value } = event.target;
-        if(value ==="letMeType"){
+        if (value === "letMeType") {
             setCustomGender(true)
-            console.log(gender,"gender")
-            
-        }else{
+            console.log(gender, "gender")
+
+        } else {
             setFormData({
                 ...formData,
                 [name]: value
@@ -74,12 +74,13 @@ const Join = () => {
             console.log('something')
 
         }
-      
+
 
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault(); // Prevent the default form submission behavior
+        return;
 
         // Extracting data from the form data and setting default value for interests if none selected
         const interests = selectedInterests.length > 0 ? selectedInterests : ['None'];
@@ -134,23 +135,31 @@ const Join = () => {
         <div>
             <NewNav />
             <div className="bg-gray-800 text-white">
-                <div className="join-container mx-auto max-w-5xl px-4 flex justify-center items-center">
-                    <div className="left-column mr-12">
-                        <div className="heading mb-8">
-                            <h3 className="text-2xl font-bold">Welcome to<span className="text-color-green">  WorldLynk</span></h3>
-                            <h3 className="text-2xl font-bold">Seamless student experience in the UK: a one-stop solution</h3>
+                <div className="join-container mx-auto max-w-6xl px-0 flex justify-center items-center">
+                    <div className="left-column mr-1">
+                        <div className="heading  mb-6 text-md">
+                            <h3 className="text-2xl font-bold"><span className="text-color-green">  WorldLynk Mentorships</span></h3>
                         </div>
-                        <p className="large-text mb-8">Be among the first to experience the future of student life in the UK! Join our waiting list today and gain early access to our comprehensive platform designed to revolutionize your student experience.</p>
-                        <img src="https://join.getwyld.in/assets/images/line.png" alt="Divider" className="mb-8" />
+                        <p className="large-text  mb-6 text-md">🎓 Connect directly with global university students & alumni for real insights!</p>
+                        <p className="large-text  mb-6 text-md">🌍 Explore on-ground experiences from universities around the world.</p>
+                        <p className="large-text  mb-6 text-md">📚 Dive deep into curriculum details, campus life, and more.</p>
+                        <p className="large-text  mb-6 text-md">🎉 First call is on us! Start your journey with a free chat.</p>
+                        <p className="large-text  mb-6 text-md">💼 Get the lowdown on job prospects after graduation.</p>
+                        <p className="large-text  mb-6 text-md">🌐 Visa queries? Scholarships? We've got you covered.</p>
+                        <p className="large-text  mb-6 text-md">💰 Need financial advice? Explore loan options seamlessly.</p>
+                        <p className="large-text  mb-6 text-md">🏡 Find your perfect BioTech with our trusted partners.</p>
+                        <p className="large-text  mb-6 text-md">🤝 Join a community that supports your global education dreams.</p>
+
+                        <img src="https://join.getwyld.in/assets/images/line.png" alt="Divider" className=" mb-6 text-md" />
                         <div className="nav-right-content desktop">
                             <a href="/" className="glass-button smaller w-button" style={{ textDecoration: 'none', color: 'white' }}>Back to homepage</a>
                         </div>
                     </div>
-                    <div className="right-column rounded-lg shadow-md">
+                    <div className="right-column rounded-lg shadow-md w-1/2">
                         <div className="form-section">
                             {!formSubmitted ? (
                                 <form onSubmit={handleSubmit} className="space-y-6">
-                                    <h3 className="text-2xl font-bold text-white">Join waiting list</h3>
+                                    <h3 className="text-2xl font-bold text-white">Mentorship Form</h3>
                                     {validPhone && <h4 className='text-red-800'>Please add your country code eg: +44 for UK.</h4>}
                                     {/* {validPostalCode && <h4 className='text-red-800'>Postal code is not valid</h4>} */}
                                     <div className="grid grid-cols-2 gap-6">
@@ -176,98 +185,151 @@ const Join = () => {
 
                                     </div>
                                     <div className="grid grid-cols-2 gap-6">
-                                        <div className="form-group">
-                                            <label htmlFor="university" className="block text-sm font-medium text-white">University Name:</label>
-                                            <input type="text" id="university" name="university" placeholder="University Name" className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange} required />
-                                        </div>
+                                    <div className="form-group">
+                                                    <label htmlFor="gender" className="block text-sm font-medium text-white ">Degree Level:</label>
+                                                    <select
+                                                        style={{ backgroundColor: '#626060' }}
+                                                        id="degree"
+                                                        name="degree"
+                                                        // value={gender}
+                                                        onChange={handleGenderChange}
+                                                        className="mt-1 p-2 border border-gray-300 bg-yellow-900 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200"
+                                                        required
+                                                    >
+                                                        <option value="masters">Masters</option>
+                                                        <option value="bachelors">Bachelors</option>
+                                                        <option value="phd">PhD</option>
+                                                        <option value="associate">Associate</option>
+                                                        <option value="postDoc">Post Doc</option>
+                                                    </select>
+                                                </div>
                                         <div className="form-group">
                                             <label htmlFor="graduationYear" className="block text-sm font-medium text-white">Graduation Year:</label>
                                             <input type="text" id="graduationYear" name="graduationYear" placeholder="Graduation Year" className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange} required />
                                         </div>
                                     </div>
                                     <div className="grid grid-cols-2 gap-6">
-                                        <div className="form-group">
-                                            <label htmlFor="address" className="block text-sm font-medium text-white">Address:</label>
-                                            <input type="text" id="address" name="address" placeholder="Address" className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange} required />
-                                        </div>
-                                        <div className="form-group">
-                                            <label htmlFor="postalCode" className="block text-sm font-medium text-white">Postal Code:</label>
-                                            <input type="text" id="postalCode" name="postalCode" placeholder="Postal Code" className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange} required />
-                                        </div>
-                                        {
-                                            customGender ? <div className="form-group">
-                                                <label htmlFor="gender" className="block text-sm font-medium text-white">Gender:</label>
-                                                <input type="text" id="gender" name="gender" placeholder="Gender" 
-                                                         className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange} required />
-                                            </div> :
-                                                <div className="form-group">
-                                                    <label htmlFor="gender" className="block text-sm font-medium text-white ">Gender:</label>
+                                    <div className="form-group">
+                                                    <label htmlFor="gender" className="block text-sm font-medium text-white ">Application Status:</label>
                                                     <select
                                                         style={{ backgroundColor: '#626060' }}
-                                                        id="gender"
-                                                        name="gender"
+                                                        id="degree"
+                                                        name="degree"
                                                         // value={gender}
                                                         onChange={handleGenderChange}
                                                         className="mt-1 p-2 border border-gray-300 bg-yellow-900 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200"
                                                         required
                                                     >
-                                                        <option value="" >Gender</option>
-                                                        <option value="woman">Woman</option>
-                                                        <option value="man">Man</option>
-                                                        <option value="nonBinary">Non-binary</option>
-                                                        <option value="preferNotToSpecify">Prefer not to say</option>
-                                                        <option value="letMeType">Let me type</option>
+                                                        <option value="">Your status</option>
+                                                        <option value="just exploring now">Just exploring now</option>
+                                                        <option value="shortlisting colleges, planning tests">Shortlisting colleges, planning tests</option>
+                                                        <option value="tets all done yet to apply">Tests all done, yet to apply</option>
+                                                        <option value="applied to a few universities">Applied to a few universities</option>
+                                                        <option value="got offer letters, confused between universities" className='p'>Got offer letters, confused between universities</option>
                                                     </select>
                                                 </div>
-                                        }
+                                        <div className="form-group">
+                                            <label htmlFor="preffered year" className="block text-sm font-medium text-white">Preffered Year:</label>
+                                            <input type="text" id="postalCode" name="postalCode" placeholder="Year" className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange} required />
+                                        </div>
+                                        {/* {
+                                            customGender ? <div className="form-group">
+                                                <label htmlFor="gender" className="block text-sm font-medium text-white">Gender:</label>
+                                                <input type="text" id="gender" name="gender" placeholder="Gender"
+                                                    className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange} required />
+                                            </div> :
+                                                <div className="form-group">
+                                                    <label htmlFor="gender" className="block text-sm font-medium text-white ">Preffered term:</label>
+                                                    <select
+                                                        style={{ backgroundColor: '#626060' }}
+                                                        id="term"
+                                                        name="term"
+                                                        // value={gender}
+                                                        onChange={handleGenderChange}
+                                                        className="mt-1 p-2 border border-gray-300 bg-yellow-900 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200"
+                                                        required
+                                                    >
+                                                        <option value="" >Term</option>
+                                                        <option value="sept-nov(fall)">Sept-Nov(Fall)</option>
+                                                        <option value="Mar-May(Spring)">Mar-May(Spring)</option>
+                                                        <option value="Jun-Aug(Summer)">Jun-Aug(Summer)</option>
+                                                        <option value="Dec-Feb(Winter)">Dec-Feb(Winter)</option>
+                                                        <option value="not sure">Not Sure</option>
+                                                    </select>
+                                                </div>
+                                        } */}
                                     </div>
                                     <div className="form-group">
-                                        <label className="block text-sm font-medium text-white">Are you:</label>
-                                        <div className="user-type-options">
-                                            <div className="user-type-option">
-                                                <input type="radio" id="student" name="userType" value="student" onChange={handleChange} />
-                                                <label htmlFor="student" className='mt-1 ml-1'>Student</label>
+                                        <label className="block text-sm font-medium text-white">Which Term your are planning for:</label>
+                                        <div className="user-type-options ">
+                                            <div className="user-type-option p-0 m-0">
+                                                <input type="radio" id="Sept-Nov(Fall)" name="userType" value="Sept-Nov(Fall)" onChange={handleChange} />
+                                                <label htmlFor="Sept-Nov(Fall)" className='mt-1 ml-1  w-[140px]'>Sept-Nov (Fall)</label>
                                             </div>
-                                            <div className="user-type-option">
-                                                <input type="radio" id="professional" name="userType" value="professional" onChange={handleChange} />
-                                                <label htmlFor="professional" className='mt-1 ml-1'>Working Professional</label>
+                                            <div className="user-type-option p-0 m-0">
+                                                <input type="radio" id="Mar-May(Spring)" name="userType" value="Mar-May(Spring)" onChange={handleChange} />
+                                                <label htmlFor="Mar-May(Spring)" className='mt-1 ml-1 w-[140px]'>Mar-May(Spring)</label>
                                             </div>
+                                            <div className="user-type-option p-0 m-0">
+                                                <input type="radio" id="Jun-Aug(Summer)" name="userType" value="Jun-Aug(Summer)" onChange={handleChange} />
+                                                <label htmlFor="Jun-Aug(Summer)" className='mt-1 ml-1 w-[140px]'>Jun-Aug(Summer)</label>
+                                            </div>
+                                      
                                         </div>
+                                        <div className='user-type-options'>
+                                        <div className="user-type-option m-0 p-0">
+                                                <input type="radio" id="Dec-Feb(Winter)" name="userType" value="Dec-Feb(Winter)" onChange={handleChange} />
+                                                <label htmlFor="Dec-Feb(Winter)" className='mt-1 ml-1 w-[140px]'>Dec-Feb(Winter)</label>
+                                            </div>
+                                            <div className="user-type-option">
+                                                <input type="radio" id="not sure" name="userType" value="not sure" onChange={handleChange} />
+                                                <label htmlFor="not sure" className='mt-1 ml-1 w-[140px]'>Not Sure</label>
+                                            </div>
+                                            </div>
+                                            
                                     </div>
                                     <div className="form-group interests-group">
-                                        <label className="block text-sm font-medium text-white">Interests:</label>
+                                        <label className="block text-sm font-medium text-white">Specialization you are interested in:</label>
                                         <div className="flex flex-wrap space-x-2">
                                             <Chip
-                                                label="Jobs"
+                                                label="Computer Science"
                                                 variant="outlined"
                                                 clickable
-                                                onClick={() => handleChipClick("Jobs")}
-                                                color={selectedInterests.includes("Jobs") ? "primary" : "default"}
+                                                onClick={() => handleChipClick("Computer Science")}
+                                                color={selectedInterests.includes("Computer Science") ? "primary" : "default"}
                                             />
                                             <Chip
-                                                label="Mentorship"
+                                                label="MBA"
                                                 variant="outlined"
                                                 clickable
-                                                onClick={() => handleChipClick("Mentorship")}
-                                                color={selectedInterests.includes("Mentorship") ? "primary" : "default"}
+                                                onClick={() => handleChipClick("MBA")}
+                                                color={selectedInterests.includes("MBA") ? "primary" : "default"}
                                             />
                                             <Chip
-                                                label="Events"
+                                                label="Mechanical"
                                                 variant="outlined"
                                                 clickable
-                                                onClick={() => handleChipClick("Events")}
-                                                color={selectedInterests.includes("Events") ? "primary" : "default"}
+                                                onClick={() => handleChipClick("Mechanical")}
+                                                color={selectedInterests.includes("Mechanical") ? "primary" : "default"}
                                             />
                                             <Chip
-                                                label="Accommodation"
+                                                label="BioTech"
                                                 variant="outlined"
                                                 clickable
-                                                onClick={() => handleChipClick("Accommodation")}
-                                                color={selectedInterests.includes("Accommodation") ? "primary" : "default"}
+                                                onClick={() => handleChipClick("BioTech")}
+                                                color={selectedInterests.includes("BioTech") ? "primary" : "default"}
                                             />
+                                              <Chip
+                                                label="Data Science"
+                                                variant="outlined"
+                                                clickable
+                                                onClick={() => handleChipClick("Data Science")}
+                                                color={selectedInterests.includes("Data Science") ? "primary" : "default"}
+                                            />
+                                        
                                         </div>
                                     </div>
-                                    <button type="submit" className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-green-300">Join</button>
+                                    <button type="submit" className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-green-300">Submit</button>
                                 </form>
 
                             ) : (
@@ -290,7 +352,7 @@ const Join = () => {
                     <a href="https://www.haldiramuk.com/" className="mr-4">
                         <img src={haldiram3} alt="HALDIRAM'S" className="h-12" />
                     </a>
-                    <a href="https://www.iqstudentaccommodation.com/" className="mr-4">
+                    <a href="https://www.iqstudentBioTech.com/" className="mr-4">
                         <img src={IQ} alt="IQ-STUDENT-ACCOMODATION" className="h-12" />
                     </a>
                     <a href="https://www.nus.org.uk/">
@@ -304,4 +366,4 @@ const Join = () => {
     );
 };
 
-export default Join;
+export default Mentorship;
