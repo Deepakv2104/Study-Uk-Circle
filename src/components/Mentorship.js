@@ -140,6 +140,7 @@ const Mentorship = () => {
                         <div className="heading  mb-6 text-md">
                             <h3 className="text-2xl font-bold"><span className="text-color-green">  WorldLynk Mentorships</span></h3>
                         </div>
+                        <p className="text-xl  mb-6 text-md">Book a  slot to avail your free call from our mentor</p>
                         <p className="large-text  mb-6 text-md">🎓 Connect directly with global university students & alumni for real insights!</p>
                         <p className="large-text  mb-6 text-md">🌍 Explore on-ground experiences from universities around the world.</p>
                         <p className="large-text  mb-6 text-md">📚 Dive deep into curriculum details, campus life, and more.</p>
@@ -229,7 +230,7 @@ const Mentorship = () => {
                                                     </select>
                                                 </div>
                                         <div className="form-group">
-                                            <label htmlFor="preffered year" className="block text-sm font-medium text-white">Preffered Year:</label>
+                                            <label htmlFor="preferred year" className="block text-sm font-medium text-white">Preferred Year:</label>
                                             <input type="text" id="postalCode" name="postalCode" placeholder="Year" className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange} required />
                                         </div>
                                         {/* {
@@ -329,7 +330,7 @@ const Mentorship = () => {
                                         
                                         </div>
                                     </div>
-                                    <button type="submit" className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-green-300">Submit</button>
+                                    <button type="submit" className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-green-300">Book a Slot</button>
                                 </form>
 
                             ) : (
