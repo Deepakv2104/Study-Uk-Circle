@@ -48,12 +48,21 @@ const NewNav = () => {
                     </li>
                     <li className="nav-item">
                         <div
+                            onClick={() => { navigate('/mentorship'); closeMobileMenu(); }}
+                            className="nav-link"
+                        >
+                            Mentorship
+                        </div>
+                    </li>
+                    <li className="nav-item">
+                        <div
                             onClick={() => { navigate('/join-waiting-list'); closeMobileMenu(); }}
                             className="nav-link"
                         >
                             Sign-In
                         </div>
                     </li>
+                 
                    
                 </ul>
             </div>
