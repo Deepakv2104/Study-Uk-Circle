@@ -80,6 +80,7 @@ const Mentorship = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault(); // Prevent the default form submission behavior
+        return;
 
         // Extracting data from the form data and setting default value for interests if none selected
         const interests = selectedInterests.length > 0 ? selectedInterests : ['None'];
