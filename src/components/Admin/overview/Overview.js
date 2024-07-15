@@ -1,9 +1,9 @@
 import React from 'react'
-import TopCountries from "./stats/TopCountries";
-import Segmentation from "./stats/segmentation";
-import Satisfication from "./stats/Satisfaction";
-import Graph from "./stats/Graph";
-import AddComponent from "./stats/AddComponent";
+import TopCountries from "../stats/TopCountries";
+import Segmentation from "../stats/segmentation";
+import Satisfication from "../stats/Satisfaction";
+import Graph from "../stats/Graph";
+import AddComponent from "../stats/AddComponent";
 
 const Overview = () => {
   return (

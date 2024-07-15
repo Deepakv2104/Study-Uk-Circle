@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Lottie from "react-lottie";
-import animationData from "../../assets/lotties/loader1.json";
+import animationData from "../../../assets/lotties/loader1.json";
 import "./adminDashboard.css";
-import Sidebar from "./sidebar";
+import Sidebar from "./layout-components/sidebar";
 import Content from "./Content";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../auth/userProvider/AuthProvider";
+import { useAuth } from "../../../auth/userProvider/AuthProvider";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
 
 const AdminDashboard = () => {

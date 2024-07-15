@@ -1,14 +1,14 @@
 // Join.js
 import React, { useState } from "react";
-import haldiram3 from ".././assets/img/haldiram3.png";
-import IQ from ".././assets/img/IQ.svg";
+import haldiram3 from "../../../assets/img/haldiram3.png";
+import IQ from "../../../assets/img/IQ.svg";
 
-import "./Join.css";
+import "../styles/Join.css";
 import Chip from "@mui/material/Chip";
-import { firestore } from "../firebase";
+import { firestore } from "../../../firebase";
 import { collection, addDoc } from "firebase/firestore";
-import NewNav from "./NewNav";
-import Footer from "./Footer";
+import NewNav from "../sub-components/NewNav";
+import Footer from "../sub-components/Footer";
 
 const SmeForm = () => {
   const [selectedCommunications, setSelectedCommunications] = useState([]);

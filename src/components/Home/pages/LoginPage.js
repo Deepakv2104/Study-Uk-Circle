@@ -1,22 +1,22 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { auth, firestore } from "../firebase";
+import { auth, firestore } from "../../../firebase";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useAuth } from "../auth/userProvider/AuthProvider";
+import { useAuth } from "../../../auth/userProvider/AuthProvider";
 import gsap from "gsap";
 import lottie from "lottie-web";
-import animationData from "../assets/lotties/students.json";
-import googleSvg from "../assets/img/googleSvg.svg";
-import linkedin from "../assets/img/linkedin.svg";
-import meta from "../assets/img/meta.svg";
-import "../styles/Login.css";
+import animationData from "../../../assets/lotties/students.json";
+import googleSvg from "../../../assets/img/googleSvg.svg";
+import linkedin from "../../../assets/img/linkedin.svg";
+import meta from "../../../assets/img/meta.svg";
+import "../../../styles/Login.css";
 import { GoogleAuthProvider } from "firebase/auth";
 import { signInWithEmailAndPassword, signInWithPopup, createUserWithEmailAndPassword } from "firebase/auth";
 import { getDoc, doc, setDoc } from "firebase/firestore";
 import { signOut } from "firebase/auth";
-import NewNav from "./NewNav";
-import Footer from "./Footer";
+import NewNav from "../sub-components/NewNav";
+import Footer from "../sub-components/Footer";
 
 
 const LoginPage = () => {

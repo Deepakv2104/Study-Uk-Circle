@@ -1,13 +1,13 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Dashboard from "./components/Admin/adminDashboard";
-import EventUploadForm from "./components/Admin/EventUpload";
-import Overview from "./components/Admin/Overview";
-import LoginPage from "./components/LoginPage";
+import Dashboard from "./components/Admin/admin-dashboard/adminDashboard";
+import EventUploadForm from "./components/Admin/events/EventUpload";
+import Overview from "./components/Admin/overview/Overview";
+import LoginPage from "./components/Home/pages/LoginPage";
 import FilterEventsPage from './components/Student/Events/FilterEventsPage'
 import { gsap } from "gsap";
-import CollegeUpload from "./components/Admin/CollgeUpload";
+import CollegeUpload from "./components/Admin/universities/CollgeUpload";
 import UserDashboard from "./components/Student/userdashboard/UserDashboard";
 import EventsPage from "./components/Student/Events/EventsPage";
 import University from "./components/Student/Universities/University";
@@ -16,22 +16,21 @@ import EventDetails from "./components/Student/Events/EventDetails";
 import UniversityDetails from "./components/Student/Universities/UniversityDetails";
 import Explore from "./components/Student/Explore/Explore";
 import Favorites from "./components/Student/Favorites/Favorites";
-import AddJobPost from "./components/Admin/AddJobPost";
+import AddJobPost from "./components/Admin/jobs/AddJobPost";
 import PrivateRoute from "./auth/PrivateRoute/PrivateRoute";
-import PageNotFound from "./components/PageNotFound";
+import PageNotFound from "./components/Home/pages/PageNotFound";
 import NewHome from "./components/Home/pages/NewHome"
-import Join from "./components/Join";
-import SmeForm from './components/SmeForm';
+import Join from "./components/Home/pages/Join";
+import SmeForm from './components/Home/pages/SmeForm';
 import Jobs from "./components/Student/Jobs/Jobs";
-import AboutUsPage from "./components/AboutUsPage";
+import AboutUsPage from "./components/Home/pages/AboutUsPage";
 import IQAgentMiddleware from "./components/Student/Accomodation/Accomodation";
-import PrivacyPolicy from "./components/PrivacyPolicy";
 // import AuthComponent from "./components/Testing";
 // import DownloadExcel from "./components/FetchData";
-import AddRestaurant from "./components/Admin/AddRestaurant";
+import AddRestaurant from "./components/Admin/restaurants/AddRestaurant";
 import Restaurant from "./components/Student/Explore/RestaurantTabs";
 import  SwipeCarousel  from "./components/Student/Explore/SwipeCarousel";
-import Mentorship from "./components/Mentorship";
+import Mentorship from "./components/Home/pages/Mentorship";
 gsap.registerPlugin();
 function App() {
   return (
@@ -45,7 +44,7 @@ function App() {
           {/* <Route path="/details" element={<DetailsPage />} /> */}
           <Route path="/login" element={<LoginPage />} />
           {/* <Route path="/testing" element={<AuthComponent />} /> */}
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          {/* <Route path="/privacy-policy" element={<PrivacyPolicy />} /> */}
 
           <Route path="/blank" element={<PageNotFound />} />
           <Route path="/join-waiting-list" element={<Join />} />

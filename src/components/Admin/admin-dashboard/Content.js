@@ -1,6 +1,6 @@
 
-import Icon from "./small-comp/Icon";
-import IconButton from "./small-comp/IconButton";
+import Icon from "../small-comp/Icon";
+import IconButton from "../small-comp/IconButton";
 import { Outlet } from "react-router-dom";
 
 function Content({ onSidebarHide,user }) {

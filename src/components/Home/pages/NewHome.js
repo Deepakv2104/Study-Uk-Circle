@@ -2,13 +2,13 @@ import React, {useState, useEffect, useRef} from 'react';
 import { useNavigate } from 'react-router-dom';
 import insight from '../../../assets/img/insight.png';
 import enhance from '../../../assets/img/enhance.png';
-import LottieAnimation from "../../LottieAnimation";
+import LottieAnimation from "../sub-components/LottieAnimation";
 import animationData from "../../../assets/lotties/study.json";
 import amp from '../../../assets/img/amp.png';
 // import accomadation from '../assets/img/accomadation.png';
-import Footer from '../../Footer';
-import NewNav from '../../NewNav';
-import AboutUs from '../../About';
+import Footer from '../sub-components/Footer';
+import NewNav from '../sub-components/NewNav';
+import AboutUs from '../sub-components/About';
 // import './NewHome1.css';
 
 const NewHome = () => {

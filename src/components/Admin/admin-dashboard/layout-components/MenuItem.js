@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import clsx from "clsx";
-import SidebarIcons from "./small-comp/SideBarIcons";
+import SidebarIcons from "../../small-comp/SideBarIcons";
 import { animated } from "react-spring";
 import { signOut } from "firebase/auth";
-import { useAuth } from "../../auth/userProvider/AuthProvider";
+import { useAuth } from "../../../../auth/userProvider/AuthProvider";
 function MenuItem({ item: { id, title, notifications ,path}, onClick, selected }) {
     const navigate = useNavigate();
     const [logoutLoading, setLogoutLoading] = useState(false);

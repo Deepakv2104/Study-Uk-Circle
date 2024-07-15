@@ -1,12 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Slider from 'react-slick';
-import accom from '../assets/img/accom.jpeg';
-import jobop from '../assets/img/jobop.jpeg';
-import mentor from '../assets/img/mentor.jpeg';
-import uni from '../assets/img/uni.jpeg';
-import eve from '../assets/img/eve.avif';
-import './NewHome1.css';
+import accom from '../../../assets/img/accom.jpeg';
+import jobop from '../../../assets/img/jobop.jpeg';
+import mentor from '../../../assets/img/mentor.jpeg';
+import uni from '../../../assets/img/uni.jpeg';
+import eve from '../../../assets/img/eve.avif';
+import '../styles/NewHome1.css';
 
 const AboutUs = () => {
     const settings = {

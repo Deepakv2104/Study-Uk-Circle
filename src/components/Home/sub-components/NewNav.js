@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
-import finalLogo from '../assets/img/log.png';
-import './NewNav.css'; // New CSS file for navbar styles
+import finalLogo from '../../../assets/img/log.png';
+import '../styles/NewNav.css'; // New CSS file for navbar styles
 
 const NewNav = () => {
     const [click, setClick] = useState(false);

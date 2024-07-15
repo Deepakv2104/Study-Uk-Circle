@@ -1,8 +1,8 @@
 import React from 'react';
-import NewNav from './NewNav';
-import Footer from './Footer';
+import NewNav from '../sub-components/NewNav';
+import Footer from '../sub-components/Footer';
 import { FaBullseye, FaLightbulb, FaUsers } from 'react-icons/fa';
-import './NewHome1.css';
+// import './NewHome1.css';
 
 const AboutUsPage = () => {
   return (

@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import { useAuth } from "../../auth/userProvider/AuthProvider";
+import { useAuth } from "../../../../auth/userProvider/AuthProvider";
 
 import { useSpring, animated, config } from "react-spring";
 import clsx from "clsx";
 // import { logout } from "../../firebase";
-import Icon from "./small-comp/Icon";
-import Image from "./small-comp/Image";
-import IconButton from "./small-comp/IconButton";
+import Icon from "../../small-comp/Icon";
+import Image from "../../small-comp/Image";
+import IconButton from "../../small-comp/IconButton";
 import { useNavigate } from "react-router-dom";
-import sidebarItems from "./sidebarItems";
+import sidebarItems from "../layout-components/sidebarItems";
 import './sidebar.css'
-import MenuItem from "./MenuItem";
+import MenuItem from "../layout-components/MenuItem";
 
 
 
