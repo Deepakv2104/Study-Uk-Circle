@@ -1,0 +1,317 @@
+/* Join.css */
+body {
+  margin: 0;
+  padding: 0;
+}
+.white-placeholder::placeholder {
+  color: white;
+}
+.join-page {
+  min-height: 100vh;
+  background-color: var(--black);
+  -webkit-text-stroke-color: var(--black);
+  background-image: none;
+  /* height: 100%; */
+  color: white;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  background-size: 80%;
+  background-position-y: unset !important;
+  background-repeat: no-repeat;
+  background-position: right;
+}
+
+.join-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+ 
+  
+}
+
+.left-column,
+.right-column {
+  flex: 1;
+  height: 100%;
+}
+
+.title-section {
+  /* padding: 20px; */
+}
+
+.left-column {
+  padding: 20px;
+ 
+    
+}
+
+
+
+.join-page .waitlist-heading p{
+  font-size: x-large !important;
+}
+.decorative-img img {
+  width: 100%;
+  max-width: 500px; /* Adjust the width of the image as needed */
+}
+
+.form-section {
+  padding: 20px;
+}
+
+
+
+.right-column .form-section form {
+
+  /* display: flex; */
+  border: 2px solid white;
+  padding: 20px;
+  border-radius: 5px;
+  border-radius: 20px 20px 20px 20px;
+}
+
+.right-column .form-section .form-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.right-column .form-section .form-group {
+  /* margin-bottom: 20px; */
+  flex: 1; /* Ensure equal width for form fields */
+}
+
+/* Add margin between form fields */
+.form-group:not(:last-child) {
+  margin-right: 10px; /* Adjust the margin as needed */
+}
+
+.right-column .form-section label {
+  display: block;
+  margin-bottom: 5px;
+}
+.right-column .form-section textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 10px;
+  background-color: #626060;
+  color: #ffffff;
+}
+.right-column .form-section input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 10px;
+  background-color: #626060;
+  color: #ffffff;
+}
+.right-column .form-section input::placeholder {
+  color: #ffffff; /* Change this to your desired color */
+}
+
+
+.form-group input:focus {
+  outline: none;
+  border-color: #ff9233;
+  box-shadow: 0 0 5px rgba(255, 146, 51, 0.5);
+}
+
+.form-group button {
+  padding: 10px 20px;
+  background-color:#ff9233 !important;
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.form-group button:hover {
+  background-color: white !important;
+  color: rgb(0, 0, 0);
+}
+
+/* New CSS for the image grid */
+.image-grid {
+  display: flex;
+  overflow: hidden;
+  animation: scroll 10s linear infinite;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+}
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 200px); /* Adjust width as needed */
+  grid-gap: 20px; /* Adjust gap between images */
+}
+
+
+.message-container {
+
+  border: 2px solid #ccc; /* Add a border */
+  border-radius: 8px; /* Optional: Add border radius for rounded corners */
+  padding: 20px; /* Add padding for spacing */
+  text-align: center; /* Center-align text */
+}
+
+.message-container h3 {
+  margin-bottom: 10px; /* Add margin below the heading */
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+
+.user-type-group {
+  margin-bottom: 20px;
+}
+
+.user-type-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.user-type-options {
+  display: flex;
+  flex-direction: row;
+}
+
+.user-type-option {
+  display: flex;
+  align-items: center;
+  margin-right: 20px; /* Adjust spacing between options */
+}
+
+.user-type-option input[type="radio"],
+.user-type-option input[type="checkbox"] {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid #757575;
+  background-color: transparent;
+  outline: none;
+}
+
+.user-type-option input[type="radio"]:checked,
+.user-type-option input[type="checkbox"]:checked {
+  background-color: #ff9233;
+}
+
+.interests-group {
+  margin-bottom: 20px;
+}
+
+.interests-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.interests-options {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Style for individual chip */
+.MuiChip-root {
+  margin-right: 10px; /* Adjust spacing between chips */
+  margin-bottom: 10px; /* Adjust vertical spacing between chips */
+}
+
+/* Style for chip label */
+.MuiChip-label {
+  padding: 6px 12px; /* Adjust padding inside each chip */
+  color: white;
+}
+
+/* Style for chip outline */
+.MuiChip-outlined {
+  border-color: #757575; /* Adjust border color */
+  color: #757575; /* Adjust text color */
+}
+
+.join-logo {
+  width: 200px; /* Adjust width as needed */
+  height: 200px; /* Adjust height as needed */
+}
+
+.join-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Maintain aspect ratio and fit within the container */
+  margin: 0; /* Remove margin */
+  padding: 0; /* Remove padding */
+}
+
+.form-group button {
+  width: 100%;
+}
+
+/* Media query for screens smaller than 768px (e.g., mobile devices) */
+/* Media query for screens smaller than 768px (e.g., mobile devices) */
+@media only screen and (max-width: 768px) {
+  .join-container {
+    flex-direction: column; /* Display columns as a single column on mobile */
+    align-items: center; /* Center-align content */
+  }
+
+  .left-column,
+  .right-column {
+    width: 100%; /* Take up full width on mobile */
+  }
+  .image-grid {
+    flex-direction: row; /* Ensure images stay in a row on mobile */
+    justify-content: center; /* Center-align images */
+    margin-top: 20px; /* Add margin to separate images from form */
+  }
+
+  .image-grid img {
+    width: 120px; /* Adjust width of images on mobile */
+  }
+}
+.footer-brand-logos {
+  display: flex;
+  align-items: center;
+  justify-content: space-around; /* Align items evenly */
+  background-color: #ffffff;
+  padding: 20px 10px; /* Increased padding for better spacing */
+  flex-wrap: wrap; /* Allow items to wrap to next line on smaller screens */
+}
+
+.brand-text {
+  color: #000000;
+  margin-bottom: 10px; /* Adjust spacing between text and logos */
+  font-weight: 900;
+  text-align: center; /* Center align the text */
+}
+
+.brand-logos {
+  display: flex;
+  flex-wrap: wrap; /* Allow logos to wrap to next line on smaller screens */
+  justify-content: center; /* Center align the logos */
+}
+
+.brand-logos a {
+  margin: 5px; /* Adjust spacing between logos */
+}
+
+.brand-logos img {
+  height: 56px;
+  margin: 0 10px; /* Adjust spacing between logos */
+}
+
+@media (max-width: 768px) {
+  .brand-text {
+    margin-right: 0; /* Remove right margin on smaller screens */
+  }
+  
+  .brand-logos img {
+    margin: 5px; /* Adjust spacing between logos on smaller screens */
+  }
+}
