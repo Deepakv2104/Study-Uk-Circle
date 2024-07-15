@@ -28,7 +28,7 @@ const University = () => {
     };
 
     fetchUniversities();
-  });
+  },[]);
 
   return (
     <div className="landing-page-container">
