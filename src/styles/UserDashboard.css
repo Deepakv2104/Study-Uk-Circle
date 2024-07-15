@@ -879,7 +879,7 @@ body::-webkit-scrollbar-thumb {
 
 ._discover_wz3ty0 {
   position: relative;
-  background-image: url(https://firebasestorage.googleapis.com/v0/b/worldlynk-97994.appspot.com/o/assets%2Fevents_cover.jpg?alt=media&token=6e71dc8b-5567-4e02-b011-aac03091debd);
+  background-image: url('../components/Student/Events/img/events_cover.jpg');
   background-size: cover;
   background-position: center center;
   color: var(--color-primary-white);
