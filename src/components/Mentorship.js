@@ -1,16 +1,16 @@
 // Join.js
 import React, { useState } from 'react';
-import haldiram3 from '../../../assets/img/haldiram3.png';
-import IQ from '../../../assets/img/IQ.svg';
+import haldiram3 from '.././assets/img/haldiram3.png';
+import IQ from '.././assets/img/IQ.svg';
 
 
-import '../styles/Join.css';
+import './Join.css';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
-import { firestore } from '../../../firebase';
+import { firestore } from '../firebase'
 import { collection, addDoc } from 'firebase/firestore';
-import NewNav from '../sub-components/NewNav';
-import Footer from '../sub-components/Footer';
+import NewNav from './NewNav';
+import Footer from './Footer';
 
 const Mentorship = () => {
     const [selectedSpecializations, setSelectedSpecializations] = useState([]);
@@ -311,7 +311,8 @@ const Mentorship = () => {
                                             <label for="datetime" className='block text-sm font-medium text-white'>Select a date and time for the call:</label>
                                             <input type="datetime-local" id="datetime"
                                                 name="datetime"
-                                                onChange={handleChangeDate} />
+                                                onChange={handleChangeDate}
+                                                required />
                                         </div>
                                     </div>
                                     <button type="submit" className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-green-300">Book a Slot</button>
