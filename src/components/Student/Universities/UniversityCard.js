@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import OutlineButton from './outline-button';
+import OutlineButton from '../outline-button';
 
 const UniversityCard = (props) => {
   const navigate = useNavigate();

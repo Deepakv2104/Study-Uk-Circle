@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import "./UserDashboard.css";
+import "../../../styles/UserDashboard.css";
 import EventCard from './EventCard';
 import {  CircularProgress } from '@mui/material';
-import { firestore } from "../../firebase";
+import { firestore } from "../../../firebase";
 import { collection, getDocs } from "firebase/firestore";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';

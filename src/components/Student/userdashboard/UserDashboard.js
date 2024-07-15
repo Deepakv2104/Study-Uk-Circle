@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
-import "./UserDashboard.css";
-import { useAuth } from "../../auth/userProvider/AuthProvider";
+import "../../../styles/UserDashboard.css";
+import { useAuth } from "../../../auth/userProvider/AuthProvider.js";
 import { getDoc, doc } from "firebase/firestore";
-import { firestore } from "../../firebase";
-import animationData from "../../assets/lotties/loader1.json";
+import { firestore } from "../../../firebase.js";
+import animationData from "../../../assets/lotties/loader1.json";
 import Lottie from "react-lottie";
-import Menu from './Menu.js';
+import Menu from './sidebar/Menu.js';
 
 const UserDashboard = () => {
   const auth = useAuth();

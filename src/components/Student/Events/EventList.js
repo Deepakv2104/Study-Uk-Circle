@@ -8,7 +8,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import Button from "@mui/material/Button";
 import ShareIcon from "@mui/icons-material/Share";
-import { firestore } from "../../firebase";
+import { firestore } from "../../../firebase";
 import { collection, getDocs } from "firebase/firestore";
 
 const EventList = ({ searchTerm, eventType, universityId }) => {

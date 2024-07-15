@@ -2,10 +2,10 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaBars, FaCog, FaHeart, FaSignOutAlt, FaUtensils, FaBriefcase } from 'react-icons/fa';
 import { Avatar } from '@mui/material';
-import university from '../../assets/img/university .png';
-import accommodation from '../../assets/img/accommodation.png';
-import event from '../../assets/img/event.png';
-import { useAuth } from '../../auth/userProvider/AuthProvider';
+import university from '../../../../assets/img/university.png';
+import accommodation from '../../../../assets/img/accommodation.png';
+import event from '../../../../assets/img/event.png';
+import { useAuth } from '../../../../auth/userProvider/AuthProvider';
 
 const Menu = ({ user }) => {
     const navigate = useNavigate();

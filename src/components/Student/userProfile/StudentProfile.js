@@ -31,7 +31,7 @@ import {
 } from "@mui/material";
 // import { IconButton } from "@material-ui/core";
   // import { useAuth } from "../../auth/userProvider/AuthProvider";
-  import { firestore } from "../../firebase";
+  import { firestore } from "../../../firebase";
   import 'react-toastify/dist/ReactToastify.css';
 // import { toast } from 'react-toastify';
 

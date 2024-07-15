@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Grid, CircularProgress } from '@mui/material';
-import Card from './card';
+import Card from './card'
 import './University.css'; // Import the CSS file
 import { collection, getDocs } from 'firebase/firestore';
-import { firestore } from '../../firebase'; // Import your Firestore instance
+import { firestore } from '../../../firebase'; // Import your Firestore instance
 
 const University = () => {
   const [loading, setLoading] = useState(true);
@@ -19,16 +19,22 @@ const University = () => {
           ...doc.data()
         }));
         setUniversities(fetchedUniversities);
+        localStorage.setItem('universities', JSON.stringify(fetchedUniversities));
         setLoading(false);
-        console.log(universities)
       } catch (error) {
         console.error('Error fetching universities:', error);
         setLoading(false);
       }
     };
 
-    fetchUniversities();
-  },[]);
+    const storedUniversities = localStorage.getItem('universities');
+    if (storedUniversities) {
+      setUniversities(JSON.parse(storedUniversities));
+      setLoading(false);
+    } else {
+      fetchUniversities();
+    }
+  }, []);
 
   return (
     <div className="landing-page-container">
@@ -45,7 +51,7 @@ const University = () => {
           <div className="overlay">
             <h1>Explore Your Dream University</h1>
             <p>Discover the rich history and academic excellence of institutions like Oxford and Cambridge. From the picturesque landscapes of Scotland to the vibrant city life in London, the UK offers a diverse range of educational experiences to pursue your aspirations.</p>
-            <button>explore</button>
+            <button>Explore</button>
           </div>
         </div>
 
@@ -60,18 +66,17 @@ const University = () => {
           </div>
         ) : (
           <Grid container spacing={1}> {/* Adjust spacing value as needed */}
-          {universities.map((university, index) => (
-            <Grid item xs={12} sm={6} md={3} key={index}>
-              <Card
-                title={university.collegeName}
-                img={university.cardImage}
-                description={university.description}
-                id={university.collegeId}
-              />
-            </Grid>
-          ))}
-        </Grid>
-        
+            {universities.map((university, index) => (
+              <Grid item xs={12} sm={6} md={3} key={index}>
+                <Card
+                  title={university.collegeName}
+                  img={university.cardImage}
+                  description={university.description}
+                  id={university.collegeId}
+                />
+              </Grid>
+            ))}
+          </Grid>
         )}
       </div>
       <div className="landing-page-footer">

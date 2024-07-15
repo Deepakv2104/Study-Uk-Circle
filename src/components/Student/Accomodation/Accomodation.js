@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import HotelData1 from '../Data/HotelData';
+import HotelData1 from '../../Data/HotelData';
 import _ from 'lodash';
-import room from './room.jpg';
+import room from '../../../assets/img/room.jpg';
 
 const HotelBooking = () => {
   const [exportData, setExportData] = useState([]);

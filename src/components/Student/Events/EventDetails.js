@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { FaLocationArrow, FaThumbsUp } from 'react-icons/fa';
-import { firestore } from '../../firebase';
+import { firestore } from '../../../firebase';
 import { addDoc, serverTimestamp, doc, getDoc, updateDoc, collection } from 'firebase/firestore';
 
 const EventDetails = () => {
