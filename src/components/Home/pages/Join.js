@@ -51,7 +51,7 @@ const Join = () => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        console.log(e.target.value,"handleChange")
+        console.log(e.target.value, "handleChange")
         setFormData({ ...formData, [name]: value });
         console.log(formData.gender)
     };
@@ -62,11 +62,11 @@ const Join = () => {
     const handleGenderChange = (event) => {
         // setGender(event.target.value);/
         const { name, value } = event.target;
-        if(value ==="letMeType"){
+        if (value === "letMeType") {
             setCustomGender(true)
-            console.log(gender,"gender")
-            
-        }else{
+            console.log(gender, "gender")
+
+        } else {
             setFormData({
                 ...formData,
                 [name]: value
@@ -74,7 +74,7 @@ const Join = () => {
             console.log('something')
 
         }
-      
+
 
     };
 
@@ -197,8 +197,8 @@ const Join = () => {
                                         {
                                             customGender ? <div className="form-group">
                                                 <label htmlFor="gender" className="block text-sm font-medium text-white">Gender:</label>
-                                                <input type="text" id="gender" name="gender" placeholder="Gender" 
-                                                         className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange} required />
+                                                <input type="text" id="gender" name="gender" placeholder="Gender"
+                                                    className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange} required />
                                             </div> :
                                                 <div className="form-group">
                                                     <label htmlFor="gender" className="block text-sm font-medium text-white ">Gender:</label>

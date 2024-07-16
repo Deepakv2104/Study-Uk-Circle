@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import haldiram3 from "../../../assets/img/haldiram3.png";
 import IQ from "../../../assets/img/IQ.svg";
-
 import "../styles/Join.css";
 import Chip from "@mui/material/Chip";
 import { firestore } from "../../../firebase";
@@ -290,7 +289,7 @@ const SmeForm = () => {
                     </div>
                   </div>
 
-                  <div className="form-group">
+                  <div className="">
                     <button
                       type="submit"
                       className="bg-green-500 hover:bg-green-600 text-black py-2 px-4 rounded mr-4"
