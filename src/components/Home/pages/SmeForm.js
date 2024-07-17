@@ -122,9 +122,7 @@ const SmeForm = () => {
               className="nav-right-content desktop"
               style={{ marginTop: "10px" }}
             >
-              <a href="/" className="glass-button smaller w-button" style={{ textDecoration: 'none', color: 'white' }}>
-                Back to homepage
-              </a>
+                        <a href="/" className="glass-button smaller w-button  rounded-lg bg-orange-500 hover:bg-orange-600" style={{ textDecoration: 'none', color: 'white', padding:'0.8rem' }}>Back to homepage</a>
             </div>
           </div>
           <div className="right-column  rounded-lg shadow-md">

@@ -142,9 +142,7 @@ const Join = () => {
                         </div>
                         <p className="large-text mb-8">Be among the first to experience the future of student life in the UK! Join our waiting list today and gain early access to our comprehensive platform designed to revolutionize your student experience.</p>
                         <img src="https://join.getwyld.in/assets/images/line.png" alt="Divider" className="mb-8" />
-                        <div className="nav-right-content desktop">
-                            <a href="/" className="glass-button smaller w-button" style={{ textDecoration: 'none', color: 'white' }}>Back to homepage</a>
-                        </div>
+                        <a href="/" className="glass-button smaller w-button  rounded-lg bg-orange-500 hover:bg-orange-600" style={{ textDecoration: 'none', color: 'white', padding:'0.8rem' }}>Back to homepage</a>
                     </div>
                     <div className="right-column rounded-lg shadow-md">
                         <div className="form-section">
