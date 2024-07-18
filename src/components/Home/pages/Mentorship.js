@@ -17,7 +17,7 @@ const Mentorship = () => {
         lastName: '',
         email: '',
         phone: '',
-        degree: '',
+        degree: 'masters',
         applicationStatus: '',
         termPlanningFor: '',
         preferredYear: '',
