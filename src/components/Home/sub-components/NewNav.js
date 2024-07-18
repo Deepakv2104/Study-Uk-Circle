@@ -13,15 +13,16 @@ const NewNav = () => {
 
     return (
         <nav className="navbar bg-gray-900 px-2">
-            <div className="navbar-container container mx-auto px-1">
-            <div className="navbar-logo" onClick={() => navigate('/')}>
-    <img src={finalLogo} alt="Logo" className="h-9 md:h-12 mr-1" />
-</div>
+            <div className="navbar-container container mx-auto px-1 pb-4">
+                <div className="navbar-logo pb-4 lg:-ml-20 " onClick={() => navigate('/')}>
+                    <img src={finalLogo} alt="Logo" className="h-9 md:h-12 " />
+                </div>
 
                 <div className="menu-icon" onClick={handleClick}>
                     {click ? <FaTimes size={28} /> : <FaBars size={28} />}
                 </div>
-                <ul className={click ? 'nav-menu active' : 'nav-menu'}>
+
+                <ul className={click ? 'nav-menu active' : 'nav-menu'} >
                     <li className="nav-item">
                         <div
                             onClick={() => { navigate('/'); closeMobileMenu(); }}
@@ -62,8 +63,8 @@ const NewNav = () => {
                             Sign-In
                         </div>
                     </li>
-                 
-                   
+
+
                 </ul>
             </div>
         </nav>

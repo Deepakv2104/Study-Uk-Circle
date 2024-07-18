@@ -134,7 +134,7 @@ const Join = () => {
         <div>
             <NewNav />
             <div className="bg-gray-800 text-white">
-                <div className="join-container mx-auto max-w-5xl px-4 flex justify-center items-center">
+                <div className="join-container mx-auto max-w-7xl px-4 flex justify-center items-center">
                     <div className="left-column mr-12">
                         <div className="heading mb-8">
                             <h3 className="text-2xl font-bold">Welcome to<span className="text-color-green">  WorldLynk</span></h3>
@@ -142,7 +142,7 @@ const Join = () => {
                         </div>
                         <p className="large-text mb-8">Be among the first to experience the future of student life in the UK! Join our waiting list today and gain early access to our comprehensive platform designed to revolutionize your student experience.</p>
                         <img src="https://join.getwyld.in/assets/images/line.png" alt="Divider" className="mb-8" />
-                        <a href="/" className="glass-button smaller w-button  rounded-lg bg-orange-500 hover:bg-orange-600" style={{ textDecoration: 'none', color: 'white', padding:'0.8rem' }}>Back to homepage</a>
+                        <a href="/" className="glass-button smaller w-button  rounded-lg bg-orange-500 hover:bg-orange-600" style={{ textDecoration: 'none', color: 'white', padding: '0.8rem' }}>Back to homepage</a>
                     </div>
                     <div className="right-column rounded-lg shadow-md">
                         <div className="form-section">

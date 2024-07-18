@@ -80,7 +80,7 @@ const Mentorship = () => {
         let slotTiming = localDateTime.toLocaleString()
         setSlotTime(slotTiming)
     };
-     
+
     const [specialization, setSpecialization] = useState('');
 
     const [customSpecialization, setCustomSpecialization] = useState(false)
@@ -169,7 +169,7 @@ const Mentorship = () => {
 
                         <img src="https://join.getwyld.in/assets/images/line.png" alt="Divider" className=" mb-6 text-md" />
                         <div className="nav-right-content desktop">
-                        <a href="/" className="glass-button smaller w-button  rounded-lg bg-orange-500 hover:bg-orange-600" style={{ textDecoration: 'none', color: 'white', padding:'0.8rem' }}>Back to homepage</a>
+                            <a href="/" className="glass-button smaller w-button  rounded-lg bg-orange-500 hover:bg-orange-600" style={{ textDecoration: 'none', color: 'white', padding: '0.8rem' }}>Back to homepage</a>
                         </div>
                     </div>
                     <div className="right-column rounded-lg shadow-md w-1/2 ">
@@ -320,35 +320,35 @@ const Mentorship = () => {
                                         </div> */}
                                         <div>
                                             <div className="form-group my-4">
-                                            {
-                                            customSpecialization ? <div className="form-group">
-                                                <label htmlFor="specialization" className="block text-sm font-medium text-white">Specialization:</label>
-                                                <input type="text" id="specialization" name="specialization" placeholder="Type here.."
-                                                    className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange} required />
-                                            </div> :
-                                                <div className="form-group">
-                                                    <label htmlFor="specialization" className="block text-sm font-medium text-white ">specialization:</label>
-                                                    <select
-                                                        style={{ backgroundColor: '#626060' }}
-                                                        id="specialization"
-                                                        name="specialization"
-                                                        // value={specialization}
-                                                        onChange={handleSpecializationChange}
-                                                        className="mt-1 p-2 border border-gray-300 bg-yellow-900 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200"
-                                                        required
-                                                    >
-                                                        <option value="" >Specialization</option>
-                                                        <option value="Computer Science">Computer Science</option>
-                                                        <option value="MBA">MBA</option>
-                                                        <option value="Data Science">Data Science</option>
-                                                        <option value="Mechanical Engineering">Mechanical Engineering</option>
-                                                        <option value="Biotechnology">Biotechnology</option>
-                                                        <option value="Business Analytics">Business Analytics</option>
-                                                        <option value="Electrical Engineering"> Electrical Engineering</option>
-                                                        <option value="letMeType">Let me type</option>
-                                                    </select>
-                                                </div>
-                                        }
+                                                {
+                                                    customSpecialization ? <div className="form-group">
+                                                        <label htmlFor="specialization" className="block text-sm font-medium text-white">Specialization:</label>
+                                                        <input type="text" id="specialization" name="specialization" placeholder="Type here.."
+                                                            className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange} required />
+                                                    </div> :
+                                                        <div className="form-group">
+                                                            <label htmlFor="specialization" className="block text-sm font-medium text-white ">specialization:</label>
+                                                            <select
+                                                                style={{ backgroundColor: '#626060' }}
+                                                                id="specialization"
+                                                                name="specialization"
+                                                                // value={specialization}
+                                                                onChange={handleSpecializationChange}
+                                                                className="mt-1 p-2 border border-gray-300 bg-yellow-900 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200"
+                                                                required
+                                                            >
+                                                                <option value="" >Specialization</option>
+                                                                <option value="Computer Science">Computer Science</option>
+                                                                <option value="MBA">MBA</option>
+                                                                <option value="Data Science">Data Science</option>
+                                                                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                                                                <option value="Biotechnology">Biotechnology</option>
+                                                                <option value="Business Analytics">Business Analytics</option>
+                                                                <option value="Electrical Engineering"> Electrical Engineering</option>
+                                                                <option value="letMeType">Let me type</option>
+                                                            </select>
+                                                        </div>
+                                                }
                                             </div>
                                         </div>
                                         <div className='mt-2'>

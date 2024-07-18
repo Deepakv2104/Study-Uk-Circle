@@ -93,7 +93,7 @@ const SmeForm = () => {
     <div>
       <NewNav />
       <div className="bg-gray-800 text-white">
-        <div className="join-container mx-auto max-w-5xl px-4 flex justify-center items-center">
+        <div className="join-container mx-auto max-w-7xl px-4 flex justify-center items-center">
           <div className="left-column mr-12">
             <div className="heading mb-8">
               <h3 className="text-2xl font-bold">
@@ -122,7 +122,7 @@ const SmeForm = () => {
               className="nav-right-content desktop"
               style={{ marginTop: "10px" }}
             >
-                        <a href="/" className="glass-button smaller w-button  rounded-lg bg-orange-500 hover:bg-orange-600" style={{ textDecoration: 'none', color: 'white', padding:'0.8rem' }}>Back to homepage</a>
+              <a href="/" className="glass-button smaller w-button  rounded-lg bg-orange-500 hover:bg-orange-600" style={{ textDecoration: 'none', color: 'white', padding: '0.8rem' }}>Back to homepage</a>
             </div>
           </div>
           <div className="right-column  rounded-lg shadow-md">
@@ -141,7 +141,7 @@ const SmeForm = () => {
                         name="companyName"
                         placeholder="Company name"
                         onChange={handleChange}
-                        className="input-field"
+                        className="input-field p-2"
                         required
                       />
                     </div>
@@ -155,7 +155,7 @@ const SmeForm = () => {
                         name="companyEmail"
                         placeholder="Mail address"
                         onChange={handleChange}
-                        className="input-field"
+                        className="input-field p-2"
                         required
                       />
                     </div>
@@ -171,7 +171,7 @@ const SmeForm = () => {
                         name="role"
                         placeholder="Your role"
                         onChange={handleChange}
-                        className="input-field"
+                        className="input-field p-2"
                         required
                       />
                     </div>
@@ -185,7 +185,7 @@ const SmeForm = () => {
                         name="primaryContact"
                         placeholder="(XXX) XXXXX-XXXXX"
                         onChange={handleChange}
-                        className="input-field"
+                        className="input-field p-2"
                         required
                       />
                     </div>
@@ -201,7 +201,7 @@ const SmeForm = () => {
                         name="secondaryContact"
                         placeholder="(XXX) XXXXX-XXXXX"
                         onChange={handleChange}
-                        className="input-field"
+                        className="input-field p-2"
                         required
                       />
                     </div>
@@ -215,7 +215,7 @@ const SmeForm = () => {
                         name="websiteLink"
                         placeholder="Company website"
                         onChange={handleChange}
-                        className="input-field"
+                        className="input-field p-2"
                         required
                       />
                     </div>
@@ -232,7 +232,7 @@ const SmeForm = () => {
                         name="descripton"
                         placeholder="Company details"
                         onChange={handleChange}
-                        className="input-field text-white"
+                        className="input-field text-white p-2"
                         style={{ color: 'white', '::placeholder': { color: 'white' } }}
                         required
                       />
@@ -251,7 +251,7 @@ const SmeForm = () => {
                         name="purpose"
                         placeholder="Your answer"
                         onChange={handleChange}
-                        className="input-field"
+                        className="input-field p-2"
                         required
                       />
                     </div>

@@ -25,12 +25,12 @@ const AddRestaurant = ({ user }) => {
     const [selectedCategory, setSelectedCategory] = useState("");
     const [menuItems, setMenuItems] = useState([]);
     const [menuItem, setMenuItem] = useState({ type: "", name: "", price: "" });
-    const [deal1, setDeal1] = useState([
+    const [deal1, setDeal1] = useState(
         { title: "", discountPrice: "", tags: [] }
-    ]);
-    const [deal2, setDeal2] = useState([
+    );
+    const [deal2, setDeal2] = useState(
         { title: "", discountPrice: "", tags: [] }
-    ]);
+    );
     const handleDeal1Change = (e) => {
         const { name, value } = e.target;
         setDeal1({ ...deal1, [name]: value });
@@ -459,7 +459,7 @@ const AddRestaurant = ({ user }) => {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full h-[650px] ">
                         <label
                             htmlFor="dropzone-file1"
-                            className="flex flex-col items-center justify-center w-full h-full border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+                            className="flex flex-col items-center justify-center w-full h-full border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50  dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
                         >
                             {image1 ? (
                                 <img
@@ -505,7 +505,7 @@ const AddRestaurant = ({ user }) => {
 
                         <label
                             htmlFor="dropzone-file2"
-                            className="flex flex-col items-center justify-center w-full h-full border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+                            className="flex flex-col items-center justify-center w-full h-full border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50  dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
                         >
                             {image2 ? (
                                 <img
@@ -551,7 +551,7 @@ const AddRestaurant = ({ user }) => {
 
                         <label
                             htmlFor="dropzone-file3"
-                            className="flex flex-col items-center justify-center w-full h-full border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+                            className="flex flex-col items-center justify-center w-full h-full border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50  dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
                         >
                             {image3 ? (
                                 <img
@@ -597,7 +597,7 @@ const AddRestaurant = ({ user }) => {
 
                         <label
                             htmlFor="dropzone-file4"
-                            className="flex flex-col items-center justify-center w-full h-full border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+                            className="flex flex-col items-center justify-center w-full h-full border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50  dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
                         >
                             {image4 ? (
                                 <img
