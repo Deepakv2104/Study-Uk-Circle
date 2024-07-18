@@ -1,9 +1,6 @@
-// Join.js
 import React, { useState } from 'react';
 import haldiram3 from '../../../assets/img/haldiram3.png';
 import IQ from '../../../assets/img/IQ.svg';
-
-
 import '../styles/Join.css';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
@@ -83,6 +80,28 @@ const Mentorship = () => {
         let slotTiming = localDateTime.toLocaleString()
         setSlotTime(slotTiming)
     };
+     
+    const [specialization, setSpecialization] = useState('');
+
+    const [customSpecialization, setCustomSpecialization] = useState(false)
+
+    const handleSpecializationChange = (event) => {
+        // setSpecialization(event.target.value);/
+        const { name, value } = event.target;
+        if (value === "letMeType") {
+            setCustomSpecialization(true)
+            console.log(specialization, "specialization")
+
+        } else {
+            setFormData({
+                ...formData,
+                [name]: value
+            });
+
+        }
+
+
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -150,7 +169,7 @@ const Mentorship = () => {
 
                         <img src="https://join.getwyld.in/assets/images/line.png" alt="Divider" className=" mb-6 text-md" />
                         <div className="nav-right-content desktop">
-                            <a href="/" className="glass-button smaller w-button" style={{ textDecoration: 'none', color: 'white' }}>Back to homepage</a>
+                        <a href="/" className="glass-button smaller w-button  rounded-lg bg-orange-500 hover:bg-orange-600" style={{ textDecoration: 'none', color: 'white', padding:'0.8rem' }}>Back to homepage</a>
                         </div>
                     </div>
                     <div className="right-column rounded-lg shadow-md w-1/2 ">
@@ -184,12 +203,12 @@ const Mentorship = () => {
                                     </div>
                                     <div className="grid grid-cols-2 gap-6">
                                         <div className="form-group">
-                                            <label htmlFor="gender" className="block text-sm font-medium text-white ">Degree Level:</label>
+                                            <label htmlFor="specialization" className="block text-sm font-medium text-white ">Degree Level:</label>
                                             <select
                                                 style={{ backgroundColor: '#626060' }}
                                                 id="degree"
                                                 name="degree"
-                                                // value={gender}
+                                                // value={specialization}
                                                 onChange={handleDegreeChange}
                                                 className="mt-1 p-2 border border-gray-300 bg-yellow-900 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200"
                                                 required
@@ -208,12 +227,12 @@ const Mentorship = () => {
                                     </div>
                                     <div className="grid grid-cols-2 gap-6">
                                         <div className="form-group">
-                                            <label htmlFor="gender" className="block text-sm font-medium text-white ">Application Status:</label>
+                                            <label htmlFor="specialization" className="block text-sm font-medium text-white ">Application Status:</label>
                                             <select
                                                 style={{ backgroundColor: '#626060' }}
                                                 id="applicationStatus"
                                                 name="applicationStatus"
-                                                // value={gender}
+                                                // value={specialization}
                                                 onChange={handleApplicationStatusChange}
                                                 className="mt-1 p-2 border border-gray-300 bg-yellow-900 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200"
                                                 required
@@ -301,8 +320,35 @@ const Mentorship = () => {
                                         </div> */}
                                         <div>
                                             <div className="form-group my-4">
-                                                <label htmlFor="preferred year" className="block text-sm font-medium text-white"> Specialization you are interested in:</label>
-                                                <input type="text" id="specialization" name="specialization" placeholder="Specialization" className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange} required />
+                                            {
+                                            customSpecialization ? <div className="form-group">
+                                                <label htmlFor="specialization" className="block text-sm font-medium text-white">Specialization:</label>
+                                                <input type="text" id="specialization" name="specialization" placeholder="Type here.."
+                                                    className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange} required />
+                                            </div> :
+                                                <div className="form-group">
+                                                    <label htmlFor="specialization" className="block text-sm font-medium text-white ">specialization:</label>
+                                                    <select
+                                                        style={{ backgroundColor: '#626060' }}
+                                                        id="specialization"
+                                                        name="specialization"
+                                                        // value={specialization}
+                                                        onChange={handleSpecializationChange}
+                                                        className="mt-1 p-2 border border-gray-300 bg-yellow-900 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200"
+                                                        required
+                                                    >
+                                                        <option value="" >Specialization</option>
+                                                        <option value="Computer Science">Computer Science</option>
+                                                        <option value="MBA">MBA</option>
+                                                        <option value="Data Science">Data Science</option>
+                                                        <option value="Mechanical Engineering">Mechanical Engineering</option>
+                                                        <option value="Biotechnology">Biotechnology</option>
+                                                        <option value="Business Analytics">Business Analytics</option>
+                                                        <option value="Electrical Engineering"> Electrical Engineering</option>
+                                                        <option value="letMeType">Let me type</option>
+                                                    </select>
+                                                </div>
+                                        }
                                             </div>
                                         </div>
                                         <div className='mt-2'>

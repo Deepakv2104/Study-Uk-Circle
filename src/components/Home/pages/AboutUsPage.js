@@ -49,15 +49,15 @@ const AboutUsPage = () => {
             <div className="space-y-4">
               <h4 className="text-2xl font-semibold mb-4">Our Company's Main Mission</h4>
               <p className="large-text">
-                "At WorldLynk, our mission is to empower individuals and communities by integrating the world's leading services into a seamless and personalized experience. We aim to enhance connectivity, accessibility, and productivity, ensuring that everyone can organize, access, and utilize information effortlessly. By linking professionals, students, and consumers globally, we strive to make learning, earning, and living more dynamic and inclusive, fostering a future where digital bridges are unlimited."
+                At WorldLynk, our mission is to empower individuals and communities by integrating the world's leading services into a seamless and personalized experience. We aim to enhance connectivity, accessibility, and productivity, ensuring that everyone can organize, access, and utilize information effortlessly. By linking professionals, students, and consumers globally, we strive to make learning, earning, and living more dynamic and inclusive, fostering a future where digital bridges are unlimited.
               </p>
               <p className="large-text">
-                "WorldLynk envisions a world where digital connections transcend geographical boundaries, enabling individuals and communities to thrive. Our vision is to create an enduring platform that supports, inspires, and empowers the next generations, making global information and opportunities universally accessible and beneficial for all."
+                WorldLynk envisions a world where digital connections transcend geographical boundaries, enabling individuals and communities to thrive. Our vision is to create an enduring platform that supports, inspires, and empowers the next generations, making global information and opportunities universally accessible and beneficial for all.
               </p>
             </div>
             <img src="https://join.getwyld.in/assets/images/line.png" alt="Divider" className="mb-8 mx-auto" />
             <div className="text-center">
-              <a href="/" className="glass-button smaller w-button" style={{ textDecoration: 'none', color: 'white' }}>Back to homepage</a>
+            <a href="/" className="glass-button smaller w-button  rounded-lg bg-orange-500 hover:bg-orange-600" style={{ textDecoration: 'none', color: 'white', padding:'0.8rem' }}>Back to homepage</a>
             </div>
           </div>
         </div>
