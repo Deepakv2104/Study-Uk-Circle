@@ -17,13 +17,28 @@ const Loader = () => (
     </div>
 );
 
+
+
 const AddRestaurant = ({ user }) => {
-    // Remove firestore from props
     const [refresh, setRefresh] = useState(false);
     const [dateTime, setDateTime] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("");
     const [menuItems, setMenuItems] = useState([]);
     const [menuItem, setMenuItem] = useState({ type: "", name: "", price: "" });
+    const [deal1, setDeal1] = useState([
+        { title: "", discountPrice: "", tags: [] }
+    ]);
+    const [deal2, setDeal2] = useState([
+        { title: "", discountPrice: "", tags: [] }
+    ]);
+    const handleDeal1Change = (e) => {
+        const { name, value } = e.target;
+        setDeal1({ ...deal1, [name]: value });
+    };
+    const handleDeal2Change = (e) => {
+        const { name, value } = e.target;
+        setDeal2({ ...deal2, [name]: value });
+    };
 
     const [loading, setLoading] = useState(false);
 
@@ -169,6 +184,12 @@ const AddRestaurant = ({ user }) => {
         setMenuItem({ type: "", name: "", price: "" });
     };
 
+    const deleteMenuItem = (index) => {
+        const updatedMenuItems = [...menuItems];
+        updatedMenuItems.splice(index, 1);
+        setMenuItems(updatedMenuItems);
+    };
+
     const handleFormSubmit = async (e) => {
         e.preventDefault();
         if (loading) {
@@ -184,6 +205,8 @@ const AddRestaurant = ({ user }) => {
                 ...restaurantData, // Include all restaurantData
                 image: restaurantImageURL,
                 menu: menuItems,
+                deal1,
+                deal2
             });
 
             // Get the newly generated document ID
@@ -414,6 +437,7 @@ const AddRestaurant = ({ user }) => {
                                 {menuItems.map((item, index) => (
                                     <li key={index} className="">
                                         {item.type} - {item.name} - ${item.price}
+                                        <button onClick={() => deleteMenuItem(index)} className="text-red-500 ml-2">Delete</button>
                                     </li>
                                 ))}
                             </ul>
@@ -460,6 +484,7 @@ const AddRestaurant = ({ user }) => {
                                             d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
                                         ></path>
                                     </svg>
+                                    <p className="mb-2 text-lg text-gray-500 dark:text-gray-400"> Banner image</p>
                                     <p className="mb-2 text-lg text-gray-500 dark:text-gray-400">
                                         <span className="font-semibold">Click to upload</span> or
                                         drag and drop
@@ -505,6 +530,7 @@ const AddRestaurant = ({ user }) => {
                                             d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
                                         ></path>
                                     </svg>
+                                    <p className="mb-2 text-lg text-gray-500 dark:text-gray-400">Display image 1</p>
                                     <p className="mb-2 text-lg text-gray-500 dark:text-gray-400">
                                         <span className="font-semibold">Click to upload</span> or
                                         drag and drop
@@ -550,6 +576,7 @@ const AddRestaurant = ({ user }) => {
                                             d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
                                         ></path>
                                     </svg>
+                                    <p className="mb-2 text-lg text-gray-500 dark:text-gray-400"> Display image 2</p>
                                     <p className="mb-2 text-lg text-gray-500 dark:text-gray-400">
                                         <span className="font-semibold">Click to upload</span> or
                                         drag and drop
@@ -595,6 +622,7 @@ const AddRestaurant = ({ user }) => {
                                             d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
                                         ></path>
                                     </svg>
+                                    <p className="mb-2 text-lg text-gray-500 dark:text-gray-400"> Display image 4</p>
                                     <p className="mb-2 text-lg text-gray-500 dark:text-gray-400">
                                         <span className="font-semibold">Click to upload</span> or
                                         drag and drop
@@ -612,6 +640,74 @@ const AddRestaurant = ({ user }) => {
                                 multiple
                             />
                         </label>
+                        <div className="flex-grow">
+                            <label
+                                htmlFor="deal2Name"
+                                className="block text-sm font-medium text-white-700"
+                            >
+                                Deal 1 Title:
+                            </label>
+                            <input
+                                type="text"
+                                id="deal1Name"
+                                name="title"
+                                value={deal1.title}
+                                placeholder="Enter deal  name"
+                                onChange={handleDeal1Change}
+                                className="mt-1 p-2 w-full border rounded-md text-black"
+                            // required
+                            />
+                            <label
+                                htmlFor="discountPrice"
+                                className="block text-sm font-medium text-white-700"
+                            >
+                                Deal 1 Discount Price:
+                            </label>
+                            <input
+                                type="number"
+                                id="discountPrice"
+                                name="discountPrice"
+                                value={deal1.discountPrice}
+                                placeholder="Enter deal  price"
+                                onChange={handleDeal1Change}
+                                className="mt-1 p-2 w-full border rounded-md text-black"
+                            // required
+                            />
+                        </div>
+                        <div className="flex-grow">
+                            <label
+                                htmlFor="deal2Name"
+                                className="block text-sm font-medium text-white-700"
+                            >
+                                Deal 2 Title:
+                            </label>
+                            <input
+                                type="text"
+                                id="deal2Name"
+                                name="title"
+                                value={deal2.title}
+                                placeholder="Enter deal  name"
+                                onChange={handleDeal2Change}
+                                className="mt-1 p-2 w-full border rounded-md text-black"
+                            // required
+                            />
+                            <label
+                                htmlFor="discountPrice"
+                                className="block text-sm font-medium text-white-700"
+                            >
+                                Deal 2 Discount Price:
+                            </label>
+                            <input
+                                type="number"
+                                id="discountPrice"
+                                name="discountPrice"
+                                value={deal2.discountPrice}
+                                placeholder="Enter deal price"
+                                onChange={handleDeal2Change}
+                                className="mt-1 p-2 w-full border rounded-md text-black"
+                            // required
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -620,3 +716,4 @@ const AddRestaurant = ({ user }) => {
 };
 
 export default AddRestaurant;
+
