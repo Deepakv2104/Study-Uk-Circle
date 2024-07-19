@@ -56,17 +56,26 @@ const Explore = () => {
   const handleSearchChange = (e) => {
     let query = e.target.value
     if (query.length === 0) {
-      setRestaurants(sampleFoods)
+      setRestaurants(restaurants)
       return;
     }
 
     const filteredRestaurants = restaurants.filter((ele) =>
-      ele.foodName.toLowerCase().includes(query.toLowerCase())
+      ele.name.toLowerCase().includes(query.toLowerCase())
     );
     setRestaurants(filteredRestaurants)
 
   };
 
+  const handleCategorySelectChange = (e) => {
+    const selectedCategory = e.target.value;
+    if (selectedCategory === 'All') {
+      setRestaurants(restaurants);
+    } else {
+      const filteredRestaurants = sampleFoods.filter((restaurant) => restaurant.category === selectedCategory);
+      setRestaurants(filteredRestaurants);
+    }
+  };
 
   useEffect(() => {
     const fetchRestaurants = async () => {
@@ -141,11 +150,14 @@ const Explore = () => {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <select className="w-full px-3 py-3 text-sm text-gray-600 bg-white border rounded-lg shadow-sm outline-none appearance-none focus:ring-offset-2 focus:ring-indigo-600 focus:ring-2">
-                    <option>Italian</option>
-                    <option>Meat</option>
-                    <option>Burgers</option>
-                    <option>Indian</option>
+                  <select
+                    onChange={handleCategorySelectChange}
+                    className="w-full px-3 py-3 text-sm text-gray-600 bg-white border rounded-lg shadow-sm outline-none appearance-none focus:ring-offset-2 focus:ring-indigo-600 focus:ring-2">
+                    <option value="Italian">Italian</option>
+                    <option value="Meat">Meat</option>
+                    <option value="Burgers">Burgers</option>
+                    <option value="Indian">Indian</option>
+                    <option value="Chinese">Chinese</option>
                   </select>
                 </div>
               </div>
@@ -164,7 +176,7 @@ const Explore = () => {
                         />
                       </div>
                       <div className="mt-4">
-                        <h4 className="text-lg text-gray-300 font-semibold mb-0 pb-0">{item.name}</h4>
+                        <h4 className="text-lg text-gray-300 font-semibold -mb-1 -pb-1">{item.name}</h4>
                         <p className='text-gray-300'>{item.category}</p>
                         <p className="text-gray-100 bg-blue-600 inline-block rounded-full p-1 px-2 mr-3">${item.deal1.title}</p>
                         <p className="text-gray-100 bg-blue-600 inline-block rounded-full p-1 px-2">{item.deal2.title}</p>
