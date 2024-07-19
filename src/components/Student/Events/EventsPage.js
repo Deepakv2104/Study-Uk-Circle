@@ -99,7 +99,7 @@ const EventsPage = () => {
 
         return (
           <div key={index}>
-            <h1>{category.name}</h1>
+            <h3>{category.name}</h3>
             <div>
               {loading ? (
                 <div >
