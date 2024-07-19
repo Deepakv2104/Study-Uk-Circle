@@ -1,0 +1,15 @@
+/* EventsPage.css */
+.event-container {
+    margin: 0 auto;
+    max-width: 1200px;
+  }
+  
+  .upcoming-events h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .card-container {
+    margin: 0 10px;
+  }
+  

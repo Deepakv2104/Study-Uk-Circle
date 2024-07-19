@@ -128,9 +128,9 @@ ul li a {
   font-size: clamp(1rem, 4vw, 1.2rem);
 }
 
-.user-dashboard h2 {
+/* .user-dashboard h2 {
   font-size: clamp(0.9rem, 4vw, 1rem);
-}
+} */
 
 /* body {
   position: relative;
