@@ -1,36 +1,32 @@
 import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination } from 'swiper/modules';
+import Slider from 'react-slick';
 import { useNavigate } from 'react-router-dom';
-
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
+import { motion } from 'framer-motion';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import './CardSlider.css';
+import academicEvents from './img/academic-events.jpg';
+import art from './img/art.jpg';
+import cultural from './img/cultural-events.jpg';
+import healthAndWellness from './img/health-and-wellness.jpg';
+import professionalDev from './img/professional-development.jpg';
+import social from './img/social-events.jpg';
+import sports from './img/sports-events.jpg';
+import tech from './img/tech.jpg';
+import orientation from './img/orientation.png';
 
-import academicEvents from './img/academic-events.jpg'
-import art from './img/art.jpg'
-import cultural from './img/cultural-events.jpg'
-import eventsCover from './img/events_cover.jpg'
-import healthAndWellness from './img/health-and-wellness.jpg'
-import professionalDev from './img/professional-development.jpg'
-import social from './img/social-events.jpg'
-import sports from './img/sports-events.jpg'
-import tech from './img/tech.jpg'
-import orientation from './img/orientation.png'
+const categories = [
+  { name: "Academic Events", imageUrl: academicEvents },
+  { name: "Cultural Events", imageUrl: cultural },
+  { name: "Social Events", imageUrl: social },
+  { name: "Sports and Recreation", imageUrl: sports },
+  { name: "Professional Development", imageUrl: professionalDev },
+  { name: "Health and Wellness", imageUrl: healthAndWellness },
+  { name: "Orientation and Information Sessions", imageUrl: orientation },
+  { name: "Arts and Entertainment", imageUrl: art },
+  { name: "Technology and Innovation", imageUrl: tech }
+];
 
-  const categories = [
-    { name: "Academic Events", imageUrl: academicEvents },
-    { name: "Cultural Events", imageUrl: cultural },
-    { name: "Social Events", imageUrl: social },
-    { name: "Sports and Recreation", imageUrl: sports },
-    { name: "Professional Development", imageUrl: professionalDev },
-    { name: "Health and Wellness", imageUrl: healthAndWellness },
-    { name: "Orientation and Information Sessions", imageUrl: orientation },
-    { name: "Arts and Entertainment", imageUrl: art },
-    { name: "Technology and Innovation", imageUrl: tech }
-  ];
-  
 const CardSlider = () => {
   const navigate = useNavigate();
 
@@ -38,37 +34,70 @@ const CardSlider = () => {
     navigate(`all-events/${categoryName}`);
   };
 
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 6,
+    slidesToScroll: 1,
+    centerMode: true,
+    arrows: true,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+    responsive: [
+      { breakpoint: 1200, settings: { slidesToShow: 5 } },
+      { breakpoint: 992, settings: { slidesToShow: 4 } },
+      { breakpoint: 768, settings: { slidesToShow: 3 } },
+      { breakpoint: 576, settings: { slidesToShow: 2, centerMode: false } },
+      { breakpoint: 480, settings: { slidesToShow: 3, centerMode: false } }
+    ]
+  };
+
   return (
-    <div className="slide-container">
-      <Swiper
-        className="slide-content"
-        slidesPerView={6}
-        spaceBetween={0}
-        loop={true}
-        centeredSlides={true}
-        // pagination={{ clickable: true, dynamicBullets: true }}
-        navigation={true}
-        modules={[Navigation, Pagination]}
-        breakpoints={{
-          0: { slidesPerView: 1 },
-          520: { slidesPerView: 2 },
-          950: { slidesPerView: 3 },
-          1200: { slidesPerView: 6 }, // Ensure 4 slides per view on larger screens
-        }}
-      >
+    <div className="card-slider-wrapper">
+      <Slider {...settings}>
         {categories.map((category, index) => (
-          <SwiperSlide key={index } >
-            <div
-              className="category-item"
+          <div key={index} className="card-item">
+            <motion.div
+              className="card-content"
+              whileHover={{ scale: 1.05 }}
               onClick={() => handleCategoryClick(category.name)}
             >
-              <img src={category.imageUrl} alt={category.name} className="category-image" />
-              <p className="category-name">{category.name}</p>
-            </div>
-          </SwiperSlide>
+              <div className="card-image-container">
+                <img
+                  src={category.imageUrl}
+                  alt={category.name}
+                  className="card-image"
+                />
+              </div>
+              <p className="card-title">{category.name}</p>
+            </motion.div>
+          </div>
         ))}
-      </Swiper>
+      </Slider>
     </div>
+  );
+}
+
+function SampleNextArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={`${className} custom-arrow next-arrow`}
+      style={{ ...style, display: "block" }}
+      onClick={onClick}
+    />
+  );
+}
+
+function SamplePrevArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={`${className} custom-arrow prev-arrow`}
+      style={{ ...style, display: "block" }}
+      onClick={onClick}
+    />
   );
 }
 
