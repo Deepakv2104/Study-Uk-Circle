@@ -1,9 +1,6 @@
-// Join.js
 import React, { useState } from 'react';
 import haldiram3 from '../../../assets/img/haldiram3.png';
 import IQ from '../../../assets/img/IQ.svg';
-
-
 import '../styles/Join.css';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
@@ -20,13 +17,13 @@ const Mentorship = () => {
         lastName: '',
         email: '',
         phone: '',
-        degree:'',
-        applicationStatus:'',
-        termPlanningFor:'',
-        preferredYear:'',
+        degree: 'masters',
+        applicationStatus: '',
+        termPlanningFor: '',
+        preferredYear: '',
         graduationYear: '',
         specialization: ''
-        });
+    });
 
 
 
@@ -60,34 +57,56 @@ const Mentorship = () => {
 
     const handleDegreeChange = (event) => {
         const { name, value } = event.target;
-      
-            setFormData({
-                ...formData,
-                [name]: value
-            });
-    console.log(formData)
-        
+
+        setFormData({
+            ...formData,
+            [name]: value
+        });
+        console.log(formData)
+
 
     };
     const handleApplicationStatusChange = (event) => {
         const { name, value } = event.target;
-       
-            setFormData({
-                ...formData,
-                [name]: value
-            });
+
+        setFormData({
+            ...formData,
+            [name]: value
+        });
     };
     const handleChangeDate = (event) => {
         setDateTime(event.target.value);
         const localDateTime = new Date(dateTime);
         let slotTiming = localDateTime.toLocaleString()
         setSlotTime(slotTiming)
-      };
+    };
+
+    const [specialization, setSpecialization] = useState('');
+
+    const [customSpecialization, setCustomSpecialization] = useState(false)
+
+    const handleSpecializationChange = (event) => {
+        // setSpecialization(event.target.value);/
+        const { name, value } = event.target;
+        if (value === "letMeType") {
+            setCustomSpecialization(true)
+            console.log(specialization, "specialization")
+
+        } else {
+            setFormData({
+                ...formData,
+                [name]: value
+            });
+
+        }
+
+
+    };
 
     const handleSubmit = async (e) => {
-        e.preventDefault(); 
-        const {   firstName, lastName,email,phone,degree,applicationStatus,termPlanningFor,preferredYear,graduationYear, specialization } = formData;
-        console.log(formData,'submit')
+        e.preventDefault();
+        const { firstName, lastName, email, phone, degree, applicationStatus, termPlanningFor, preferredYear, graduationYear, specialization } = formData;
+        console.log(formData, 'submit')
 
         if (!validatePhoneNumber(phone)) {
             setValidPhone(true);
@@ -114,9 +133,9 @@ const Mentorship = () => {
             });
 
             console.log(formData);
-            setFormSubmitted(true); 
+            setFormSubmitted(true);
         } catch (error) {
-            console.error('Error adding document: ', error); 
+            console.error('Error adding document: ', error);
         }
     };
 
@@ -132,7 +151,7 @@ const Mentorship = () => {
         <div>
             <NewNav />
             <div className="bg-gray-800 text-white">
-                <div className="join-container mx-auto max-w-6xl px-0 flex justify-center items-center">
+                <div className="join-container mx-auto max-w-7xl px-0 flex justify-center items-center">
                     <div className="left-column mr-1">
                         <div className="heading  mb-6 text-md">
                             <h3 className="text-2xl font-bold"><span className="text-color-green">  WorldLynk Mentorships</span></h3>
@@ -150,10 +169,10 @@ const Mentorship = () => {
 
                         <img src="https://join.getwyld.in/assets/images/line.png" alt="Divider" className=" mb-6 text-md" />
                         <div className="nav-right-content desktop">
-                            <a href="/" className="glass-button smaller w-button" style={{ textDecoration: 'none', color: 'white' }}>Back to homepage</a>
+                            <a href="/" className="glass-button smaller w-button  rounded-lg bg-orange-500 hover:bg-orange-600" style={{ textDecoration: 'none', color: 'white', padding: '0.8rem' }}>Back to homepage</a>
                         </div>
                     </div>
-                    <div className="right-column rounded-lg shadow-md w-1/2">
+                    <div className="right-column rounded-lg shadow-md w-1/2 ">
                         <div className="form-section">
                             {!formSubmitted ? (
                                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -184,12 +203,12 @@ const Mentorship = () => {
                                     </div>
                                     <div className="grid grid-cols-2 gap-6">
                                         <div className="form-group">
-                                            <label htmlFor="gender" className="block text-sm font-medium text-white ">Degree Level:</label>
+                                            <label htmlFor="specialization" className="block text-sm font-medium text-white ">Degree Level:</label>
                                             <select
                                                 style={{ backgroundColor: '#626060' }}
                                                 id="degree"
                                                 name="degree"
-                                                // value={gender}
+                                                // value={specialization}
                                                 onChange={handleDegreeChange}
                                                 className="mt-1 p-2 border border-gray-300 bg-yellow-900 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200"
                                                 required
@@ -208,12 +227,12 @@ const Mentorship = () => {
                                     </div>
                                     <div className="grid grid-cols-2 gap-6">
                                         <div className="form-group">
-                                            <label htmlFor="gender" className="block text-sm font-medium text-white ">Application Status:</label>
+                                            <label htmlFor="specialization" className="block text-sm font-medium text-white ">Application Status:</label>
                                             <select
                                                 style={{ backgroundColor: '#626060' }}
                                                 id="applicationStatus"
                                                 name="applicationStatus"
-                                                // value={gender}
+                                                // value={specialization}
                                                 onChange={handleApplicationStatusChange}
                                                 className="mt-1 p-2 border border-gray-300 bg-yellow-900 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200"
                                                 required
@@ -230,33 +249,31 @@ const Mentorship = () => {
                                             <label htmlFor="preferred year" className="block text-sm font-medium text-white">Preferred Year:</label>
                                             <input type="text" id="preferredYear" name="preferredYear" placeholder="Year" className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange} required />
                                         </div>
-                                   
+
                                     </div>
-                                    <div className="form-group">
+                                    <div className="flex flex-col justify-evenly form-group">
                                         <label className="block text-sm font-medium text-white">Which Term your are planning for:</label>
-                                        <div className="user-type-options ">
+                                        <div className='sm:grid grid-cols-3 gap-0'>
                                             <div className="user-type-option p-0 m-0">
                                                 <input type="radio" id="Sept-Nov(Fall)" name="termPlanningFor" value="Sept-Nov (Fall)" onChange={handleChange} />
-                                                <label htmlFor="Sept-Nov(Fall)" className='mt-1 ml-1  w-[140px]'>Sept-Nov (Fall)</label>
+                                                <label htmlFor="Sept-Nov(Fall)" className='mt-1  ml-1 '>Sept-Nov (Fall)</label>
                                             </div>
-                                            <div className="user-type-option p-0 m-0">
-                                                <input type="radio" id="Mar-May(Spring)" name="termPlanningFor" value="Mar-May(Spring)" onChange={handleChange} />
-                                                <label htmlFor="Mar-May(Spring)" className='mt-1 ml-1 w-[140px]'>Mar-May(Spring)</label>
+                                            <div className="user-type-option p-0 m-0 ">
+                                                <input type="radio" id="Mar-May(Spring)" name="termPlanningFor" value="Mar-May(Spring)" onChange={handleChange} className='' />
+                                                <label htmlFor="Mar-May(Spring)" className='mt-1   ml-1'>Mar-May(Spring)</label>
                                             </div>
-                                            <div className="user-type-option p-0 m-0">
+                                            <div className="user-type-option p-0 m-0 ">
                                                 <input type="radio" id="Jun-Aug(Summer)" name="termPlanningFor" value="Jun-Aug(Summer)" onChange={handleChange} />
-                                                <label htmlFor="Jun-Aug(Summer)" className='mt-1 ml-1 w-[140px]'>Jun-Aug(Summer)</label>
+                                                <label htmlFor="Jun-Aug(Summer)" className='mt-1  ml-1 '>Jun-Aug(Summer)</label>
                                             </div>
 
-                                        </div>
-                                        <div className='user-type-options'>
                                             <div className="user-type-option m-0 p-0">
                                                 <input type="radio" id="Dec-Feb(Winter)" name="termPlanningFor" value="Dec-Feb(Winter)" onChange={handleChange} />
-                                                <label htmlFor="Dec-Feb(Winter)" className='mt-1 ml-1 w-[140px]'>Dec-Feb(Winter)</label>
+                                                <label htmlFor="Dec-Feb(Winter)" className='mt-1   ml-1'>Dec-Feb(Winter)</label>
                                             </div>
                                             <div className="user-type-option">
-                                                <input type="radio" id="not sure" name="termPlanningFor" value="Not Sure"  onChange={handleChange} />
-                                                <label htmlFor="not sure" className='mt-1 ml-1 w-[140px]'>Not Sure</label>
+                                                <input type="radio" id="not sure" name="termPlanningFor" value="Not Sure" onChange={handleChange} />
+                                                <label htmlFor="not sure" className='mt-1   ml-1'>Not Sure</label>
                                             </div>
                                         </div>
 
@@ -302,11 +319,38 @@ const Mentorship = () => {
 
                                         </div> */}
                                         <div>
-                                        <div className="form-group my-4">
-                                            <label htmlFor="preferred year" className="block text-sm font-medium text-white"> Specialization you are interested in:</label>
-                                            <input type="text" id="specialization" name="specialization" placeholder="Specialization" className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange} required />
+                                            <div className="form-group my-4">
+                                                {
+                                                    customSpecialization ? <div className="form-group">
+                                                        <label htmlFor="specialization" className="block text-sm font-medium text-white">Specialization:</label>
+                                                        <input type="text" id="specialization" name="specialization" placeholder="Type here.."
+                                                            className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange} required />
+                                                    </div> :
+                                                        <div className="form-group">
+                                                            <label htmlFor="specialization" className="block text-sm font-medium text-white ">specialization:</label>
+                                                            <select
+                                                                style={{ backgroundColor: '#626060' }}
+                                                                id="specialization"
+                                                                name="specialization"
+                                                                // value={specialization}
+                                                                onChange={handleSpecializationChange}
+                                                                className="mt-1 p-2 border border-gray-300 bg-yellow-900 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200"
+                                                                required
+                                                            >
+                                                                <option value="" >Specialization</option>
+                                                                <option value="Computer Science">Computer Science</option>
+                                                                <option value="MBA">MBA</option>
+                                                                <option value="Data Science">Data Science</option>
+                                                                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                                                                <option value="Biotechnology">Biotechnology</option>
+                                                                <option value="Business Analytics">Business Analytics</option>
+                                                                <option value="Electrical Engineering"> Electrical Engineering</option>
+                                                                <option value="letMeType">Let me type</option>
+                                                            </select>
+                                                        </div>
+                                                }
+                                            </div>
                                         </div>
-                                         </div>
                                         <div className='mt-2'>
                                             <label for="datetime" className='block text-sm font-medium text-white'>Select a date and time for the call:</label>
                                             <input type="datetime-local" id="datetime"

@@ -51,7 +51,7 @@ const Join = () => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        console.log(e.target.value,"handleChange")
+        console.log(e.target.value, "handleChange")
         setFormData({ ...formData, [name]: value });
         console.log(formData.gender)
     };
@@ -62,11 +62,11 @@ const Join = () => {
     const handleGenderChange = (event) => {
         // setGender(event.target.value);/
         const { name, value } = event.target;
-        if(value ==="letMeType"){
+        if (value === "letMeType") {
             setCustomGender(true)
-            console.log(gender,"gender")
-            
-        }else{
+            console.log(gender, "gender")
+
+        } else {
             setFormData({
                 ...formData,
                 [name]: value
@@ -74,7 +74,7 @@ const Join = () => {
             console.log('something')
 
         }
-      
+
 
     };
 
@@ -134,7 +134,7 @@ const Join = () => {
         <div>
             <NewNav />
             <div className="bg-gray-800 text-white">
-                <div className="join-container mx-auto max-w-5xl px-4 flex justify-center items-center">
+                <div className="join-container mx-auto max-w-7xl px-4 flex justify-center items-center">
                     <div className="left-column mr-12">
                         <div className="heading mb-8">
                             <h3 className="text-2xl font-bold">Welcome to<span className="text-color-green">  WorldLynk</span></h3>
@@ -142,9 +142,7 @@ const Join = () => {
                         </div>
                         <p className="large-text mb-8">Be among the first to experience the future of student life in the UK! Join our waiting list today and gain early access to our comprehensive platform designed to revolutionize your student experience.</p>
                         <img src="https://join.getwyld.in/assets/images/line.png" alt="Divider" className="mb-8" />
-                        <div className="nav-right-content desktop">
-                            <a href="/" className="glass-button smaller w-button" style={{ textDecoration: 'none', color: 'white' }}>Back to homepage</a>
-                        </div>
+                        <a href="/" className="glass-button smaller w-button  rounded-lg bg-orange-500 hover:bg-orange-600" style={{ textDecoration: 'none', color: 'white', padding: '0.8rem' }}>Back to homepage</a>
                     </div>
                     <div className="right-column rounded-lg shadow-md">
                         <div className="form-section">
@@ -197,8 +195,8 @@ const Join = () => {
                                         {
                                             customGender ? <div className="form-group">
                                                 <label htmlFor="gender" className="block text-sm font-medium text-white">Gender:</label>
-                                                <input type="text" id="gender" name="gender" placeholder="Gender" 
-                                                         className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange} required />
+                                                <input type="text" id="gender" name="gender" placeholder="Gender"
+                                                    className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200" onChange={handleChange} required />
                                             </div> :
                                                 <div className="form-group">
                                                     <label htmlFor="gender" className="block text-sm font-medium text-white ">Gender:</label>

@@ -17,13 +17,52 @@ const Loader = () => (
     </div>
 );
 
+
+
 const AddRestaurant = ({ user }) => {
-    // Remove firestore from props
     const [refresh, setRefresh] = useState(false);
     const [dateTime, setDateTime] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("");
     const [menuItems, setMenuItems] = useState([]);
     const [menuItem, setMenuItem] = useState({ type: "", name: "", price: "" });
+    const [deal1Tags, setDeal1Tags] = useState([]);
+    const [deal1Tag, setDeal1Tag] = useState("");
+    const [deal2Tags, setDeal2Tags] = useState([]);
+    const [deal2Tag, setDeal2Tag] = useState("");
+
+    const [deal1, setDeal1] = useState(
+        { title: "", dealDescription: "" }
+    );
+    const [deal2, setDeal2] = useState(
+        { title: "", dealDescription: "" }
+    );
+    const handleDeal1Change = (e) => {
+
+        const { name, value } = e.target;
+        setDeal1({ ...deal1, [name]: value });
+        console.log(deal1, "deal1")
+    };
+    const handleDeal2Change = (e) => {
+
+        const { name, value } = e.target;
+        setDeal2({ ...deal2, [name]: value });
+        console.log(deal2, "deal2")
+    };
+
+    const handleDeal1TagAdd = (e) => {
+        if (deal1Tags.length === 3) {
+            return;
+        }
+        setDeal1Tags([...deal1Tags, deal1Tag])
+        setDeal1Tag("")
+    }
+    const handleDeal2TagAdd = (e) => {
+        if (deal2Tags.length === 3) {
+            return
+        }
+        setDeal2Tags([...deal2Tags, deal2Tag])
+        setDeal2Tag("")
+    }
 
     const [loading, setLoading] = useState(false);
 
@@ -37,7 +76,7 @@ const AddRestaurant = ({ user }) => {
         category: "",
         openingTime: "",
         closingTime: "",
-        image: "",
+        // image: "",
         menu: [],
     });
     const [image1, setImage1] = useState(null);
@@ -124,7 +163,7 @@ const AddRestaurant = ({ user }) => {
                 setLoading(true);
                 await uploadBytes(storageRef, file);
                 const downloadURL = await getDownloadURL(storageRef);
-                setRestaurantImageURL(downloadURL); // Update state with the image URL
+                setImage4(downloadURL); // Update state with the image URL
                 setLoading(false);
             } catch (error) {
                 console.error("Error uploading image: ", error);
@@ -169,6 +208,12 @@ const AddRestaurant = ({ user }) => {
         setMenuItem({ type: "", name: "", price: "" });
     };
 
+    const deleteMenuItem = (index) => {
+        const updatedMenuItems = [...menuItems];
+        updatedMenuItems.splice(index, 1);
+        setMenuItems(updatedMenuItems);
+    };
+
     const handleFormSubmit = async (e) => {
         e.preventDefault();
         if (loading) {
@@ -182,8 +227,15 @@ const AddRestaurant = ({ user }) => {
             // Upload data to Firestore
             const docRef = await addDoc(collection(firestore, "restaurants"), {
                 ...restaurantData, // Include all restaurantData
-                image: restaurantImageURL,
                 menu: menuItems,
+                deal1,
+                deal2,
+                deal1Tags,
+                deal2Tags,
+                image1,
+                image2,
+                image3,
+                image4
             });
 
             // Get the newly generated document ID
@@ -332,7 +384,7 @@ const AddRestaurant = ({ user }) => {
                                 placeholder="Tell about the restaurant"
                                 onChange={handleDescriptionChange}
                                 className="mt-1 p-2 w-full border rounded-md text-black"
-                                required
+                            // required
                             ></textarea>
                         </div>
                         <hr className="bg-gray-50" />
@@ -414,6 +466,7 @@ const AddRestaurant = ({ user }) => {
                                 {menuItems.map((item, index) => (
                                     <li key={index} className="">
                                         {item.type} - {item.name} - ${item.price}
+                                        <button onClick={() => deleteMenuItem(index)} className="text-red-500 ml-2">Delete</button>
                                     </li>
                                 ))}
                             </ul>
@@ -435,7 +488,7 @@ const AddRestaurant = ({ user }) => {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full h-[650px] ">
                         <label
                             htmlFor="dropzone-file1"
-                            className="flex flex-col items-center justify-center w-full h-full border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+                            className="flex flex-col items-center justify-center w-full h-full border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50  dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
                         >
                             {image1 ? (
                                 <img
@@ -460,6 +513,7 @@ const AddRestaurant = ({ user }) => {
                                             d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
                                         ></path>
                                     </svg>
+                                    <p className="mb-2 text-lg text-gray-500 dark:text-gray-400"> Banner image</p>
                                     <p className="mb-2 text-lg text-gray-500 dark:text-gray-400">
                                         <span className="font-semibold">Click to upload</span> or
                                         drag and drop
@@ -480,7 +534,7 @@ const AddRestaurant = ({ user }) => {
 
                         <label
                             htmlFor="dropzone-file2"
-                            className="flex flex-col items-center justify-center w-full h-full border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+                            className="flex flex-col items-center justify-center w-full h-full border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50  dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
                         >
                             {image2 ? (
                                 <img
@@ -505,6 +559,7 @@ const AddRestaurant = ({ user }) => {
                                             d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
                                         ></path>
                                     </svg>
+                                    <p className="mb-2 text-lg text-gray-500 dark:text-gray-400">Display image 1</p>
                                     <p className="mb-2 text-lg text-gray-500 dark:text-gray-400">
                                         <span className="font-semibold">Click to upload</span> or
                                         drag and drop
@@ -525,7 +580,7 @@ const AddRestaurant = ({ user }) => {
 
                         <label
                             htmlFor="dropzone-file3"
-                            className="flex flex-col items-center justify-center w-full h-full border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+                            className="flex flex-col items-center justify-center w-full h-full border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50  dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
                         >
                             {image3 ? (
                                 <img
@@ -550,6 +605,7 @@ const AddRestaurant = ({ user }) => {
                                             d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
                                         ></path>
                                     </svg>
+                                    <p className="mb-2 text-lg text-gray-500 dark:text-gray-400"> Display image 2</p>
                                     <p className="mb-2 text-lg text-gray-500 dark:text-gray-400">
                                         <span className="font-semibold">Click to upload</span> or
                                         drag and drop
@@ -570,7 +626,7 @@ const AddRestaurant = ({ user }) => {
 
                         <label
                             htmlFor="dropzone-file4"
-                            className="flex flex-col items-center justify-center w-full h-full border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+                            className="flex flex-col items-center justify-center w-full h-full border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50  dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
                         >
                             {image4 ? (
                                 <img
@@ -595,6 +651,7 @@ const AddRestaurant = ({ user }) => {
                                             d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
                                         ></path>
                                     </svg>
+                                    <p className="mb-2 text-lg text-gray-500 dark:text-gray-400"> Display image 4</p>
                                     <p className="mb-2 text-lg text-gray-500 dark:text-gray-400">
                                         <span className="font-semibold">Click to upload</span> or
                                         drag and drop
@@ -612,6 +669,132 @@ const AddRestaurant = ({ user }) => {
                                 multiple
                             />
                         </label>
+                        <div className="flex-grow">
+                            <label
+                                htmlFor="deal2Name"
+                                className="block text-sm font-medium text-white-700"
+                            >
+                                Deal 1 Title:
+                            </label>
+                            <input
+                                type="text"
+                                id="deal1Name"
+                                name="title"
+                                value={deal1.title}
+                                placeholder="Enter deal  name"
+                                onChange={handleDeal1Change}
+                                className="mt-1 p-2 w-full border rounded-md text-black"
+                            // required
+                            />
+                            <label
+                                htmlFor="dealDescription"
+                                className="block text-sm font-medium text-white-700"
+                            >
+                                Deal 1 Description:
+                            </label>
+                            <input
+                                type="text"
+                                id="dealDescription"
+                                name="dealDescription"
+                                value={deal1.dealDescription}
+                                placeholder="Enter deal  description"
+                                onChange={handleDeal1Change}
+                                className="mt-1 p-2 w-full border rounded-md text-black"
+                            // required
+                            />
+                            <div className="flex-grow">
+                                <label
+                                    htmlFor="deal1Tag"
+                                    className="block text-sm font-medium text-white-700"
+                                >
+                                    Deal 1 Tag:
+                                </label>
+                                <input
+                                    type="text"
+                                    id="deal1Tag"
+                                    value={deal1Tag}
+                                    onChange={(e) => setDeal1Tag(e.target.value)}
+                                    placeholder="Enter deal tag"
+                                    className="mt-1 p-2 w-full border rounded-md text-black"
+                                />
+                                <button
+                                    onClick={handleDeal1TagAdd}
+                                    className="mt-2 p-2 bg-blue-500 text-white rounded-md"
+                                >
+                                    Add Deal 1 Tag
+                                </button>
+                                {deal1Tags.map((tag, index) => (
+                                    <div key={index} className="flex items-center mt-1">
+                                        <span className="bg-gray-200 text-gray-800 px-2 py-1 rounded-md text-sm mr-2">{tag}</span>
+                                        <button onClick={() => setDeal1Tags(deal1Tags.filter((_, i) => i !== index))} className="text-red-500 hover:text-red-700">
+                                            Remove
+                                        </button>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                        <div className="flex-grow">
+                            <label
+                                htmlFor="deal2Name"
+                                className="block text-sm font-medium text-white-700"
+                            >
+                                Deal 2 Title:
+                            </label>
+                            <input
+                                type="text"
+                                id="deal2Name"
+                                name="title"
+                                value={deal2.title}
+                                placeholder="Enter deal  name"
+                                onChange={handleDeal2Change}
+                                className="mt-1 p-2 w-full border rounded-md text-black"
+                            // required
+                            />
+                            <label
+                                htmlFor="dealDescription"
+                                className="block text-sm font-medium text-white-700"
+                            >
+                                Deal 2 Description:
+                            </label>
+                            <input
+                                type="text"
+                                id="dealDescription"
+                                name="dealDescription"
+                                value={deal2.dealDescription}
+                                placeholder="Enter deal description"
+                                onChange={handleDeal2Change}
+                                className="mt-1 p-2 w-full border rounded-md text-black"
+                            // required
+                            />
+                            <label
+                                htmlFor="deal1Tag"
+                                className="block text-sm font-medium text-white-700"
+                            >
+                                Deal 2 Tag:
+                            </label>
+                            <input
+                                type="text"
+                                id="deal2Tag"
+                                value={deal2Tag}
+                                onChange={(e) => setDeal2Tag(e.target.value)}
+                                placeholder="Enter deal tag"
+                                className="mt-1 p-2 w-full border rounded-md text-black"
+                            />
+                            <button
+                                onClick={handleDeal2TagAdd}
+                                className="mt-2 p-2 bg-blue-500 text-white rounded-md"
+                            >
+                                Add Deal 2 Tag
+                            </button>
+                            {deal2Tags.map((tag, index) => (
+                                <div key={index} className="flex items-center mt-1">
+                                    <span className="bg-gray-200 text-gray-800 px-2 py-1 rounded-md text-sm mr-2">{tag}</span>
+                                    <button onClick={() => setDeal2Tags(deal2Tags.filter((_, i) => i !== index))} className="text-red-500 hover:text-red-700">
+                                        Remove
+                                    </button>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -620,3 +803,4 @@ const AddRestaurant = ({ user }) => {
 };
 
 export default AddRestaurant;
+
