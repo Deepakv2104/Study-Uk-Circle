@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useNavigate } from 'react-router-dom';
+import { collection, getDoc, getDocs } from 'firebase/firestore';
+import { firestore } from '../../../firebase';
 
 const sampleFoods = [
   {
@@ -66,7 +68,22 @@ const Explore = () => {
   };
 
 
+  useEffect(() => {
+    const fetchRestaurants = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(firestore, 'restaurants'));
+        const fetchedRestaurants = querySnapshot.docs.map((doc) => doc.data());
+        setRestaurants(fetchedRestaurants);
+        console.log(restaurants, "restaurants")
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching restaurants: ', error);
+        setLoading(false);
+      }
+    };
 
+    fetchRestaurants();
+  }, []);
 
   useEffect(() => {
     // Simulate loading delay
@@ -138,18 +155,19 @@ const Explore = () => {
                 {
                   restaurants.map((item, idx) => (
                     // <a href={`/user-dashboard/explore/${item.foodName}`}>
-                    <li key={item.foodName} onClick={() => handleClick(item.foodName)} >
-                      <div className="w-full h-60 sm:h-52 md:h-56 ">
+                    <li key={item.foodName} onClick={() => handleClick(item.name)} >
+                      <div className="w-[400px] h-60 sm:h-52 md:h-56 ">
                         <img
-                          src={item.foodImage}
-                          className="w-full h-full object-cover object-center shadow-md rounded-xl"
-                          alt=""
+                          src={item.image1}
+                          className="w-[500px] h-full object-cover object-center shadow-md rounded-xl"
+                          alt="image"
                         />
                       </div>
                       <div className="mt-4">
-                        <h4 className="text-lg text-gray-300 font-semibold">{item.foodName}</h4>
-                        <p className="text-gray-100 bg-blue-600 inline-block rounded-full p-1 px-2 mr-3">${item.foodPrice}</p>
-                        <p className="text-gray-100 bg-blue-600 inline-block rounded-full p-1 px-2">{item.foodCategory}</p>
+                        <h4 className="text-lg text-gray-300 font-semibold mb-0 pb-0">{item.name}</h4>
+                        <p className='text-gray-300'>{item.category}</p>
+                        <p className="text-gray-100 bg-blue-600 inline-block rounded-full p-1 px-2 mr-3">${item.deal1.title}</p>
+                        <p className="text-gray-100 bg-blue-600 inline-block rounded-full p-1 px-2">{item.deal2.title}</p>
 
                       </div>
                     </li>
