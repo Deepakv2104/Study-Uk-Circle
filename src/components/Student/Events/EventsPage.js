@@ -49,32 +49,29 @@ const EventsPage = () => {
 
 
   
-
   const fetchEventData = async () => {
     try {
       const eventsCollectionRef = collection(firestore, "events");
       const eventsQuerySnapshot = await getDocs(eventsCollectionRef);
 
       if (!eventsQuerySnapshot.empty) {
-        const data = [];
-        eventsQuerySnapshot.forEach((doc) => {
-          data.push({ id: doc.id, ...doc.data() });
-        });
+        const data = eventsQuerySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
         setEventData(data);
       } else {
         console.log("No events found");
       }
-      setLoading(false);
     } catch (error) {
       console.error("Error fetching events data:", error);
+    } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchEventData();
-  }, []);
-
+    if (eventData.length === 0) {
+      fetchEventData();
+    }
+  }, [eventData]);
 
 
   const handleCategoryClick = (categoryName) => {
