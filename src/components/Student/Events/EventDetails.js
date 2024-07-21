@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { FaLocationArrow, FaThumbsUp } from 'react-icons/fa';
 import { firestore } from '../../../firebase';
 import { addDoc, serverTimestamp, doc, getDoc, updateDoc, collection } from 'firebase/firestore';
+import CheckoutForm from '../../CheckOutForm/CheckoutForm'; // Import the CheckoutForm
 
 const EventDetails = () => {
   const { eventId } = useParams();
@@ -13,6 +14,7 @@ const EventDetails = () => {
     phoneNumber: '',
     gender: '',
     universityName: '',
+    selectedTickets: [],
   });
   const [eventData, setEventData] = useState({});
   const [tickets, setTickets] = useState([]);
@@ -39,6 +41,10 @@ const EventDetails = () => {
   };
 
   const handleOpenDialog = () => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      selectedTickets: tickets.filter((ticket) => ticket.count > 0),
+    }));
     setOpenDialog(true);
   };
 
@@ -51,7 +57,7 @@ const EventDetails = () => {
           if (eventDocSnapshot.exists()) {
             const eventData = eventDocSnapshot.data();
             setEventData(eventData);
-            setTickets(eventData.tickets[0] || []); // Set tickets based on fetched event data
+            setTickets(eventData.tickets || []); // Ensure tickets is always an array
           } else {
             console.log('Event document not found');
           }
@@ -62,27 +68,10 @@ const EventDetails = () => {
     };
     fetchEventData();
   }, [eventId]);
-  console.log(eventData)
 
-  const handleCloseDialog = async () => {
-    try {
-      const bookingRef = collection(firestore, 'bookings');
-      const bookingDoc = {
-        fullName: formData.fullName,
-        email: formData.email,
-        phoneNumber: formData.phoneNumber,
-        gender: formData.gender,
-        universityName: formData.universityName,
-        eventId: eventId,
-        timestamp: serverTimestamp(),
-      };
-      const bookingDocRef = await addDoc(bookingRef, bookingDoc);
-      console.log('Booking added with ID: ', bookingDocRef.id);
-      await updateDoc(bookingDocRef, { bookingId: bookingDocRef.id });
-      setOpenDialog(false);
-    } catch (error) {
-      console.error('Error adding booking: ', error);
-    }
+  const calculateTotalAmount = () => {
+    if (!Array.isArray(tickets)) return 0; // Add this line to handle non-array values
+    return tickets.reduce((total, ticket) => total + (ticket.price * ticket.count), 0);
   };
 
   return (
@@ -140,8 +129,8 @@ const EventDetails = () => {
                     tickets.map((ticket, index) => (
                       <div key={index} className="mb-4">
                         <div className="flex justify-between items-center mb-2">
-                          <span className="text-gray-300">{ticket.type || "Example"}</span>
-                          <span className="text-gray-300">${ticket.price || "50$"}</span>
+                          <span className="text-gray-300">{ticket.type}</span>
+                          <span className="text-gray-300">${ticket.price}</span>
                         </div>
                         <div className="flex items-center">
                           <button
@@ -289,18 +278,18 @@ const EventDetails = () => {
                 />
               </div>
             </form>
+            <CheckoutForm 
+              formData={formData} 
+              eventId={eventId} 
+              handleCloseDialog={setOpenDialog} 
+              amount={calculateTotalAmount()} // Pass the amount here
+            />
             <div className="flex justify-end mt-6">
               <button
                 className="bg-gray-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-gray-700 mr-2"
                 onClick={() => setOpenDialog(false)}
               >
                 Cancel
-              </button>
-              <button
-                className="bg-yellow-500 text-black font-semibold py-2 px-4 rounded-md hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400"
-                onClick={handleCloseDialog}
-              >
-                Confirm
               </button>
             </div>
           </div>
