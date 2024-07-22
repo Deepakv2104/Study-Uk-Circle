@@ -36,6 +36,7 @@ const Slider1 = ({ events }) => {
   };
 
   return (
+    
     <Slider {...settings}>
       {events.length === 0 ? (
         <div className="p-2">
