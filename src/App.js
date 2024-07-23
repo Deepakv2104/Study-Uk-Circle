@@ -31,6 +31,8 @@ import AddRestaurant from "./components/Admin/restaurants/AddRestaurant";
 import Restaurant from "./components/Student/Explore/RestaurantTabs";
 import  SwipeCarousel  from "./components/Student/Explore/SwipeCarousel";
 import Mentorship from "./components/Home/pages/Mentorship";
+import UploadEventForm from "./components/Admin/events/UploadEvents";
+import EventPage from "./components/Student/Events/sample";
 gsap.registerPlugin();
 function App() {
   return (
@@ -65,7 +67,7 @@ function App() {
               <Route
                 path="/dashboard/add-event"
                 role="admin"
-                element={<EventUploadForm />}
+                element={<UploadEventForm />}
               />
               <Route
                 path="/dashboard/add-college"
@@ -125,7 +127,7 @@ function App() {
 
               <Route
                 path="/user-dashboard/eventDetails/:eventId"
-                element={<EventDetails />}
+                element={<EventPage />}
               />
               <Route
                 path="/user-dashboard/stay"

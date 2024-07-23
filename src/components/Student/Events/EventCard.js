@@ -42,19 +42,20 @@ const EventCard = ({ eventData }) => {
       <div className="aspect-w-16 aspect-h-9">
         <img
           src={eventData.eventImage || 'NA'}
-          alt={eventData.eventName}
+          alt="no img found"
           className="w-full h-full object-cover"
         />
       </div>
       <div className="p-2 md:p-4 lg:p-6">
-        <h2 className="text-lg md:text-xl lg:text-2xl font-semibold mb-1">{eventData.eventName}</h2>
-        <p className="text-sm md:text-base lg:text-lg text-gray-600 mb-1">{eventData.location}</p>
-        <p className="text-xs md:text-sm lg:text-base text-gray-500 mb-1">{formatTimestamp(eventData.TimeAndDate)}</p>
-        <p className="text-xs md:text-sm lg:text-base text-gray-500 mb-2">{eventData.eventCategory}</p>
+        <h2 className="text-sm md:text-xs lg:text-sm font-semibold mb-1">{eventData.eventTitle}</h2>
+        <p className="text-xs md:text-xs lg:text-sm text-gray-300 mb-1">{eventData.eventLocation}</p>
+        <p className="text-xs md:text-xs lg:text-sm text-gray-300 mb-1">📅 {eventData.startDate} at {eventData.startTime} - {eventData.endDate} at {eventData.endTime}</p>
+        <p className="text-xs md:text-xs lg:text-xs text-gray-500 mb-2">{eventData.eventCategory}</p>
+
         <div className="flex justify-between items-center">
           <button
             onClick={() => handleBuyClick(eventData.eventId)}
-            className="bg-blue-500 text-white px-2 py-1 md:px-4 md:py-2 rounded hover:bg-blue-600 transition duration-300 text-xs md:text-sm lg:text-base"
+            className="bg-blue-500 text-white px-2 py-1 md:px-4 md:py-2 rounded hover:bg-blue-600 transition duration-300 text-xs md:text-xs lg:text-sm"
           >
             Buy Ticket
           </button>

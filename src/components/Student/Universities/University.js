@@ -56,7 +56,7 @@ const University = () => {
         </div>
 
         <div className="landing-page-text">
-          <h3>Popular Universities</h3>
+          <h5>Popular Universities</h5>
           <span className="landing-page-text15">Recommended</span>
         </div>
 
