@@ -5,7 +5,7 @@ import { firestore } from '../../../firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import { loadStripe } from '@stripe/stripe-js';
 
-const stripePromise = loadStripe('pk_live_51PeF3t2LXf3eHG796whxIoPH0M3mf31rccb8MM5Uoe8nmXjD0z8LEQvut5pP1YbykVML4gshesP94PdePk90hbMA00MIiURArh'); 
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY); 
 
 const EventPage = () => {
   const [eventData, setEventData] = useState(null);
@@ -53,12 +53,12 @@ const EventPage = () => {
     const selectedTickets = eventData.tickets.map((ticket, index) => ({
       title: ticket.title,
       price: ticket.price,
-      bookingFee: ticket.bookingFee, // Include the bookingFee
+      bookingFee: ticket.bookingFee,
       quantity: selectedQuantities[index],
     })).filter(ticket => ticket.quantity > 0);
-
+  
     console.log('Sending selected tickets:', selectedTickets); // Log selected tickets
-
+  
     try {
       const response = await fetch('https://worldlynk-stripe-server.netlify.app/.netlify/functions/create-checkout-session', {
         method: 'POST',
@@ -67,10 +67,10 @@ const EventPage = () => {
         },
         body: JSON.stringify({ tickets: selectedTickets }),
       });
-
+  
       const session = await response.json();
       const result = await stripe.redirectToCheckout({ sessionId: session.id });
-
+  
       if (result.error) {
         console.error(result.error.message);
       }
@@ -78,6 +78,7 @@ const EventPage = () => {
       console.error('Error:', error);
     }
   };
+  
 
 
   if (loading) return <div>Loading...</div>;
