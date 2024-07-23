@@ -5,7 +5,7 @@ import { firestore } from '../../../firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import { loadStripe } from '@stripe/stripe-js';
 
-const stripePromise = loadStripe('pk_live_51PeF3t2LXf3eHG796whxIoPH0M3mf31rccb8MM5Uoe8nmXjD0z8LEQvut5pP1YbykVML4gshesP94PdePk90hbMA00MIiURArh'); // Replace with your Stripe publishable key
+const stripePromise = loadStripe('pk_live_51PeF3t2LXf3eHG796whxIoPH0M3mf31rccb8MM5Uoe8nmXjD0z8LEQvut5pP1YbykVML4gshesP94PdePk90hbMA00MIiURArh'); 
 
 const EventPage = () => {
   const [eventData, setEventData] = useState(null);
