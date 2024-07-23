@@ -60,7 +60,7 @@ const EventPage = () => {
     console.log('Sending selected tickets:', selectedTickets); // Log selected tickets
 
     try {
-      const response = await fetch('http://localhost:4242/create-checkout-session', {
+      const response = await fetch('/.netlify/functions/create-checkout-session', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
