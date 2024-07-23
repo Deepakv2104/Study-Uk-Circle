@@ -48,8 +48,8 @@ const Explore = () => {
   const [loading, setLoading] = useState(true);
   const [restaurants, setRestaurants] = useState(sampleFoods)
   const navigate = useNavigate()
-  function handleClick(foodName) {
-    navigate(`/user-dashboard/explore/${foodName}`)
+  function handleClick(restaurantId) {
+    navigate(`/user-dashboard/explore/${restaurantId}`)
   }
 
 
@@ -104,9 +104,9 @@ const Explore = () => {
   }, []);
 
   return (
-    <div style={{ marginTop: '0px' }} className='flex justify-center items-center'>
+    <div style={{ marginTop: '0px' }} className='flex justify-center item?s-center'>
       {loading ? (
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '300px' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', alignitems: 'center', height: '300px' }}>
           <CircularProgress />
         </div>
       ) : (
@@ -121,7 +121,7 @@ const Explore = () => {
                 "Embark on a Culinary Journey and Savor the Finest Flavors from Around your area!"
 
               </p>
-              <div className='md:flex align-items'>
+              <div className='md:flex align-item?s'>
                 <form
                   onSubmit={(e) => e.preventDefault()}
                   className="w-full px-0  mt-12 mr-10 ">
@@ -165,21 +165,21 @@ const Explore = () => {
             <div className="mt-12">
               <ul className="grid gap-10 sm:grid-cols-2 md:grid-cols-3 mx-auto px-2 md:px-6">
                 {
-                  restaurants.map((item, idx) => (
-                    // <a href={`/user-dashboard/explore/${item.foodName}`}>
-                    <li key={item.foodName} onClick={() => handleClick(item.name)} >
+                  restaurants?.map((item, idx) => (
+                    // <a href={`/user-dashboard/explore/${item?.foodName}`}>
+                    <li key={item?.foodName} onClick={() => handleClick(item?.restaurantId)} >
                       <div className="w-[400px] h-60 sm:h-52 md:h-56 ">
                         <img
-                          src={item.image1}
+                          src={item?.image1}
                           className="w-[500px] h-full object-cover object-center shadow-md rounded-xl"
-                          alt="image"
+                          alt="restaurant"
                         />
                       </div>
                       <div className="mt-4">
-                        <h4 className="text-lg text-gray-300 font-semibold -mb-1 -pb-1">{item.name}</h4>
-                        <p className='text-gray-300'>{item.category}</p>
-                        <p className="text-gray-100 bg-blue-600 inline-block rounded-full p-1 px-2 mr-3">${item.deal1.title}</p>
-                        <p className="text-gray-100 bg-blue-600 inline-block rounded-full p-1 px-2">{item.deal2.title}</p>
+                        <h4 className="text-lg text-gray-300 font-semibold -mb-1 -pb-1">{item?.name}</h4>
+                        <p className='text-gray-300'>{item?.category}</p>
+                        <p className="text-gray-100 bg-blue-600 inline-block rounded-full p-1 px-2 mr-3">{item?.deal1.title}</p>
+                        <p className="text-gray-100 bg-blue-600 inline-block rounded-full p-1 px-2">{item?.deal2.title}</p>
 
                       </div>
                     </li>

@@ -156,7 +156,7 @@ function App() {
               />
 
               <Route
-                path="/user-dashboard/explore/:restaurantName"
+                path="/user-dashboard/explore/:restaurantId"
                 role="student"
                 element={<Restaurant />}
               />
