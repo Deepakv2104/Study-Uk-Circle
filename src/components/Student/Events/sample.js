@@ -6,11 +6,17 @@ import { doc, getDoc } from 'firebase/firestore';
 import { loadStripe } from '@stripe/stripe-js';
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY); 
+const Loader = () => (
+  <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+    <div className="loader">Redirecting to the payment gateway..</div>
+  </div>
+);
 
 const EventPage = () => {
   const [eventData, setEventData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [redirecting, setRedirecting] = useState(false);
   const { eventId } = useParams();
   const [selectedQuantities, setSelectedQuantities] = useState({});
 
@@ -49,6 +55,7 @@ const EventPage = () => {
   };
 
   const handleGetTicketsClick = async () => {
+    setRedirecting(true);
     const stripe = await stripePromise;
     const selectedTickets = eventData.tickets.map((ticket, index) => ({
       title: ticket.title,
@@ -73,9 +80,11 @@ const EventPage = () => {
   
       if (result.error) {
         console.error(result.error.message);
+        setRedirecting(false);
       }
     } catch (error) {
       console.error('Error:', error);
+      setRedirecting(false);
     }
   };
   
@@ -87,6 +96,7 @@ const EventPage = () => {
 
   return (
     <div className="container mx-auto text-gray-200">
+      {redirecting && <Loader />}
       <div className="bg-gray-850 shadow-2xl rounded-lg overflow-hidden max-w-xl mx-auto">
         <img src={eventData.eventImage || img} alt="Event" className="w-full max-h-90" />
 
