@@ -80,6 +80,9 @@ const Mentorship = () => {
         let slotTiming = localDateTime.toLocaleString()
         setSlotTime(slotTiming)
     };
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const minDateTime = tomorrow.toISOString().slice(0, 16);
 
     const [specialization, setSpecialization] = useState('');
 
@@ -342,12 +345,14 @@ const Mentorship = () => {
                                                 }
                                             </div>
                                         </div>
-                                        <div className='mt-2'>
-                                            <label for="datetime" className='block text-sm font-medium text-white'>Select a date and time for the call:</label>
-                                            <input type="datetime-local" id="datetime"
-                                                name="datetime"
-                                                onChange={handleChangeDate} />
-                                        </div>
+
+                                        <input
+                                            type="datetime-local"
+                                            id="datetime"
+                                            name="datetime"
+                                            min={minDateTime}
+                                            onChange={handleChangeDate}
+                                        />
                                     </div>
                                     <button type="submit" className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-green-300">Book a Slot</button>
                                 </form>
