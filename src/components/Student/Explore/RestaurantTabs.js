@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useEffect } from 'react';
 import { useMediaQuery } from "@mui/material";
+import { collection, doc, getDoc,  } from 'firebase/firestore';
+import { firestore } from '../../../firebase';
 
 
 
@@ -23,7 +25,7 @@ const posts = [
         img: "https://pixfeeds.com/images/baby-care/baby-shower-food-recipes/1200-518706414-party-food.jpg",
     }
 ]
-const Deals = () => (
+const Deals = ({restaurantData}) => (
     <div id="deals" className="py-8 w-full xs:bg-red-500">
 
         <h1 className="mb-2  font-bold text-3xl">Exclusive Worldlynk Deals</h1>
@@ -33,26 +35,31 @@ const Deals = () => (
             <div className="  bg-orange-500 rounded-3xl shadow-lg  p-4 sm:p-0 ">
                 <div>
                     {/* <h1 className="font-bold">Deal 1</h1> */}
-                    <p className="text-2xl font-bold">10% discount on all food items</p>
+                    <p className="text-2xl font-bold">{restaurantData?.deal1.title}</p>
                     <div className="flex lg:gap-4 gap-2 text-lg " >
-                        <p className="border-1 rounded-full lg:px-6 lg:py-2 px-2 py-1"> 10£</p>
-                        <p className="border-1 rounded-full lg:px-6 lg:py-2 px-2 py-1"> 30 days</p>
-                        <p className="border-1 rounded-full lg:px-6 lg:py-2 px-2 py-1">on site</p>
+                        {restaurantData?.deal1Tags.map((tag)=>{
+                            return  <p key={tag} className="border-1 rounded-full lg:px-6 lg:py-2 px-2 py-1"> {tag}</p>
+
+                        })}
+                       
                     </div>
-                    <p className="text-lg">From a minimum order value of £25 you get £10 discount.
+                    <p className="text-lg">{restaurantData?.deal1.dealDescription}
                     </p>
                 </div>
             </div>
             <div className="  bg-orange-500 rounded-3xl shadow-lg  p-4 ">
                 <div>
                     {/* <h1 className="font-bold">Deal 2</h1> */}
-                    <p className="text-2xl font-bold">Free shakes or drinks</p>
+                    <p className="text-2xl font-bold">{restaurantData?.deal2.title}</p>
                     <div className="flex lg:gap-4 gap-2 text-lg " >
-                        <p className="border-1 rounded-full lg:px-6 lg:py-2 px-2 py-1"> 15£</p>
-                        <p className="border-1 rounded-full lg:px-6 lg:py-2 px-2 py-1"> 90 days</p>
-                        <p className="border-1 rounded-full lg:px-6 lg:py-2 px-2 py-1">on site</p>
+                        {restaurantData?.deal2Tags.map((tag)=>{
+                            return  <p key={tag} className="border-1 rounded-full lg:px-6 lg:py-2 px-2 py-1"> {tag}</p>
+
+                        })}
+                       
                     </div>
-                    <p className="text-lg">You order a brunch item of your choice and get a hot drink for free.</p>
+                    <p className="text-lg">{restaurantData?.deal2.dealDescription}
+                    </p>
                 </div>
             </div>
         </div>
@@ -60,51 +67,36 @@ const Deals = () => (
     </div>
 );
 
-const Menu = () => (
+const Menu = ({restaurantData}) => (
     <div id="menu">
         <h1>Menu</h1>
         <div className="w-full bg-slate-700 rounded-2xl p-4 mb-4">
-            <p>Caesar Salad : 23$</p>
-            <p>Spaghetti Carbonara : 76$</p>
-            <p>Chocolate Cake : 12$</p> <p>Caesar Salad : 23$</p>
-            <p>Spaghetti Carbonara : 76$</p>
-            <p>Chocolate Cake : 12$</p> <p>Caesar Salad : 23$</p>
-            <p>Spaghetti Carbonara : 76$</p>
-            <p>Chocolate Cake : 12$</p> <p>Caesar Salad : 23$</p>
-            <p>Spaghetti Carbonara : 76$</p>
-            <p>Chocolate Cake : 12$</p>
-
-
+            {restaurantData?.menu.map((item)=>{
+           return  <p key={item.name}>{`${item.type} - ${item.name} - ${item.price}`}</p>
+            })}
         </div>
     </div>
 );
 
-const Timings = () => (
+const Timings = ({restaurantData}) => (
     <div>
         <h1>Timings</h1>
         <div id="timings" className="bg-slate-700 p-4 rounded-2xl">
-            <p>Monday - Friday: 9am - 10pm</p>
-            <p>Saturday - Sunday: 10am - 11pm</p>
-            <p>Monday - Friday: 9am - 10pm</p>
-            <p>Saturday - Sunday: 10am - 11pm</p>
-            <p>Monday - Friday: 9am - 10pm</p>
-            <p>Saturday - Sunday: 10am - 11pm</p>
-            <p>Monday - Friday: 9am - 10pm</p>
-            <p>Saturday - Sunday: 10am - 11pm</p>
+            <p>Opening Time:</p>
+            <p>{restaurantData?.openingTime}</p>
+            <p>Closing Time:</p>
+            <p>{restaurantData?.closingTime}</p>
         </div>
 
     </div>
 
 );
 
-const Location = () => (
+const Location = ({restaurantData}) => (
     <div className="mt-4">
         <h1>Location</h1>
         <div id="location" className="bg-slate-700 p-4 rounded-2xl ">
-            <p>South Manchester</p>
-            <p>wildom street lane</p>
-            <p>Monday - Friday: 9am - 10pm</p>
-            <p>Saturday - Sunday: 10am - 11pm</p>
+           <p>{restaurantData?.location}</p>
         </div>
 
     </div>
@@ -120,19 +112,53 @@ const scrollToComponent = (id) => {
 
 const Restaurant = () => {
     const [selected, setSelected] = useState(tabItems[0].name);
-    let { restaurantName } = useParams();
     const isTabScreen = useMediaQuery('(max-width: 768px)');
     const handleTabClick = (tab) => {
         setSelected(tab.name);
         scrollToComponent(tab.id);
     };
+    const [restaurantData, setRestaurantData] = useState(null);
+    const [restaurantImages, setRestaurantImages] = useState([]);
+    const [error, setError] = useState(null);
+    const { restaurantId } = useParams()
+    console.log(restaurantId,"id");
+   
+    useEffect(() => {
+      const fetchDocument = async () => {
+        try {
+          const docRef = doc(firestore, 'restaurants', restaurantId);
+          const docSnap = await getDoc(docRef);
+          if (docSnap.exists()) {
+            setRestaurantData(docSnap.data());
+            console.log(docSnap.data())
+          } else {
+            setError('No such document!');
+          }
+          console.log(docSnap.data(),"restuarant data")
+          let image2 = docSnap.data()?.image2
+          console.log(docSnap.data()?.image2)
+          let image3 = docSnap.data()?.image3
+          let image4 = docSnap.data()?.image4
+          let images = [image2,image3,image4]
+          console.log(images,"images")
+          setRestaurantImages(images)
+          console.log(images,"after images")
+
+
+        } catch (err) {
+          setError('Error getting document: ' + err.message);
+        }
+      };
+  
+      fetchDocument();
+    }, []);
 
     return (
         <div>
             {
                 isTabScreen ? <></> : <section className="grid  gap-4 w-full mb-4 sm:grid-cols-2  lg:grid-cols-3">
                     {
-                        posts.map((item, index) => <img key={index} src={item.img} loading="lazy" alt={item.title} className="w-full h-[330px]" />)
+                      restaurantImages.length>0 &&  restaurantImages?.map((item, index) => <img key={index} src={item} loading="lazy" alt={"restuarant"} className="w-full h-[330px]" />)
                     }
                 </section>
             }
@@ -141,12 +167,12 @@ const Restaurant = () => {
                 <div className="sticky z-20 -top-6 bg-slate-900">
                     <div className="flex  justify-between ">
                         <div>
-                            <h1 className="font-extrabold">{restaurantName}</h1>
-                            <p>Meat, Bowls, Asian
+                            <h1 className="font-extrabold">{restaurantData?.name}</h1>
+                            <p>{restaurantData?.category}
                             </p>
                         </div>
 
-                        <p className="lg:text-xl">Location : South Manchester
+                        <p className="lg:text-xl">{`Location : ${restaurantData?.location}`}
                         </p>
                     </div>
                     {/* flex items-center flex-wrap overflow-x-auto */}
@@ -163,10 +189,10 @@ const Restaurant = () => {
                 </div>
                 <div className="">
 
-                    <Deals />
-                    <Menu />
-                    <Timings />
-                    <Location />
+                    <Deals restaurantData={restaurantData} />
+                    <Menu restaurantData={restaurantData}/>
+                    <Timings restaurantData={restaurantData}/>
+                    <Location restaurantData={restaurantData}/>
                 </div>
             </div>
         </div>

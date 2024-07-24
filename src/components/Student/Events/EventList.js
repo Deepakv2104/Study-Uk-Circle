@@ -52,8 +52,8 @@ const EventList = ({ searchTerm, eventType, universityId }) => {
 
   const filteredEvents = eventData.filter((event) => {
     return (
-      (eventType === "All Events" || event.eventCategory === eventType) &&
-      event.eventName.toLowerCase().includes(searchTerm.toLowerCase())
+      (eventType === "All Events" || event.category === eventType) &&
+      event.eventTitle.toLowerCase().includes(searchTerm.toLowerCase())
     );
   });
 
@@ -85,13 +85,13 @@ const EventList = ({ searchTerm, eventType, universityId }) => {
           <Grid item xs={12} sm={6} md={3} key={event.id}>
             <div className="max-w-xs rounded-lg overflow-hidden shadow-lg bg-gray-900 text-white">
               <div className="aspect-w-16 aspect-h-9">
-                <img src={event.eventImage || 'NA'} alt={event.eventName} className="w-full h-full object-cover" />
+                <img src={event.eventImage || 'NA'} alt={event.eventTitle} className="w-full h-full object-cover" />
               </div>
               <div className="p-2 sm:p-3"> {/* Adjusted padding */}
-                <h2 className="text-base font-semibold mb-1 sm:mb-2">{event.eventName}</h2> {/* Adjusted font size */}
-                <p className="text-white-600 mb-1 sm:mb-2">{event.location}</p> 
-                <p className="text-white-500 mb-1 sm:mb-2">{formatTimestamp(event.TimeAndDate)}</p> 
-                <p className="text-white-500 mb-2 sm:mb-3">{event.eventCategory}</p> {/* Adjusted margin bottom */}
+                <h2 className="text-base font-semibold mb-1 sm:mb-2">{event.eventTitle}</h2> {/* Adjusted font size */}
+                <p className="text-white-600 mb-1 sm:mb-2">{event.eventLocation}</p> 
+                <p className="mb-2">📅 {event.startDate} at {event.startTime} - {event.endDate} at {event.endTime}</p>
+                <p className="text-white-500 mb-2 sm:mb-3">{event.category}</p> {/* Adjusted margin bottom */}
                 <div className="flex justify-between items-center">
                   <button
                     onClick={() => handleBuyClick(event.id)}

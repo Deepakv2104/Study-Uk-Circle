@@ -91,7 +91,7 @@ const EventDetails = () => {
                     {eventData.eventName || 'N/A'}
                   </h2>
                   <p className="text-gray-300 mb-2">
-                    {eventData.eventCategory} | {eventData.language || 'N/A'} |{' '}
+                    {eventData.category} | {eventData.language || 'N/A'} |{' '}
                     {eventData.experience} | {eventData.duration}
                   </p>
                   <div className="flex items-center mb-2">

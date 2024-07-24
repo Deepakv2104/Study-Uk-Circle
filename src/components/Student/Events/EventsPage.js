@@ -39,7 +39,7 @@ const EventsPage = () => {
 
   const filteredEvents = eventData.filter(event => {
     const matchesSearchTerm = event.eventName?.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = selectedCategory ? event.eventCategory === selectedCategory : true;
+    const matchesCategory = selectedCategory ? event.category === selectedCategory : true;
     return matchesSearchTerm && matchesCategory;
   });
 
@@ -58,11 +58,13 @@ const EventsPage = () => {
     } finally {
       setLoading(false);
     }
+
   };
 
   useEffect(() => {
     if (eventData.length === 0) {
       fetchEventData();
+
     }
   }, [eventData]);
 
@@ -95,7 +97,7 @@ const EventsPage = () => {
 
       {categories.map((category, index) => {
         // Filter events by category
-        const categoryEvents = eventData.filter(event => event.eventCategory === category.name);
+        const categoryEvents = eventData.filter(event => event.category === category.name);
 
         return (
           <div key={index}>
