@@ -4,8 +4,11 @@ import { useParams } from 'react-router-dom';
 import { firestore } from '../../../firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import { loadStripe } from '@stripe/stripe-js';
+import Success from '../../CheckOutForm/Success';
+import Failure from '../../CheckOutForm/Failure';
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY); 
+
 const Loader = () => (
   <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
     <div className="loader">Redirecting to the payment gateway..</div>
@@ -17,6 +20,7 @@ const EventPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [redirecting, setRedirecting] = useState(false);
+  const [success, setSuccess] = useState(false);
   const { eventId } = useParams();
   const [selectedQuantities, setSelectedQuantities] = useState({});
 
@@ -26,7 +30,6 @@ const EventPage = () => {
         const eventDoc = await getDoc(doc(firestore, 'events', eventId));
         if (eventDoc.exists()) {
           setEventData(eventDoc.data());
-          // Initialize selected quantities state
           const initialQuantities = {};
           eventDoc.data().tickets.forEach((ticket, index) => {
             initialQuantities[index] = 0;
@@ -49,7 +52,7 @@ const EventPage = () => {
   const handleQuantityChange = (index, increment) => {
     setSelectedQuantities((prev) => {
       const newQuantity = prev[index] + increment;
-      if (newQuantity < 0) return prev; // Prevent negative quantities
+      if (newQuantity < 0) return prev;
       return { ...prev, [index]: newQuantity };
     });
   };
@@ -63,9 +66,9 @@ const EventPage = () => {
       bookingFee: ticket.bookingFee,
       quantity: selectedQuantities[index],
     })).filter(ticket => ticket.quantity > 0);
-  
-    console.log('Sending selected tickets:', selectedTickets); // Log selected tickets
-  
+
+    console.log('Sending selected tickets:', selectedTickets); 
+
     try {
       const response = await fetch('https://worldlynk-stripe-server.netlify.app/.netlify/functions/create-checkout-session', {
         method: 'POST',
@@ -74,24 +77,37 @@ const EventPage = () => {
         },
         body: JSON.stringify({ tickets: selectedTickets }),
       });
-  
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
       const session = await response.json();
       const result = await stripe.redirectToCheckout({ sessionId: session.id });
-  
+
       if (result.error) {
         console.error(result.error.message);
+        setError({
+          message: result.error.message,
+          code: 'redirect_to_checkout_error',
+        });
         setRedirecting(false);
+      } else {
+        setSuccess(true);
       }
     } catch (error) {
       console.error('Error:', error);
+      setError({
+        message: error.message,
+        code: 'fetch_error',
+      });
       setRedirecting(false);
     }
   };
-  
-
 
   if (loading) return <div>Loading....</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (error) return <Failure error={error} />;
+  if (success) return <Success />;
   if (!eventData) return <div>No event data available</div>;
 
   return (

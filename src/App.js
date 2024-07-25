@@ -29,10 +29,12 @@ import IQAgentMiddleware from "./components/Student/Accomodation/Accomodation";
 // import DownloadExcel from "./components/FetchData";
 import AddRestaurant from "./components/Admin/restaurants/AddRestaurant";
 import Restaurant from "./components/Student/Explore/RestaurantTabs";
-import  SwipeCarousel  from "./components/Student/Explore/SwipeCarousel";
+import SwipeCarousel from "./components/Student/Explore/SwipeCarousel";
 import Mentorship from "./components/Home/pages/Mentorship";
 import UploadEventForm from "./components/Admin/events/UploadEvents";
 import EventPage from "./components/Student/Events/sample";
+import Success from "./components/CheckOutForm/Success";
+import Failure from "./components/CheckOutForm/Failure";
 gsap.registerPlugin();
 function App() {
   return (
@@ -97,12 +99,22 @@ function App() {
                 role="student"
                 element={<EventsPage />}
               />
+              <Route
+                path="/user-dashboard/success"
+                role="student"
+                element={<Success />}
+              />
+              <Route
+                path="/user-dashboard/failure"
+                role="student"
+                element={<Failure />}
+              />
               {/* <Route
                 path="/user-dashboard/fetchData"
                 role="student"
                 element={<DownloadExcel />}
               /> */}
-                 <Route
+              <Route
                 path="/user-dashboard/swipe"
                 role="student"
                 element={<SwipeCarousel />}
