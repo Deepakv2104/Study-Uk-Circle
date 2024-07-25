@@ -30,7 +30,6 @@ import IQAgentMiddleware from "./components/Student/Accomodation/Accomodation";
 import AddRestaurant from "./components/Admin/restaurants/AddRestaurant";
 import Restaurant from "./components/Student/Explore/RestaurantTabs";
 import SwipeCarousel from "./components/Student/Explore/SwipeCarousel";
-import SwipeCarousel from "./components/Student/Explore/SwipeCarousel";
 import Mentorship from "./components/Home/pages/Mentorship";
 import UploadEventForm from "./components/Admin/events/UploadEvents";
 import EventPage from "./components/Student/Events/sample";
@@ -117,7 +116,7 @@ function App() {
                 role="student"
                 element={<DownloadExcel />}
               /> */}
-                      <Route
+              <Route
                 path="/user-dashboard/swipe"
                 role="student"
                 element={<SwipeCarousel />}
