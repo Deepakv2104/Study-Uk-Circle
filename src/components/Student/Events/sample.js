@@ -104,7 +104,6 @@ const EventPage = () => {
       setRedirecting(false);
     }
   };
-
   if (loading) return <div>Loading....</div>;
   if (error) return <Failure error={error} />;
   if (success) return <Success />;
