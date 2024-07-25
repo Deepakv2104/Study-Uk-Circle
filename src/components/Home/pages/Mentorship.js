@@ -80,6 +80,9 @@ const Mentorship = () => {
         let slotTiming = localDateTime.toLocaleString()
         setSlotTime(slotTiming)
     };
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const minDateTime = tomorrow.toISOString().slice(0, 16);
 
     const [specialization, setSpecialization] = useState('');
 
@@ -255,25 +258,16 @@ const Mentorship = () => {
                                         <label className="block text-sm font-medium text-white">Which Term your are planning for:</label>
                                         <div className='sm:grid grid-cols-3 gap-0'>
                                             <div className="user-type-option p-0 m-0">
-                                                <input type="radio" id="Sept-Nov(Fall)" name="termPlanningFor" value="Sept-Nov (Fall)" onChange={handleChange} />
-                                                <label htmlFor="Sept-Nov(Fall)" className='mt-1  ml-1 '>Sept-Nov (Fall)</label>
+                                                <input type="radio" id="Sept-Nov(Fall)" name="termPlanningFor" value="Aug-Oct (Fall)" onChange={handleChange} />
+                                                <label htmlFor="Sept-Nov(Fall)" className='mt-1  ml-1 '>Aug-Oct (Fall)</label>
                                             </div>
                                             <div className="user-type-option p-0 m-0 ">
-                                                <input type="radio" id="Mar-May(Spring)" name="termPlanningFor" value="Mar-May(Spring)" onChange={handleChange} className='' />
-                                                <label htmlFor="Mar-May(Spring)" className='mt-1   ml-1'>Mar-May(Spring)</label>
+                                                <input type="radio" id="Mar-May(Spring)" name="termPlanningFor" value="Dec-Feb(Spring)" onChange={handleChange} className='' />
+                                                <label htmlFor="Mar-May(Spring)" className='mt-1   ml-1'>Dec-Feb(Spring)</label>
                                             </div>
                                             <div className="user-type-option p-0 m-0 ">
-                                                <input type="radio" id="Jun-Aug(Summer)" name="termPlanningFor" value="Jun-Aug(Summer)" onChange={handleChange} />
-                                                <label htmlFor="Jun-Aug(Summer)" className='mt-1  ml-1 '>Jun-Aug(Summer)</label>
-                                            </div>
-
-                                            <div className="user-type-option m-0 p-0">
-                                                <input type="radio" id="Dec-Feb(Winter)" name="termPlanningFor" value="Dec-Feb(Winter)" onChange={handleChange} />
-                                                <label htmlFor="Dec-Feb(Winter)" className='mt-1   ml-1'>Dec-Feb(Winter)</label>
-                                            </div>
-                                            <div className="user-type-option">
-                                                <input type="radio" id="not sure" name="termPlanningFor" value="Not Sure" onChange={handleChange} />
-                                                <label htmlFor="not sure" className='mt-1   ml-1'>Not Sure</label>
+                                                <input type="radio" id="Jun-Aug(Summer)" name="termPlanningFor" value="May-Jul(Summer)" onChange={handleChange} />
+                                                <label htmlFor="Jun-Aug(Summer)" className='mt-1  ml-1 '>May-Jul(Summer)</label>
                                             </div>
                                         </div>
 
@@ -351,12 +345,14 @@ const Mentorship = () => {
                                                 }
                                             </div>
                                         </div>
-                                        <div className='mt-2'>
-                                            <label for="datetime" className='block text-sm font-medium text-white'>Select a date and time for the call:</label>
-                                            <input type="datetime-local" id="datetime"
-                                                name="datetime"
-                                                onChange={handleChangeDate} />
-                                        </div>
+
+                                        <input
+                                            type="datetime-local"
+                                            id="datetime"
+                                            name="datetime"
+                                            min={minDateTime}
+                                            onChange={handleChangeDate}
+                                        />
                                     </div>
                                     <button type="submit" className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-green-300">Book a Slot</button>
                                 </form>
