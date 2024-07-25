@@ -109,7 +109,7 @@ const EventPage = () => {
   if (success) return <Success />;
   if (!eventData) return <div>No event data available</div>;
 
-  return (
+ return (
     <div className="container mx-auto text-gray-200">
       {redirecting && <Loader />}
       <div className="bg-gray-850 shadow-2xl rounded-lg overflow-hidden max-w-xl mx-auto">
