@@ -29,10 +29,13 @@ import IQAgentMiddleware from "./components/Student/Accomodation/Accomodation";
 // import DownloadExcel from "./components/FetchData";
 import AddRestaurant from "./components/Admin/restaurants/AddRestaurant";
 import Restaurant from "./components/Student/Explore/RestaurantTabs";
-import  SwipeCarousel  from "./components/Student/Explore/SwipeCarousel";
+import SwipeCarousel from "./components/Student/Explore/SwipeCarousel";
 import Mentorship from "./components/Home/pages/Mentorship";
 import UploadEventForm from "./components/Admin/events/UploadEvents";
 import EventPage from "./components/Student/Events/sample";
+import 'leaflet/dist/leaflet.css';
+import Maps from "./components/Student/Maps/Maps";
+
 gsap.registerPlugin();
 function App() {
   return (
@@ -53,6 +56,8 @@ function App() {
           <Route path="/mentorship" element={<Mentorship />} />
           <Route path="/write-to-us" element={<SmeForm />} />
           <Route path="/about-us" element={<AboutUsPage />} />
+          <Route path="/maps" element={<Maps />} />
+
 
           {/* <Route path="/newHome" element={<NewHome/>} /> */}
 
@@ -102,7 +107,7 @@ function App() {
                 role="student"
                 element={<DownloadExcel />}
               /> */}
-                 <Route
+              <Route
                 path="/user-dashboard/swipe"
                 role="student"
                 element={<SwipeCarousel />}
