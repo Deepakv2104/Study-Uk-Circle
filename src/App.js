@@ -35,9 +35,12 @@ import UploadEventForm from "./components/Admin/events/UploadEvents";
 import EventPage from "./components/Student/Events/sample";
 import Success from "./components/CheckOutForm/Success";
 import Failure from "./components/CheckOutForm/Failure";
+import Maps from "./components/Student/Maps/Maps";
+
+
 gsap.registerPlugin();
 function App() {
-  return (
+  return ( 
     <Router>
       <div className="App">
 
