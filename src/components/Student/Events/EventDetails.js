@@ -278,10 +278,10 @@ const EventDetails = () => {
                 />
               </div>
             </form>
-            <CheckoutForm 
-              formData={formData} 
-              eventId={eventId} 
-              handleCloseDialog={setOpenDialog} 
+            <CheckoutForm
+              formData={formData}
+              eventId={eventId}
+              handleCloseDialog={setOpenDialog}
               amount={calculateTotalAmount()} // Pass the amount here
             />
             <div className="flex justify-end mt-6">

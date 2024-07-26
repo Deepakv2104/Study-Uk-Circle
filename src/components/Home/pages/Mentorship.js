@@ -157,23 +157,17 @@ const Mentorship = () => {
                 <div className="join-container mx-auto max-w-7xl px-0 flex justify-center items-center">
                     <div className="left-column mr-1">
                         <div className="heading  mb-6 text-md">
-                            <h3 className="text-2xl font-bold"><span className="text-color-green">  WorldLynk Mentorships</span></h3>
+                            <h3 className="text-2xl font-bold"><span className="text-color-green"> Welcome to WorldLynk </span></h3>
                         </div>
-                        <p className="text-xl  mb-6 text-md">Book a  slot to avail your free call from our mentor</p>
-                        <p className="large-text  mb-6 text-md">🎓 Connect directly with global university students & alumni for real insights!</p>
-                        <p className="large-text  mb-6 text-md">🌍 Explore on-ground experiences from universities around the world.</p>
-                        <p className="large-text  mb-6 text-md">📚 Dive deep into curriculum details, campus life, and more.</p>
-                        <p className="large-text  mb-6 text-md">🎉 First call is on us! Start your journey with a free chat.</p>
-                        <p className="large-text  mb-6 text-md">💼 Get the lowdown on job prospects after graduation.</p>
-                        <p className="large-text  mb-6 text-md">🌐 Visa queries? Scholarships? We've got you covered.</p>
-                        <p className="large-text  mb-6 text-md">💰 Need financial advice? Explore loan options seamlessly.</p>
-                        <p className="large-text  mb-6 text-md">🏡 Find your perfect BioTech with our trusted partners.</p>
-                        <p className="large-text  mb-6 text-md">🤝 Join a community that supports your global education dreams.</p>
+                        <p className="large-text mb-8">
+                            Book a slot to avail your free call from our mentor and connect directly with global university students and alumni for real insights! Explore on-ground experiences from universities around the world and dive deep into curriculum details, campus life, and more. Your first call is on us! Start your journey with a free chat and get the lowdown on job prospects after graduation. Have visa queries or need information on scholarships? We've got you covered. Need financial advice? Explore loan options seamlessly. Join a community that supports your global education dreams.
+                        </p>
 
-                        <img src="https://join.getwyld.in/assets/images/line.png" alt="Divider" className=" mb-6 text-md" />
-                        <div className="nav-right-content desktop">
+
+                        {/* <img src="https://join.getwyld.in/assets/images/line.png" alt="Divider" className=" mb-6 text-md" /> */}
+                        {/* <div className="nav-right-content desktop">
                             <a href="/" className="glass-button smaller w-button  rounded-lg bg-orange-500 hover:bg-orange-600" style={{ textDecoration: 'none', color: 'white', padding: '0.8rem' }}>Back to homepage</a>
-                        </div>
+                        </div> */}
                     </div>
                     <div className="right-column rounded-lg shadow-md w-1/2 ">
                         <div className="form-section">

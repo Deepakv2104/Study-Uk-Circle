@@ -112,18 +112,18 @@ const SmeForm = () => {
               experience, our comprehensive platform offers endless
               opportunities for collaboration and innovation in education.
             </p>
-            <div>
+            {/* <div>
               <img
                 src="https://join.getwyld.in/assets/images/line.png"
                 alt=""
               />
-            </div>
-            <div
+            </div> */}
+            {/* <div
               className="nav-right-content desktop"
               style={{ marginTop: "10px" }}
             >
               <a href="/" className="glass-button smaller w-button  rounded-lg bg-orange-500 hover:bg-orange-600" style={{ textDecoration: 'none', color: 'white', padding: '0.8rem' }}>Back to homepage</a>
-            </div>
+            </div> */}
           </div>
           <div className="right-column  rounded-lg shadow-md">
             <div className="form-section">

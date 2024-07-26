@@ -7,7 +7,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import Success from '../../CheckOutForm/Success';
 import Failure from '../../CheckOutForm/Failure';
 
-const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY); 
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
 const Loader = () => (
   <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
@@ -23,6 +23,12 @@ const EventPage = () => {
   const [success, setSuccess] = useState(false);
   const { eventId } = useParams();
   const [selectedQuantities, setSelectedQuantities] = useState({});
+
+  const openGoogleMaps = (name, latitude, longitude) => {
+    // const url = `https://www.google.com/maps?q=${name},${latitude},${longitude}`;
+    const url = `https://www.google.com/maps?q=${encodeURIComponent(name)}`;
+    window.open(url, '_blank');
+  };
 
   useEffect(() => {
     const fetchEventData = async () => {
@@ -67,7 +73,7 @@ const EventPage = () => {
       quantity: selectedQuantities[index],
     })).filter(ticket => ticket.quantity > 0);
 
-    console.log('Sending selected tickets:', selectedTickets); 
+    console.log('Sending selected tickets:', selectedTickets);
 
     try {
       const response = await fetch('https://worldlynk-stripe-server.netlify.app/.netlify/functions/create-checkout-session', {
@@ -109,7 +115,7 @@ const EventPage = () => {
   if (success) return <Success />;
   if (!eventData) return <div>No event data available</div>;
 
- return (
+  return (
     <div className="container mx-auto text-gray-200">
       {redirecting && <Loader />}
       <div className="bg-gray-850 shadow-2xl rounded-lg overflow-hidden max-w-xl mx-auto">
@@ -188,7 +194,9 @@ const EventPage = () => {
           <h2 className="text-xl font-bold mb-2">Venue</h2>
           <p>{eventData.venueName}</p>
           <p>{eventData.venueAddress}</p>
-          <button className="bg-blue-500 text-white py-2 px-4 rounded mt-4">Open in Maps</button>
+          <button className="bg-blue-500 text-white py-2 px-4 rounded mt-4"
+            onClick={() => openGoogleMaps(`${eventData.venueName}" "${eventData.venueAddress}`)}>
+            Open in Maps</button>
         </div>
       </div>
     </div>
