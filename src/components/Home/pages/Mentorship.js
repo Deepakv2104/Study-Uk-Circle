@@ -158,9 +158,10 @@ const Mentorship = () => {
                     <div className="left-column mr-1">
                         <div className="heading  mb-6 text-md">
                             <h3 className="text-2xl font-bold"><span className="text-color-green"> Welcome to WorldLynk </span></h3>
+                            <h3 className="text-2xl font-bold">Book a slot to avail your free call from our mentor and connect  </h3>
                         </div>
                         <p className="large-text mb-8">
-                            Book a slot to avail your free call from our mentor and connect directly with global university students and alumni for real insights! Explore on-ground experiences from universities around the world and dive deep into curriculum details, campus life, and more. Your first call is on us! Start your journey with a free chat and get the lowdown on job prospects after graduation. Have visa queries or need information on scholarships? We've got you covered. Need financial advice? Explore loan options seamlessly. Join a community that supports your global education dreams.
+                            Explore on-ground experiences from universities around the world and dive deep into curriculum details, campus life, and more. Your first call is on us! Start your journey with a free chat and get the lowdown on job prospects after graduation. Have visa queries or need information on scholarships? We've got you covered. Need financial advice? Explore loan options seamlessly.
                         </p>
 
 
