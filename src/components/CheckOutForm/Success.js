@@ -18,7 +18,7 @@ const Success = () => {
         </p>
       </div>
       <div className="flex justify-center mt-8">
-        <a href="/user-dashboard/events" className="text-xl font-medium text-green-500 hover:text-green-600 transition-colors">
+        <a href="/user-dashboard/bookings" className="text-xl font-medium text-green-500 hover:text-green-600 transition-colors">
           Go to my bookings
         </a>
       </div>
