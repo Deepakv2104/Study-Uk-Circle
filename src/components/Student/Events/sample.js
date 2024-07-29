@@ -26,6 +26,12 @@ const EventPage = () => {
   const { currentUser } = useAuth(); // Get currentUser from your auth context
   const [selectedQuantities, setSelectedQuantities] = useState({});
 
+  const openGoogleMaps = (name, latitude, longitude) => {
+    // const url = `https://www.google.com/maps?q=${name},${latitude},${longitude}`;
+    const url = `https://www.google.com/maps?q=${encodeURIComponent(name)}`;
+    window.open(url, '_blank');
+  };
+
   useEffect(() => {
     const fetchEventData = async () => {
       try {
@@ -207,7 +213,9 @@ const EventPage = () => {
           <h2 className="text-xl font-bold mb-2">Venue</h2>
           <p>{eventData.venueName}</p>
           <p>{eventData.venueAddress}</p>
-          <button className="bg-blue-500 text-white py-2 px-4 rounded mt-4">Open in Maps</button>
+          <button className="bg-blue-500 text-white py-2 px-4 rounded mt-4"
+            onClick={() => openGoogleMaps(`${eventData.venueName}" "${eventData.venueAddress}`)}>
+            Open in Maps</button>
         </div>
       </div>
     </div>

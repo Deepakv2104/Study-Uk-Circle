@@ -75,14 +75,31 @@ const Mentorship = () => {
         });
     };
     const handleChangeDate = (event) => {
-        setDateTime(event.target.value);
-        const localDateTime = new Date(dateTime);
-        let slotTiming = localDateTime.toLocaleString()
-        setSlotTime(slotTiming)
+        const inputDate = event.target.value;
+        // Parse the input date string correctly
+        const localDateTime = new Date(inputDate);
+        // Check if the date is valid
+        if (isNaN(localDateTime)) {
+            console.error('Invalid date format');
+            return;
+        }
+        // Format the date as a local string
+        let slotTiming = localDateTime.toLocaleString();
+        setSlotTime(slotTiming);
     };
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    const minDateTime = tomorrow.toISOString().slice(0, 16);
+
+    const getTomorrowDate = () => {
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 2);
+        tomorrow.setHours(0, 0, 0, 0);  // Set time to midnight to avoid timezone issues
+        return tomorrow;
+    };
+
+
+
+    const minDateTime = getTomorrowDate().toISOString().slice(0, 16);
+    // console.log(minDateTime, "minDateTime")
+
 
     const [specialization, setSpecialization] = useState('');
 
@@ -157,23 +174,18 @@ const Mentorship = () => {
                 <div className="join-container mx-auto max-w-7xl px-0 flex justify-center items-center">
                     <div className="left-column mr-1">
                         <div className="heading  mb-6 text-md">
-                            <h3 className="text-2xl font-bold"><span className="text-color-green">  WorldLynk Mentorships</span></h3>
+                            <h3 className="text-2xl font-bold"><span className="text-color-green"> Welcome to WorldLynk </span></h3>
+                            <h3 className="text-2xl font-bold">Book a slot to avail your free call from our mentor and connect  </h3>
                         </div>
-                        <p className="text-xl  mb-6 text-md">Book a  slot to avail your free call from our mentor</p>
-                        <p className="large-text  mb-6 text-md">🎓 Connect directly with global university students & alumni for real insights!</p>
-                        <p className="large-text  mb-6 text-md">🌍 Explore on-ground experiences from universities around the world.</p>
-                        <p className="large-text  mb-6 text-md">📚 Dive deep into curriculum details, campus life, and more.</p>
-                        <p className="large-text  mb-6 text-md">🎉 First call is on us! Start your journey with a free chat.</p>
-                        <p className="large-text  mb-6 text-md">💼 Get the lowdown on job prospects after graduation.</p>
-                        <p className="large-text  mb-6 text-md">🌐 Visa queries? Scholarships? We've got you covered.</p>
-                        <p className="large-text  mb-6 text-md">💰 Need financial advice? Explore loan options seamlessly.</p>
-                        <p className="large-text  mb-6 text-md">🏡 Find your perfect BioTech with our trusted partners.</p>
-                        <p className="large-text  mb-6 text-md">🤝 Join a community that supports your global education dreams.</p>
+                        <p className="large-text mb-8">
+                            Explore on-ground experiences from universities around the world and dive deep into curriculum details, campus life, and more. Your first call is on us! Start your journey with a free chat and get the lowdown on job prospects after graduation. Have visa queries or need information on scholarships? We've got you covered. Need financial advice? Explore loan options seamlessly.
+                        </p>
 
-                        <img src="https://join.getwyld.in/assets/images/line.png" alt="Divider" className=" mb-6 text-md" />
-                        <div className="nav-right-content desktop">
+
+                        {/* <img src="https://join.getwyld.in/assets/images/line.png" alt="Divider" className=" mb-6 text-md" /> */}
+                        {/* <div className="nav-right-content desktop">
                             <a href="/" className="glass-button smaller w-button  rounded-lg bg-orange-500 hover:bg-orange-600" style={{ textDecoration: 'none', color: 'white', padding: '0.8rem' }}>Back to homepage</a>
-                        </div>
+                        </div> */}
                     </div>
                     <div className="right-column rounded-lg shadow-md w-1/2 ">
                         <div className="form-section">
@@ -345,13 +357,14 @@ const Mentorship = () => {
                                                 }
                                             </div>
                                         </div>
-
+                                        <label htmlFor="datetime" className='block text-sm font-medium text-white'>Select a date and time for the call:</label>
                                         <input
                                             type="datetime-local"
                                             id="datetime"
                                             name="datetime"
                                             min={minDateTime}
                                             onChange={handleChangeDate}
+                                            required
                                         />
                                     </div>
                                     <button type="submit" className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-green-300">Book a Slot</button>
