@@ -93,24 +93,27 @@ const EventPage = () => {
     console.log('Sending selected tickets:', selectedTickets);
 
     try {
-      const response = await fetch('https://worldlynk-stripe-server.netlify.app/.netlify/functions/create-checkout-session', {
+      const response = await fetch(process.env.REACT_APP_CREATE_CHECKOUT_SESSION_URL, {
+        
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ tickets: selectedTickets, user }),
       });
-
+    
       if (!response.ok) {
         const errorText = await response.text();
+        console.error('Error response:', errorText);  // More detailed logging
         throw new Error(`Network response was not ok: ${errorText}`);
       }
-
+    
       const session = await response.json();
+      console.log('Received session:', session);  // Log session data for debugging
       const result = await stripe.redirectToCheckout({ sessionId: session.id });
-
+    
       if (result.error) {
-        console.error(result.error.message);
+        console.error('Stripe error:', result.error.message);
         setError({
           message: result.error.message,
           code: 'redirect_to_checkout_error',
@@ -120,14 +123,14 @@ const EventPage = () => {
         setSuccess(true);
       }
     } catch (error) {
-      console.error('Error:', error.message);
+      console.error('Unhandled error:', error);  // More detailed logging
       setError({
         message: error.message,
         code: 'fetch_error',
       });
       setRedirecting(false);
     }
-  };
+  };    
 
   if (loading) return <div>Loading....</div>;
   if (error) return <Failure error={error} />;

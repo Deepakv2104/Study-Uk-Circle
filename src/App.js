@@ -106,7 +106,7 @@ function App() {
                 element={<EventsPage />}
               />
               <Route
-                path="/user-dashboard/success"
+                path="/user-dashboard/success?session_id={CHECKOUT_SESSION_ID}"
                 role="student"
                 element={<Success />}
               />
