@@ -75,14 +75,28 @@ const Mentorship = () => {
         });
     };
     const handleChangeDate = (event) => {
-        setDateTime(event.target.value);
-        const localDateTime = new Date(dateTime);
-        let slotTiming = localDateTime.toLocaleString()
-        setSlotTime(slotTiming)
+        const inputDate = event.target.value;
+        // Parse the input date string correctly
+        const localDateTime = new Date(inputDate);
+        // Check if the date is valid
+        if (isNaN(localDateTime)) {
+            console.error('Invalid date format');
+            return;
+        }
+        // Format the date as a local string
+        let slotTiming = localDateTime.toLocaleString();
+        setSlotTime(slotTiming);
     };
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    const minDateTime = tomorrow.toISOString().slice(0, 16);
+
+    const getTomorrowDate = () => {
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        tomorrow.setHours(0, 0, 0, 0);  // Set time to midnight to avoid timezone issues
+        return tomorrow;
+    };
+
+    const minDateTime = getTomorrowDate().toISOString().slice(0, 16);
+
 
     const [specialization, setSpecialization] = useState('');
 
