@@ -110,6 +110,11 @@ function App() {
                 role="student"
                 element={<Success />}
               />
+                  <Route
+                path="/user-dashboard/success"
+                role="student"
+                element={<Success />}
+              />
               <Route
                 path="/user-dashboard/failure"
                 role="student"
