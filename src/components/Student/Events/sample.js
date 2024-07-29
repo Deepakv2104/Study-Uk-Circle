@@ -91,7 +91,6 @@ const EventPage = () => {
     })).filter(ticket => ticket.quantity > 0);
 
     console.log('Sending selected tickets:', selectedTickets);
-
     try {
       const response = await fetch(process.env.REACT_APP_CREATE_CHECKOUT_SESSION_URL, {
         
