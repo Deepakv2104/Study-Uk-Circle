@@ -5,23 +5,25 @@ import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 
 const Success = () => {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-green-100">
-      <div className="max-w-md py-4 px-8 bg-white shadow-lg rounded-lg my-20">
-        <div className="flex justify-center md:justify-end -mt-16">
-          <FontAwesomeIcon
-            icon={faCheckCircle}
-            className="w-20 h-20 text-green-500"
-          />
-        </div>
-        <div>
-          <h2 className="text-gray-800 text-3xl font-semibold">Payment Successful</h2>
-          <p className="mt-2 text-gray-600">Thank you for your purchase! Your payment has been processed successfully. You will receive a confirmation email shortly.</p>
-        </div>
-        <div className="flex justify-end mt-4">
-          <a href="/user-dashboard/events" className="text-xl font-medium text-green-500">Go back to home</a>
-        </div>
+    <div className="flex items-center justify-center">
+    <div className="max-w-md w-full py-8 px-8 bg-gray-700 shadow-lg rounded-lg my-20">
+      <div className="flex flex-col items-center">
+        <FontAwesomeIcon
+          icon={faCheckCircle}
+          className="w-20 h-20 text-green-500 mb-4"
+        />
+        <h2 className="text-white text-3xl font-semibold text-center">Payment Successful</h2>
+        <p className="mt-4 text-white text-center">
+          Thank you for your purchase! Your payment has been processed successfully. You will receive a confirmation email shortly.
+        </p>
+      </div>
+      <div className="flex justify-center mt-8">
+        <a href="/user-dashboard/events" className="text-xl font-medium text-green-500 hover:text-green-600 transition-colors">
+          Go to my bookings
+        </a>
       </div>
     </div>
+  </div>
   );
 };
 

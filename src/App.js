@@ -36,6 +36,7 @@ import EventPage from "./components/Student/Events/sample";
 import Success from "./components/CheckOutForm/Success";
 import Failure from "./components/CheckOutForm/Failure";
 import Maps from "./components/Student/Maps/Maps";
+import MyBookings from "./components/Student/Bookings/MyBookings";
 
 
 gsap.registerPlugin();
@@ -178,9 +179,9 @@ function App() {
                 element={<Restaurant />}
               />
               <Route
-                path="/user-dashboard/favorites"
+                path="/user-dashboard/bookings"
                 role="student"
-                element={<Favorites />}
+                element={<MyBookings />}
               />
               <Route
                 path="/user-dashboard/settings/:userId"

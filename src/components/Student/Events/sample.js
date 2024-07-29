@@ -4,10 +4,11 @@ import { useParams } from 'react-router-dom';
 import { firestore } from '../../../firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import { loadStripe } from '@stripe/stripe-js';
+import { useAuth } from '../../../auth/userProvider/AuthProvider'; // Assuming you have an auth context
 import Success from '../../CheckOutForm/Success';
 import Failure from '../../CheckOutForm/Failure';
 
-const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY); 
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
 const Loader = () => (
   <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
@@ -22,6 +23,7 @@ const EventPage = () => {
   const [redirecting, setRedirecting] = useState(false);
   const [success, setSuccess] = useState(false);
   const { eventId } = useParams();
+  const { currentUser } = useAuth(); // Get currentUser from your auth context
   const [selectedQuantities, setSelectedQuantities] = useState({});
 
   useEffect(() => {
@@ -29,6 +31,7 @@ const EventPage = () => {
       try {
         const eventDoc = await getDoc(doc(firestore, 'events', eventId));
         if (eventDoc.exists()) {
+          console.log(currentUser);
           setEventData(eventDoc.data());
           const initialQuantities = {};
           eventDoc.data().tickets.forEach((ticket, index) => {
@@ -58,6 +61,20 @@ const EventPage = () => {
   };
 
   const handleGetTicketsClick = async () => {
+    if (!currentUser) {
+      console.error('User is not logged in');
+      setError('User is not logged in');
+      return;
+    }
+
+    const user = {
+      uid: currentUser.uid,
+      email: currentUser.email,
+      name: currentUser.displayName,
+    };
+
+    console.log('User data:', user); // Ensure user data is available and log it
+
     setRedirecting(true);
     const stripe = await stripePromise;
     const selectedTickets = eventData.tickets.map((ticket, index) => ({
@@ -67,7 +84,7 @@ const EventPage = () => {
       quantity: selectedQuantities[index],
     })).filter(ticket => ticket.quantity > 0);
 
-    console.log('Sending selected tickets:', selectedTickets); 
+    console.log('Sending selected tickets:', selectedTickets);
 
     try {
       const response = await fetch('https://worldlynk-stripe-server.netlify.app/.netlify/functions/create-checkout-session', {
@@ -75,11 +92,12 @@ const EventPage = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ tickets: selectedTickets }),
+        body: JSON.stringify({ tickets: selectedTickets, user }),
       });
 
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        const errorText = await response.text();
+        throw new Error(`Network response was not ok: ${errorText}`);
       }
 
       const session = await response.json();
@@ -96,7 +114,7 @@ const EventPage = () => {
         setSuccess(true);
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Error:', error.message);
       setError({
         message: error.message,
         code: 'fetch_error',
@@ -104,12 +122,13 @@ const EventPage = () => {
       setRedirecting(false);
     }
   };
+
   if (loading) return <div>Loading....</div>;
   if (error) return <Failure error={error} />;
   if (success) return <Success />;
   if (!eventData) return <div>No event data available</div>;
 
- return (
+  return (
     <div className="container mx-auto text-gray-200">
       {redirecting && <Loader />}
       <div className="bg-gray-850 shadow-2xl rounded-lg overflow-hidden max-w-xl mx-auto">
@@ -160,10 +179,10 @@ const EventPage = () => {
                 </div>
               </div>
             ))}
-            <p className="text-sm text-gray-500">Nothing selected yet</p>
+            {/* <p className="text-sm text-gray-500">Nothing selected yet</p> */}
             <button
               onClick={handleGetTicketsClick}
-              className="bg-gray-600 text-white py-2 px-4 rounded"
+              className="bg-green-600 text-white py-2 px-4 rounded"
             >
               Get Tickets
             </button>
