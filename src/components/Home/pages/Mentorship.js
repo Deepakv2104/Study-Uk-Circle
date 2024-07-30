@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import haldiram3 from '../../../assets/img/haldiram3.png';
 import IQ from '../../../assets/img/IQ.svg';
 import '../styles/Join.css';
@@ -8,6 +8,46 @@ import { firestore } from '../../../firebase';
 import { collection, addDoc } from 'firebase/firestore';
 import NewNav from '../sub-components/NewNav';
 import Footer from '../sub-components/Footer';
+import * as React from 'react';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import dayjs from 'dayjs';
+
+function BasicDateTimePicker() {
+    const [minDateTime, setMinDateTime] = React.useState(null);
+
+    React.useEffect(() => {
+        // Get the current date and time
+        const now = dayjs();
+        // Calculate tomorrow's date by adding 1 day
+        const tomorrow = now.add(1, 'day').startOf('day');
+        // Set the minDateTime state with tomorrow's date
+        setMinDateTime(tomorrow);
+    }, []);
+
+    return (
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DemoContainer components={['DateTimePicker']}>
+                <DateTimePicker
+                    sx={{
+                        // Customize or remove styles here
+                        '& .MuiInputBase-root': {
+                            backgroundColor: 'transparent', // Example: Remove background color
+                            borderRadius: 0, // Example: Remove border radius
+                        },
+                        '& .MuiOutlinedInput-notchedOutline': {
+                            border: 'none', // Example: Remove border
+                        },
+                    }}
+                    label={null}
+                    minDateTime={minDateTime} // Set the minimum selectable date and time
+                />
+            </DemoContainer>
+        </LocalizationProvider>
+    );
+}
 
 const Mentorship = () => {
     const [selectedSpecializations, setSelectedSpecializations] = useState([]);
@@ -47,6 +87,24 @@ const Mentorship = () => {
         setFormData({ ...formData, Specializations: updatedSpecializations });
     };
 
+    const handleDateTimeChange = (newValue) => {
+        if (newValue && newValue.isValid()) {
+            const formattedDate = newValue.toDate().toLocaleString('en-US', {
+                month: 'numeric',
+                day: 'numeric',
+                year: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric',
+                hour12: true
+            });
+            setSlotTime(formattedDate); // Store the formatted date string in slotTime
+            console.log(formattedDate, "formattedDate")
+        } else {
+            setSlotTime('');
+            console.log("invalid date")
+        }
+    };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -96,11 +154,19 @@ const Mentorship = () => {
     };
     const [minDateTime, setMinDateTime] = useState(null)
 
-    useEffect(() => {
-        let tommorrowDate = getTomorrowDate().toISOString().slice(0, 16);
-        console.log(tommorrowDate, "tommorrowDate")
-        setMinDateTime(tommorrowDate)
-    }, [])
+    // useEffect(() => {
+    //     let tommorrowDate = getTomorrowDate().toISOString().slice(0, 16);
+    //     console.log(tommorrowDate, "tommorrowDate")
+    //     setMinDateTime(tommorrowDate)
+    // }, [])
+    React.useEffect(() => {
+        // Get the current date and time
+        const now = dayjs();
+        // Calculate tomorrow's date by adding 1 day
+        const tomorrow = now.add(1, 'day').startOf('day');
+        // Set the minDateTime state with tomorrow's date
+        setMinDateTime(tomorrow);
+    }, []);
 
 
 
@@ -173,6 +239,8 @@ const Mentorship = () => {
     return (
         <div>
             <NewNav />
+            {/* <BasicDateTimePicker /> */}
+
             <div className="bg-gray-800 text-white">
                 <div className="join-container mx-auto max-w-7xl px-0 flex justify-center items-center">
                     <div className="left-column mr-1">
@@ -361,15 +429,33 @@ const Mentorship = () => {
                                             </div>
                                         </div>
                                         <label htmlFor="datetime" className='block text-sm font-medium text-white'>Select a date and time for the call:</label>
-                                        <input
+                                        {/* <input
                                             type="datetime-local"
                                             id="datetime"
                                             name="datetime"
                                             min={minDateTime}
                                             onChange={handleChangeDate}
                                             required
-                                        />
-                                    </div>
+                                        /> */}
+                                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                            <DemoContainer components={['DateTimePicker']}>
+                                                <DateTimePicker
+                                                    sx={{
+                                                        // Customize or remove styles here
+                                                        '& .MuiInputBase-root': {
+                                                            backgroundColor: 'transparent', // Example: Remove background color
+                                                            borderRadius: 0, // Example: Remove border radius
+                                                        },
+                                                        '& .MuiOutlinedInput-notchedOutline': {
+                                                            border: 'none', // Example: Remove border
+                                                        },
+                                                    }}
+                                                    onChange={handleDateTimeChange}
+                                                    label={null}
+                                                    minDateTime={minDateTime} // Set the minimum selectable date and time
+                                                />
+                                            </DemoContainer>
+                                        </LocalizationProvider>                                </div>
                                     <button type="submit" className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-green-300">Book a Slot</button>
                                 </form>
 
