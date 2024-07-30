@@ -15,39 +15,6 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import dayjs from 'dayjs';
 
-function BasicDateTimePicker() {
-    const [minDateTime, setMinDateTime] = React.useState(null);
-
-    React.useEffect(() => {
-        // Get the current date and time
-        const now = dayjs();
-        // Calculate tomorrow's date by adding 1 day
-        const tomorrow = now.add(1, 'day').startOf('day');
-        // Set the minDateTime state with tomorrow's date
-        setMinDateTime(tomorrow);
-    }, []);
-
-    return (
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DemoContainer components={['DateTimePicker']}>
-                <DateTimePicker
-                    sx={{
-                        // Customize or remove styles here
-                        '& .MuiInputBase-root': {
-                            backgroundColor: 'transparent', // Example: Remove background color
-                            borderRadius: 0, // Example: Remove border radius
-                        },
-                        '& .MuiOutlinedInput-notchedOutline': {
-                            border: 'none', // Example: Remove border
-                        },
-                    }}
-                    label={null}
-                    minDateTime={minDateTime} // Set the minimum selectable date and time
-                />
-            </DemoContainer>
-        </LocalizationProvider>
-    );
-}
 
 const Mentorship = () => {
     const [selectedSpecializations, setSelectedSpecializations] = useState([]);
@@ -71,21 +38,6 @@ const Mentorship = () => {
     const [dateTime, setDateTime] = useState('');
     const [slotTime, setSlotTime] = useState('');
 
-    // const [validPostalCode, setValidPostalCode] = useState(false);
-
-    const handleChipClick = (interest) => {
-        let updatedSpecializations = [];
-        if (selectedSpecializations.includes(interest)) {
-            updatedSpecializations = selectedSpecializations.filter(item => item !== interest);
-        } else {
-            updatedSpecializations = [...selectedSpecializations, interest];
-        }
-
-        setSelectedSpecializations(updatedSpecializations); // Update the selectedSpecializations state
-
-        // Update the formData state to include the updated Specializations
-        setFormData({ ...formData, Specializations: updatedSpecializations });
-    };
 
     const handleDateTimeChange = (newValue) => {
         if (newValue && newValue.isValid()) {
@@ -98,7 +50,7 @@ const Mentorship = () => {
                 second: 'numeric',
                 hour12: true
             });
-            setSlotTime(formattedDate); // Store the formatted date string in slotTime
+            setSlotTime(formattedDate);
             console.log(formattedDate, "formattedDate")
         } else {
             setSlotTime('');
@@ -132,33 +84,11 @@ const Mentorship = () => {
             [name]: value
         });
     };
-    const handleChangeDate = (event) => {
-        const inputDate = event.target.value;
-        // Parse the input date string correctly
-        const localDateTime = new Date(inputDate);
-        // Check if the date is valid
-        if (isNaN(localDateTime)) {
-            console.error('Invalid date format');
-            return;
-        }
-        // Format the date as a local string
-        let slotTiming = localDateTime.toLocaleString();
-        setSlotTime(slotTiming);
-    };
 
-    const getTomorrowDate = () => {
-        const tomorrow = new Date();
-        tomorrow.setDate(tomorrow.getDate() + 2);
-        tomorrow.setHours(0, 0, 0, 0);  // Set time to midnight to avoid timezone issues
-        return tomorrow;
-    };
+
     const [minDateTime, setMinDateTime] = useState(null)
 
-    // useEffect(() => {
-    //     let tommorrowDate = getTomorrowDate().toISOString().slice(0, 16);
-    //     console.log(tommorrowDate, "tommorrowDate")
-    //     setMinDateTime(tommorrowDate)
-    // }, [])
+
     React.useEffect(() => {
         // Get the current date and time
         const now = dayjs();
@@ -175,7 +105,6 @@ const Mentorship = () => {
     const [customSpecialization, setCustomSpecialization] = useState(false)
 
     const handleSpecializationChange = (event) => {
-        // setSpecialization(event.target.value);/
         const { name, value } = event.target;
         if (value === "letMeType") {
             setCustomSpecialization(true)
@@ -239,7 +168,6 @@ const Mentorship = () => {
     return (
         <div>
             <NewNav />
-            {/* <BasicDateTimePicker /> */}
 
             <div className="bg-gray-800 text-white">
                 <div className="join-container mx-auto max-w-7xl px-0 flex justify-center items-center">
@@ -253,10 +181,6 @@ const Mentorship = () => {
                         </p>
 
 
-                        {/* <img src="https://join.getwyld.in/assets/images/line.png" alt="Divider" className=" mb-6 text-md" /> */}
-                        {/* <div className="nav-right-content desktop">
-                            <a href="/" className="glass-button smaller w-button  rounded-lg bg-orange-500 hover:bg-orange-600" style={{ textDecoration: 'none', color: 'white', padding: '0.8rem' }}>Back to homepage</a>
-                        </div> */}
                     </div>
                     <div className="right-column rounded-lg shadow-md w-1/2 ">
                         <div className="form-section">
@@ -318,7 +242,6 @@ const Mentorship = () => {
                                                 style={{ backgroundColor: '#626060' }}
                                                 id="applicationStatus"
                                                 name="applicationStatus"
-                                                // value={specialization}
                                                 onChange={handleApplicationStatusChange}
                                                 className="mt-1 p-2 border border-gray-300 bg-yellow-900 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200"
                                                 required
@@ -356,45 +279,7 @@ const Mentorship = () => {
 
                                     </div>
                                     <div className="form-group Specializations-group">
-                                        {/* <label className="block text-sm font-medium text-white">Specialization you are interested in:</label> */}
-                                        {/* <div className="flex flex-wrap space-x-2">
-                                            <Chip
-                                                label="Computer Science"
-                                                variant="outlined"
-                                                clickable
-                                                onClick={() => handleChipClick("Computer Science")}
-                                                color={selectedSpecializations.includes("Computer Science") ? "primary" : "default"}
-                                            />
-                                            <Chip
-                                                label="MBA"
-                                                variant="outlined"
-                                                clickable
-                                                onClick={() => handleChipClick("MBA")}
-                                                color={selectedSpecializations.includes("MBA") ? "primary" : "default"}
-                                            />
-                                            <Chip
-                                                label="Mechanical"
-                                                variant="outlined"
-                                                clickable
-                                                onClick={() => handleChipClick("Mechanical")}
-                                                color={selectedSpecializations.includes("Mechanical") ? "primary" : "default"}
-                                            />
-                                            <Chip
-                                                label="BioTech"
-                                                variant="outlined"
-                                                clickable
-                                                onClick={() => handleChipClick("BioTech")}
-                                                color={selectedSpecializations.includes("BioTech") ? "primary" : "default"}
-                                            />
-                                            <Chip
-                                                label="Data Science"
-                                                variant="outlined"
-                                                clickable
-                                                onClick={() => handleChipClick("Data Science")}
-                                                color={selectedSpecializations.includes("Data Science") ? "primary" : "default"}
-                                            />
 
-                                        </div> */}
                                         <div>
                                             <div className="form-group my-4">
                                                 {
@@ -409,7 +294,6 @@ const Mentorship = () => {
                                                                 style={{ backgroundColor: '#626060' }}
                                                                 id="specialization"
                                                                 name="specialization"
-                                                                // value={specialization}
                                                                 onChange={handleSpecializationChange}
                                                                 className="mt-1 p-2 border border-gray-300 bg-yellow-900 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200"
                                                                 required
@@ -429,30 +313,22 @@ const Mentorship = () => {
                                             </div>
                                         </div>
                                         <label htmlFor="datetime" className='block text-sm font-medium text-white'>Select a date and time for the call:</label>
-                                        {/* <input
-                                            type="datetime-local"
-                                            id="datetime"
-                                            name="datetime"
-                                            min={minDateTime}
-                                            onChange={handleChangeDate}
-                                            required
-                                        /> */}
+
                                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                                             <DemoContainer components={['DateTimePicker']}>
                                                 <DateTimePicker
                                                     sx={{
-                                                        // Customize or remove styles here
                                                         '& .MuiInputBase-root': {
-                                                            backgroundColor: 'transparent', // Example: Remove background color
-                                                            borderRadius: 0, // Example: Remove border radius
+                                                            backgroundColor: 'transparent',
+                                                            borderRadius: 0,
                                                         },
                                                         '& .MuiOutlinedInput-notchedOutline': {
-                                                            border: 'none', // Example: Remove border
+                                                            border: 'none',
                                                         },
                                                     }}
                                                     onChange={handleDateTimeChange}
                                                     label={null}
-                                                    minDateTime={minDateTime} // Set the minimum selectable date and time
+                                                    minDateTime={minDateTime}
                                                 />
                                             </DemoContainer>
                                         </LocalizationProvider>                                </div>
