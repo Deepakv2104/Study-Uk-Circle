@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import haldiram3 from '../../../assets/img/haldiram3.png';
 import IQ from '../../../assets/img/IQ.svg';
 import '../styles/Join.css';
@@ -94,11 +94,14 @@ const Mentorship = () => {
         tomorrow.setHours(0, 0, 0, 0);  // Set time to midnight to avoid timezone issues
         return tomorrow;
     };
+    const [minDateTime, setMinDateTime] = useState(null)
 
+    useEffect(() => {
+        let tommorrowDate = getTomorrowDate().toISOString().slice(0, 16);
+        console.log(tommorrowDate, "tommorrowDate")
+        setMinDateTime(tommorrowDate)
+    }, [])
 
-
-    const minDateTime = getTomorrowDate().toISOString().slice(0, 16);
-    // console.log(minDateTime, "minDateTime")
 
 
     const [specialization, setSpecialization] = useState('');
