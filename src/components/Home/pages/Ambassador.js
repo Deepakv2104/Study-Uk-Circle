@@ -138,9 +138,9 @@ const Ambassador = () => {
                     <div className="left-column mr-12">
                         <div className="heading mb-8">
                             <h3 className="text-2xl font-bold">Welcome to<span className="text-color-green">  WorldLynk</span></h3>
-                            <h3 className="text-2xl font-bold">Seamless student experience in the UK: a one-stop solution</h3>
+                            <h3 className="text-2xl font-bold">Application for Worldlynk Ambassador Program</h3>
                         </div>
-                        <p className="large-text mb-8">Be among the first to experience the future of student life in the UK! Join our waiting list today and gain early access to our comprehensive platform designed to revolutionize your student experience.</p>
+                        <p className="large-text mb-8">Join the Worldlynk Ambassador Program and become a vital link between Worldlynk, students, and your university. As an ambassador, you will promote our services, organize events, and build a strong community. This part-time role is for current and incoming students only. </p>
                         {/* <img src="https://join.getwyld.in/assets/images/line.png" alt="Divider" className="mb-8" /> */}
                         {/* <a href="/" className="glass-button smaller w-button  rounded-lg bg-orange-500 hover:bg-orange-600" style={{ textDecoration: 'none', color: 'white', padding: '0.8rem' }}>Back to homepage</a> */}
                     </div>
