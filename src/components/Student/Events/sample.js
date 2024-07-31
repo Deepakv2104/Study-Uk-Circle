@@ -9,6 +9,8 @@ import Success from '../../CheckOutForm/Success';
 import Failure from '../../CheckOutForm/Failure';
 import { event } from 'jquery';
 
+
+const userData = JSON.parse(localStorage.getItem('userData'));
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
 const Loader = () => (
@@ -68,32 +70,32 @@ const EventPage = () => {
   };
 
   const handleGetTicketsClick = async () => {
-    if (!currentUser) {
+    if (!userData) {
       console.error('User is not logged in');
       setError('User is not logged in');
       return;
     }
-  
+
     const user = {
-      uid: currentUser.uid,
-      email: currentUser.email,
-      name: currentUser.firstName,
+      uid: userData.userId,
+      email: userData.email,
+      name: userData.name || userData.firstName,
       eventId: eventData.eventId,
       eventTitle: eventData.eventTitle,
       eventLocation: eventData.eventLocation,
       eventDate: eventData.startDate,
       eventTime: eventData.startTime,
     };
-  console.log(user)
+
     // Check if all necessary user data is present
-    if (!user.uid || !user.email || !user.name || !user.eventId || !user.eventTitle || !user.eventDate || !user.eventTime || !user.eventLocation) {
+    if (!user.uid || !user.email || (!user.name && !userData.firstName)  || !user.eventId || !user.eventTitle || !user.eventDate || !user.eventTime || !user.eventLocation) {
       console.error('Incomplete user data:', user);
       setError('Incomplete user data. Please complete your profile.');
       return;
     }
-  
+
     console.log('User data:', user); // Ensure user data is available and log it
-  
+
     setRedirecting(true);
     const stripe = await stripePromise;
     const selectedTickets = eventData.tickets.map((ticket, index) => ({
@@ -103,7 +105,7 @@ const EventPage = () => {
       bookingFee: ticket.bookingFee,
       quantity: selectedQuantities[index],
     })).filter(ticket => ticket.quantity > 0);
-  
+
     console.log('Sending selected tickets:', selectedTickets);
     try {
       const response = await fetch(process.env.REACT_APP_CREATE_CHECKOUT_SESSION_URL, {
@@ -113,17 +115,17 @@ const EventPage = () => {
         },
         body: JSON.stringify({ tickets: selectedTickets, user }),
       });
-  
+
       if (!response.ok) {
         const errorText = await response.text();
         console.error('Error response:', errorText);  // More detailed logging
         throw new Error(`Network response was not ok: ${errorText}`);
       }
-  
+
       const session = await response.json();
       console.log('Received session:', session);  // Log session data for debugging
       const result = await stripe.redirectToCheckout({ sessionId: session.id });
-  
+
       if (result.error) {
         console.error('Stripe error:', result.error.message);
         setError({

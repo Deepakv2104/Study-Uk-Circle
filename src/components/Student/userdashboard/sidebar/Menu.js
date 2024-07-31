@@ -65,7 +65,7 @@ const Menu = ({ user }) => {
                 <div>
                     <div className="user-info">
                         <Avatar sx={{ width: 50, height: 50, margin: 2 }} />
-                        <p>{user?.name || 'Guest'}</p>
+                        <p>{user?.name || user?.firstName || 'Guest'}</p>
                     </div>
                     <ul>
                         <li className="nav-item1">
