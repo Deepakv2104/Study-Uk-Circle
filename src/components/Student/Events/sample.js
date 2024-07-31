@@ -4,13 +4,9 @@ import { useParams } from 'react-router-dom';
 import { firestore } from '../../../firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import { loadStripe } from '@stripe/stripe-js';
-import { useAuth } from '../../../auth/userProvider/AuthProvider'; // Assuming you have an auth context
 import Success from '../../CheckOutForm/Success';
 import Failure from '../../CheckOutForm/Failure';
-import { event } from 'jquery';
 
-
-const userData = JSON.parse(localStorage.getItem('userData'));
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
 const Loader = () => (
@@ -21,12 +17,12 @@ const Loader = () => (
 
 const EventPage = () => {
   const [eventData, setEventData] = useState(null);
+  const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [redirecting, setRedirecting] = useState(false);
   const [success, setSuccess] = useState(false);
   const { eventId } = useParams();
-  const { currentUser } = useAuth(); // Get currentUser from your auth context
   const [selectedQuantities, setSelectedQuantities] = useState({});
 
   const openGoogleMaps = (name, latitude, longitude) => {
@@ -34,13 +30,34 @@ const EventPage = () => {
     const url = `https://www.google.com/maps?q=${encodeURIComponent(name)}`;
     window.open(url, '_blank');
   };
+  
+  useEffect(() => {
+    // Fetch user data from localStorage
+    const fetchUserData = () => {
+      try {
+        const storedUserData = localStorage.getItem('userData');
+        if (storedUserData) {
+          setUserData(JSON.parse(storedUserData));
+        } else {
+          console.error('No user data found in localStorage.');
+          setError('User not logged in');
+        }
+      } catch (err) {
+        console.error('Error parsing user data from localStorage:', err);
+        setError('Failed to load user data');
+      }
+    };
+
+    fetchUserData();
+  }, []);
 
   useEffect(() => {
+    if (!eventId) return;
+
     const fetchEventData = async () => {
       try {
         const eventDoc = await getDoc(doc(firestore, 'events', eventId));
         if (eventDoc.exists()) {
-          console.log(currentUser);
           setEventData(eventDoc.data());
           const initialQuantities = {};
           eventDoc.data().tickets.forEach((ticket, index) => {
@@ -145,7 +162,6 @@ const EventPage = () => {
       setRedirecting(false);
     }
   };
-  
 
   if (loading) return <div>Loading....</div>;
   if (error) return <Failure error={error} />;
