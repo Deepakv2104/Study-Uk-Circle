@@ -23,15 +23,17 @@ const NewNav = () => {
                 </div>
 
                 <ul className={click ? 'nav-menu active' : 'nav-menu'} >
+
                     <li className="nav-item">
                         <div
-                            onClick={() => { navigate('/'); closeMobileMenu(); }}
+                            onClick={() => { navigate('/mentorship'); closeMobileMenu(); }}
                             className="nav-link"
                         >
-                            Home
+                            Mentorship
                         </div>
                     </li>
                     <li className="nav-item">
+
                         <div
                             onClick={() => { navigate('/about-us'); closeMobileMenu(); }}
                             className="nav-link"
@@ -49,12 +51,13 @@ const NewNav = () => {
                     </li>
                     <li className="nav-item">
                         <div
-                            onClick={() => { navigate('/mentorship'); closeMobileMenu(); }}
+                            onClick={() => { navigate('/ambassador'); closeMobileMenu(); }}
                             className="nav-link"
                         >
-                            Mentorship
+                            Ambassador
                         </div>
                     </li>
+
                     <li className="nav-item">
                         <div
                             onClick={() => { navigate('/join-waiting-list'); closeMobileMenu(); }}

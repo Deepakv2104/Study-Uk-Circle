@@ -37,16 +37,18 @@ import Success from "./components/CheckOutForm/Success";
 import Failure from "./components/CheckOutForm/Failure";
 import Maps from "./components/Student/Maps/Maps";
 import MyBookings from "./components/Student/Bookings/MyBookings";
+import Ambassador from "./components/Home/pages/Ambassador";
 
 
 gsap.registerPlugin();
 function App() {
-  return ( 
+  return (
     <Router>
       <div className="App">
 
         <Routes>
 
+          <Route path="/ambassador" element={<Ambassador />} />
           <Route path="/" element={<NewHome />} />
           {/* <Route path="/form" element={<QuizApp />} /> */}
           {/* <Route path="/details" element={<DetailsPage />} /> */}
@@ -110,7 +112,7 @@ function App() {
                 role="student"
                 element={<Success />}
               />
-                  <Route
+              <Route
                 path="/user-dashboard/success"
                 role="student"
                 element={<Success />}
