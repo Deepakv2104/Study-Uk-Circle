@@ -37,36 +37,35 @@ import {
 
 
 const StudentProfile = () => {
-    const { userId } = useParams();
-  // const location = useLocation();
-  // const { user } = useAuth();
+  const { userId } = useParams();
   const [userData, setUserData] = useState({});
-  // const [isEditing, setIsEditing] = useState(false);
-
 
   useEffect(() => {
     const fetchUserData = async () => {
-        try {
-            if (userId) {
-                // Get document reference for the user with the provided studentId
-                const userDocRef = doc(firestore, "users", userId);
-                const userDocSnapshot = await getDoc(userDocRef);
+      try {
+        if (userId) {
+          // Fetch user data from localStorage
+          const storedUserData = localStorage.getItem('userData');
+          if (storedUserData) {
+            const parsedUserData = JSON.parse(storedUserData);
 
-                if (userDocSnapshot.exists()) {
-                    // If document exists, set userData state with document data
-                    const userData = userDocSnapshot.data();
-                    setUserData(userData);
-                } else {
-                    console.log("User document not found");
-                }
+            // Check if the data belongs to the correct user
+            if (parsedUserData.userId === userId) {
+              setUserData(parsedUserData);
+            } else {
+              console.log("No matching user data found in localStorage");
             }
-        } catch (error) {
-            console.error("Error fetching user data:", error);
+          } else {
+            console.log("No user data found in localStorage");
+          }
         }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
     };
 
     fetchUserData();
-}, [userId]);
+  }, [userId]);
 
 
 
@@ -110,7 +109,7 @@ const StudentProfile = () => {
                   {userData.rollNo}
                 </Typography>
                 <Typography variant="h6" align="center" className="username">
-                  {userData.name || "User"}
+                {userData.name || (userData.firstName && userData.lastName ? userData.firstName + " " + userData.lastName : "User")}
                 </Typography>
               </Box>
             </Grid>
@@ -228,7 +227,7 @@ const StudentProfile = () => {
                               </TableCell>
                               <TableCell>
                                 <Typography variant="body1" color="white">
-                                  {userData.name}
+                                {userData.name || (userData.firstName && userData.lastName ? userData.firstName + " " + userData.lastName : "User")}
                                 </Typography>
                               </TableCell>
                             </TableRow>

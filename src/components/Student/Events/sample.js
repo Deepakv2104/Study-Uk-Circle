@@ -4,10 +4,8 @@ import { useParams } from 'react-router-dom';
 import { firestore } from '../../../firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import { loadStripe } from '@stripe/stripe-js';
-import { useAuth } from '../../../auth/userProvider/AuthProvider'; // Assuming you have an auth context
 import Success from '../../CheckOutForm/Success';
 import Failure from '../../CheckOutForm/Failure';
-import { event } from 'jquery';
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
@@ -19,12 +17,12 @@ const Loader = () => (
 
 const EventPage = () => {
   const [eventData, setEventData] = useState(null);
+  const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [redirecting, setRedirecting] = useState(false);
   const [success, setSuccess] = useState(false);
   const { eventId } = useParams();
-  const { currentUser } = useAuth(); // Get currentUser from your auth context
   const [selectedQuantities, setSelectedQuantities] = useState({});
 
   const openGoogleMaps = (name, latitude, longitude) => {
@@ -32,13 +30,34 @@ const EventPage = () => {
     const url = `https://www.google.com/maps?q=${encodeURIComponent(name)}`;
     window.open(url, '_blank');
   };
+  
+  useEffect(() => {
+    // Fetch user data from localStorage
+    const fetchUserData = () => {
+      try {
+        const storedUserData = localStorage.getItem('userData');
+        if (storedUserData) {
+          setUserData(JSON.parse(storedUserData));
+        } else {
+          console.error('No user data found in localStorage.');
+          setError('User not logged in');
+        }
+      } catch (err) {
+        console.error('Error parsing user data from localStorage:', err);
+        setError('Failed to load user data');
+      }
+    };
+
+    fetchUserData();
+  }, []);
 
   useEffect(() => {
+    if (!eventId) return;
+
     const fetchEventData = async () => {
       try {
         const eventDoc = await getDoc(doc(firestore, 'events', eventId));
         if (eventDoc.exists()) {
-          console.log(currentUser);
           setEventData(eventDoc.data());
           const initialQuantities = {};
           eventDoc.data().tickets.forEach((ticket, index) => {
@@ -68,32 +87,32 @@ const EventPage = () => {
   };
 
   const handleGetTicketsClick = async () => {
-    if (!currentUser) {
+    if (!userData) {
       console.error('User is not logged in');
       setError('User is not logged in');
       return;
     }
-  
+
     const user = {
-      uid: currentUser.uid,
-      email: currentUser.email,
-      name: currentUser.firstName,
+      uid: userData.userId,
+      email: userData.email,
+      name: userData.name || userData.firstName,
       eventId: eventData.eventId,
       eventTitle: eventData.eventTitle,
       eventLocation: eventData.eventLocation,
       eventDate: eventData.startDate,
       eventTime: eventData.startTime,
     };
-  console.log(user)
+
     // Check if all necessary user data is present
-    if (!user.uid || !user.email || !user.name || !user.eventId || !user.eventTitle || !user.eventDate || !user.eventTime || !user.eventLocation) {
+    if (!user.uid || !user.email || (!user.name && !userData.firstName)  || !user.eventId || !user.eventTitle || !user.eventDate || !user.eventTime || !user.eventLocation) {
       console.error('Incomplete user data:', user);
       setError('Incomplete user data. Please complete your profile.');
       return;
     }
-  
+
     console.log('User data:', user); // Ensure user data is available and log it
-  
+
     setRedirecting(true);
     const stripe = await stripePromise;
     const selectedTickets = eventData.tickets.map((ticket, index) => ({
@@ -103,7 +122,7 @@ const EventPage = () => {
       bookingFee: ticket.bookingFee,
       quantity: selectedQuantities[index],
     })).filter(ticket => ticket.quantity > 0);
-  
+
     console.log('Sending selected tickets:', selectedTickets);
     try {
       const response = await fetch(process.env.REACT_APP_CREATE_CHECKOUT_SESSION_URL, {
@@ -113,17 +132,17 @@ const EventPage = () => {
         },
         body: JSON.stringify({ tickets: selectedTickets, user }),
       });
-  
+
       if (!response.ok) {
         const errorText = await response.text();
         console.error('Error response:', errorText);  // More detailed logging
         throw new Error(`Network response was not ok: ${errorText}`);
       }
-  
+
       const session = await response.json();
       console.log('Received session:', session);  // Log session data for debugging
       const result = await stripe.redirectToCheckout({ sessionId: session.id });
-  
+
       if (result.error) {
         console.error('Stripe error:', result.error.message);
         setError({
@@ -143,7 +162,6 @@ const EventPage = () => {
       setRedirecting(false);
     }
   };
-  
 
   if (loading) return <div>Loading....</div>;
   if (error) return <Failure error={error} />;

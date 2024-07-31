@@ -16,6 +16,7 @@ const UserDashboard = () => {
 
   useEffect(() => {
     if (!auth || !auth.currentUser) return;
+
     const fetchData = async () => {
       try {
         console.log("Fetching user data...");
@@ -26,9 +27,13 @@ const UserDashboard = () => {
 
         if (userDoc.exists()) {
           console.log("User document exists");
-          console.log("User data:", userDoc.data());
+          const data = userDoc.data();
+          console.log("User data:", data);
 
-          setUserData(userDoc.data());
+          setUserData(data);
+
+          // Store user data in localStorage directly from the fetched data
+          localStorage.setItem('userData', JSON.stringify(data));
         } else {
           console.log("User document does not exist");
         }
