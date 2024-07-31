@@ -2,11 +2,12 @@ import React from 'react';
 import { FaMapMarkerAlt, FaClock } from 'react-icons/fa';
 
 const TicketCard = ({ date, month, eventName, eventDay, eventTime, location }) => {
+  const day = date ? date.match(/\d+/)[0] : 'N/A';
   return (
     <div className="flex max-w-md mx-auto bg-gray-800 shadow-lg rounded-lg overflow-hidden">
       {/* Left section - Date */}
       <div className="w-1/4 bg-gray-700 p-4 flex flex-col items-center justify-center border-r border-gray-600">
-        <span className="text-4xl font-bold text-white">{date}</span>
+        <span className="text-4xl font-bold text-white">{day}</span>
         <span className="text-xl uppercase text-gray-300">{month}</span>
       </div>
       
