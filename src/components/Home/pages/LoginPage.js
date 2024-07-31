@@ -132,6 +132,7 @@ const LoginPage = () => {
         userId: user.uid,
         firstName: formData.firstName,
         lastName: formData.lastName,
+        name:formData.firstName,
         email: formData.email,
         role: "student",
       });

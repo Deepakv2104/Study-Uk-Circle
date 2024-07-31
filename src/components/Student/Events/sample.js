@@ -77,7 +77,7 @@ const EventPage = () => {
     const user = {
       uid: currentUser.uid,
       email: currentUser.email,
-      name: currentUser.displayName,
+      name: currentUser.firstName,
       eventId: eventData.eventId,
       eventTitle: eventData.eventTitle,
       eventLocation: eventData.eventLocation,
