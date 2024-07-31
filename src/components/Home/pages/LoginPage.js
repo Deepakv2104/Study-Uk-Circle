@@ -12,7 +12,7 @@ import linkedin from "../../../assets/img/linkedin.svg";
 import meta from "../../../assets/img/meta.svg";
 import "../../../styles/Login.css";
 import { GoogleAuthProvider } from "firebase/auth";
-import { signInWithEmailAndPassword, signInWithPopup, createUserWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, signInWithPopup, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { getDoc, doc, setDoc } from "firebase/firestore";
 import { signOut } from "firebase/auth";
 import NewNav from "../sub-components/NewNav";
@@ -123,41 +123,56 @@ const LoginPage = () => {
     }
   };
 
-  const handleSignUp = async () => {
+
+  
+  const handleSignUp = async (formData) => {
     try {
+      // Create user with email and password
       const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
       const user = userCredential.user;
-
+  
+      // Update the user's displayName
+      await updateProfile(user, {
+        displayName: `${formData.firstName} ${formData.lastName}`
+      });
+  
+      // Save user information to Firestore
       await setDoc(doc(firestore, "users", user.uid), {
         userId: user.uid,
         firstName: formData.firstName,
         lastName: formData.lastName,
+        name: formData.firstName,
         email: formData.email,
         role: "student",
       });
-
+  
       toast.success("Signup successful!", { position: "top-center", autoClose: 3000 });
-
+  
       // Wait for AuthProvider to update currentUser and userRole
       let attempts = 0;
       const maxAttempts = 10;
       const delay = 300; // milliseconds
-
+  
       while (attempts < maxAttempts) {
+        // Assuming getUserRole is a function that fetches the user role from the database
         const userRole = await getUserRole(user.uid);
         if (userRole) {
-          navigate("/user-dashboard/events");
+          if (userRole === "student") {
+            navigate("/user-dashboard/events");
+          } else if (userRole === "admin") {
+            navigate("/dashboard/overview");
+          }
           return;
         }
         attempts++;
         await new Promise((resolve) => setTimeout(resolve, delay));
       }
-
+  
       toast.error("Failed to retrieve user role. Please try again.", { position: "top-center", autoClose: 5000 });
     } catch (error) {
       console.error("Signup Error:", error);
       let errorMessage = "Signup failed. Please try again.";
-
+  
       switch (error.code) {
         case "auth/email-already-in-use":
           errorMessage = "Email is already in use. Please use a different email.";
@@ -175,10 +190,11 @@ const LoginPage = () => {
           errorMessage = `Signup failed: ${error.message}`;
           break;
       }
-
+  
       toast.error(errorMessage, { position: "top-center", autoClose: 5000 });
     }
   };
+  
 
   return (
     <div>
