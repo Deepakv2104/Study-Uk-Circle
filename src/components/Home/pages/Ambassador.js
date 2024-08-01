@@ -219,7 +219,7 @@ const Ambassador = () => {
                             />
                         </div>
                         <div className="flex justify-between">
-                            <button type="button" onClick={prevStep} className="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-gray-300" disabled={currentStep === 1}>Previous</button>
+
                             <button type="button" onClick={nextStep} className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-green-300">Next</button>
                         </div>
                     </>
