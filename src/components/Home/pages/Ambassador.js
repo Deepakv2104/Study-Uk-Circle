@@ -10,7 +10,8 @@ const Ambassador = () => {
     const [currentStep, setCurrentStep] = useState(1);
     const [formSubmitted, setFormSubmitted] = useState(false);
     const [formData, setFormData] = useState({
-        fullName: '',
+        firstName: '',
+        lastName: '',
         phoneNumber: '',
         gender: '',
         email: '',
@@ -27,12 +28,14 @@ const Ambassador = () => {
         workPermit: '',
         needWorkPermitFuture: '',
         interviewAdjustments: '',
+        interviewAdjustmentsDetails: '',
         hoursPerWeek: '',
         personalStatement: '',
         requirementsDetail: '',
         declaration: '',
     });
 
+    const [errors, setErrors] = useState({});
     const [customGender, setCustomGender] = useState(false);
 
     const handleChange = (e) => {
@@ -40,22 +43,58 @@ const Ambassador = () => {
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleGenderChange = (e) => {
-        const { value } = e.target;
-        if (value === 'other') {
+    const handleGenderChange = (event) => {
+        const { name, value } = event.target;
+        if (value === 'letMeType') {
             setCustomGender(true);
+            setFormData({ ...formData, gender: '' });
         } else {
             setCustomGender(false);
-            setFormData({ ...formData, gender: value });
+            setFormData({ ...formData, [name]: value });
         }
+    };
+
+    const validate = () => {
+        const newErrors = {};
+        if (currentStep === 1) {
+            if (!formData.firstName) newErrors.firstName = 'First Name is required';
+            if (!formData.lastName) newErrors.lastName = 'Last Name is required';
+            if (!formData.phoneNumber || !/^\d+$/.test(formData.phoneNumber)) newErrors.phoneNumber = 'Valid Phone Number is required';
+            if (!formData.gender) newErrors.gender = 'Gender is required';
+            if (!formData.email || !/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Valid Email is required';
+            if (!formData.address) newErrors.address = 'Address is required';
+            if (!formData.dateOfBirth) newErrors.dateOfBirth = 'Date of Birth is required';
+            if (!formData.nationality) newErrors.nationality = 'Nationality is required';
+        } else if (currentStep === 2) {
+            if (!formData.category) newErrors.category = 'Category is required';
+            if (!formData.levelOfStudy) newErrors.levelOfStudy = 'Level of Study is required';
+            if (!formData.university) newErrors.university = 'University is required';
+            if (!formData.graduationYear || !/^\d{4}$/.test(formData.graduationYear)) newErrors.graduationYear = 'Valid Graduation Year is required';
+            if (!formData.degreeProgram) newErrors.degreeProgram = 'Degree Program is required';
+            if (!formData.availableForEvents) newErrors.availableForEvents = 'Availability for events is required';
+        } else if (currentStep === 3) {
+            if (!formData.canStartImmediately) newErrors.canStartImmediately = 'Start availability is required';
+            if (!formData.workPermit) newErrors.workPermit = 'Work permit status is required';
+            if (!formData.needWorkPermitFuture) newErrors.needWorkPermitFuture = 'Future work permit status is required';
+            if (!formData.hoursPerWeek || !/^\d+$/.test(formData.hoursPerWeek)) newErrors.hoursPerWeek = 'Valid number of hours per week is required';
+        } else if (currentStep === 4) {
+            if (!formData.personalStatement) newErrors.personalStatement = 'Personal Statement is required';
+            if (!formData.requirementsDetail) newErrors.requirementsDetail = 'Requirements detail is required';
+        } else if (currentStep === 5) {
+            if (formData.declaration !== 'yes') newErrors.declaration = 'Declaration must be accepted';
+        }
+
+        if (currentStep === 3 && formData.interviewAdjustments === 'yes' && !formData.interviewAdjustmentsDetails) {
+            newErrors.interviewAdjustmentsDetails = 'Please specify interview adjustments';
+        }
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (formData.declaration !== 'yes') {
-            alert('You must accept the declaration to submit the form.');
-            return;
-        }
+        if (!validate()) return;
 
         try {
             await addDoc(collection(firestore, 'ambassador'), {
@@ -69,7 +108,9 @@ const Ambassador = () => {
     };
 
     const nextStep = () => {
-        setCurrentStep(currentStep + 1);
+        if (validate()) {
+            setCurrentStep(currentStep + 1);
+        }
     };
 
     const prevStep = () => {
@@ -83,17 +124,32 @@ const Ambassador = () => {
                     <>
                         <h3 className="text-2xl font-bold text-white">Personal Information</h3>
                         <div className="form-group">
-                            <label htmlFor="fullName" className="block text-sm font-medium text-white">Full Name:</label>
+                            <label htmlFor="firstName" className="block text-sm font-medium text-white">First Name:</label>
                             <input
                                 type="text"
-                                id="fullName"
-                                name="fullName"
-                                placeholder="Full Name"
-                                value={formData.fullName}
-                                className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200"
+                                id="firstName"
+                                name="firstName"
+                                placeholder="First Name"
+                                value={formData.firstName}
+                                className={`mt-1 p-2 border ${errors.firstName ? 'border-red-500' : 'border-gray-300'} rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200`}
                                 onChange={handleChange}
                                 required
                             />
+                            {errors.firstName && <span className="text-red-500 text-sm">{errors.firstName}</span>}
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="lastName" className="block text-sm font-medium text-white">Last Name:</label>
+                            <input
+                                type="text"
+                                id="lastName"
+                                name="lastName"
+                                placeholder="Last Name"
+                                value={formData.lastName}
+                                className={`mt-1 p-2 border ${errors.lastName ? 'border-red-500' : 'border-gray-300'} rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200`}
+                                onChange={handleChange}
+                                required
+                            />
+                            {errors.lastName && <span className="text-red-500 text-sm">{errors.lastName}</span>}
                         </div>
                         <div className="form-group">
                             <label htmlFor="phoneNumber" className="block text-sm font-medium text-white">Phone Number:</label>
@@ -101,70 +157,49 @@ const Ambassador = () => {
                                 type="tel"
                                 id="phoneNumber"
                                 name="phoneNumber"
-                                placeholder="Phone Number"
+                                placeholder="(XXX)XXXXX-XXXXX"
                                 value={formData.phoneNumber}
-                                className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200"
+                                className={`mt-1 p-2 border ${errors.phoneNumber ? 'border-red-500' : 'border-gray-300'} rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200`}
                                 onChange={handleChange}
                                 required
                             />
+                            {errors.phoneNumber && <span className="text-red-500 text-sm">{errors.phoneNumber}</span>}
                         </div>
                         <div className="form-group">
-                            <label className="block text-sm font-medium text-white">Gender:</label>
-                            <div className="user-type-options">
-                                <div className="user-type-option">
+                            {customGender ? (
+                                <div className="form-group">
+                                    <label htmlFor="gender" className="block text-sm font-medium text-white">Gender:</label>
                                     <input
-                                        type="radio"
-                                        id="male"
+                                        type="text"
+                                        id="gender"
                                         name="gender"
-                                        value="male"
-                                        checked={formData.gender === 'male'}
-                                        onChange={handleGenderChange}
+                                        placeholder="Gender"
+                                        className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200"
+                                        onChange={handleChange}
+                                        required
                                     />
-                                    <label htmlFor="male" className="mt-1 ml-1">Male</label>
                                 </div>
-                                <div className="user-type-option">
-                                    <input
-                                        type="radio"
-                                        id="female"
+                            ) : (
+                                <div className="form-group">
+                                    <label htmlFor="gender" className="block text-sm font-medium text-white">Gender:</label>
+                                    <select
+                                        style={{ backgroundColor: '#626060' }}
+                                        id="gender"
                                         name="gender"
-                                        value="female"
-                                        checked={formData.gender === 'female'}
                                         onChange={handleGenderChange}
-                                    />
-                                    <label htmlFor="female" className="mt-1 ml-1">Female</label>
+                                        className="mt-1 p-2 border border-gray-300 bg-yellow-900 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200"
+                                        required
+                                    >
+                                        <option value="">Gender</option>
+                                        <option value="woman">Woman</option>
+                                        <option value="man">Man</option>
+                                        <option value="nonBinary">Non-binary</option>
+                                        <option value="preferNotToSpecify">Prefer not to say</option>
+                                        <option value="letMeType">Let me type</option>
+                                    </select>
+                                    {errors.gender && <span className="text-red-500 text-sm">{errors.gender}</span>}
+
                                 </div>
-                                <div className="user-type-option">
-                                    <input
-                                        type="radio"
-                                        id="preferNotToSay"
-                                        name="gender"
-                                        value="preferNotToSay"
-                                        checked={formData.gender === 'preferNotToSay'}
-                                        onChange={handleGenderChange}
-                                    />
-                                    <label htmlFor="preferNotToSay" className="mt-1 ml-1">Prefer not to say</label>
-                                </div>
-                                <div className="user-type-option">
-                                    <input
-                                        type="radio"
-                                        id="other"
-                                        name="gender"
-                                        value="other"
-                                        checked={formData.gender === 'other'}
-                                        onChange={handleGenderChange}
-                                    />
-                                    <label htmlFor="other" className="mt-1 ml-1">Other</label>
-                                </div>
-                            </div>
-                            {customGender && (
-                                <input
-                                    type="text"
-                                    name="gender"
-                                    placeholder="Please specify"
-                                    value={formData.gender === 'other' ? formData.gender : ''}
-                                    className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200"
-                                    onChange={handleChange}
-                                />
                             )}
                         </div>
                         <div className="form-group">
@@ -173,12 +208,13 @@ const Ambassador = () => {
                                 type="email"
                                 id="email"
                                 name="email"
-                                placeholder="Email"
+                                placeholder="Email Address"
                                 value={formData.email}
-                                className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200"
+                                className={`mt-1 p-2 border ${errors.email ? 'border-red-500' : 'border-gray-300'} rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200`}
                                 onChange={handleChange}
                                 required
                             />
+                            {errors.email && <span className="text-red-500 text-sm">{errors.email}</span>}
                         </div>
                         <div className="form-group">
                             <label htmlFor="address" className="block text-sm font-medium text-white">Address:</label>
@@ -188,10 +224,11 @@ const Ambassador = () => {
                                 name="address"
                                 placeholder="Address"
                                 value={formData.address}
-                                className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200"
+                                className={`mt-1 p-2 border ${errors.address ? 'border-red-500' : 'border-gray-300'} rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200`}
                                 onChange={handleChange}
                                 required
                             />
+                            {errors.address && <span className="text-red-500 text-sm">{errors.address}</span>}
                         </div>
                         <div className="form-group">
                             <label htmlFor="dateOfBirth" className="block text-sm font-medium text-white">Date of Birth:</label>
@@ -200,10 +237,11 @@ const Ambassador = () => {
                                 id="dateOfBirth"
                                 name="dateOfBirth"
                                 value={formData.dateOfBirth}
-                                className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200"
+                                className={`mt-1 p-2 border ${errors.dateOfBirth ? 'border-red-500' : 'border-gray-300'} rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200`}
                                 onChange={handleChange}
                                 required
                             />
+                            {errors.dateOfBirth && <span className="text-red-500 text-sm">{errors.dateOfBirth}</span>}
                         </div>
                         <div className="form-group">
                             <label htmlFor="nationality" className="block text-sm font-medium text-white">Nationality:</label>
@@ -213,13 +251,13 @@ const Ambassador = () => {
                                 name="nationality"
                                 placeholder="Nationality"
                                 value={formData.nationality}
-                                className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200"
+                                className={`mt-1 p-2 border ${errors.nationality ? 'border-red-500' : 'border-gray-300'} rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200`}
                                 onChange={handleChange}
                                 required
                             />
+                            {errors.nationality && <span className="text-red-500 text-sm">{errors.nationality}</span>}
                         </div>
                         <div className="flex justify-between">
-
                             <button type="button" onClick={nextStep} className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-green-300">Next</button>
                         </div>
                     </>
@@ -265,6 +303,7 @@ const Ambassador = () => {
                                     <label htmlFor="currentStudent" className="mt-1 ml-1">Current student</label>
                                 </div>
                             </div>
+                            {errors.category && <span className="text-red-500 text-sm">{errors.category}</span>}
                         </div>
                         <div className="form-group">
                             <label className="block text-sm font-medium text-white">Current Level of Study:</label>
@@ -336,6 +375,7 @@ const Ambassador = () => {
                                     <label htmlFor="phd" className="mt-1 ml-1">PhD</label>
                                 </div>
                             </div>
+                            {errors.levelOfStudy && <span className="text-red-500 text-sm">{errors.levelOfStudy}</span>}
                         </div>
                         <div className="form-group">
                             <label htmlFor="university" className="block text-sm font-medium text-white">University:</label>
@@ -345,10 +385,11 @@ const Ambassador = () => {
                                 name="university"
                                 placeholder="University"
                                 value={formData.university}
-                                className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200"
+                                className={`mt-1 p-2 border ${errors.university ? 'border-red-500' : 'border-gray-300'} rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200`}
                                 onChange={handleChange}
                                 required
                             />
+                            {errors.university && <span className="text-red-500 text-sm">{errors.university}</span>}
                         </div>
                         <div className="form-group">
                             <label htmlFor="graduationYear" className="block text-sm font-medium text-white">Graduation Year:</label>
@@ -358,10 +399,11 @@ const Ambassador = () => {
                                 name="graduationYear"
                                 placeholder="Graduation Year"
                                 value={formData.graduationYear}
-                                className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200"
+                                className={`mt-1 p-2 border ${errors.graduationYear ? 'border-red-500' : 'border-gray-300'} rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200`}
                                 onChange={handleChange}
                                 required
                             />
+                            {errors.graduationYear && <span className="text-red-500 text-sm">{errors.graduationYear}</span>}
                         </div>
                         <div className="form-group">
                             <label htmlFor="degreeProgram" className="block text-sm font-medium text-white">Degree Program:</label>
@@ -371,10 +413,11 @@ const Ambassador = () => {
                                 name="degreeProgram"
                                 placeholder="Degree Program"
                                 value={formData.degreeProgram}
-                                className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200"
+                                className={`mt-1 p-2 border ${errors.degreeProgram ? 'border-red-500' : 'border-gray-300'} rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200`}
                                 onChange={handleChange}
                                 required
                             />
+                            {errors.degreeProgram && <span className="text-red-500 text-sm">{errors.degreeProgram}</span>}
                         </div>
                         <div className="form-group">
                             <label className="block text-sm font-medium text-white">Are you available to organize and attend events on campus?</label>
@@ -413,6 +456,7 @@ const Ambassador = () => {
                                     <label htmlFor="maybeAvailableForEvents" className="mt-1 ml-1">Maybe</label>
                                 </div>
                             </div>
+                            {errors.availableForEvents && <span className="text-red-500 text-sm">{errors.availableForEvents}</span>}
                         </div>
                         <div className="flex justify-between">
                             <button type="button" onClick={prevStep} className="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-gray-300">Previous</button>
@@ -450,6 +494,7 @@ const Ambassador = () => {
                                     <label htmlFor="noStartImmediately" className="mt-1 ml-1">No</label>
                                 </div>
                             </div>
+                            {errors.canStartImmediately && <span className="text-red-500 text-sm">{errors.canStartImmediately}</span>}
                         </div>
                         <div className="form-group">
                             <label className="block text-sm font-medium text-white">Do you have a work permit/right to work in the UK?</label>
@@ -477,6 +522,7 @@ const Ambassador = () => {
                                     <label htmlFor="noWorkPermit" className="mt-1 ml-1">No</label>
                                 </div>
                             </div>
+                            {errors.workPermit && <span className="text-red-500 text-sm">{errors.workPermit}</span>}
                         </div>
                         <div className="form-group">
                             <label className="block text-sm font-medium text-white">Would you need a work permit to be employed in the UK in near future?</label>
@@ -504,6 +550,7 @@ const Ambassador = () => {
                                     <label htmlFor="noNeedWorkPermitFuture" className="mt-1 ml-1">No</label>
                                 </div>
                             </div>
+                            {errors.needWorkPermitFuture && <span className="text-red-500 text-sm">{errors.needWorkPermitFuture}</span>}
                         </div>
                         <div className="form-group">
                             <label className="block text-sm font-medium text-white">If shortlisted, do we need to make any specific arrangements to enable you to attend the interview?</label>
@@ -536,10 +583,11 @@ const Ambassador = () => {
                                     name="interviewAdjustmentsDetails"
                                     placeholder="Please specify adjustments"
                                     value={formData.interviewAdjustmentsDetails}
-                                    className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200"
+                                    className={`mt-1 p-2 border ${errors.interviewAdjustmentsDetails ? 'border-red-500' : 'border-gray-300'} rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200`}
                                     onChange={handleChange}
                                 />
                             )}
+                            {errors.interviewAdjustmentsDetails && <span className="text-red-500 text-sm">{errors.interviewAdjustmentsDetails}</span>}
                         </div>
                         <div className="form-group">
                             <label htmlFor="hoursPerWeek" className="block text-sm font-medium text-white">How many hours per week can you dedicate to the Ambassador Program?</label>
@@ -549,10 +597,11 @@ const Ambassador = () => {
                                 name="hoursPerWeek"
                                 placeholder="Number of hours"
                                 value={formData.hoursPerWeek}
-                                className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200"
+                                className={`mt-1 p-2 border ${errors.hoursPerWeek ? 'border-red-500' : 'border-gray-300'} rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200`}
                                 onChange={handleChange}
                                 required
                             />
+                            {errors.hoursPerWeek && <span className="text-red-500 text-sm">{errors.hoursPerWeek}</span>}
                         </div>
                         <div className="flex justify-between">
                             <button type="button" onClick={prevStep} className="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-gray-300">Previous</button>
@@ -571,11 +620,12 @@ const Ambassador = () => {
                                 name="personalStatement"
                                 placeholder="Max. 200 words"
                                 value={formData.personalStatement}
-                                className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200"
+                                className={`mt-1 p-2 border ${errors.personalStatement ? 'border-red-500' : 'border-gray-300'} rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200`}
                                 maxLength={200}
                                 onChange={handleChange}
                                 required
                             ></textarea>
+                            {errors.personalStatement && <span className="text-red-500 text-sm">{errors.personalStatement}</span>}
                         </div>
                         <div className="form-group">
                             <label htmlFor="requirementsDetail" className="block text-sm font-medium text-white">Please detail below how you meet the requirements of the person specification, particularly how you feel you can demonstrate the skills required for this position and your reasons for applying for this position. This is the part of the application form where you can bring to our attention any qualities you believe we should be aware of:</label>
@@ -583,10 +633,11 @@ const Ambassador = () => {
                                 id="requirementsDetail"
                                 name="requirementsDetail"
                                 value={formData.requirementsDetail}
-                                className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200"
+                                className={`mt-1 p-2 border ${errors.requirementsDetail ? 'border-red-500' : 'border-gray-300'} rounded-md w-full focus:outline-none focus:ring focus:ring-indigo-200`}
                                 onChange={handleChange}
                                 required
                             ></textarea>
+                            {errors.requirementsDetail && <span className="text-red-500 text-sm">{errors.requirementsDetail}</span>}
                         </div>
                         <div className="flex justify-between">
                             <button type="button" onClick={prevStep} className="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-gray-300">Previous</button>
@@ -624,6 +675,7 @@ const Ambassador = () => {
                                     <label htmlFor="declarationNo" className="mt-1 ml-1">No</label>
                                 </div>
                             </div>
+                            {errors.declaration && <span className="text-red-500 text-sm">{errors.declaration}</span>}
                         </div>
                         <div className="flex justify-between">
                             <button type="button" onClick={prevStep} className="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-gray-300">Previous</button>
@@ -639,7 +691,7 @@ const Ambassador = () => {
     return (
         <div>
             <NewNav />
-            <div className="bg-gray-800 text-white ">
+            <div className="bg-gray-800 text-white">
                 <div className="join-container mx-auto max-w-7xl px-4 flex justify-center items-center">
                     <div className="left-column mr-12">
                         <div className="heading mb-8">
@@ -655,7 +707,7 @@ const Ambassador = () => {
                                     {renderStep()}
                                 </form>
                             ) : (
-                                <div className="message-container">
+                                <div className="message-container mb-52">
                                     <h2 className="text-2xl font-bold">Exciting Journey Ahead!</h2>
                                     <p>Your application has been received.</p>
                                     <p>Follow us on <a href='https://www.instagram.com/_worldlynk_/'>Instagram</a></p>
@@ -666,7 +718,7 @@ const Ambassador = () => {
                 </div>
             </div>
             <Footer />
-            <div className="footer-brand-logos bg-gray-800 py-8 ">
+            <div className="footer-brand-logos bg-gray-800 py-8">
                 <h4 className="brand-text text-black">BRANDS THAT<br />LOVE US !</h4>
                 <div className="brand-logos flex justify-center items-center">
                     <a href="https://www.haldiramuk.com/" className="mr-4">

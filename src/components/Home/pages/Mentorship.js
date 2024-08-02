@@ -179,6 +179,7 @@ const Mentorship = () => {
                         <p className="large-text mb-8">
                             Explore on-ground experiences from universities around the world and dive deep into curriculum details, campus life, and more. Your first call is on us! Start your journey with a free chat and get the lowdown on job prospects after graduation. Have visa queries or need information on scholarships? We've got you covered. Need financial advice? Explore loan options seamlessly.
                         </p>
+                        <img src='https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.x-X-BXhnyomUaB5g2ctx6wHaE8%26pid%3DApi&f=1&ipt=e6feb16f8003e9018bf73dfd8e77883a85746737b81a4050daf7670523465e89&ipo=images' alt='mentorship' />
 
 
                     </div>
