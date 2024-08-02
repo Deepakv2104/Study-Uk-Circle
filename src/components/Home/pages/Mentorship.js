@@ -312,7 +312,7 @@ const Mentorship = () => {
                                                 }
                                             </div>
                                         </div>
-                                        <label htmlFor="datetime" className='block text-sm font-medium text-white'>Select a date and time for the call:</label>
+                                        {/* <label htmlFor="datetime" className='block text-sm font-medium text-white'>Select a date and time for the call:</label>
 
                                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                                             <DemoContainer components={['DateTimePicker']}>
@@ -331,7 +331,8 @@ const Mentorship = () => {
                                                     minDateTime={minDateTime}
                                                 />
                                             </DemoContainer>
-                                        </LocalizationProvider>                                </div>
+                                        </LocalizationProvider> */}
+                                    </div>
                                     <button type="submit" className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-green-300">Book a Slot</button>
                                 </form>
 
