@@ -2,39 +2,16 @@ import React, { useState, useEffect } from 'react';
 import NewNav from '../sub-components/NewNav';
 import Footer from '../sub-components/Footer';
 import { FaBullseye, FaLightbulb, FaUsers } from 'react-icons/fa';
-import './AboutUsPage.css';
-import globe from '../../../assets/vid/globe.mp4';
-import placeholderImage from '../../../assets/img/globe-placeholder.png'; // Import your placeholder image
 
 const AboutUsPage = () => {
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
-  useEffect(() => {
-    const video = document.querySelector('video');
-    video.addEventListener('loadeddata', () => setIsVideoLoaded(true));
-    return () => video.removeEventListener('loadeddata', () => setIsVideoLoaded(true));
-  }, []);
 
   return (
-    <div className="text-white min-h-screen">
+    <div className="bg-gray-800 text-white min-h-screen">
       <NewNav />
       <div className="relative overflow-hidden">
         <div className="bg-video-wrapper">
-          {!isVideoLoaded && (
-            <img 
-              src={placeholderImage} 
-              alt="Placeholder" 
-              className="bg-image"
-            />
-          )}
-          <video 
-            className={`bg-video ${isVideoLoaded ? 'visible' : 'hidden'}`} 
-            autoPlay 
-            loop 
-            muted
-          >
-            <source src={globe} type="video/mp4" />
-          </video>
+        
         </div>
         <div className="container mx-auto py-16 px-4 lg:px-8 relative">
           <div className="text-center mb-16">
