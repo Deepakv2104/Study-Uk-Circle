@@ -9,10 +9,12 @@ import { collection, addDoc } from 'firebase/firestore';
 import NewNav from '../sub-components/NewNav';
 import Footer from '../sub-components/Footer';
 import * as React from 'react';
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import { toast, Toaster } from 'react-hot-toast';
+
+// import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+// import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+// import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import dayjs from 'dayjs';
 
 
@@ -149,13 +151,27 @@ const Mentorship = () => {
                 specialization,
                 timestamp: new Date()
             });
+            toast.success('Form submitted successfully!', {
+                style: {
+                    background: '#333',
+                    color: '#fff',
+                },
+            });
 
             console.log(formData);
             setFormSubmitted(true);
         } catch (error) {
             console.error('Error adding document: ', error);
+            toast.error('Form submission failed. Please try again.', {
+                style: {
+                    //   background: '#333',
+                    //   color: '#fff',
+                    minWidth: '360px',
+                },
+            });
         }
     };
+
 
 
     function validatePhoneNumber(phoneNumber) {
@@ -168,17 +184,51 @@ const Mentorship = () => {
     return (
         <div>
             <NewNav />
+            <Toaster />
+
 
             <div className="bg-gray-800 text-white">
                 <div className="join-container mx-auto max-w-7xl px-0 flex justify-center items-center">
                     <div className="left-column mr-1">
                         <div className="heading  mb-6 text-md">
-                            <h3 className="text-2xl font-bold"><span className="text-color-green"> Welcome to WorldLynk </span></h3>
-                            <h3 className="text-2xl font-bold">Book a slot to avail your free call from our mentor and connect  </h3>
+                            <h3 className="text-3xl font-bold"><span className="text-color-green"> Welcome to WorldLynk </span></h3>
+                            <h3 className="text-2xl font-bold text-orange-400">Book a slot to avail your free call from our mentor and connect  </h3>
                         </div>
-                        <p className="large-text mb-8">
+                        {/* <p className="large-text mb-8">
                             Explore on-ground experiences from universities around the world and dive deep into curriculum details, campus life, and more. Your first call is on us! Start your journey with a free chat and get the lowdown on job prospects after graduation. Have visa queries or need information on scholarships? We've got you covered. Need financial advice? Explore loan options seamlessly.
-                        </p>
+                        </p> */}
+                        <div className='flex gap-2'>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-8 text-green-500">
+                                <path fillRule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z" clipRule="evenodd" />
+                            </svg>
+
+                            <p className="large-text mb-8">
+                                Explore on-ground experiences from universities around the world and dive deep into curriculum details, campus life, and more.
+                            </p>
+                        </div>
+                        <div className='flex gap-2'>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-8 text-green-500">
+                                <path fillRule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z" clipRule="evenodd" />
+                            </svg>
+
+                            <p className="large-text mb-8">
+                            Your first call is on us! Start your journey with a free chat and get the lowdown on job prospects after graduation.
+                            </p>
+
+                        </div>
+                        <div className='flex gap-2'>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-8 text-green-500">
+                                <path fillRule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z" clipRule="evenodd" />
+                            </svg>
+
+                            <p className="large-text mb-8">
+                            Have visa queries or need information on scholarships? We've got you covered. Need financial advice? Explore loan options seamlessly. 
+                            </p>
+
+                        </div>
+                       
+
+                        {/* <img src='https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.x-X-BXhnyomUaB5g2ctx6wHaE8%26pid%3DApi&f=1&ipt=e6feb16f8003e9018bf73dfd8e77883a85746737b81a4050daf7670523465e89&ipo=images' alt='mentorship' /> */}
 
 
                     </div>
@@ -312,7 +362,7 @@ const Mentorship = () => {
                                                 }
                                             </div>
                                         </div>
-                                        <label htmlFor="datetime" className='block text-sm font-medium text-white'>Select a date and time for the call:</label>
+                                        {/* <label htmlFor="datetime" className='block text-sm font-medium text-white'>Select a date and time for the call:</label>
 
                                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                                             <DemoContainer components={['DateTimePicker']}>
@@ -331,14 +381,16 @@ const Mentorship = () => {
                                                     minDateTime={minDateTime}
                                                 />
                                             </DemoContainer>
-                                        </LocalizationProvider>                                </div>
+                                        </LocalizationProvider> */}
+                                    </div>
                                     <button type="submit" className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-green-300">Book a Slot</button>
                                 </form>
 
                             ) : (
                                 <div className="message-container">
                                     <h2 className="text-2xl font-bold">Your slot is booked!</h2>
-                                    <p>You will receive a call on your selected time slot.</p>
+                                    <p>Thank you for your submission!  Our team will reach out to you soon.</p>
+                                    <p>Look out for our call or email soon.</p>
                                     <p>Meanwhile you can Follow us on <a href='https://www.instagram.com/_worldlynk_/'>Instagram</a></p>
                                 </div>
                             )}

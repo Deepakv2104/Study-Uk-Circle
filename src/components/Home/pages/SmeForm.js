@@ -112,6 +112,7 @@ const SmeForm = () => {
               experience, our comprehensive platform offers endless
               opportunities for collaboration and innovation in education.
             </p>
+            {/* <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.idErpdfd8op7fFKUY4YZUAHaFb%26pid%3DApi&f=1&ipt=46dba4cdfa807edd831d8068889c7c1a9304f9b4dd93cf6d06931d739b632252&ipo=images" alt="partneship" /> */}
             {/* <div>
               <img
                 src="https://join.getwyld.in/assets/images/line.png"
@@ -153,7 +154,7 @@ const SmeForm = () => {
                         type="email"
                         id="companyEmail"
                         name="companyEmail"
-                        placeholder="Mail address"
+                        placeholder="Email address"
                         onChange={handleChange}
                         className="input-field p-2"
                         required
