@@ -191,7 +191,7 @@ const Mentorship = () => {
                 <div className="join-container mx-auto max-w-7xl px-0 flex justify-center items-center">
                     <div className="left-column mr-1">
                         <div className="heading  mb-6 text-md">
-                            <h3 className="text-2xl font-bold"><span className="text-color-green"> Welcome to WorldLynk </span></h3>
+                            <h3 className="text-3xl font-bold"><span className="text-color-green"> Welcome to WorldLynk </span></h3>
                             <h3 className="text-2xl font-bold text-orange-400">Book a slot to avail your free call from our mentor and connect  </h3>
                         </div>
                         {/* <p className="large-text mb-8">
