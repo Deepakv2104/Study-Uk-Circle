@@ -9,10 +9,12 @@ import { collection, addDoc } from 'firebase/firestore';
 import NewNav from '../sub-components/NewNav';
 import Footer from '../sub-components/Footer';
 import * as React from 'react';
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import { toast, Toaster } from 'react-hot-toast';
+
+// import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+// import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+// import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import dayjs from 'dayjs';
 
 
@@ -149,13 +151,27 @@ const Mentorship = () => {
                 specialization,
                 timestamp: new Date()
             });
+            toast.success('Form submitted successfully!', {
+                style: {
+                  background: '#333',
+                  color: '#fff',
+                },
+              });
 
             console.log(formData);
             setFormSubmitted(true);
         } catch (error) {
             console.error('Error adding document: ', error);
+            toast.error('Form submission failed. Please try again.', {
+                style: {
+                //   background: '#333',
+                //   color: '#fff',
+                minWidth: '360px',
+                },
+              });
         }
     };
+
 
 
     function validatePhoneNumber(phoneNumber) {
@@ -168,6 +184,8 @@ const Mentorship = () => {
     return (
         <div>
             <NewNav />
+            <Toaster />
+
 
             <div className="bg-gray-800 text-white">
                 <div className="join-container mx-auto max-w-7xl px-0 flex justify-center items-center">
