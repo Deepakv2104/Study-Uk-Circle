@@ -23,6 +23,14 @@ const NewNav = () => {
                 </div>
 
                 <ul className={click ? 'nav-menu active' : 'nav-menu'} >
+                <li className="nav-item">
+                        <div
+                            onClick={() => { navigate('/'); closeMobileMenu(); }}
+                            className="nav-link"
+                        >  
+                            Home
+                        </div>
+                    </li>
 
                     <li className="nav-item">
                         <div

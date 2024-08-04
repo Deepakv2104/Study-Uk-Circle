@@ -105,13 +105,47 @@ const SmeForm = () => {
               </h3>
             </div>
 
-            <p className="large-text mb-8">
+            {/* <p className="large-text mb-8">
               Position yourself as a leader in shaping the future of student
               life in the UK! Forge a partnership with us today and access our
               cutting-edge platform early. Crafted to revolutionize the student
               experience, our comprehensive platform offers endless
               opportunities for collaboration and innovation in education.
-            </p>
+            </p> */}
+            <div className='flex gap-2'>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-5 text-green-500">
+                                <path fillRule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z" clipRule="evenodd" />
+                            </svg>
+
+                            <p className="large-text mb-8">
+                            Position yourself as a leader in shaping the future of student
+              life in the UK!
+                            </p>
+
+                        </div>
+                        <div className='flex gap-2'>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-5 text-green-500">
+                                <path fillRule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z" clipRule="evenodd" />
+                            </svg>
+
+                            <p className="large-text mb-8">
+                            Forge a partnership with us today and access our
+              cutting-edge platform early. 
+                            </p>
+
+                        </div>
+                        <div className='flex gap-2'>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-9 text-green-500">
+                                <path fillRule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z" clipRule="evenodd" />
+                            </svg>
+
+                            <p className="large-text mb-8">
+                            Crafted to revolutionize the student
+              experience, our  platform offers endless
+              opportunities for collaboration and innovation in education.
+                            </p>
+
+                        </div>
             {/* <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.idErpdfd8op7fFKUY4YZUAHaFb%26pid%3DApi&f=1&ipt=46dba4cdfa807edd831d8068889c7c1a9304f9b4dd93cf6d06931d739b632252&ipo=images" alt="partneship" /> */}
             {/* <div>
               <img
