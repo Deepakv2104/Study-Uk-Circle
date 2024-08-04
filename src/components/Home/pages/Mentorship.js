@@ -122,55 +122,80 @@ const Mentorship = () => {
 
 
     };
-
-    const handleSubmit = async (e) => {
+    const sendEmail = async (formData) => {
+        try {
+          const response = await fetch('http://localhost:8888/.netlify/functions/send-mail', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ to: formData.email, firstName: formData.firstName }),
+          });
+      
+          if (!response.ok) {
+            throw new Error('Failed to send email');
+          }
+      
+          const data = await response.json();
+          console.log('Email sent:', data);
+        } catch (error) {
+          console.error('Error sending email:', error);
+        }
+      };
+      
+      
+      const handleSubmit = async (e) => {
         e.preventDefault();
         const { firstName, lastName, email, phone, degree, applicationStatus, termPlanningFor, preferredYear, graduationYear, specialization } = formData;
         console.log(formData, 'submit')
-
+      
         if (!validatePhoneNumber(phone)) {
-            setValidPhone(true);
-            console.log(`${phone} is not a valid UK phone number.`);
-            return;
+          setValidPhone(true);
+          console.log(`${phone} is not a valid UK phone number.`);
+          return;
         } else {
-            setValidPhone(false);
+          setValidPhone(false);
         }
-
+      
         try {
-            await addDoc(collection(firestore, 'mentorshipForm'), {
-                firstName,
-                lastName,
-                email,
-                phone,
-                degree,
-                applicationStatus,
-                termPlanningFor,
-                preferredYear,
-                slotTime,
-                graduationYear,
-                specialization,
-                timestamp: new Date()
-            });
-            toast.success('Form submitted successfully!', {
-                style: {
-                    background: '#333',
-                    color: '#fff',
-                },
-            });
-
-            console.log(formData);
-            setFormSubmitted(true);
+          await addDoc(collection(firestore, 'mentorshipForm'), {
+            firstName,
+            lastName,
+            email,
+            phone,
+            degree,
+            applicationStatus,
+            termPlanningFor,
+            preferredYear,
+            slotTime,
+            graduationYear,
+            specialization,
+            timestamp: new Date()
+          });
+      
+          toast.success('Form submitted successfully!', {
+            style: {
+              background: '#333',
+              color: '#fff',
+            },
+          });
+      
+          console.log(formData);
+          setFormSubmitted(true);
+      
+          // Call sendEmail function to send a confirmation email
+          await sendEmail(formData);
+      
         } catch (error) {
-            console.error('Error adding document: ', error);
-            toast.error('Form submission failed. Please try again.', {
-                style: {
-                    //   background: '#333',
-                    //   color: '#fff',
-                    minWidth: '360px',
-                },
-            });
+          console.error('Error adding document: ', error);
+          toast.error('Form submission failed. Please try again.', {
+            style: {
+              minWidth: '360px',
+            },
+          });
         }
-    };
+      };
+      
 
 
 
