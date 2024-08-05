@@ -60,7 +60,7 @@ const Footer = () => {
             <div className="w-1/2 md:w-1/3 mb-6">
               <h5 className="text-lg font-semibold mb-4">Address</h5>
               <ul>
-                <span>London</span>
+                <span>1628 Robinson south, 1 atlantic crescent, postal code: Ha90uf, London, United Kingdom</span>
               </ul>
             </div>
           </div>
