@@ -727,12 +727,12 @@ const Ambassador = () => {
                             <p className="large-text mb-8">
                                 This part-time role is for current and incoming students only.                            </p>
                         </div>
-                        <div className=''>
+                        {/* <div className=''>
                             <LottieAnimation
                                 animationData={animationData}
                                 className="max-w-full h-auto"
                             />
-                        </div>
+                        </div> */}
                     </div>
 
                     <div className="right-column rounded-lg shadow-md">
