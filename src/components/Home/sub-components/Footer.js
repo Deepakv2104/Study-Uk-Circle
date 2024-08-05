@@ -48,8 +48,12 @@ const Footer = () => {
               <h5 className="text-lg font-semibold mb-4">Platform</h5>
               <ul>
                 {/* <li className="mb-2"><button onClick={handleJoinClick} className="hover:underline">Join</button></li> */}
-                <li className="mb-2"><button onClick={handleJoinClick} className="hover:underline">Sign in</button></li>
+                <li className="mb-2"><button onClick={() => navigate('/mentorship')} className="hover:underline">Mentorship</button></li>
                 <li className="mb-2"><button onClick={handleBrandFormClick} className="hover:underline">Partnerships</button></li>
+                <li className="mb-2"><button onClick={() => navigate('/ambassador')} className="hover:underline">Ambassador</button></li>
+                <li className="mb-2"><button onClick={handleJoinClick} className="hover:underline">Sign in</button></li>
+
+
 
               </ul>
             </div>

@@ -143,12 +143,12 @@ const Join = () => {
                             <h3 className="text-2xl font-bold">Seamless student experience in the UK: a one-stop solution</h3>
                         </div>
                         <p className="large-text mb-8">Be among the first to experience the future of student life in the UK! Join our waiting list today and gain early access to our comprehensive platform designed to revolutionize your student experience.</p>
-                        {/* <div className=''>
+                        <div className=''>
                             <LottieAnimation
                                 animationData={animationData}
-                                className="max-w-full h-auto"
+                                className="w-full h-auto"
                             />
-                        </div> */}
+                        </div>
                         {/* <img src="https://join.getwyld.in/assets/images/line.png" alt="Divider" className="mb-8" /> */}
                         {/* <a href="/" className="glass-button smaller w-button  rounded-lg bg-orange-500 hover:bg-orange-600" style={{ textDecoration: 'none', color: 'white', padding: '0.8rem' }}>Back to homepage</a> */}
                     </div>
