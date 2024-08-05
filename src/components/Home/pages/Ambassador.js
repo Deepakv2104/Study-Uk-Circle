@@ -5,6 +5,8 @@ import { firestore } from '../../../firebase';
 import { collection, addDoc } from 'firebase/firestore';
 import NewNav from '../sub-components/NewNav';
 import Footer from '../sub-components/Footer';
+import animationData from "../../../assets/lotties/ambassadors.json"
+import LottieAnimation from "../sub-components/LottieAnimation";
 
 const Ambassador = () => {
     const [currentStep, setCurrentStep] = useState(1);
@@ -724,6 +726,12 @@ const Ambassador = () => {
                             </svg>
                             <p className="large-text mb-8">
                                 This part-time role is for current and incoming students only.                            </p>
+                        </div>
+                        <div className=''>
+                            <LottieAnimation
+                                animationData={animationData}
+                                className="max-w-full h-auto"
+                            />
                         </div>
                     </div>
 
