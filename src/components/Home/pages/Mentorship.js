@@ -10,12 +10,14 @@ import NewNav from '../sub-components/NewNav';
 import Footer from '../sub-components/Footer';
 import * as React from 'react';
 import { toast, Toaster } from 'react-hot-toast';
+import animationData from "../../../assets/lotties/mentorship.json"
 
 // import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 // import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 // import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 // import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import dayjs from 'dayjs';
+import LottieAnimation from '../sub-components/LottieAnimation';
 
 
 const Mentorship = () => {
@@ -124,78 +126,78 @@ const Mentorship = () => {
     };
     const sendEmail = async (formData) => {
         try {
-          const response = await fetch('http://localhost:8888/.netlify/functions/send-mail', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ to: formData.email, firstName: formData.firstName }),
-          });
-      
-          if (!response.ok) {
-            throw new Error('Failed to send email');
-          }
-      
-          const data = await response.json();
-          console.log('Email sent:', data);
+            const response = await fetch('http://localhost:8888/.netlify/functions/send-mail', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ to: formData.email, firstName: formData.firstName }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to send email');
+            }
+
+            const data = await response.json();
+            console.log('Email sent:', data);
         } catch (error) {
-          console.error('Error sending email:', error);
+            console.error('Error sending email:', error);
         }
-      };
-      
-      
-      const handleSubmit = async (e) => {
+    };
+
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const { firstName, lastName, email, phone, degree, applicationStatus, termPlanningFor, preferredYear, graduationYear, specialization } = formData;
         console.log(formData, 'submit')
-      
+
         if (!validatePhoneNumber(phone)) {
-          setValidPhone(true);
-          console.log(`${phone} is not a valid UK phone number.`);
-          return;
+            setValidPhone(true);
+            console.log(`${phone} is not a valid UK phone number.`);
+            return;
         } else {
-          setValidPhone(false);
+            setValidPhone(false);
         }
-      
+
         try {
-          await addDoc(collection(firestore, 'mentorshipForm'), {
-            firstName,
-            lastName,
-            email,
-            phone,
-            degree,
-            applicationStatus,
-            termPlanningFor,
-            preferredYear,
-            slotTime,
-            graduationYear,
-            specialization,
-            timestamp: new Date()
-          });
-      
-          toast.success('Form submitted successfully!', {
-            style: {
-              background: '#333',
-              color: '#fff',
-            },
-          });
-      
-          console.log(formData);
-          setFormSubmitted(true);
-      
-          // Call sendEmail function to send a confirmation email
-          await sendEmail(formData);
-      
+            await addDoc(collection(firestore, 'mentorshipForm'), {
+                firstName,
+                lastName,
+                email,
+                phone,
+                degree,
+                applicationStatus,
+                termPlanningFor,
+                preferredYear,
+                slotTime,
+                graduationYear,
+                specialization,
+                timestamp: new Date()
+            });
+
+            toast.success('Form submitted successfully!', {
+                style: {
+                    background: '#333',
+                    color: '#fff',
+                },
+            });
+
+            console.log(formData);
+            setFormSubmitted(true);
+
+            // Call sendEmail function to send a confirmation email
+            await sendEmail(formData);
+
         } catch (error) {
-          console.error('Error adding document: ', error);
-          toast.error('Form submission failed. Please try again.', {
-            style: {
-              minWidth: '360px',
-            },
-          });
+            console.error('Error adding document: ', error);
+            toast.error('Form submission failed. Please try again.', {
+                style: {
+                    minWidth: '360px',
+                },
+            });
         }
-      };
-      
+    };
+
 
 
 
@@ -237,9 +239,8 @@ const Mentorship = () => {
                             </svg>
 
                             <p className="large-text mb-8">
-                            Your first call is on us! Start your journey with a free chat and get the lowdown on job prospects after graduation.
+                                Your first call is on us! Start your journey with a free chat and get the lowdown on job prospects after graduation.
                             </p>
-
                         </div>
                         <div className='flex gap-2'>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-8 text-green-500">
@@ -247,11 +248,16 @@ const Mentorship = () => {
                             </svg>
 
                             <p className="large-text mb-8">
-                            Have visa queries or need information on scholarships? We've got you covered. Need financial advice? Explore loan options seamlessly. 
+                                Have visa queries or need information on scholarships? We've got you covered. Need financial advice? Explore loan options seamlessly.
                             </p>
-
                         </div>
-                       
+                        <div className=''>
+                            <LottieAnimation
+                                animationData={animationData}
+                                className="max-w-full h-auto"
+                            />
+                        </div>
+
 
                         {/* <img src='https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.x-X-BXhnyomUaB5g2ctx6wHaE8%26pid%3DApi&f=1&ipt=e6feb16f8003e9018bf73dfd8e77883a85746737b81a4050daf7670523465e89&ipo=images' alt='mentorship' /> */}
 

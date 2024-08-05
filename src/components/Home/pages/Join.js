@@ -137,7 +137,7 @@ const Join = () => {
                 <div className="join-container mx-auto max-w-7xl px-4 flex justify-center items-center">
                     <div className="left-column mr-12">
                         <div className="heading mb-8">
-                            <h3 className="text-2xl font-bold">Welcome to<span className="text-color-green">  WorldLynk</span></h3>
+                            <h3 className="text-3xl font-bold">Welcome to<span className="text-color-green">  WorldLynk</span></h3>
                             <h3 className="text-2xl font-bold">Seamless student experience in the UK: a one-stop solution</h3>
                         </div>
                         <p className="large-text mb-8">Be among the first to experience the future of student life in the UK! Join our waiting list today and gain early access to our comprehensive platform designed to revolutionize your student experience.</p>
