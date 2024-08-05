@@ -9,7 +9,7 @@ const Footer = () => {
   const handleJoinClick = () => {
     navigate('/join-waiting-list');
   };
-  
+
   const handleBrandFormClick = () => {
     navigate('/write-to-us');
   };
@@ -36,9 +36,9 @@ const Footer = () => {
             <div className="w-1/2 md:w-1/3 mb-6">
               <h5 className="text-lg font-semibold mb-4">Company</h5>
               <ul>
-                <li className="mb-2"><button onClick={handleHomeClick}className="hover:underline">Home</button></li>
+                <li className="mb-2"><button onClick={handleHomeClick} className="hover:underline">Home</button></li>
                 <li className="mb-2"><button onClick={handleAboutClick} className="hover:underline">About</button></li>
-                <li className="mb-2"><button onClick={handlePolicyClick} className="hover:underline">Terms & policies</button></li>
+                {/* <li className="mb-2"><button onClick={handlePolicyClick} className="hover:underline">Terms & policies</button></li> */}
 
                 {/* <li className="mb-2"><button to="/newsroom" className="hover:underline">Newsroom</button></li>
                 <li className="mb-2"><button to="/contact" className="hover:underline">Contact</button></li> */}
@@ -56,7 +56,7 @@ const Footer = () => {
             <div className="w-1/2 md:w-1/3 mb-6">
               <h5 className="text-lg font-semibold mb-4">Address</h5>
               <ul>
-               <span>London</span>
+                <span>London</span>
               </ul>
             </div>
           </div>
