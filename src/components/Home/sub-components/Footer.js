@@ -9,7 +9,7 @@ const Footer = () => {
   const handleJoinClick = () => {
     navigate('/join-waiting-list');
   };
-  
+
   const handleBrandFormClick = () => {
     navigate('/write-to-us');
   };
@@ -36,9 +36,9 @@ const Footer = () => {
             <div className="w-1/2 md:w-1/3 mb-6">
               <h5 className="text-lg font-semibold mb-4">Company</h5>
               <ul>
-                <li className="mb-2"><button onClick={handleHomeClick}className="hover:underline">Home</button></li>
+                <li className="mb-2"><button onClick={handleHomeClick} className="hover:underline">Home</button></li>
                 <li className="mb-2"><button onClick={handleAboutClick} className="hover:underline">About</button></li>
-                <li className="mb-2"><button onClick={handlePolicyClick} className="hover:underline">Terms & policies</button></li>
+                {/* <li className="mb-2"><button onClick={handlePolicyClick} className="hover:underline">Terms & policies</button></li> */}
 
                 {/* <li className="mb-2"><button to="/newsroom" className="hover:underline">Newsroom</button></li>
                 <li className="mb-2"><button to="/contact" className="hover:underline">Contact</button></li> */}
@@ -48,15 +48,19 @@ const Footer = () => {
               <h5 className="text-lg font-semibold mb-4">Platform</h5>
               <ul>
                 {/* <li className="mb-2"><button onClick={handleJoinClick} className="hover:underline">Join</button></li> */}
-                <li className="mb-2"><button onClick={handleJoinClick} className="hover:underline">Sign in</button></li>
+                <li className="mb-2"><button onClick={() => navigate('/mentorship')} className="hover:underline">Mentorship</button></li>
                 <li className="mb-2"><button onClick={handleBrandFormClick} className="hover:underline">Partnerships</button></li>
+                <li className="mb-2"><button onClick={() => navigate('/ambassador')} className="hover:underline">Ambassador</button></li>
+                <li className="mb-2"><button onClick={handleJoinClick} className="hover:underline">Sign in</button></li>
+
+
 
               </ul>
             </div>
             <div className="w-1/2 md:w-1/3 mb-6">
               <h5 className="text-lg font-semibold mb-4">Address</h5>
               <ul>
-               <span>London</span>
+                <span>1628 Robinson south, 1 atlantic crescent, postal code: Ha90uf, London, United Kingdom</span>
               </ul>
             </div>
           </div>

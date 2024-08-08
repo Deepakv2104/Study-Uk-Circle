@@ -36,6 +36,8 @@ import Failure from "./components/CheckOutForm/Failure";
 import Maps from "./components/Student/Maps/Maps";
 import MyBookings from "./components/Student/Bookings/MyBookings";
 import Ambassador from "./components/Home/pages/Ambassador";
+import GoogleMap from "./components/Student/Maps/GoogleMaps";
+import GoogleMaps from "./components/Student/Maps/GoogleMaps";
 import CheckoutDetails from "./components/Admin/events/Bookings";
 
 
@@ -61,6 +63,7 @@ function App() {
           <Route path="/write-to-us" element={<SmeForm />} />
           <Route path="/about-us" element={<AboutUsPage />} />
           <Route path="/maps" element={<Maps />} />
+          <Route path="/google" element={<GoogleMaps />} />
 
 
           {/* <Route path="/newHome" element={<NewHome/>} /> */}
