@@ -2,7 +2,6 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Dashboard from "./components/Admin/admin-dashboard/adminDashboard";
-import EventUploadForm from "./components/Admin/events/EventUpload";
 import Overview from "./components/Admin/overview/Overview";
 import LoginPage from "./components/Home/pages/LoginPage";
 import FilterEventsPage from './components/Student/Events/FilterEventsPage'
@@ -15,7 +14,6 @@ import StudentProfile from "./components/Student/userProfile/StudentProfile";
 import EventDetails from "./components/Student/Events/EventDetails";
 import UniversityDetails from "./components/Student/Universities/UniversityDetails";
 import Explore from "./components/Student/Explore/Explore";
-import Favorites from "./components/Student/Favorites/Favorites";
 import AddJobPost from "./components/Admin/jobs/AddJobPost";
 import PrivateRoute from "./auth/PrivateRoute/PrivateRoute";
 import PageNotFound from "./components/Home/pages/PageNotFound";
@@ -26,7 +24,7 @@ import Jobs from "./components/Student/Jobs/Jobs";
 import AboutUsPage from "./components/Home/pages/AboutUsPage";
 import IQAgentMiddleware from "./components/Student/Accomodation/Accomodation";
 // import AuthComponent from "./components/Testing";
-// import DownloadExcel from "./components/FetchData";
+import DownloadExcel from "./components/Admin/FetchData";
 import AddRestaurant from "./components/Admin/restaurants/AddRestaurant";
 import Restaurant from "./components/Student/Explore/RestaurantTabs";
 import SwipeCarousel from "./components/Student/Explore/SwipeCarousel";
@@ -38,6 +36,7 @@ import Failure from "./components/CheckOutForm/Failure";
 import Maps from "./components/Student/Maps/Maps";
 import MyBookings from "./components/Student/Bookings/MyBookings";
 import Ambassador from "./components/Home/pages/Ambassador";
+import CheckoutDetails from "./components/Admin/events/Bookings";
 
 
 gsap.registerPlugin();
@@ -75,9 +74,14 @@ function App() {
                 element={<Overview />}
               />
               <Route
-                path="/dashboard/add-event"
+                path="/dashboard/events"
                 role="admin"
                 element={<UploadEventForm />}
+              />
+                  <Route
+                path="/dashboard/bookings"
+                role="admin"
+                element={<CheckoutDetails />}
               />
               <Route
                 path="/dashboard/add-college"
@@ -107,6 +111,7 @@ function App() {
                 role="student"
                 element={<EventsPage />}
               />
+              
               <Route
                 path="/user-dashboard/success?session_id={CHECKOUT_SESSION_ID}"
                 role="student"
@@ -122,11 +127,11 @@ function App() {
                 role="student"
                 element={<Failure />}
               />
-              {/* <Route
+              <Route
                 path="/user-dashboard/fetchData"
                 role="student"
                 element={<DownloadExcel />}
-              /> */}
+              />
               <Route
                 path="/user-dashboard/swipe"
                 role="student"
